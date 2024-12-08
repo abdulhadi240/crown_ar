@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { BiCalendarEvent } from "react-icons/bi";
 import Link from "next/link";
 
-const Courses_Card = ({ active, data }) => {
+const Courses_Card = ({ active, data ,params}) => {
   return (
     <div className="flex justify-center hover:scale-105 transition-all">
   <div className="bg-white border-[1px] w-72 p-3 rounded-md shadow-md flex flex-col h-full">
@@ -62,7 +62,7 @@ const Courses_Card = ({ active, data }) => {
         REGISTER
       </button>
       <Link
-        href={`/course_detail/${data.slug}`}
+        href={`/${params.program}/${data.available_cities[0].slug}/${data.slug}`}
         className="w-full p-2 text-xs text-center hover:bg-primary transition-all text-white rounded-md bg-secondary"
       >
         DETAILS
