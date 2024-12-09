@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { BiSolidBadge } from "react-icons/bi";
 
-const Card = ({ image, title, paragraph, country, link ,params ,city }) => {
+const Card = ({ image, title, paragraph, country, link ,params ,city,specialization }) => {
   
 console.log(params);
 
@@ -38,7 +38,7 @@ console.log(params);
         <div className="flex flex-col gap-2 mt-2 px-4 md:px-0 md:flex-row">
           {city ? (
             <Link
-            href={`${params}/${link}`} // Add current city dynamically
+            href={`${params}/${specialization}/${link}`} // Add current city dynamically
             className="px-8 hover:bg-primary/80 py-2 text-sm text-white rounded-full bg-primary"
           >
             Details

@@ -119,6 +119,7 @@ const SearchFiltersCities = ({
                 city={search}
                 link={course.slug}
                 params={params}
+                specialization={course.specialization_slug}
                 image={course.image}
                 title={course.title}
                 paragraph={course.meta_description}
