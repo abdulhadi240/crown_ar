@@ -9,6 +9,7 @@ const SearchFiltersCities = ({
   Category,
   params,
   search,
+  
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSpecialization, setSelectedSpecialization] = useState("");

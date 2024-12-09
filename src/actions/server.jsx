@@ -45,7 +45,7 @@ export async function GetAllCategory() {
 
 export async function GetSpecialization() {
   try {
-    const response = await fetch(`${process.env.BACKEND_URL}/specializations`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/specializations_categories`, {
       headers: {
         "Content-Type": "application/json",
         "Accept-Language": "en",

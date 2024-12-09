@@ -9,12 +9,17 @@ const nextConfig = {
       },
     ],
   },
-   rewrites: async () => [
+  rewrites: async () => [
+    // Rewrite for paths with a slug (e.g., internet-of-things-training-program12)
     {
-      source: '/:city/:id/:slug', // Match the original URL structure
-      destination: '/cities/:city/:id/:slug', // Map it to the new URL structure
+      source: '/:city/:id/:slug', // Match URLs like /manchester/safety-mangement/internet-of-things-training-program12
+      destination: '/cities/:city/:id/:slug', // Rewrite to /cities/manchester/safety-mangement/internet-of-things-training-program12
     },
-   
+    // Rewrite for paths without a slug (e.g., /manchester/safety-mangement/)
+    {
+      source: '/:city/:id/', // Match URLs like /manchester/safety-mangement/
+      destination: '/cities/:city/:id/', // Rewrite to /cities/manchester/safety-mangement/
+    },
   ],
 };
 

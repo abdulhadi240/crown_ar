@@ -38,7 +38,7 @@ console.log(params);
         <div className="flex flex-col gap-2 mt-2 px-4 md:px-0 md:flex-row">
           {city ? (
             <Link
-            href={`${params}/safety-mangement/${link}`} // Add current city dynamically
+            href={`${params}/${link}`} // Add current city dynamically
             className="px-8 hover:bg-primary/80 py-2 text-sm text-white rounded-full bg-primary"
           >
             Details

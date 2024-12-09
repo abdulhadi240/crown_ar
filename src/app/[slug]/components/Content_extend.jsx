@@ -52,16 +52,16 @@ const Content_extend = ({ children, categories, params }) => {
                   >
                     {openIndex === index && (
                       <div className="mt-2 ml-5">
-                        {dropdown?.map((data, i) => {
+                        {item.categories?.map((data, i) => {
                           return (
                             <Link
-                              href={`/search_course/${params}/${data}`}
+                              href={`/search_course/${params}/${data.slug}`}
                               key={i}
                               className="flex gap-2 hover:bg-secondary p-2 hover:text-white items-center mb-2 text-xs"
                               scroll={false}
                             >
                               <FaRegBookmark />
-                              {data}
+                              {data.name}
                             </Link>
                           );
                         })}
@@ -80,7 +80,7 @@ const Content_extend = ({ children, categories, params }) => {
               index > 0 && (
                 <div key={index} className="flex items-center justify-between p-2">
                   <div className="text-sm">{item.name}</div>
-                  <div className="w-auto h-auto p-1 border-[1px] text-sm text-black/50">{20}</div>
+                  <div className="w-auto h-auto p-1 border-[1px] text-sm text-black/50">{item.number_of_courses}</div>
                 </div>
               )
             );
