@@ -131,10 +131,10 @@ const HeaderSection = () => {
             <Link href="/special-request" className="hover:underline">
               Special Request |
             </Link>
-            <Link href="/blog" className="hover:underline">
+            <Link href="/Blog/articles" className="hover:underline">
               Blog |
             </Link>
-            <Link href="/faq" className="hover:underline">
+            <Link href="/FAQ" className="hover:underline">
               FAQ
             </Link>
             <div className="px-4 py-2 text-blue-900 bg-white rounded">

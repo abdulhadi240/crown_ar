@@ -42,7 +42,7 @@ const Page = () => {
         />
 
         <Features
-          image={"/plan1.png"}
+          image={"/plan1.webp"}
           icon={"/icon1.png"}
           heading={"Management"}
           number={"02"}
@@ -53,7 +53,7 @@ const Page = () => {
         />
 
         <Features
-          image={"/plan1.png"}
+          image={"/plan1.webp"}
           icon={"/icon1.png"}
           heading={"Management"}
           number={"03"}
@@ -64,7 +64,7 @@ const Page = () => {
         />
 
         <Features
-          image={"/plan1.png"}
+          image={"/plan1.webp"}
           icon={"/icon1.png"}
           heading={"Management"}
           number={"04"}
@@ -75,7 +75,7 @@ const Page = () => {
         />
 
         <Features
-          image={"/plan1.png"}
+          image={"/plan1.webp"}
           icon={"/icon1.png"}
           heading={"Management"}
           number={"05"}

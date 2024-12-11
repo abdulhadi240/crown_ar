@@ -59,9 +59,9 @@ const Footer = () => {
           <h3 className="mb-2 font-bold text-gray-800">Company</h3>
           <ul className="space-y-1 text-sm text-gray-600">
             <li><Link href="/why-2rism">Why 2rism</Link></li>
-            <li><Link href="/partner-with-us">Partner With Us</Link></li>
-            <li><Link href="/faq">FAQ</Link></li>
-            <li><Link href="/blog">Blog</Link></li>
+            <li><Link href="/plan">Plan</Link></li>
+            <li><Link href="/FAQ">FAQ</Link></li>
+            <li><Link href="/Blog/articles">Blog</Link></li>
           </ul>
         </div>
 
@@ -70,7 +70,7 @@ const Footer = () => {
           <h3 className="mb-2 font-bold text-gray-800">Support</h3>
           <ul className="space-y-1 text-sm text-gray-600">
             <li><Link href="/account">Account</Link></li>
-            <li><Link href="/support">Support Center</Link></li>
+            <li><Link href="/customer_service">Support Center</Link></li>
             <li><Link href="/feedback">Feedback</Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
           </ul>
