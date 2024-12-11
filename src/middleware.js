@@ -54,7 +54,6 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     "/search_course/:path*", // Match /search_course and any subpaths
-    "/Blog/:path*", // Match /Blog and any subpaths
     "/:path*", // Match all other dynamic paths
   ],
 };
