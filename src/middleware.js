@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
 import { fetchProgramData } from "./app/LocalCache";
 
+
+const programs = [
+  { slug: "diploma", name: "Diploma" },
+  { slug: "masters", name: "Masters" },
+  { slug: "training-course", name: "Training Course" },
+];
+
 // Middleware function
 export async function middleware(request) {
   const { pathname } = request.nextUrl; // Get the current pathname
   const url = request.nextUrl.clone(); // Clone the URL for modification
-  const programs = await fetchProgramData(); // Fetch program data from the API
 
   // Handle /search_course/undefined case
   if (pathname.startsWith("/search_course/undefined")) {
