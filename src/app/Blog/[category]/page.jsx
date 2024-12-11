@@ -1,4 +1,4 @@
-{/** // pages/index.js
+// pages/index.js
 import ArticleCard from '../ArticleCard';
 
 export const revalidate = 60
@@ -101,14 +101,5 @@ export default async function Page({params}) {
     </div>
   );
 }
-*/}
 
-import React from 'react'
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
-
-export default page

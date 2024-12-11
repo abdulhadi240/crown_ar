@@ -1,4 +1,4 @@
-{/** import Image from "next/image";
+import Image from "next/image";
 import { BiSolidQuoteLeft } from "react-icons/bi";
 import ArticleCard from "../../ArticleCard";
 import Link from "next/link";
@@ -131,7 +131,7 @@ const BlogPost = async ({params}) => {
             button_data={article.button_data}
             slug={article.slug} // Pass the slug to ArticleCard
           />
-        ))}
+        ))} */}
       </div>
       
     </div>
@@ -140,14 +140,3 @@ const BlogPost = async ({params}) => {
 
 export default BlogPost;
 
-*/}
-
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
-
-export default page
