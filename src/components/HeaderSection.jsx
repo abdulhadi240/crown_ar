@@ -174,14 +174,14 @@ const HeaderSection = () => {
           {/* Login and Sign Up */}
           <div className="flex items-center space-x-4">
             <Link
-              href="/login"
+              href="/sign-in"
               className="flex items-center text-gray-500 hover:text-blue-900"
             >
               <FaLock className="mr-1" /> Login
             </Link>
-            <button className="px-4 py-2 text-white bg-blue-900 rounded hover:bg-blue-700">
+            <Link href={'/sign-in'} className="px-4 py-2 text-white bg-blue-900 rounded hover:bg-blue-700">
               Sign up
-            </button>
+            </Link>
           </div>
         </nav>
       </section>

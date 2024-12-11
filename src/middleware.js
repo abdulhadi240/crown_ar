@@ -17,21 +17,23 @@ export async function middleware(request) {
   // Split the pathname into segments
   const pathSegments = pathname.split("/").filter(Boolean);
 
+  // Handle /Blog paths with at least 3 segments
+  if (pathSegments.length == 3 && pathSegments[0] === "Blog") {
+    return NextResponse.next();
+  }
+
+  // Check if the path matches any program
   if (pathSegments.length >= 3) {
-    // Check if the first segment matches one of the predefined programs
     const program = programs.find((p) => p.slug === pathSegments[0]);
     if (program) {
-      // Extract the last segment as the course name
       const courseName = pathSegments[pathSegments.length - 1];
       url.pathname = `/course_detail/${courseName}`; // Rewrite to /course_detail/[course_name]
       return NextResponse.rewrite(url);
     }
   }
 
-  // Extract the dynamic segment from the pathname (the part after /search_course/)
-  const dynamicSegment = pathSegments[0]; // The dynamic part of the path (e.g., "diploma")
-
-  // Check if the dynamic segment matches any program slug
+  // Handle dynamic segment for /search_course/
+  const dynamicSegment = pathSegments[0];
   const program = programs.find((p) => p.slug === dynamicSegment);
 
   if (pathname === "/") {
@@ -39,24 +41,25 @@ export async function middleware(request) {
   }
 
   if (!program) {
-    // If no matching program is found, redirect to a default program (e.g., "masters")
     if (dynamicSegment === "undefined" || !dynamicSegment) {
-      url.pathname = "/search_course/masters"; // Default to "masters" if no valid program
+      url.pathname = "/search_course/masters"; // Default to "masters"
       return NextResponse.redirect(url); // Redirect to the default URL
     }
   }
 
-  // If a matching program is found, rewrite the URL to /search_course/[program_slug]
   if (program) {
     url.pathname = `/search_course/${program.slug}`;
-    return NextResponse.rewrite(url); // Rewrite the request to the new path
+    return NextResponse.rewrite(url);
   }
 
-  // If no rewrite or redirect is needed, return NextResponse.next()
   return NextResponse.next();
 }
 
 // Define the paths to match
 export const config = {
-  matcher: ["/search_course/:path*", "/:path*"], // Apply middleware to /search_course paths and other dynamic paths
+  matcher: [
+    "/search_course/:path*", // Match /search_course and any subpaths
+    "/Blog/:path*", // Match /Blog and any subpaths
+    "/:path*", // Match all other dynamic paths
+  ],
 };
