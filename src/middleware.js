@@ -17,11 +17,6 @@ export async function middleware(request) {
   // Split the pathname into segments
   const pathSegments = pathname.split("/").filter(Boolean);
 
-  // Handle /Blog paths with at least 3 segments
-  if (pathSegments.length == 3 && pathSegments[0] === "Blog") {
-    return NextResponse.next();
-  }
-
   // Check if the path matches any program
   if (pathSegments.length >= 3) {
     const program = programs.find((p) => p.slug === pathSegments[0]);
