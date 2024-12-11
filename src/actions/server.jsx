@@ -86,3 +86,26 @@ export async function GetSpecificSpecialization(slug) {
     return [];
   }
 }
+
+
+
+export async function GetCities() {
+  try {
+    const response = await fetch(`${process.env.BACKEND_URL}/cities`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": "en",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error fetching categories: ${response.statusText}`);
+    }
+
+    const category = await response.json();
+    return category.data;
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
+    return [];
+  }
+}

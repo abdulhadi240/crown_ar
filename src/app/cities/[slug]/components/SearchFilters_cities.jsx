@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import { GetCities } from "@/actions/server";
 
 const SearchFiltersCities = ({
   post,
@@ -15,6 +16,26 @@ const SearchFiltersCities = ({
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [data, setData] = useState(post);
+  const [iscity , setIsCity] = useState(null);
+
+  useEffect(()=>{
+    async function getCity(){
+      const cities = await GetCities()
+      if(cities){
+        const city = cities.find((city) => city.slug === params)
+        if(city){
+          setIsCity(true)
+        }
+        else{
+          setIsCity(false)
+        }
+      }
+    }
+
+    getCity()
+  },[])
+
+  console.log(iscity)
 
   const handleSearch = () => {
     // Implement the search logic here
@@ -117,6 +138,7 @@ const SearchFiltersCities = ({
               <Card
                 key={course.id}
                 city={search}
+                check={iscity}
                 link={course.slug}
                 params={params}
                 specialization={course.specialization_slug}
