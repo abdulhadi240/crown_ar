@@ -16,10 +16,7 @@ const nextConfig = {
       destination: '/cities/:city/:id/:slug', // Rewrite to /cities/manchester/safety-mangement/internet-of-things-training-program12
     },
     // Rewrite for paths without a slug (e.g., /manchester/safety-mangement/)
-    {
-      source: '/:city/:id/', // Match URLs like /manchester/safety-mangement/
-      destination: '/cities/:city/:id/', // Rewrite to /cities/manchester/safety-mangement/
-    },
+    
   ],
 };
 

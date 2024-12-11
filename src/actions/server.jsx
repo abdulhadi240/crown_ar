@@ -109,3 +109,21 @@ export async function GetCities() {
     return [];
   }
 }
+
+
+export default async function fetchData(url) {
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": "en",
+      },
+    });
+    if (!res.ok) throw new Error(`Failed to fetch: ${url}`);
+    return res.json();
+  } catch (error) {
+    console.error(error.message);
+    return null; // Return null on error
+  }
+}
