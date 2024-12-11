@@ -148,7 +148,7 @@ export default function MobileMenu() {
               Masters
             </Link>
             <Link
-              href="/show_cities"
+              href="/cities"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
@@ -156,7 +156,7 @@ export default function MobileMenu() {
               Cities 
             </Link>
             <Link
-              href="/consulting"
+              href="/consulting-services"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
@@ -164,7 +164,7 @@ export default function MobileMenu() {
               Consulting
             </Link>
             <Link
-              href="/team"
+              href="/Academy-Vision"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
@@ -172,12 +172,12 @@ export default function MobileMenu() {
               How We Are
             </Link>
             <Link
-              href="/teamwork"
+              href="/plan"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
             >
-              Team Work
+              Plans
             </Link>
             <Link
               href="/contact"
