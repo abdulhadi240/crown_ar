@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { BiCalendarEvent } from "react-icons/bi";
 const dates = [
@@ -121,9 +122,7 @@ const Summary = ({ summary }) => {
                       value={selectedCities[index]}
                       onChange={(e) => handleCityChange(index, e.target.value)}
                     >
-                      <option value="" disabled>
-                        Select City
-                      </option>
+                      <option value="">Select City</option>
                       {summary.available_cities.map((city, i) => (
                         <option key={i} value={city.name}>
                           {city.name}
@@ -131,9 +130,9 @@ const Summary = ({ summary }) => {
                       ))}
                     </select>
                   </div>
-                  <button className="px-5 text-sm text-white rounded-md bg-primary">
+                  <Link href={`/register?course=${summary.slug}&date=${item.date}&city=${selectedCities}`} className="px-5 text-sm text-white rounded-md items-center text-center flex bg-primary">
                     Register
-                  </button>
+                  </Link>
                 </div>
               </div>
             );

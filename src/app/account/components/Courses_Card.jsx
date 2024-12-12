@@ -53,14 +53,14 @@ const Courses_Card = ({ active, data ,params}) => {
 
     {/* Buttons */}
     <div className="flex gap-4 mt-auto">
-      <button
+      <Link href={`/register?course=${data.slug}&date=${data.available_dates[0].date}`}
         className={cn(
-          "w-full p-2 text-xs text-white rounded-md bg-secondary",
+          "w-full p-2 text-xs text-center hover:bg-primary text-white rounded-md bg-secondary",
           { "disabled bg-secondary/50 cursor-not-allowed": active }
         )}
       >
         REGISTER
-      </button>
+      </Link>
       <Link
         href={`/${params.slug}/${data.available_cities[0].slug}/${data.slug}`}
         className="w-full p-2 text-xs text-center hover:bg-primary transition-all text-white rounded-md bg-secondary"
