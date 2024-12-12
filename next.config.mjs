@@ -18,6 +18,9 @@ const nextConfig = {
     // Rewrite for paths without a slug (e.g., /manchester/safety-mangement/)
     
   ],
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default nextConfig;
