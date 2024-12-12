@@ -123,7 +123,7 @@ export default function Page() {
     formData.append("course_id", detail?.data?.id || "");
     formData.append("participant_type", participantType.toLowerCase());
     formData.append("city_id", city || "");
-    formData.append("date", "28-11-2024" || "");
+    formData.append("date", selectedDate || "");
     formData.append("full_name", participants[0]?.fullName || "");
     formData.append("email", participants[0]?.email || "");
     formData.append("job_title", participants[0]?.jobTitle || "");
@@ -160,9 +160,8 @@ export default function Page() {
           method: "POST",
           headers: {
             Accept: "application/json",
-            AcceptLanguage: "en",
-            Authorization: `Bearer 5|4B66Vf4YovSnTLHCoJbtEqYvl5WeCw7TzvzgVHZ7`,
-          },
+            "Accept-Language": "en",
+            },
           body: formData,
         }
       );
