@@ -52,9 +52,9 @@ console.log(params);
             </Link>
           ) : null}
 
-          <button className="px-8 py-2 text-sm text-white rounded-full bg-secondary">
+          <Link href={`/register?course=${link}`} className="px-8 py-2 text-sm text-white rounded-full bg-secondary">
             Register
-          </button>
+          </Link>
         </div>
       </div>
     </div>
