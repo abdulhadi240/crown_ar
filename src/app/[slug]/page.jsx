@@ -35,18 +35,23 @@ async function fetchProgramCourses(slug) {
   return fetchData(`${process.env.BACKEND_URL}/courses/${slug}/programs`);
 }
 
+async function fetchCategoryData() {
+  return fetchData(`${process.env.BACKEND_URL}/categories`);
+}
+
 // Dynamic Page Component
 export default async function Page({ params }) {
   const { slug } = params;
 
-  const [cityData, specializationData, cityCourses, programs, programCourses ,SpecializationCategory] =
+  const [cityData, specializationData, cityCourses, programs, programCourses ,SpecializationCategory , categoryData] =
     await Promise.all([
       fetchCityData(),
       fetchSpecializationData(),
       fetchCityCourses(slug),
       fetchProgramData(),
       fetchProgramCourses(slug),
-      fetchSpecializationCategory()
+      fetchSpecializationCategory(),
+      fetchCategoryData()
     ]);
 
     const category = await GetAllCategory().catch(() => []);
@@ -115,7 +120,7 @@ export default async function Page({ params }) {
             />
           </div>
         ) : (
-          <Programs params={params} data={data} SpecializationCategory={SpecializationCategory}/>
+          <Programs params={params} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
       
         )}
       </>
@@ -125,11 +130,14 @@ export default async function Page({ params }) {
 
 
 export async function generateStaticParams() {
-  const [cityData, specializationData, programs] = await Promise.all([
-    fetchCityData(),
-    fetchSpecializationData(),
-    fetchProgramData(),
-  ]);
+  const [cityData, specializationData, programs ,SpecializationCategory , categoryData] =
+    await Promise.all([
+      fetchCityData(),
+      fetchSpecializationData(),
+      fetchProgramData(),
+      fetchSpecializationCategory(),
+      fetchCategoryData()
+    ]);
 
   // Generate paths from city, specialization, and program data
   const cityPaths = cityData?.data?.map((city) => ({ slug: city.slug })) || [];

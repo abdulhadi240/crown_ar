@@ -7,7 +7,6 @@ import { BiCategory } from "react-icons/bi";
 import Link from "next/link";
 import { FaRegBookmark } from "react-icons/fa";
 
-const dropdown = ["Surf Camp", "Junior", "Surf Lodge", "Boat Trip", "Viaggio di Gruppo"];
 
 const Content_extend = ({ children, categories, params }) => {
   const [openIndex, setOpenIndex] = useState(null); // Use null for no dropdown initially open
@@ -55,7 +54,7 @@ const Content_extend = ({ children, categories, params }) => {
                         {item.categories?.map((data, i) => {
                           return (
                             <Link
-                              href={`/search_course/${params}/${data?.slug}`}
+                              href={`?category=${data?.slug}`}
                               key={i}
                               className="flex gap-2 hover:bg-secondary p-2 hover:text-white items-center mb-2 text-xs"
                               scroll={false}
