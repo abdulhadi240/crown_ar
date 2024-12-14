@@ -1,5 +1,6 @@
 "use client";
 import Head from "next/head";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 export const dynamic = "force-dynamic";
@@ -17,6 +18,8 @@ export default function Page() {
   const [attendees, setAttendees] = useState("");
   const [duration, setDuration] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
+  const [modal,setModal] =useState(false)
+  const [success,setSuccess] =useState(false)
   const [participantType, setParticipantType] = useState("Company");
   const [participants, setParticipants] = useState([
     {
@@ -168,6 +171,15 @@ export default function Page() {
 
       if (!response.ok) {
         const errorData = await response.json();
+        if(errorData.status === 'success')
+        {
+          setModal(true)
+          setSuccess(true)
+        }
+        else{
+          setModal(true)
+          setSuccess(false)
+        }
         console.error("Error:", errorData);
         return;
       }
@@ -498,6 +510,42 @@ export default function Page() {
           </form>
         </div>
       </div>
+      {modal && success ? (
+  <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
+    <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">Congratulations!</h2>
+        <p className="text-gray-600 mb-6">
+          Your registration has been submitted successfully. You will be notified via email or phone shortly.
+        </p>
+        <button
+          onClick={() => setModal(false)}
+          className="w-full py-3 bg-primary text-white text-lg font-medium rounded-lg hover:bg-primary-dark focus:outline-none transition duration-200"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+): modal && !success ? (
+  <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
+    <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">We Apologize</h2>
+        <p className="text-gray-600 mb-6">
+          Your registration has been failed , Kindly try again or contact <Link href='/customer_service' className="underline text-primary">customer support</Link>
+        </p>
+        <button
+          onClick={() => setModal(false)}
+          className="w-full py-3 bg-secondary text-white text-lg font-medium rounded-lg hover:bg-primary-dark focus:outline-none transition duration-200"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+): null}
+
     </>
   );
 }
