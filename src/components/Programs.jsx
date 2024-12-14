@@ -11,9 +11,9 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
   const router = useRouter();
   const slug = params
   
-
-  const [coursedata , setCourseData] = useState(data)
-  const [searchInput, setSearchInput] = useState(''); // Non-functional input
+  const [coursedata, setCourseData] = useState(data); // Full data
+  const [filteredCourses, setFilteredCourses] = useState(data?.data || []); // Filtered data for rendering
+  const [searchInput, setSearchInput] = useState(""); // Search input
   const [selectedLanguage, setSelectedLanguage] = useState(searchParams.get('language') || '');
   const [selectedMonth, setSelectedMonth] = useState(searchParams.get('month') || '');
   const [selectedYear, setSelectedYear] = useState(searchParams.get('year') || '');
@@ -60,6 +60,7 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
         );
         const result = await response.json();
         setCourseData(result)
+        setFilteredCourses(result?.data || []);
         console.log('Fetched Data:', result);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -75,6 +76,24 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
     selectedLanguage,
     selectedMonth,
   ]);
+
+    // Handle the search functionality
+    const handleSearch = (e) => {
+      if (!searchInput) {
+        setFilteredCourses(coursedata?.data || []); // Reset to full data if input is empty
+        
+      }
+      if(e.key === 'Enter'){
+        const filtered = coursedata?.data?.filter((course) =>
+          course.title.toLowerCase().includes(searchInput.toLowerCase()) // Assuming 'name' is the key for course titles
+        );
+        setFilteredCourses(filtered);
+      }
+      const filtered = coursedata?.data?.filter((course) =>
+        course.title.toLowerCase().includes(searchInput.toLowerCase()) // Assuming 'name' is the key for course titles
+      );
+      setFilteredCourses(filtered);
+    };
 
   return (
     <div>
@@ -96,19 +115,21 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
           <div className="flex flex-col justify-center gap-2 text-black bg-transparent">
             {/* Non-functional Search Input */}
             <div className="flex justify-between p-1 bg-white rounded-md md:p-3">
-              <input
+            <input
                 type="text"
-                placeholder="Search in specific course (Non-functional)"
+                placeholder="Search in specific course"
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)} // Only updates local state
+                onKeyDown={handleSearch}
+                onChange={(e) => setSearchInput(e.target.value)} // Update search input state
                 className="w-full px-4 py-2 text-sm rounded-md md:text-base placeholder:text-sm md:flex-1 focus:outline-none focus:ring-0"
               />
               <button
+                onClick={handleSearch} // Trigger search on click
                 className="px-4 py-1 text-sm text-white transition-colors rounded-md md:text-base md:px-6 md:py-2 bg-primary hover:bg-primary/80"
-                disabled
               >
                 Search
               </button>
+              
             </div>
             <div className="flex justify-center gap-2">
               {/* Dropdowns */}
@@ -207,9 +228,9 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
           </div>
         </div>
       </div>
-      <Content_extend categories={SpecializationCategory.data} params={params.course}>
+      <Content_extend categories={SpecializationCategory.data} params={slug}>
         <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2 md:grid-cols-3 ">
-          {coursedata?.data?.map((course) => (
+          {filteredCourses?.map((course) => (
             <Courses_Card data={course} params={params} key={course.id} />
           ))}
         </div>

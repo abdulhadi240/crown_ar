@@ -62,7 +62,7 @@ const Courses_Card = ({ active, data ,params}) => {
         REGISTER
       </Link>
       <Link
-        href={`/${params.slug}/${data.available_cities[0].slug}/${data.slug}`}
+        href={`/${params}/${data.available_cities[0].slug}/${data.slug}`}
         className="w-full p-2 text-xs text-center hover:bg-primary transition-all text-white rounded-md bg-secondary"
       >
         DETAILS

@@ -6,6 +6,7 @@ import Details from "@/app/course_detail/components/Details";
 import fetchData, { GetSpecialization } from "@/actions/server";
 import Head from "next/head";
 import BlogPage from "@/app/blogs-details/components/BlogPage";
+import NotFound from "@/app/not-found";
 
 async function fetchCourseData() {
   return fetchData(`${process.env.BACKEND_URL}/courses`);

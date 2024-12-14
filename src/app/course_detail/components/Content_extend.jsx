@@ -54,7 +54,7 @@ const Content_extend = ({ children, categories, params }) => {
                         {item.categories?.map((data, i) => {
                           return (
                             <Link
-                              href={`?category=${data?.slug}`}
+                              href={`/diploma?category=${data?.slug}`}
                               key={i}
                               className="flex gap-2 hover:bg-secondary p-2 hover:text-white items-center mb-2 text-xs"
                               scroll={false}
