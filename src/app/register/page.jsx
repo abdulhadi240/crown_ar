@@ -63,7 +63,7 @@ export default function Page() {
   useEffect(() => {
     setSlug(searchParams.get("course") || "");
     setSelectedDate(searchParams.get("date") || "");
-    setCity(searchParams.get("city") || "");
+    //setCity(searchParams.get("city") || "");
   }, [searchParams]);
 
   useEffect(() => {
@@ -251,7 +251,7 @@ export default function Page() {
                 >
                   {!city && <option>Select City</option>}
                   {detail?.data?.available_cities?.map((city) => (
-                    <option key={city.name} value={city.id}>
+                    <option key={city.id} value={city.id}>
                       {city.name}
                     </option>
                   ))}
