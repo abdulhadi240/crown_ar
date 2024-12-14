@@ -93,7 +93,7 @@ const Summary = ({ summary }) => {
             <h1>Language</h1>
             <p>English</p>
           </div>
-          <button className="p-2 text-white bg-primary">Register Now</button>
+          <Link href={`/register?course=${summary.slug}`} className="p-2 text-white bg-primary text-center">Register Now</Link>
         </div>
       </div>
       <div className="border-[1px] border-dashed mt-10 mb-5 mx-10 " />

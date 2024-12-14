@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { BiCalendarEvent } from "react-icons/bi";
 const dates = [
@@ -90,9 +91,9 @@ const Summary = ({ summary }) => {
           </div>
           <div className="flex justify-between tags">
             <h1>Language</h1>
-            <p>English</p>
+            <p>English1</p>
           </div>
-          <button className="p-2 text-white bg-primary">Register Now</button>
+          <Link href={`/register?course=${summary.slug}`} className="p-2 text-white bg-primary">Register Now</Link>
         </div>
       </div>
       <div className="border-[1px] border-dashed mt-10 mb-5 mx-10 " />
