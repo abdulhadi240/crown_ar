@@ -18,8 +18,8 @@ export default function Page() {
   const [attendees, setAttendees] = useState("");
   const [duration, setDuration] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [modal,setModal] =useState(false)
-  const [success,setSuccess] =useState(false)
+  const [modal, setModal] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [participantType, setParticipantType] = useState("Company");
   const [participants, setParticipants] = useState([
     {
@@ -164,30 +164,26 @@ export default function Page() {
           headers: {
             Accept: "application/json",
             "Accept-Language": "en",
-            },
+          },
           body: formData,
         }
       );
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        if(errorData.status === 'success')
-        {
-          setModal(true)
-          setSuccess(true)
-        }
-        else{
-          setModal(true)
-          setSuccess(false)
-        }
-        console.error("Error:", errorData);
-        return;
-      }
+      const responseData = await response.json(); // Parse JSON response
+      console.log("Response Data:", responseData.status);
 
-      const responseData = await response.json();
-      console.log("Success:", responseData);
+      // Handle success based on `status`
+      if (responseData.status === "success") {
+        setModal(true);
+        setSuccess(true);
+        console.log(responseData.message); // Log success message
+      } else {
+        setModal(true);
+        setSuccess(false);
+        console.error("Unexpected status:", responseData.status);
+      }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error submitting form:", error); // Handle network or other errors
     }
   };
 
@@ -204,7 +200,7 @@ export default function Page() {
 
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
+              <div>
                 <label className="block text-sm font-medium mb-2">
                   Course Title
                 </label>
@@ -221,6 +217,7 @@ export default function Page() {
                 </label>
                 <select
                   value={category}
+                  required
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
@@ -234,6 +231,7 @@ export default function Page() {
                 </label>
                 <select
                   value={specialization}
+                  required
                   onChange={(e) => setSpecialization(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
@@ -247,6 +245,7 @@ export default function Page() {
                 <label className="block text-sm font-medium mb-2">City</label>
                 <select
                   value={city}
+                  required
                   onChange={(e) => setCity(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
@@ -265,6 +264,7 @@ export default function Page() {
                 </label>
                 <select
                   value={language}
+                  required
                   onChange={(e) => setLanguage(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
@@ -280,6 +280,7 @@ export default function Page() {
                 </label>
                 <select
                   value={attendees}
+                  required
                   onChange={(e) => setAttendees(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
@@ -296,6 +297,7 @@ export default function Page() {
                 </label>
                 <select
                   value={duration}
+                  required
                   onChange={(e) => setDuration(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
@@ -409,6 +411,7 @@ export default function Page() {
                     <input
                       type="text"
                       placeholder="Full Name"
+                      required
                       value={participant.fullName}
                       onChange={(e) =>
                         handleInputChange(index, "fullName", e.target.value)
@@ -418,6 +421,7 @@ export default function Page() {
                     <input
                       type="email"
                       placeholder="Email"
+                      required
                       value={participant.email}
                       onChange={(e) =>
                         handleInputChange(index, "email", e.target.value)
@@ -427,6 +431,7 @@ export default function Page() {
                     <input
                       type="text"
                       placeholder="Job Title"
+                      required
                       value={participant.jobTitle}
                       onChange={(e) =>
                         handleInputChange(index, "jobTitle", e.target.value)
@@ -436,6 +441,7 @@ export default function Page() {
                     <input
                       type="text"
                       placeholder="Phone"
+                      required
                       value={participant.phone}
                       onChange={(e) =>
                         handleInputChange(index, "phone", e.target.value)
@@ -445,6 +451,7 @@ export default function Page() {
                     <input
                       type="text"
                       placeholder="Mobile"
+                      required
                       value={participant.mobile}
                       onChange={(e) =>
                         handleInputChange(index, "mobile", e.target.value)
@@ -454,6 +461,7 @@ export default function Page() {
                     <input
                       type="text"
                       placeholder="Company"
+                      required
                       value={participant.company}
                       onChange={(e) =>
                         handleInputChange(index, "company", e.target.value)
@@ -463,6 +471,7 @@ export default function Page() {
                     <input
                       type="text"
                       placeholder="Address"
+                      required
                       value={participant.address}
                       onChange={(e) =>
                         handleInputChange(index, "address", e.target.value)
@@ -471,6 +480,7 @@ export default function Page() {
                     />
                     <select
                       value={participant.country}
+                      required
                       onChange={(e) =>
                         handleInputChange(index, "country", e.target.value)
                       }
@@ -510,42 +520,31 @@ export default function Page() {
           </form>
         </div>
       </div>
-      {modal && success ? (
-  <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
-    <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Congratulations!</h2>
-        <p className="text-gray-600 mb-6">
-          Your registration has been submitted successfully. You will be notified via email or phone shortly.
-        </p>
-        <button
-          onClick={() => setModal(false)}
-          className="w-full py-3 bg-primary text-white text-lg font-medium rounded-lg hover:bg-primary-dark focus:outline-none transition duration-200"
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-): modal && !success ? (
-  <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
-    <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">We Apologize</h2>
-        <p className="text-gray-600 mb-6">
-          Your registration has been failed , Kindly try again or contact <Link href='/customer_service' className="underline text-primary">customer support</Link>
-        </p>
-        <button
-          onClick={() => setModal(false)}
-          className="w-full py-3 bg-secondary text-white text-lg font-medium rounded-lg hover:bg-primary-dark focus:outline-none transition duration-200"
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-): null}
-
+      {modal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            {success ? (
+              <>
+                <h2 className="text-xl font-semibold text-primary">
+                  Congragulations!
+                </h2>
+                <p>Your course registration was successful.</p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl font-semibold text-secondary">Error!</h2>
+                <p>Something went wrong. Please try again.</p>
+              </>
+            )}
+            <button
+              onClick={() => setModal(false)}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
