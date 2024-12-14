@@ -522,7 +522,7 @@ export default function Page() {
       </div>
       {modal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+          <div className="bg-white p-6 rounded-lg maxw-md shadow-lg text-center">
             {success ? (
               <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">Congratulations!</h2>
@@ -542,7 +542,7 @@ export default function Page() {
             )}
             <button
               onClick={() => setModal(false)}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md"
+              className={`mt-4 ${success ? 'bg-primary' : 'bg-secondary'} text-white px-4 py-2 rounded-md`}
             >
               Close
             </button>
