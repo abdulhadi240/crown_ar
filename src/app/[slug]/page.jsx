@@ -120,7 +120,7 @@ export default async function Page({ params }) {
             />
           </div>
         ) : (
-          <Programs params={params} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
+          <Programs params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
       
         )}
       </>

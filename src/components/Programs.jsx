@@ -4,14 +4,16 @@ import Courses_Card from '@/app/account/components/Courses_Card';
 import Content_extend from '@/app/course_detail/components/Content_extend';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Programs = ({ SpecializationCategory, params, data, category, city, specialization }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const slug = params
+  
 
-  // State Management (Optional: For default states)
-  const [searchInput, setSearchInput] = useState(searchParams.get('search') || '');
+  const [coursedata , setCourseData] = useState(data)
+  const [searchInput, setSearchInput] = useState(''); // Non-functional input
   const [selectedLanguage, setSelectedLanguage] = useState(searchParams.get('language') || '');
   const [selectedMonth, setSelectedMonth] = useState(searchParams.get('month') || '');
   const [selectedYear, setSelectedYear] = useState(searchParams.get('year') || '');
@@ -27,18 +29,52 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
     } else {
       currentParams.delete(key);
     }
-    router.push(`?${currentParams.toString()}`);
+    router.push(`?${currentParams.toString()}`, { scroll: false })
   };
 
-  const handleSearch = () => {
-    updateSearchParams('search', searchInput);
-    updateSearchParams('language', selectedLanguage);
-    updateSearchParams('month', selectedMonth);
-    updateSearchParams('year', selectedYear);
-    updateSearchParams('specialization', selectedSpecialization);
-    updateSearchParams('category', selectedCategory);
-    updateSearchParams('city', selectedCity);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      // Build query string dynamically, excluding empty parameters
+      const params = {
+        year: selectedYear,
+        specialization: selectedSpecialization,
+        category: selectedCategory,
+        city: selectedCity,
+        language: selectedLanguage,
+        month: selectedMonth,
+      };
+  
+      // Create query string by filtering out empty parameters
+      const query = new URLSearchParams(
+        Object.entries(params).filter(([_, value]) => value) // Only include keys with non-empty values
+      ).toString();
+  
+      try {
+        const response = await fetch(
+          `https://backendbatd.clinstitute.co.uk/api/courses?${query}&program=${slug}`,{
+            headers:{
+              'Content-Type': 'application/json',
+              "Accept-Language": "en",
+            }
+          }
+        );
+        const result = await response.json();
+        setCourseData(result)
+        console.log('Fetched Data:', result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, [
+    selectedYear,
+    selectedSpecialization,
+    selectedCategory,
+    selectedCity,
+    selectedLanguage,
+    selectedMonth,
+  ]);
 
   return (
     <div>
@@ -58,18 +94,18 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
         {/* Overlay Content */}
         <div className="absolute flex items-center justify-center w-full max-w-4xl p-6 rounded-lg">
           <div className="flex flex-col justify-center gap-2 text-black bg-transparent">
-            {/* Search Input */}
+            {/* Non-functional Search Input */}
             <div className="flex justify-between p-1 bg-white rounded-md md:p-3">
               <input
                 type="text"
-                placeholder="Search in specific course"
+                placeholder="Search in specific course (Non-functional)"
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full px-4 py-2 text-sm  rounded-md md:text-base placeholder:text-sm md:flex-1 focus:outline-none focus:ring-0"
+                onChange={(e) => setSearchInput(e.target.value)} // Only updates local state
+                className="w-full px-4 py-2 text-sm rounded-md md:text-base placeholder:text-sm md:flex-1 focus:outline-none focus:ring-0"
               />
               <button
                 className="px-4 py-1 text-sm text-white transition-colors rounded-md md:text-base md:px-6 md:py-2 bg-primary hover:bg-primary/80"
-                onClick={handleSearch}
+                disabled
               >
                 Search
               </button>
@@ -77,18 +113,7 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
             <div className="flex justify-center gap-2">
               {/* Dropdowns */}
               <div className="grid justify-center grid-cols-2 gap-2 md:space-y-0 md:flex md:space-x-2">
-                <select
-                  value={selectedLanguage}
-                  onChange={(e) => {
-                    setSelectedLanguage(e.target.value);
-                    updateSearchParams('language', e.target.value);
-                  }}
-                  className="w-full px-2 py-2 text-sm border border-gray-300 rounded-md md:text-base md:px-4 md:w-auto focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  <option value="">Language</option>
-                  <option value="en">English</option>
-                  <option value="ar">Arabic</option>
-                </select>
+                
                 <select
                   value={selectedMonth}
                   onChange={(e) => {
@@ -112,7 +137,7 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
                     'November',
                     'December',
                   ].map((month, index) => (
-                    <option key={index} value={index+1}>
+                    <option key={index} value={index + 1}>
                       {month}
                     </option>
                   ))}
@@ -182,24 +207,23 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
           </div>
         </div>
       </div>
-      <Content_extend categories = {SpecializationCategory.data} params = {params.course}>
+      <Content_extend categories={SpecializationCategory.data} params={params.course}>
         <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2 md:grid-cols-3 ">
-          {data?.data?.map((course) => {
-            return (
-              <Courses_Card data={course} params={params}/>
-            )
-          })}
-          
+          {coursedata?.data?.map((course) => (
+            <Courses_Card data={course} params={params} key={course.id} />
+          ))}
         </div>
-       
         <div className="flex flex-col gap-2 mt-10">
-        <h1 className="flex items-center justify-center p-1 text-2xl font-bold text-center md:p-0">Mini Masters Programmes In Management</h1>
-      <p className="mb-4 text-base text-center md:text-start">We offer different short and mini master courses across (Non-Academic) our branches in Europe. Course will help you improve your professional experience and give you more support to your CV. </p>
-      </div>
+          <h1 className="flex items-center justify-center p-1 text-2xl font-bold text-center md:p-0">
+            Mini Masters Programmes In Management
+          </h1>
+          <p className="mb-4 text-base text-center md:text-start">
+            We offer different short and mini master courses across (Non-Academic) our branches in Europe. Course will help you improve your professional experience and give you more support to your CV.
+          </p>
+        </div>
       </Content_extend>
-    
     </div>
-  )
-}
+  );
+};
 
-export default Programs
+export default Programs;
