@@ -524,17 +524,21 @@ export default function Page() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">
             {success ? (
-              <>
-                <h2 className="text-xl font-semibold text-primary">
-                  Congragulations!
-                </h2>
-                <p>Your course registration was successful.</p>
-              </>
+              <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">Congratulations!</h2>
+              <p className="text-gray-600 mb-6">
+                Your registration has been submitted successfully. You will be notified via email or phone shortly.
+              </p>
+             
+            </div>
             ) : (
-              <>
-                <h2 className="text-xl font-semibold text-secondary">Error!</h2>
-                <p>Something went wrong. Please try again.</p>
-              </>
+              <div className="text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">ERROR!</h2>
+        <p className="text-gray-600 mb-6">
+          We are Sorry but there was an error submitting your registration. Please try again later or contact <Link href={'/customer_service'} className="text-primary font-bold underline">Customer Support</Link>
+        </p>
+       
+      </div>
             )}
             <button
               onClick={() => setModal(false)}
