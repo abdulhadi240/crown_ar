@@ -193,15 +193,15 @@ export default function Page() {
         <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
       </Head>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-3xl">
+        <div className="bg-white shadow-md rounded-lg md:p-6 p-4 w-full max-w-3xl">
           <h1 className="text-2xl font-semibold mb-6 text-center">
             Register Course
           </h1>
 
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="sm:grid sm:grid-cols-2 sm:gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
                   Course Title
                 </label>
                 <input
@@ -212,7 +212,7 @@ export default function Page() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
                   Category
                 </label>
                 <select
@@ -226,7 +226,7 @@ export default function Page() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
                   Specialization
                 </label>
                 <select
@@ -242,7 +242,7 @@ export default function Page() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">City</label>
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">City</label>
                 <select
                   value={city}
                   required
@@ -259,7 +259,7 @@ export default function Page() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
                   Language
                 </label>
                 <select
@@ -308,7 +308,7 @@ export default function Page() {
               </div>*/}
 
               <div className="col-span-2">
-                <label className="block text-sm font-medium mb-4">
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
                   Available Dates
                 </label>
                 <div className="overflow-x-auto">
