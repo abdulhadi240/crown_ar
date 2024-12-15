@@ -18,9 +18,18 @@ export default function Page() {
   const [attendees, setAttendees] = useState("");
   const [duration, setDuration] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
   const [success, setSuccess] = useState(false);
   const [participantType, setParticipantType] = useState("Company");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [jobtitle, setJobTitle] = useState("");
+  const [phone, setPhone] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [company, setCompany] = useState("");
+  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
+
   const [participants, setParticipants] = useState([
     {
       fullName: "",
@@ -28,9 +37,6 @@ export default function Page() {
       jobTitle: "",
       phone: "",
       mobile: "",
-      company: "",
-      address: "",
-      country: "",
     },
   ]);
 
@@ -53,9 +59,6 @@ export default function Page() {
         jobTitle: "",
         phone: "",
         mobile: "",
-        company: "",
-        address: "",
-        country: "",
       },
     ]);
   };
@@ -127,14 +130,14 @@ export default function Page() {
     formData.append("participant_type", participantType.toLowerCase());
     formData.append("city_id", city || "");
     formData.append("date", selectedDate || "");
-    formData.append("full_name", participants[0]?.fullName || "");
-    formData.append("email", participants[0]?.email || "");
-    formData.append("job_title", participants[0]?.jobTitle || "");
-    formData.append("phone", participants[0]?.phone || "");
-    formData.append("mobile", participants[0]?.mobile || "");
-    formData.append("company", participants[0]?.company || "");
-    formData.append("address", participants[0]?.address || "");
-    formData.append("country", participants[0]?.country || "");
+    formData.append("full_name", fullname || "");
+    formData.append("email", email || "");
+    formData.append("job_title", jobtitle || "");
+    formData.append("phone", phone || "");
+    formData.append("mobile", mobile || "");
+    formData.append("company", company || "");
+    formData.append("address", address || "");
+    formData.append("country", country || "");
 
     // Append participants only if it's a company
     if (participantType.toLowerCase() === "company") {
@@ -150,9 +153,6 @@ export default function Page() {
         );
         formData.append(`participants[${index}][phone]`, participant.phone);
         formData.append(`participants[${index}][mobile]`, participant.mobile);
-        formData.append(`participants[${index}][company]`, participant.company);
-        formData.append(`participants[${index}][address]`, participant.address);
-        formData.append(`participants[${index}][country]`, participant.country);
       });
     }
 
@@ -274,7 +274,7 @@ export default function Page() {
                 </select>
               </div>
 
-              <div>
+              {/*<div>
                 <label className="block text-sm font-medium mb-2">
                   Number of Attendees
                 </label>
@@ -305,7 +305,7 @@ export default function Page() {
                   <option>Two Weeks</option>
                   <option>3 Weeks</option>
                 </select>
-              </div>
+              </div>*/}
 
               <div className="col-span-2">
                 <label className="block text-sm font-medium mb-4">
@@ -402,111 +402,161 @@ export default function Page() {
                 </div>
               </div>
 
-              {participants.map((participant, index) => (
-                <div key={index} className="mb-6 border-t pt-4">
-                  <h3 className="text-lg font-medium mb-4">
-                    Participant {index + 1}
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input
-                      type="text"
-                      placeholder="Full Name"
-                      required
-                      value={participant.fullName}
-                      onChange={(e) =>
-                        handleInputChange(index, "fullName", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      required
-                      value={participant.email}
-                      onChange={(e) =>
-                        handleInputChange(index, "email", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Job Title"
-                      required
-                      value={participant.jobTitle}
-                      onChange={(e) =>
-                        handleInputChange(index, "jobTitle", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Phone"
-                      required
-                      value={participant.phone}
-                      onChange={(e) =>
-                        handleInputChange(index, "phone", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Mobile"
-                      required
-                      value={participant.mobile}
-                      onChange={(e) =>
-                        handleInputChange(index, "mobile", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Company"
-                      required
-                      value={participant.company}
-                      onChange={(e) =>
-                        handleInputChange(index, "company", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Address"
-                      required
-                      value={participant.address}
-                      onChange={(e) =>
-                        handleInputChange(index, "address", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    />
-                    <select
-                      value={participant.country}
-                      required
-                      onChange={(e) =>
-                        handleInputChange(index, "country", e.target.value)
-                      }
-                      className="w-full border border-gray-300 rounded-lg p-2"
-                    >
-                      <option>Select Country</option>
-                      {countries.map((country) => (
-                        <option key={country.cca2} value={country.name.common}>
-                          {country.name.common}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              ))}
-
-              {parseInt(attendees.split(" ")[0]) > 1 &&
-                participantType === "Company" && (
-                  <button
-                    type="button"
-                    onClick={addParticipant}
-                    className="text-blue-500"
+              <div className="mb-6 border-t pt-4">
+                <h3 className="text-lg font-medium mb-4">
+                  {participantType === "Company" ? (
+                    <h1>Company Details</h1>
+                  ) : (
+                    <h1>Participant 1</h1>
+                  )}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                    value={fullname}
+                    onChange={(e) => setFullname(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Job Title"
+                    required
+                    value={jobtitle}
+                    onChange={(e) => setJobTitle(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Phone"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Mobile"
+                    required
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Company"
+                    required
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Address"
+                    required
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                  <select
+                    value={country}
+                    required
+                    onChange={(e) => setCountry(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2"
                   >
-                    + Add Another Participant
-                  </button>
+                    <option>Select Country</option>
+                    {countries.map((country) => (
+                      <option key={country.cca2} value={country.name.common}>
+                        {country.name.common}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {participants.map(
+                  (participant, index) =>
+                    participantType === "Company" && (
+                      <div key={index} className="mb-6 border-t my-10 pt-4">
+                        <h3 className="text-lg font-medium mb-4">
+                          Participant {index + 1}
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <input
+                            type="text"
+                            placeholder="Full Name"
+                            value={participant.fullName}
+                            onChange={(e) =>
+                              handleInputChange(
+                                index,
+                                "fullName",
+                                e.target.value
+                              )
+                            }
+                            className="w-full border border-gray-300 rounded-lg p-2"
+                          />
+                          <input
+                            type="email"
+                            placeholder="Email"
+                            value={participant.email}
+                            onChange={(e) =>
+                              handleInputChange(index, "email", e.target.value)
+                            }
+                            className="w-full border border-gray-300 rounded-lg p-2"
+                          />
+                          <input
+                            type="text"
+                            placeholder="Job Title"
+                            value={participant.jobTitle}
+                            onChange={(e) =>
+                              handleInputChange(
+                                index,
+                                "jobTitle",
+                                e.target.value
+                              )
+                            }
+                            className="w-full border border-gray-300 rounded-lg p-2"
+                          />
+                          <input
+                            type="text"
+                            placeholder="Phone"
+                            value={participant.phone}
+                            onChange={(e) =>
+                              handleInputChange(index, "phone", e.target.value)
+                            }
+                            className="w-full border border-gray-300 rounded-lg p-2"
+                          />
+                          <input
+                            type="text"
+                            placeholder="Mobile"
+                            value={participant.mobile}
+                            onChange={(e) =>
+                              handleInputChange(index, "mobile", e.target.value)
+                            }
+                            className="w-full border border-gray-300 rounded-lg p-2"
+                          />
+                        </div>
+                      </div>
+                    )
                 )}
+              </div>
+
+              {participantType === "Company" && (
+                <button
+                  type="button"
+                  onClick={addParticipant}
+                  className="text-blue-500"
+                >
+                  + Add Another Participant
+                </button>
+              )}
             </div>
 
             <div className="mt-8 text-start">
@@ -521,28 +571,40 @@ export default function Page() {
         </div>
       </div>
       {modal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg maxw-md shadow-lg text-center">
+        <div className="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white md:p-6 p-4 rounded-lg maxw-md shadow-lg text-center">
             {success ? (
               <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Congratulations!</h2>
-              <p className="text-gray-600 mb-6">
-                Your registration has been submitted successfully. You will be notified via email or phone shortly.
-              </p>
-             
-            </div>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                  Congratulations!
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  Your registration has been submitted successfully. You will be
+                  notified via email or phone shortly.
+                </p>
+              </div>
             ) : (
               <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">ERROR!</h2>
-        <p className="text-gray-600 mb-6">
-          We are Sorry but there was an error submitting your registration. Please try again later or contact <Link href={'/customer_service'} className="text-primary font-bold underline">Customer Support</Link>
-        </p>
-       
-      </div>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                  ERROR!
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  We are Sorry but there was an error submitting your
+                  registration. Please try again later or contact{" "}
+                  <Link
+                    href={"/customer_service"}
+                    className="text-primary font-bold underline"
+                  >
+                    Customer Support
+                  </Link>
+                </p>
+              </div>
             )}
             <button
               onClick={() => setModal(false)}
-              className={`mt-4 ${success ? 'bg-primary' : 'bg-secondary'} text-white px-4 py-2 rounded-md`}
+              className={`mt-4 ${
+                success ? "bg-primary" : "bg-secondary"
+              } text-white px-4 py-2 rounded-md`}
             >
               Close
             </button>
