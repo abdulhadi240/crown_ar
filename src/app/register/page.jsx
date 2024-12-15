@@ -18,7 +18,7 @@ export default function Page() {
   const [attendees, setAttendees] = useState("");
   const [duration, setDuration] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const [success, setSuccess] = useState(false);
   const [participantType, setParticipantType] = useState("Company");
   const [fullname, setFullname] = useState("");
