@@ -4,28 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { menu } from "../../../components/Menu";
 import MobileMenu from "../../../components/MobileMenu";
-// Dynamic imports for better performance
-const FaFacebookF = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaFacebookF)
-);
-const FaInstagram = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaInstagram)
-);
-const FaSkype = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaSkype)
-);
-const FaTwitter = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaTwitter)
-);
-const FaYoutube = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaYoutube)
-);
-const FaPhoneAlt = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaPhoneAlt)
-);
-const FaEnvelope = dynamic(() =>
-  import("react-icons/fa").then((mod) => mod.FaEnvelope)
-);
+
 const FaLock = dynamic(() =>
   import("react-icons/fa").then((mod) => mod.FaLock)
 );
@@ -82,7 +61,7 @@ const Header = () => {
               <Link
                 key={index}
                 href={item.link}
-                className="hover:text-[#152765] "
+                className="hover:text-white/80"
               >
                 {item.name}
               </Link>

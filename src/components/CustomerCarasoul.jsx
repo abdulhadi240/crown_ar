@@ -10,8 +10,8 @@ const CustomerCarasoul = () => {
           <MyComponent image={'/logo1.webp'} />
           <MyComponent image={'/logo2.webp'} />
           <MyComponent image={'/logo3.webp'} />
-          <MyComponent image={'/logo5.webp'} />
-          <MyComponent image={'/logo6.webp'} />
+          <MyComponent image={'/logo1.webp'} />
+          <MyComponent image={'/logo2.webp'} />
 
         </Marquee>
       </div>

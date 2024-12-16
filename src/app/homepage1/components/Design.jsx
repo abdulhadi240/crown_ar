@@ -2,8 +2,11 @@ import Image from "next/image";
 import React from "react";
 import Header from "./Header";
 import { FaSearch } from "react-icons/fa";
+import Link from "next/link";
+import Inputs from "./Inputs";
 
 const Design = () => {
+  
   return (
     <>
       <div className="relative w-full h-[700px] overflow-hidden">
@@ -13,7 +16,7 @@ const Design = () => {
           layout="fill"
           objectFit="cover"
           alt="Hero Background"
-          className="absolute inset-0 brightness-90"
+          className="absolute inset-0 brightness-75"
           priority
           loading="eager"
         />
@@ -33,18 +36,7 @@ const Design = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="flex justify-center w-full mt-6">
-              <div className="flex items-center w-full max-w-xl p-2 bg-white rounded-full">
-                <input
-                  type="text"
-                  className="w-full px-4 py-2 text-gray-700 bg-white rounded-full outline-none focus:ring-0 focus:border-none"
-                  placeholder="What Do You Want To Learn"
-                />
-                <button className="flex items-center justify-center w-12 h-12 text-white rounded-full bg-primary">
-                  <FaSearch />
-                </button>
-              </div>
-            </div>
+            <Inputs/>
 
             {/* Stats Section */}
             <div className="grid grid-cols-2 gap-3 mt-6 text-center text-white md:grid-cols-4">
@@ -68,12 +60,12 @@ const Design = () => {
 
             {/* Call-to-Action Buttons */}
             <div className="flex flex-col gap-4 mt-6 md:flex-row">
-              <button className="px-8 py-4 text-sm font-bold text-white uppercase rounded-full bg-secondary hover:bg-opacity-90">
+              <Link href={'/'} className="px-8 hover:bg-primary transition-all py-4 text-sm font-bold text-white uppercase rounded-full bg-secondary hover:bg-opacity-90">
                 Explore Advantage Plan
-              </button>
-              <button className="px-8 py-4 text-sm font-bold text-white uppercase rounded-full bg-secondary hover:bg-opacity-90">
+              </Link>
+              <Link href={'/diploma'} className="px-8 hover:bg-primary transition-all py-4 text-sm font-bold text-white uppercase rounded-full bg-secondary hover:bg-opacity-90">
                 View Course Catalogue
-              </button>
+              </Link>
             </div>
           </div>
         </div>

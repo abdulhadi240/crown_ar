@@ -8,6 +8,7 @@ import MainContent from '../components/MainContent';
 import MobileFilter from '../components/MobileFilter';
 import fetchData from '@/actions/server';
 import Design from './homepage1/components/Design';
+import CustomerCarasoul from '@/components/CustomerCarasoul';
 
 
 
@@ -113,10 +114,10 @@ const Page = async () => {
         </div>
       </div>
       {/* Uncomment if necessary for customer carousel */}
-      {/* <div className="mt-32 overflow-hidden customer">
+       <div className="mt-32 overflow-hidden customer">
         <SectionTitle title="Most Of" highlight="Our Customers" />
         <CustomerCarasoul />
-      </div> */}
+      </div> 
     </section>
   );
 };

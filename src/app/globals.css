@@ -169,19 +169,6 @@ body {
   }
 }
 
-button {
-  background-color: #152765;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0f1d50;
-}
 
 .cities-container {
   display: flex;

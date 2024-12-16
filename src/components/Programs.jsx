@@ -13,14 +13,15 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
   
   const [coursedata, setCourseData] = useState(data); // Full data
   const [filteredCourses, setFilteredCourses] = useState(data?.data || []); // Filtered data for rendering
-  const [searchInput, setSearchInput] = useState(""); // Search input
+  const [searchInput, setSearchInput] = useState(searchParams.get('search') || ''); // Search input
   const [selectedLanguage, setSelectedLanguage] = useState(searchParams.get('language') || '');
   const [selectedMonth, setSelectedMonth] = useState(searchParams.get('month') || '');
   const [selectedYear, setSelectedYear] = useState(searchParams.get('year') || '');
   const [selectedSpecialization, setSelectedSpecialization] = useState(searchParams.get('specialization') || '');
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
   const [selectedCity, setSelectedCity] = useState(searchParams.get('city') || '');
-
+  console.log(searchInput);
+  
   // Update URL search params
   const updateSearchParams = (key, value) => {
     const currentParams = new URLSearchParams(searchParams);
@@ -77,23 +78,25 @@ const Programs = ({ SpecializationCategory, params, data, category, city, specia
     selectedMonth,
   ]);
 
-    // Handle the search functionality
-    const handleSearch = (e) => {
-      if (!searchInput) {
-        setFilteredCourses(coursedata?.data || []); // Reset to full data if input is empty
-        
-      }
-      if(e.key === 'Enter'){
-        const filtered = coursedata?.data?.filter((course) =>
-          course.title.toLowerCase().includes(searchInput.toLowerCase()) // Assuming 'name' is the key for course titles
-        );
-        setFilteredCourses(filtered);
-      }
+  useEffect(() => {
+    if (!searchInput) {
+      setFilteredCourses(coursedata?.data || []); // Reset to full data if input is empty
+    } else {
       const filtered = coursedata?.data?.filter((course) =>
-        course.title.toLowerCase().includes(searchInput.toLowerCase()) // Assuming 'name' is the key for course titles
+        course.title.toLowerCase().includes(searchInput.toLowerCase())
       );
       setFilteredCourses(filtered);
-    };
+    }
+  }, [searchInput, coursedata]);
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      const filtered = coursedata?.data?.filter((course) =>
+        course.title.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setFilteredCourses(filtered);
+    }
+  };
 
   return (
     <div>
