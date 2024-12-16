@@ -28,7 +28,7 @@ const Team = dynamic(() => import('../components/Team'));
 const Page = async () => {
 
   const cities = await fetchData('https://backendbatd.clinstitute.co.uk/api/cities');
-  const specialization = await fetchData('https://backendbatd.clinstitute.co.uk/api/specializations');
+  const specialization = await fetchData('https://backendbatd.clinstitute.co.uk/api/specializations_courses');
   return (
     <section>
       {/* Hero Section */}
@@ -47,7 +47,7 @@ const Page = async () => {
       </div>
 
       {/* Specialization Section */}
-      <SpecializationSection />
+      <SpecializationSection data={specialization.data}/>
 
       {/* Courses by Cities Carousel */}
       <div className=" sm:mt-16">

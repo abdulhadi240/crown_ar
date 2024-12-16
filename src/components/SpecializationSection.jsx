@@ -7,50 +7,50 @@ const menuItems = [
   {
     id: 1,
     title: "Service Management",
-    data: Array(12).fill("Service Management"),
+    courses: Array(12).fill("Service Management"),
   },
   {
     id: 2,
     title: "Media And Relation",
-    data: Array(12).fill("Media And Relation"),
+    courses: Array(12).fill("Media And Relation"),
   },
   {
     id: 3,
     title: "Information Technology",
-    data: Array(12).fill("Telecommunication"),
+    courses: Array(12).fill("Telecommunication"),
   },
-  { id: 4, title: "Environment", data: Array(12).fill("Environment") },
+  { id: 4, title: "Environment", courses: Array(12).fill("Environment") },
   {
     id: 5,
     title: "Accounting, Finance & Banking",
-    data: Array(12).fill("Finance & Banking"),
+    courses: Array(12).fill("Finance & Banking"),
   },
-  { id: 6, title: "Management", data: Array(12).fill("Management") },
-  { id: 7, title: "Oil And Gas", data: Array(12).fill("Oil And Gas") },
+  { id: 6, title: "Management", courses: Array(12).fill("Management") },
+  { id: 7, title: "Oil And Gas", courses: Array(12).fill("Oil And Gas") },
   {
     id: 8,
     title: "Renewable And Clean Energy",
-    data: Array(12).fill("Clean Energy"),
+    courses: Array(12).fill("Clean Energy"),
   },
   {
     id: 9,
     title: "Health And Safety",
-    data: Array(12).fill("Health And Safety"),
+    courses: Array(12).fill("Health And Safety"),
   },
   {
     id: 10,
     title: "Public Health",
-    data: Array(12).fill("Hospital Management"),
+    courses: Array(12).fill("Hospital Management"),
   },
   {
     id: 11,
     title: "Engineering Maintenance",
-    data: Array(12).fill("Engineering Maintenance"),
+    courses: Array(12).fill("Engineering Maintenance"),
   },
 ];
 
 const SpecializationSection = ({ data }) => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState(menuItems[0].id); // Initially select the first menu item
+  const [selectedMenuItem, setSelectedMenuItem] = useState(data[2].id); // Initially select the first menu item
   const [showAll, setShowAll] = useState(false);
   const [number, setNumber] = useState(6);
   // Function to handle menu item click
@@ -62,13 +62,13 @@ const SpecializationSection = ({ data }) => {
     if (showAll) {
       setNumber(6); // Reset to default number
     } else {
-      setNumber(menuItems.length); // Show all items
+      setNumber(data.length); // Show all items
     }
     setShowAll(!showAll);
   };
 
   // Find the selected menu item's data
-  const selectedItem = menuItems.find((item) => item.id === selectedMenuItem);
+  const selectedItem = data.find((item) => item.id === selectedMenuItem);
 
   return (
     <section className="py-16">
@@ -91,10 +91,10 @@ const SpecializationSection = ({ data }) => {
           <div className="md:flex md:flex-row md:justify-between gap-4 mx-1 mt-10 ">
             {/* Left Menu */}
             <div className="space-y-1 hidden md:block border-r-[#111F51] border-r-2">
-              {menuItems.slice(0, menuItems.length / 2).map((item) => (
+              {data.slice(0, data.length / 2).map((item) => (
                 <SideMenuItem
                   key={item.id}
-                  title={item.title}
+                  title={item.name}
                   active={item.id === selectedMenuItem}
                   onClick={() => handleMenuItemClick(item.id)}
                 />
@@ -102,38 +102,41 @@ const SpecializationSection = ({ data }) => {
             </div>
             <div className="">
               <div className="space-y-1 md:hidden text-center flex flex-col gap-1 justify-center items-center border-r-[#111F51] border-r-2">
-                {menuItems.slice(0, number).map((item) => (
+                {data.slice(0, number).map((item) => (
                   <SideMenuItemMobile
                     key={item.id}
-                    title={item.title}
+                    title={item.name}
                     active={item.id === selectedMenuItem}
                     onClick={() => handleMenuItemClick(item.id)}
                   />
                 ))}
-                <h1
+                {data.length > 6 && (
+                  <h1
                   onClick={handleShowAllClick}
                   className="text-xs font-bold text-primary underline"
                 >
                   {showAll ? "Show Less" : "Show All"}
                 </h1>
+                )}
+                
               </div>
             </div>
 
             {/* Center - Grid of Cards */}
             <div className="hidden gap-5 mt-2 sm:grid sm:grid-cols-2 md:grid-cols-4">
-              {selectedItem.data.map((title, index) => (
+              {selectedItem.courses.map((title, index) => (
                 <SpecializationCard key={index} title={title} />
               ))}
             </div>
 
             {/* Right Menu */}
             <div className="space-y-1 hidden md:block border-r-[#111F51] border-r-2">
-              {menuItems
-                .slice(menuItems.length / 2, menuItems.length)
+              {data
+                .slice(data.length / 2, data.length)
                 .map((item) => (
                   <SideMenuItem
                     key={item.id}
-                    title={item.title}
+                    title={item.name}
                     active={item.id === selectedMenuItem}
                     onClick={() => handleMenuItemClick(item.id)}
                   />
@@ -149,8 +152,8 @@ const SpecializationSection = ({ data }) => {
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="grid grid-cols-3 gap-4 mt-10 md:hidden">
-              {selectedItem.data.map((title, index) => (
+            <div className="flex flex-wrap justify-center gap-4 mt-10 md:hidden">
+              {selectedItem?.courses.map((title, index) => (
                 <SpecializationCard key={index} title={title} />
               ))}
             </div>
