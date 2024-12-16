@@ -107,7 +107,7 @@ const BlogPostCarousel = ({data}) => {
             disabled={currentIndex === 0}
             onClick={shiftLeft}
           >
-            <FiArrowLeft />
+            <FiArrowLeft color="white"/>
           </button>
           <button
             className={`rounded-lg border-[1px] bg-primary p-2 text-2xl transition-opacity ${
@@ -116,7 +116,7 @@ const BlogPostCarousel = ({data}) => {
             disabled={currentIndex === totalDots - 1}
             onClick={shiftRight}
           >
-            <FiArrowRight />
+            <FiArrowRight color="white"/>
           </button>
         </div>
       </div>
