@@ -2,20 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BiCalendarEvent } from "react-icons/bi";
-const dates = [
-  {
-    dates: "23-05-17",
-  },
-  {
-    dates: "24-06-17",
-  },
-  {
-    dates: "25-05-17",
-  },
-  {
-    dates: "26-05-17",
-  },
-];
+
 const Summary = ({ summary }) => {
   const [selectedCities, setSelectedCities] = useState(
     summary?.available_dates.map(() => "")
@@ -101,7 +88,7 @@ const Summary = ({ summary }) => {
         Available Dates
       </h1>
       <div className="flex md:justify-start justify-center">
-        <div className="flex flex-wrap justify-start gap-4 mr-4 mt-6">
+        <div className="flex flex-wrap md:justify-start justify-center gap-4 mr-4 mt-6">
           {summary?.available_dates.map((item, index) => {
             return (
               <div
