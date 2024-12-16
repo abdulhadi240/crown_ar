@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaLock } from "react-icons/fa";
+import { FaHamburger, FaLock } from "react-icons/fa";
+import { MdMenu } from "react-icons/md";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,34 +14,18 @@ export default function MobileMenu() {
 
   return (
     <div>
-      <div className="pt-4 mx-4 md:hidden">
+      <div className="py-4 mx-4 md:hidden">
         {/* Menu Button */}
         <div className="flex justify-between mx-2">
-          
           <div>
-            <Image src={"/logobat.png"} width={70} height={70} alt="logo" />
+            <Image src={"/logobat.png"} width={80} height={80} alt="logo" />
           </div>
-          <button
-            aria-label="Open menu"
-            className="flex items-center justify-center w-auto h-auto text-black rounded-md dark:text-white"
+          <div
+            className="flex justify-center items-center text-center"
             onClick={toggleMenu}
           >
-            {/* Hamburger Icon */}
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+            <MdMenu size={28} color="black"/>
+          </div>
         </div>
       </div>
 
@@ -53,10 +38,10 @@ export default function MobileMenu() {
         <div className="">
           {/* Logo */}
 
-          <button
+          <div
             aria-label="Close menu"
             onClick={toggleMenu}
-            className="flex justify-end p-2 bg-[#DEEEFD] w-full text-[#111F51] hover:text-gray-800 "
+            className="flex justify-end py-2 px-2 bg-[#DEEEFD] w-full text-[#111F51] hover:text-gray-800 "
           >
             <svg
               className="w-6 h-6"
@@ -72,7 +57,7 @@ export default function MobileMenu() {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </button>
+          </div>
           <div className="bg-[#DEEEFD] p-4">
             <div className="flex flex-col ">
               <div className="flex justify-center">

@@ -4,10 +4,12 @@ import Content from "./components/Content";
 import SectionTitle from "../Homepage/components/SectionTitle";
 import Course_card from "../plan_detail/components/Course_card";
 import Carasoul from "./components/Carasoul";
+import HeaderSection from "@/components/HeaderSection";
 
 const page = () => {
   return (
     <>
+    <HeaderSection/>
       <div className="container p-6 overflow-hidden sm:py-16 sm:px-24 flex flex-col-reverse bg-[#DEEEFD] sm:flex sm:flex-col-reverse sm:items-center sm:justify-between mx-auto lg:flex-row">
         <div className="w-full space-y-6 text-center lg:w-1/2 lg:text-left">
           <h1 className="mt-5 text-2xl font-bold leading-tight text-gray-800 md:text-5xl sm:text-3xl">

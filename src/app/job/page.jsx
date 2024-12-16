@@ -3,6 +3,7 @@ import React from "react";
 import HeaderSearch from "./components/HeaderSearch";
 import StatsSection from "./components/StatsSection";
 import JobCard from "./components/JobCard";
+import HeaderSection from "@/components/HeaderSection";
 
 const page = () => {
   const jobs = [
@@ -84,6 +85,7 @@ const page = () => {
   ];
   return (
     <div>
+      <HeaderSection/>
       <div className="container mx-auto md:p-4">
         <HeaderSearch />
         <div className="flex items-center justify-between mt-8 ml-2">

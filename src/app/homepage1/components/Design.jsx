@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import Header from "./components/Header";
+import Header from "./Header";
 import { FaSearch } from "react-icons/fa";
 
-const Page = () => {
+const Design = () => {
   return (
     <>
       <div className="relative w-full h-[700px] overflow-hidden">
@@ -82,4 +82,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Design;

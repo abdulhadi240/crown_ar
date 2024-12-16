@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { BiCalendarEvent } from "react-icons/bi";
 import Link from "next/link";
 
-const Courses_Card = ({ active, data ,params}) => {
+const Courses_Card = ({ active, data ,params , carasoul}) => {
   return (
     <div className="flex justify-center hover:scale-105 transition-all">
   <div className="bg-white border-[1px] w-72 p-3 rounded-md shadow-md flex flex-col h-full">
@@ -33,12 +33,13 @@ const Courses_Card = ({ active, data ,params}) => {
     {/* Content Section */}
     <div className="flex flex-col justify-between my-3 text-[15px] text-black/80">
       {/* Title and Summary */}
-      <div>
-        <h1 className="font-bold text-sm h-auto overflow-hidden ">{data?.title}</h1>
+      <div className="">
+        <h1 className={`font-bold text-sm ${carasoul ? 'h-10 ': 'h-auto'} overflow-hidden `}>{data?.title}</h1>
         <p className="text-xs mt-1 h-12 overflow-hidden line-clamp-3">{data.meta_description}</p>
       </div>
 
       {/* Dates */}
+      {!carasoul && (
       <div className=" text-base mt-2">
         {data?.available_dates.map((dateItem) => (
           <div key={dateItem.id}>
@@ -49,7 +50,9 @@ const Courses_Card = ({ active, data ,params}) => {
           </div>
         ))}
       </div>
+      )}
     </div>
+    
 
     {/* Buttons */}
     <div className="flex gap-4 mt-auto">

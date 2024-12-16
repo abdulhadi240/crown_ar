@@ -5,9 +5,11 @@ import Card_Quality from "./components/Card_Quality";
 import { LuBadgeCheck } from "react-icons/lu";
 import { FaHandshake } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
+import HeaderSection from "@/components/HeaderSection";
 const page = () => {
   return (
     <>
+    <HeaderSection/>
       <div className="relative flex items-center justify-center h-32 banner sm:h-64">
         {/* Set height and make container relative */}
         <Image

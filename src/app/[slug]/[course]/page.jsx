@@ -9,6 +9,7 @@ import Head from "next/head";
 import SectionTitle from "@/components/SectionTitle";
 import Image from "next/image";
 import SearchFilters_cities from '@/app/cities/[slug]/components/SearchFilters_cities'
+import HeaderSection from "@/components/HeaderSection";
 
 
 // Function to fetch specialization data
@@ -98,6 +99,7 @@ const page = async ({params}) => {
         <meta name="keywords" content={data.meta_keywords} />
         <meta name="description" content={data.meta_description} />
       </Head>
+      <HeaderSection/>
       {type === "course" ? (
         <><Content_extend categories={category}>
           <div className="mt-10 font-semibold text-center md:text-left title text-xl">

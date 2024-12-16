@@ -17,9 +17,9 @@ const Training = () => {
           world periodically throughout the year.
         </p>
         <div className="flex gap-2 mt-6 text-xs">
-        <button className="bg-[#111F51]  text-white w-auto flex items-center gap-2 p-3 rounded-xl">How We Are <span><HiOutlineArrowSmRight size={15}/></span></button>
-        <button className="bg-[#111F51] text-white w-auto flex items-center gap-2 p-3 rounded-xl">Tracing Plan <span><HiOutlineArrowSmRight size={15}/></span></button>
-        <button className="bg-[#111F51] text-white w-auto flex items-center gap-2 p-3 rounded-xl">Academy Profile <span><HiOutlineArrowSmRight size={15}/></span></button>
+        <div className="bg-[#111F51]  text-white w-auto flex items-center gap-2 p-3 rounded-xl">How We Are <span><HiOutlineArrowSmRight size={15}/></span></div>
+        <div className="bg-[#111F51] text-white w-auto flex items-center gap-2 p-3 rounded-xl">Tracing Plan <span><HiOutlineArrowSmRight size={15}/></span></div>
+        <div className="bg-[#111F51] text-white w-auto flex items-center gap-2 p-3 rounded-xl">Academy Profile <span><HiOutlineArrowSmRight size={15}/></span></div>
         </div>
       </div>
       <div className="right">

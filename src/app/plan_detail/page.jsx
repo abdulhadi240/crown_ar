@@ -1,10 +1,12 @@
 import React from "react";
 import Features_detail from "./components/Features_detail";
 import Link from "next/link";
+import HeaderSection from "@/components/HeaderSection";
 
 const page = () => {
   return (
     <>
+    <HeaderSection/>
       <div className="container  overflow-hidden bg-[#DEEEFD] ">
         <div className="flex flex-col gap-3 p-6 md:p-10">
           <h1 className="flex justify-center mx-2 text-base font-semibold text-center dark:text-black md:mx-48 md:text-3xl">

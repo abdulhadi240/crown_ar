@@ -7,6 +7,8 @@ import fetchData, { GetSpecialization } from "@/actions/server";
 import Head from "next/head";
 import BlogPage from "@/app/blogs-details/components/BlogPage";
 import NotFound from "@/app/not-found";
+import HeaderSection from "@/components/HeaderSection";
+import CarasoulCourse from "@/components/CarasoulCourse";
 
 async function fetchCourseData() {
   return fetchData(`${process.env.BACKEND_URL}/courses`);
@@ -41,6 +43,8 @@ const page = async ({ params }) => {
     return <NotFound />;
   }
 
+  const course_carasoul = await fetchData(`${process.env.BACKEND_URL}/courses`)
+
   const data = courseData || blogData;
   const type = courses ? "courses" : "blogs";
 
@@ -53,31 +57,27 @@ const page = async ({ params }) => {
         <meta name="keywords" content={data.meta_keywords} />
         <meta name="description" content={data.meta_description} />
       </Head>
+      <HeaderSection />
       {type === "courses" ? (
-      <div>
-        <Content_extend categories={category}>
-          <div className="mt-10 font-semibold text-center md:text-left title text-xl">
-            {data?.data?.title}
-          </div>
-          <Suspense fallback={"loading..."}>
-            <Details course={data} />
-          </Suspense>
-        </Content_extend>
-        <h1 className="mx-6 mt-10 text-xl font-bold text-center md:text-start md:mb-10 text-primary">
-          Trending Courses
-        </h1>
-        <div className="hidden sm:block">
-          <DesktopCarasoul />
-        </div>
-        <div className="flex justify-center sm:hidden">
-          <Carasoul />
-        </div>
-      </div>
-      )
-      : 
-      (
         <div>
-          <BlogPage data={data}/>
+          <Content_extend categories={category}>
+            <div className="mt-10 font-semibold text-center md:text-left title text-xl">
+              {data?.data?.title}
+            </div>
+            <Suspense fallback={"loading..."}>
+              <Details course={data} />
+            </Suspense>
+          </Content_extend>
+          <h1 className="md:ml-32 mx-6  mt-10 text-xl font-bold text-center md:text-start md:mb-10 text-primary">
+            Trending Courses
+          </h1>
+          <div className="">
+            <CarasoulCourse data={course_carasoul} carasoul={true} />{" "}
+          </div>
+        </div>
+      ) : (
+        <div>
+          <BlogPage data={data} />
         </div>
       )}
     </>
@@ -92,11 +92,8 @@ export async function generateStaticParams() {
     fetchBlogData(),
   ]);
 
-  const courses =
-  course?.data?.map((course) => ({ slug: course.slug })) || [];
-const blogs =
-  blog?.data?.map((blog) => ({ slug: blog.slug })) || [];
+  const courses = course?.data?.map((course) => ({ slug: course.slug })) || [];
+  const blogs = blog?.data?.map((blog) => ({ slug: blog.slug })) || [];
 
-return [...courses, ...blogs];
-
+  return [...courses, ...blogs];
 }

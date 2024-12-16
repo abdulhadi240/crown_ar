@@ -11,10 +11,12 @@ import {
 } from "react-icons/fa";
 import DesktopCarasoul from "./components/DesktopCarasoul";
 import Carasoul from "../blogs/components/Carasoul";
+import HeaderSection from "@/components/HeaderSection";
 
 const page = () => {
   return (
     <div>
+      <HeaderSection/>
       <div className="overflow-hidden">
         <div className="banner-container">
           <div className="relative h-32 banner sm:h-64">

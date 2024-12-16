@@ -2,6 +2,7 @@ import Image from "next/image";
 import Content_extend from "../../course_detail/components/Content_extend";
 import Courses_Card from "../../account/components/Courses_Card";
 import { GetCategory, GetSpecialization } from "@/actions/server";
+import HeaderSection from "@/components/HeaderSection";
 
 
 
@@ -94,6 +95,7 @@ const Page = async ({params}) => {
   
   return (
     <>
+    <HeaderSection/>
       <div className="relative flex items-center justify-center min-h-screen bg-white">
         {/* Background Image */}
         <div className="">

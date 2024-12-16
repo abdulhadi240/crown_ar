@@ -28,13 +28,13 @@ const FooterMobile = () => {
         <div className="space-y-4">
           {/* Support Section */}
           <div className='w-full border-b-[1px] border-[#111F51]'>
-            <button
+            <div
               className="flex items-center justify-between w-full py-2 font-bold text-gray-800 text-md"
               onClick={() => toggleSection('support')}
             >
               Support
               <span>{openSection === 'support' ? <MdOutlineKeyboardArrowUp size={20}/> : <MdOutlineKeyboardArrowDown size={20}/>}</span>
-            </button>
+            </div>
             <div
               className={`transition-max-height duration-500 ease-in-out overflow-hidden ${
                 openSection === 'support' ? 'max-h-40' : 'max-h-0'
@@ -59,13 +59,13 @@ const FooterMobile = () => {
 
           {/* Company Section */}
           <div className='w-full border-b-[1px] border-[#111F51]'>
-            <button
+            <div
               className="flex items-center justify-between w-full py-2 font-bold text-gray-800 text-md"
               onClick={() => toggleSection('company')}
             >
               Company
               <span>{openSection === 'company' ? <MdOutlineKeyboardArrowUp size={20}/> : <MdOutlineKeyboardArrowDown size={20}/>}</span>
-            </button>
+            </div>
             <div
               className={`transition-max-height duration-500 ease-in-out overflow-hidden ${
                 openSection === 'company' ? 'max-h-40' : 'max-h-0'
@@ -90,13 +90,13 @@ const FooterMobile = () => {
 
           {/* About Section */}
           <div className='w-full border-b-[1px] border-[#111F51]'>
-            <button
+            <div
               className="flex items-center justify-between w-full py-2 font-bold text-gray-800 text-md"
               onClick={() => toggleSection('about')}
             >
               About
               <span>{openSection === 'about' ? <MdOutlineKeyboardArrowUp size={20}/> : <MdOutlineKeyboardArrowDown size={20}/>}</span>
-            </button>
+            </div>
             <div
               className={`transition-max-height duration-500 ease-in-out overflow-hidden ${
                 openSection === 'about' ? 'max-h-40' : 'max-h-0'

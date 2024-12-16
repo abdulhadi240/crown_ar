@@ -140,13 +140,13 @@ const DynamicTabs = () => {
 
   return (
     <section className="py-6 overflow-hidden">
-      <div className="container sm:mx-auto">
+      <div className="container ">
         {/* Tabs Navigation */}
-        <nav className="p-1 sm:p-0 rounded-xl">
-          <div className="grid gap-3 text-center sm:gap-6">
+        <nav className="rounded-xl flex justify-center text-center   w-auto ">
+          <div className="flex justify-center text-center shadow-md p-3 sm:p-3  ">
             {/* First row with 3 tabs */}
-            <div className="grid grid-cols-3 gap-3">
-              {tabsData.slice(0, 3).map((tab) => (
+            <div className="flex flex-wrap gap-6 justify-center">
+              {tabsData.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
@@ -161,22 +161,8 @@ const DynamicTabs = () => {
               ))}
             </div>
 
-            {/* Second row with 2 centered tabs */}
-            <div className="grid justify-center grid-cols-2 gap-3">
-              {tabsData.slice(3).map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-2 px-6 text-center rounded-lg text-sm ${
-                    activeTab === tab.id ? 'bg-[#B12E33] text-white' : 'bg-[#152765] text-white'
-                  }`}
-                  role="tab"
-                  aria-selected={activeTab === tab.id}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+            
+            
           </div>
         </nav>
 

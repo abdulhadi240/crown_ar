@@ -1,34 +1,22 @@
 "use client";
+import ArticleCard from "@/app/Blog/ArticleCard";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
 
-const cities = [
-  { image: "/img.webp", name: "Manchester", country: "UK" },
-  { image: "/img.webp", name: "London", country: "UK" },
-  { image: "/img.webp", name: "Paris", country: "France" },
-  { image: "/img.webp", name: "New York", country: "USA" },
-  { image: "/img.webp", name: "Berlin", country: "Germany" },
-  { image: "/img.webp", name: "Tokyo", country: "Japan" },
-  { image: "/img.webp", name: "Sydney", country: "Australia" },
-  { image: "/img.webp", name: "Los Angeles", country: "USA" },
-  { image: "/img.webp", name: "Bangkok", country: "Thailand" },
-  { image: "/img.webp", name: "Dubai", country: "UAE" },
-];
-
-const CARD_WIDTH = 140; // Width of each card
+const CARD_WIDTH = 320; // Width of each card
 const MARGIN = 20; // Margin between cards
 const CARD_SIZE = CARD_WIDTH + MARGIN;
-const CARDS_PER_DOT = 2; // Number of cards per dot
+const CARDS_PER_DOT = 1; // Number of cards per dot
 
-const BlogPostCarousel = ({data}) => {
+const BlogCarousel = ({ data }) => {
   const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const totalDots = Math.ceil(data.length / CARDS_PER_DOT);
+  const totalDots = Math.ceil(data.data.length / CARDS_PER_DOT);
 
   const shiftLeft = () => {
     if (currentIndex > 0) {
@@ -61,42 +49,31 @@ const BlogPostCarousel = ({data}) => {
               ease: "easeInOut",
               duration: 0.5,
             }}
-            className="flex gap-5"
+            className="flex gap-5 sm:ml-32"
           >
-            {data?.data.map((post, index) => (
+            {data?.data.map((article, index) => (
               <div
                 key={index}
                 className="flex-shrink-0"
                 style={{ width: CARD_WIDTH }}
               >
-                <Image
-                  src={post.image}
-                  width={200}
-                  height={200}
-                  alt={post.name}
-                  className="rounded-t-lg"
+                <ArticleCard
+                  key={index}
+                  title={article.title}
+                  category={article.categories[0]}
+                  date={article.published_date}
+                  description={article.description}
+                  imageSrc={article.featured_image}
+                  button_data={article.tags}
+                  slug={article.slug} // Pass the slug to ArticleCard
+                  blog={true}
                 />
-                <div className="py-4 text-start">
-                  <h3 className="font-bold">{post.name}</h3>
-                  <p className="text-sm text-gray-600">{post.country}</p>
-                </div>
               </div>
             ))}
           </motion.div>
         </div>
       </div>
-      {/* Dots */}
-      <div className="flex justify-center items-center md:mt-10 mb-10 gap-1">
-        {Array.from({ length: totalDots }).map((_, index) => (
-          <div
-            key={index}
-            className={`h-3 w-3 rounded-full transition-all ${
-              currentIndex === index ? "bg-primary scale-125" : "bg-gray-400"
-            }`}
-            onClick={() => goToIndex(index)}
-          ></div>
-        ))}
-      </div>
+      
       <div className="flex justify-center md:justify-end items-end mt-4 md:mr-32">
         {/* Navigation Buttons */}
         <div className="flex items-center gap-4 mb-2">
@@ -124,4 +101,4 @@ const BlogPostCarousel = ({data}) => {
   );
 };
 
-export default BlogPostCarousel;
+export default BlogCarousel;

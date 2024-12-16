@@ -7,10 +7,12 @@ import { MdHealthAndSafety } from "react-icons/md";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import DesktopCarasoul from "../blogs-details/components/DesktopCarasoul";
 import Carasoul from "../blogs/components/Carasoul";
+import HeaderSection from "@/components/HeaderSection";
 
 const page = () => {
   return (
     <div>
+      <HeaderSection/>
       <Content_extend>
         <div className="flex flex-col gap-10 mx-2 md:mx-10">
           <h1 className="mt-10 text-lg font-bold text-primary dark:text-white">

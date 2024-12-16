@@ -7,9 +7,11 @@ import { BiLogoGmail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import Contacts from "./Contacts";
+import HeaderSection from "@/components/HeaderSection";
 const page = () => {
   return (
     <>
+    <HeaderSection/>
       <div className="banner-container">
         <div className="relative h-32 banner sm:h-64">
           {" "}

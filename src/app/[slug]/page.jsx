@@ -8,6 +8,7 @@ import fetchData, { GetAllCategory, GetSpecificSpecialization } from "@/actions/
 import Content_extend from "../course_detail/components/Content_extend";
 import Courses_Card from "../account/components/Courses_Card";
 import Programs from "@/components/Programs";
+import HeaderSection from "@/components/HeaderSection";
 
 
 // Fetch city, specialization, and program data
@@ -77,6 +78,7 @@ export default async function Page({ params }) {
           <meta name="keywords" content={data.meta_keywords} />
           <meta name="description" content={data.meta_description} />
         </Head>
+        <HeaderSection/>
         {type === "city" ? (
           <div>
             <section className="mt-12 mb-12 text-center">

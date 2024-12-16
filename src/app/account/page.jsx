@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Personal_Information from './components/Personal_Information';
 import { cn } from '@/lib/utils';
 import Courses_Selected from './components/Courses_Selected';
+import HeaderSection from '@/components/HeaderSection';
 
 const Page = () => {
   const [select, setSelect] = useState('Personal_Information');
@@ -22,6 +23,7 @@ const Page = () => {
 
   return (
     <div>
+      <HeaderSection/>
       <div className='flex justify-center gap-4 mb-6 select-none'>
         <div className='flex items-center p-1 mt-10 text-white rounded-full md:p-2 md:px-4 bg-primary'>
           <div

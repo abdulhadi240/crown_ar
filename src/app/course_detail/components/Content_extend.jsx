@@ -6,12 +6,13 @@ import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { BiCategory } from "react-icons/bi";
 import Link from "next/link";
 import { FaRegBookmark } from "react-icons/fa";
-
+import { useRouter } from "next/navigation";
 
 const Content_extend = ({ children, categories, params }) => {
   const [openIndex, setOpenIndex] = useState(null); // Use null for no dropdown initially open
   const [category, setCategory] = useState(categories);
-
+  const router = useRouter();
+  
   const handleToggle = (index) => {
     // Toggle the specific dropdown; if already open, close it
     setOpenIndex(openIndex === index ? null : index);
@@ -53,15 +54,15 @@ const Content_extend = ({ children, categories, params }) => {
                       <div className="mt-2 ml-5">
                         {item.categories?.map((data, i) => {
                           return (
-                            <Link
-                              href={`/diploma?category=${data?.slug}`}
+                            <div
+                            onClick={()=>{window.open(`/diploma?category=${data?.slug}`, '_blank');}}
                               key={i}
-                              className="flex gap-2 hover:bg-secondary p-2 hover:text-white items-center mb-2 text-xs"
-                              scroll={false}
+                              className="flex gap-2 hover:bg-secondary cursor-pointer p-2 hover:text-white items-center mb-2 text-xs"
+                              
                             >
                               <FaRegBookmark />
                               {data.name}
-                            </Link>
+                            </div>
                           );
                         })}
                       </div>

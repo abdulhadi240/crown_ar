@@ -45,7 +45,7 @@ const RequestCourse = () => {
               <div className="flex items-center w-full mb-2 border-b-2">
               <AiOutlineBook className="mr-2 text-gray-300" size={24} />
                 <select 
-                  className="w-full py-2 text-white bg-transparent border-white focus:outline-none "
+                  className="w-full py-2 text-white bg-primary border-white focus:outline-none "
                 >
                   <option value="request_course text-black">Request Course</option>
                   <option value="course_1 text-black">Course 1</option>
@@ -76,7 +76,7 @@ const RequestCourse = () => {
         </div>
 
         {/* Circular Profile Images */}
-        <div className="absolute top-32 left-32 lg:top-32 lg:left-8">
+        <div className="absolute top-32 left-32 lg:top-48 lg:left-8">
           <Image
             src="/1.png" 
             alt="Profile"
@@ -96,7 +96,7 @@ const RequestCourse = () => {
           />
         </div>
 
-        <div className="absolute top-32 right-32">
+        <div className="absolute top-48 right-32">
           <Image
             src="/1.png" 
             alt="Profile"
@@ -107,6 +107,26 @@ const RequestCourse = () => {
         </div>
 
         <div className="absolute bottom-32 right-8">
+          <Image
+            src="/1.png" 
+            alt="Profile"
+            height={50}
+            width={50} 
+            className="hidden rounded-full sm:block"
+          />
+        </div>
+
+        <div className="absolute top-64 left-32">
+          <Image
+            src="/1.png" 
+            alt="Profile"
+            height={50}
+            width={50} 
+            className="hidden rounded-full sm:block"
+          />
+        </div>
+
+        <div className="absolute bottom-64 right-8">
           <Image
             src="/1.png" 
             alt="Profile"

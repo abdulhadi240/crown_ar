@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FaSearch, FaPrint } from 'react-icons/fa';
 import Course_column from "./components/Course_column";
+import HeaderSection from "@/components/HeaderSection";
 
 const cities = ['London', 'New York', 'Paris', 'Tokyo', 'Karachi', 'Islamabad'];
 
@@ -59,6 +60,7 @@ const courseData = [
 const page = () => {
   return (
     <div>
+      <HeaderSection/>
       <div className="banner-container">
         <div className="relative h-32 banner sm:h-64">
           {/* Set height and make container relative */}

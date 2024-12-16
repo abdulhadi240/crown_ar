@@ -1,6 +1,13 @@
+import BlogCarousel from "@/components/BlogCarousel";
 import Image from "next/image";
 
 const BlogPage = async ({data}) => {
+  const blogs = await fetch(`${process.env.BACKEND_URL}/blogs/`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept-Language": "en",
+    },
+  }).then((res) => res.json());
   return (
     <div className="p-4 md:mx-12 lg:mx-24 xl:mx-48">
       <div className="flex justify-center">
@@ -48,18 +55,7 @@ const BlogPage = async ({data}) => {
         <h1 className="mt-10 mb-10 text-3xl font-bold tracking-wider">Latest Blog</h1>
       </div>
       <div className="flex flex-col justify-center gap-4 sm:flex-row">
-     {/**    {articles.map((article, index) => (
-          <ArticleCard
-            key={index}
-            title={article.title}
-            category={article.category}
-            date={article.date}
-            description={article.description}
-            imageSrc={article.imageSrc}
-            button_data={article.button_data}
-            slug={article.slug} // Pass the slug to ArticleCard
-          />
-        ))} */}
+     <BlogCarousel data={blogs}/>
       </div>
       
     </div>

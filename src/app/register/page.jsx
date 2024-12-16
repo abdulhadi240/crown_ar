@@ -1,4 +1,5 @@
 "use client";
+import HeaderSection from "@/components/HeaderSection";
 import Head from "next/head";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -192,6 +193,7 @@ export default function Page() {
       <Head>
         <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
       </Head>
+      <HeaderSection/>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white shadow-md rounded-lg md:p-6 p-4 w-full max-w-3xl">
           <h1 className="text-2xl font-semibold mb-6 text-center">

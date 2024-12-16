@@ -6,6 +6,10 @@ import SearchFilters from '../components/SearchFilters';
 import SectionTitle from '../components/SectionTitle';
 import MainContent from '../components/MainContent';
 import MobileFilter from '../components/MobileFilter';
+import fetchData from '@/actions/server';
+import Design from './homepage1/components/Design';
+
+
 
 // Dynamically imported components
 const CourseCard = dynamic(() => import('../components/CourseCard'));
@@ -20,47 +24,14 @@ const Team = dynamic(() => import('../components/Team'));
 // Metadata for the page
 
 
-const Page = () => {
+const Page = async () => {
+
+  const cities = await fetchData('https://backendbatd.clinstitute.co.uk/api/cities');
+  const specialization = await fetchData('https://backendbatd.clinstitute.co.uk/api/specializations');
   return (
     <section>
       {/* Hero Section */}
-      <div className="container p-6 overflow-hidden sm:py-16 sm:px-24 bg-[#DEEEFD] sm:flex sm:flex-col-reverse sm:items-center sm:justify-between mx-auto lg:flex-row">
-        <div className="w-full space-y-6 text-center lg:w-1/2 lg:text-left">
-          <h1 className="~text-sm/4xl font-bold leading-tight text-gray-800 ">
-            The Most Prominent Courses That{' '}
-            <span className="">We Offer</span> In Our Academy Share With Us To Get
-            Better
-          </h1>
-          <button className="py-2 px-7 shadow-2xl text-sm font-light rounded-full bg-[#111F51] text-white">
-            Show Plan
-          </button>
-
-          {/* Course Cards */}
-          <div className="hidden sm:grid sm:grid-cols-3 gap-7">
-            {[
-              { title: 'Health & Fitness', desc: 'Provides you with the latest' },
-              { title: 'Personal Develop', desc: 'Provides you with the latest' },
-              { title: 'Management', desc: 'Provides you with the latest' },
-              { title: 'Office Management', desc: 'Provides you with the latest' },
-              { title: 'Marketing', desc: 'Provides you with the latest' }
-            ].map((course, index) => (
-              <CourseCard key={index} title={course.title} desc={course.desc} />
-            ))}
-          </div>
-        </div>
-
-        {/* Image and Button */}
-        <div className="relative hidden sm:block">
-          <Image
-            src="/hero.webp"
-            height={400}
-            width={400}
-            alt="Person holding books at the academy"
-            className=""
-            priority={true} // Ensure hero image loads faster
-          />
-        </div>
-      </div>
+      <Design/>
       <div className="block sm:hidden">
         <MobileFilter />
       </div>
@@ -80,7 +51,7 @@ const Page = () => {
       {/* Courses by Cities Carousel */}
       <div className=" sm:mt-16">
         <SectionTitle title="Courses by" highlight="Cities" />
-        <Carasoul />
+        <Carasoul data={cities}/>
       </div>
 
       {/* Training Section */}
@@ -141,7 +112,6 @@ const Page = () => {
           </div>
         </div>
       </div>
-
       {/* Uncomment if necessary for customer carousel */}
       {/* <div className="mt-32 overflow-hidden customer">
         <SectionTitle title="Most Of" highlight="Our Customers" />

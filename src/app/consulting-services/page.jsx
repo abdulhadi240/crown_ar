@@ -3,6 +3,7 @@ import React from "react";
 import Card from "./components/Card";
 import DesktopCarasoul from "../blogs-details/components/DesktopCarasoul";
 import Carasoul from "../blogs/components/Carasoul";
+import HeaderSection from "@/components/HeaderSection";
 
 
 const services = [
@@ -91,6 +92,7 @@ const services = [
 const page = () => {
   return (
     <div>
+      <HeaderSection/>
       <div className="overflow-hidden">
         <div className="banner-container">
           <div className="relative flex items-center justify-center h-32 banner sm:h-64">

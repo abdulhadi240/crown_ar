@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import HeaderSection from "@/components/HeaderSection";
 
 const Page = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -11,6 +12,7 @@ const Page = () => {
 
   return (
     <>
+    <HeaderSection/>
       <div className="banner-container">
         <div className="relative h-32 banner sm:h-64">
           {" "}
