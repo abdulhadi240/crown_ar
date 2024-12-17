@@ -14,7 +14,8 @@ export async function generateMetadata({ params }) {
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
       },
     }
   ).then((res) => res.json());
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }) {
     keywords: keywords,
     openGraph: {
       type: "website",
-      locale: "en_US",
+      locale: `${process.env.LOCALE_LANGUAGE}`,
       site_name: "British Academy for Training & Development",
       description: "British Academy for Training & Development",
       url: `https://client-academy.vercel.app/show_cities/${params.slug}`,

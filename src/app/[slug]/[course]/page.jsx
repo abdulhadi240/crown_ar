@@ -20,7 +20,8 @@ async function fetchSpecializationData() {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
       },
     }
   );
@@ -34,7 +35,8 @@ async function fetchCourses() {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
       },
     }
   )
@@ -45,6 +47,7 @@ async function fetchCourses() {
 const page = async ({params}) => {
 
   const {course} = params;
+  const {slug} = params;
   // Fetch both city and specialization data
   const [courseData, specializationData] = await Promise.all([
     fetchCourses(),
@@ -54,7 +57,8 @@ const page = async ({params}) => {
   const specialization1 = await fetch(`${process.env.BACKEND_URL}/specializations`,{
     headers : {
       'Content-Type': 'application/json',
-      'Accept-Language' : 'en'
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     },
   }).then(
     (res) => res.json()
@@ -64,7 +68,8 @@ const page = async ({params}) => {
   const Category1 = await fetch(`${process.env.BACKEND_URL}/categories`,{
     headers : {
       'Content-Type': 'application/json',
-      'Accept-Language' : 'en'
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     },
   }).then(
     (res) => res.json()
@@ -95,10 +100,55 @@ const page = async ({params}) => {
   return (
     <div>
       <Head>
-        <meta name="title" content={data.meta_title} />
-        <meta name="keywords" content={data.meta_keywords} />
-        <meta name="description" content={data.meta_description} />
-      </Head>
+      {/* Basic SEO Tags */}
+      <title>{data.meta_title}</title>
+      <meta name="title" content={data.meta_title} />
+      <meta name="description" content={data.meta_description} />
+      <meta name="keywords" content={data.meta_keywords} />
+      <meta name="author" content={data?.meta_author || "British Academy for Training & Development"} />
+      <meta name="robots" content="index, follow" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      {/* Open Graph (OG) Tags for Social Sharing */}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={data.meta_title} />
+      <meta property="og:description" content={data.meta_description} />
+      <meta property="og:image" content={data.image || "/logobat.webp"} />
+      <meta property="og:url" content={data.meta_url || `https://clinstitute.co.uk/${slug}/${course}`} />
+      <meta property="og:site_name" content={data.site_name || "British Academy for Training & Development"} />
+
+      {/* Twitter Card Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={data.meta_title} />
+      <meta name="twitter:description" content={data.meta_description} />
+      <meta name="twitter:image" content={data.image || "/logobat.webp"} />
+      <meta name="twitter:site" content={data.twitter_site || "@yourTwitterHandle"} />
+
+      {/* Canonical URL */}
+      <link rel="canonical" href={`https://clinstitute.co.uk/${slug}/${course}`} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: data.meta_title,
+            description: data.meta_description,
+            url: data.meta_url || `https://clinstitute.co.uk/${slug}/${course}`,
+            image: data.meta_image || "//logobat.webp",
+            author: {
+              "@type": "Person",
+              name: data.meta_author || "British Academy for Training & Development",
+            },
+          }),
+        }}
+      />
+    </Head>
       <HeaderSection/>
       {type === "course" ? (
         <><Content_extend categories={category}>

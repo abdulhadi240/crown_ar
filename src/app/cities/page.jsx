@@ -9,7 +9,8 @@ const Page = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     },
     revalidate: 100,
   });
@@ -19,6 +20,56 @@ const Page = async () => {
 
   return (
     <>
+    <Head>
+      {/* Basic SEO Tags */}
+      <title>{res.data[0].meta_title}</title>
+      <meta name="title" content={res.data[0].meta_title} />
+      <meta name="description" content={res.data[0].meta_description} />
+      <meta name="keywords" content={res.data[0].meta_keywords} />
+      <meta name="author" content={res.data[0].meta_author || "British Academy for Training & Development"} />
+      <meta name="robots" content="index, follow" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      {/* Open Graph (OG) Tags for Social Sharing */}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={res.data[0].meta_title} />
+      <meta property="og:description" content={res.data[0].meta_description} />
+      <meta property="og:image" content={res.data[0].image || "/logobat.webp"} />
+      <meta property="og:url" content={res.data[0].meta_url || `https://clinstitute.co.uk/cities`} />
+      <meta property="og:site_name" content={res.data[0].site_name || "British Academy for Training & Development"} />
+
+      {/* Twitter Card Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={res.data[0].meta_title} />
+      <meta name="twitter:description" content={res.data[0].meta_description} />
+      <meta name="twitter:image" content={res.data[0].image || "/logobat.webp"} />
+      <meta name="twitter:site" content={res.data[0].twitter_site || "@yourTwitterHandle"} />
+
+      {/* Canonical URL */}
+      <link rel="canonical" href={`https://clinstitute.co.uk/cities`} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: res.data[0].meta_title,
+            description: res.data[0].meta_description,
+            url: res.data[0].meta_url || `https://clinstitute.co.uk/cities`,
+            image: res.data[0].image || "//logobat.webp",
+            author: {
+              "@type": "Person",
+              name: data.meta_author || "British Academy for Training & Development",
+            },
+          }),
+        }}
+      />
+    </Head>
       <HeaderSection />
       <div className="container p-4 mx-auto">
         {/* Heading and World Map */}

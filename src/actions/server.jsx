@@ -5,7 +5,7 @@ export async function GetCategory(slug) {
     const response = await fetch(`${process.env.BACKEND_URL}/categories/${slug}/specialization`, {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     });
 
@@ -27,7 +27,7 @@ export async function GetAllCategory() {
     const response = await fetch(`${process.env.BACKEND_URL}/categories/`, {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     });
 
@@ -48,7 +48,7 @@ export async function GetSpecialization() {
     const response = await fetch(`${process.env.BACKEND_URL}/specializations_categories`, {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     });
 
@@ -71,7 +71,7 @@ export async function GetSpecificSpecialization(slug) {
     const response = await fetch(`${process.env.BACKEND_URL}/courses/${slug}/specializations`, {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     });
 
@@ -94,7 +94,7 @@ export async function GetCities() {
     const response = await fetch(`${process.env.BACKEND_URL}/cities`, {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     });
 
@@ -117,7 +117,7 @@ export default async function fetchData(url) {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     });
     if (!res.ok) throw new Error(`Failed to fetch: ${url}`);

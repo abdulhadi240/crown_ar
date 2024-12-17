@@ -1,7 +1,5 @@
 import React, { Suspense } from "react";
 import Content_extend from "@/app/course_detail/components/Content_extend";
-import Carasoul from "@/app/blogs/components/Carasoul";
-import DesktopCarasoul from "@/app/blogs-details/components/DesktopCarasoul";
 import Details from "@/app/course_detail/components/Details";
 import fetchData, { GetSpecialization } from "@/actions/server";
 import Head from "next/head";
@@ -53,10 +51,44 @@ const page = async ({ params }) => {
   return (
     <>
       <Head>
-        <meta name="title" content={data.meta_title} />
-        <meta name="keywords" content={data.meta_keywords} />
-        <meta name="description" content={data.meta_description} />
-      </Head>
+      <title>{data.data[0].meta_title}</title>
+      <meta name="title" content={data.data[0].meta_title} />
+      <meta name="description" content={data.data[0].meta_description} />
+      <meta name="keywords" content={data.data[0].meta_keywords} />
+      <meta name="author" content={data.data[0].meta_author || "British Academy for Training & Development"} />
+      <meta name="robots" content="index, follow" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={data.data[0].meta_title} />
+      <meta property="og:description" content={data.data[0].meta_description} />
+      <meta property="og:image" content={data.data[0].image || "/logobat.webp"} />
+      <meta property="og:url" content={data.data[0].meta_url || `https://clinstitute.co.uk/cities`} />
+      <meta property="og:site_name" content={data.data[0].site_name || "British Academy for Training & Development"} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={data.data[0].meta_title} />
+      <meta name="twitter:description" content={data.data[0].meta_description} />
+      <meta name="twitter:image" content={data.data[0].image || "/logobat.webp"} />
+      <meta name="twitter:site" content={data.data[0].twitter_site || "@yourTwitterHandle"} />
+      <link rel="canonical" href={`https://clinstitute.co.uk/cities`} />
+      <link rel="icon" href="/favicon.ico" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: data.data[0].meta_title,
+            description: data.data[0].meta_description,
+            url: data.data[0].meta_url || `https://clinstitute.co.uk/cities`,
+            image: data.data[0].image || "//logobat.webp",
+            author: {
+              "@type": "Person",
+              name: data.meta_author || "British Academy for Training & Development",
+            },
+          }),
+        }}
+      />
+    </Head>
       <HeaderSection />
       {type === "courses" ? (
         <div>

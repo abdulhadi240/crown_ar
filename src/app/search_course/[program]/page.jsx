@@ -16,7 +16,8 @@ export async function generateMetadata({ params }) {
   const product = await fetch(`${process.env.BACKEND_URL}/courses/${params.program}/programs`,{
     headers : {
       'Content-Type': 'application/json',
-      'Accept-Language' : 'en'
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     },
   }).then(
     (res) => res.json()
@@ -63,7 +64,8 @@ export async function generateMetadata({ params }) {
     const posts = await fetch(`${process.env.BACKEND_URL}/courses/`,{
       headers : {
         'Content-Type': 'application/json',
-        'Accept-Language' : 'en'
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
       },
     }
     ).then((res) =>
@@ -82,7 +84,8 @@ const Page = async ({params}) => {
   const data = await fetch(`${process.env.BACKEND_URL}/courses/${params.program}/programs`,{
     headers: {
       'Accept': 'application/json',
-      'Accept-Language': 'en'
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     }
   })
   const res = await data.json()
