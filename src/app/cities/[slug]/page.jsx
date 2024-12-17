@@ -63,7 +63,8 @@ export async function generateStaticParams() {
   const posts = await fetch(`${process.env.BACKEND_URL}/courses/`, {
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+       "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     },
   }).then((res) => res.json());
   return posts.data.map((post) => ({
@@ -77,7 +78,8 @@ const page = async ({ params }) => {
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+         "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
       },
     }
   ).then((res) => res.json());
@@ -89,7 +91,7 @@ const page = async ({ params }) => {
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
     }
   ).then((res) => res.json());
@@ -97,7 +99,8 @@ const page = async ({ params }) => {
   const Category = await fetch(`${process.env.BACKEND_URL}/categories`, {
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+       "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
     },
   }).then((res) => res.json());
 

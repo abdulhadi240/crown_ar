@@ -44,6 +44,59 @@ async function fetchCourses() {
 }
 
 
+export async function generateMetadata({ params }) {
+  const { course, slug } = params;
+
+  // Fetch course and specialization data
+  const [courseData, specializationData] = await Promise.all([
+    fetchCourses(),
+    fetchSpecializationData(),
+  ]);
+
+  // Match data based on the slug or course
+  const courses = courseData?.data?.find((c) => c.slug === course);
+  const specialization = specializationData?.data?.find((s) => s.slug === course);
+
+  // Fallback to 404 if no valid data found
+  const data = courses || specialization;
+  if (!data) {
+    return {
+      title: "Page Not Found",
+      description: "The requested page does not exist.",
+    };
+  }
+
+  return {
+    title: data.meta_title || "British Academy for Training & Development",
+    description: data.meta_description || "Discover specialized courses and training programs.",
+    keywords: data.meta_keywords || "courses, specialization, training, programs",
+    alternates: {
+      canonical: `https://clinstitute.co.uk/${slug}/${course}`,
+    },
+    openGraph: {
+      title: data.meta_title || "British Academy for Training & Development",
+      description: data.meta_description || "Explore top-notch training programs and courses.",
+      url: `https://clinstitute.co.uk/${slug}/${course}`,
+      images: [
+        {
+          url: data.image || "/logobat.webp",
+          width: 800,
+          height: 600,
+          alt: data.meta_title || "Course Image",
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.meta_title || "British Academy for Training & Development",
+      description: data.meta_description || "Explore specialized training programs and courses.",
+      images: [data.image || "/logobat.webp"],
+    },
+  };
+}
+
+
 const page = async ({params}) => {
 
   const {course} = params;
@@ -99,56 +152,7 @@ const page = async ({params}) => {
   
   return (
     <div>
-      <Head>
-      {/* Basic SEO Tags */}
-      <title>{data.meta_title}</title>
-      <meta name="title" content={data.meta_title} />
-      <meta name="description" content={data.meta_description} />
-      <meta name="keywords" content={data.meta_keywords} />
-      <meta name="author" content={data?.meta_author || "British Academy for Training & Development"} />
-      <meta name="robots" content="index, follow" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-      {/* Open Graph (OG) Tags for Social Sharing */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={data.meta_title} />
-      <meta property="og:description" content={data.meta_description} />
-      <meta property="og:image" content={data.image || "/logobat.webp"} />
-      <meta property="og:url" content={data.meta_url || `https://clinstitute.co.uk/${slug}/${course}`} />
-      <meta property="og:site_name" content={data.site_name || "British Academy for Training & Development"} />
-
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={data.meta_title} />
-      <meta name="twitter:description" content={data.meta_description} />
-      <meta name="twitter:image" content={data.image || "/logobat.webp"} />
-      <meta name="twitter:site" content={data.twitter_site || "@yourTwitterHandle"} />
-
-      {/* Canonical URL */}
-      <link rel="canonical" href={`https://clinstitute.co.uk/${slug}/${course}`} />
-
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-
-      {/* Structured Data (JSON-LD) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: data.meta_title,
-            description: data.meta_description,
-            url: data.meta_url || `https://clinstitute.co.uk/${slug}/${course}`,
-            image: data.meta_image || "//logobat.webp",
-            author: {
-              "@type": "Person",
-              name: data.meta_author || "British Academy for Training & Development",
-            },
-          }),
-        }}
-      />
-    </Head>
+      
       <HeaderSection/>
       {type === "course" ? (
         <><Content_extend categories={category}>

@@ -38,6 +38,55 @@ async function fetchCategoryData() {
   return fetchData(`${process.env.BACKEND_URL}/categories`);
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+
+  // Fetch details for city, specialization, or program
+  const [cityCourses, specializationCourses, programCourses] = await Promise.all([
+    fetchCityCourses(slug),
+    fetchSpecializationData(slug),
+    fetchProgramCourses(slug),
+  ]);
+
+  const data = cityCourses || specializationCourses || programCourses;
+
+  if (!data) {
+    return {
+      title: "Page Not Found",
+      description: "The requested page does not exist.",
+    };
+  }
+
+  return {
+    title: data?.data?.meta_title || "British Academy for Training & Development",
+    description: data?.data?.meta_description || "Explore top courses, programs, and specializations.",
+    keywords: data?.data?.meta_keywords || "training, courses, programs, specialization",
+    alternates: {
+      canonical: `https://clinstitute.co.uk/${slug}`,
+    },
+    openGraph: {
+      title: data?.data?.meta_title,
+      description: data?.data?.meta_description,
+      url: `https://clinstitute.co.uk/${slug}`,
+      images: [
+        {
+          url: data?.data?.image || "/logobat.webp",
+          width: 800,
+          height: 600,
+          alt: data?.data?.meta_title || "Course Image",
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data?.data?.meta_title,
+      description: data?.data?.meta_description,
+      images: [data?.data?.image || "/logobat.webp"],
+    },
+  };
+}
+
 // Dynamic Page Component
 export default async function Page({ params }) {
   const { slug } = params;
@@ -71,56 +120,6 @@ export default async function Page({ params }) {
 
     return (
       <>
-        <Head>
-      {/* Basic SEO Tags */}
-      <title>{data.meta_title}</title>
-      <meta name="title" content={data.meta_title} />
-      <meta name="description" content={data.meta_description} />
-      <meta name="keywords" content={data.meta_keywords} />
-      <meta name="author" content={data?.meta_author || "British Academy for Training & Development"} />
-      <meta name="robots" content="index, follow" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-      {/* Open Graph (OG) Tags for Social Sharing */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={data.meta_title} />
-      <meta property="og:description" content={data.meta_description} />
-      <meta property="og:image" content={data.image || "/logobat.webp"} />
-      <meta property="og:url" content={data.meta_url || `https://clinstitute.co.uk/${slug}`} />
-      <meta property="og:site_name" content={data.site_name || "British Academy for Training & Development"} />
-
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={data.meta_title} />
-      <meta name="twitter:description" content={data.meta_description} />
-      <meta name="twitter:image" content={data.image || "/logobat.webp"} />
-      <meta name="twitter:site" content={data.twitter_site || "@yourTwitterHandle"} />
-
-      {/* Canonical URL */}
-      <link rel="canonical" href={`https://clinstitute.co.uk/${slug}`} />
-
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-
-      {/* Structured Data (JSON-LD) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: data.meta_title,
-            description: data.meta_description,
-            url: data.meta_url || `https://clinstitute.co.uk/${slug}`,
-            image: data.meta_image || "//logobat.webp",
-            author: {
-              "@type": "Person",
-              name: data.meta_author || "British Academy for Training & Development",
-            },
-          }),
-        }}
-      />
-    </Head>
         <HeaderSection/>
         {type === "city" ? (
           <div>
