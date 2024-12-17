@@ -113,11 +113,11 @@ const Page = async () => {
           </div>
         </div>
       </div>
-      {/* Uncomment if necessary for customer carousel */}
+      {/* Uncomment if necessary for customer carousel 
        <div className="mt-32 overflow-hidden customer">
         <SectionTitle title="Most Of" highlight="Our Customers" />
         <CustomerCarasoul />
-      </div> 
+      </div> */}
     </section>
   );
 };
