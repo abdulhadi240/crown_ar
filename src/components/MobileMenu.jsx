@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaHamburger, FaLock } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 
-export default function MobileMenu() {
+export default function MobileMenu({color}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,7 +24,7 @@ export default function MobileMenu() {
             className="flex justify-center items-center text-center"
             onClick={toggleMenu}
           >
-            <MdMenu size={28} color="black"/>
+            <MdMenu size={28} color={color || 'black'}/>
           </div>
         </div>
       </div>

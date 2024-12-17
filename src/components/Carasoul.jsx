@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
@@ -64,15 +65,15 @@ const BlogPostCarousel = ({data}) => {
             className="flex gap-5"
           >
             {data?.data.map((post, index) => (
-              <div
+              <Link href={`/${post.slug}`}
                 key={index}
                 className="flex-shrink-0"
-                style={{ width: CARD_WIDTH }}
+                style={{ width: CARD_WIDTH + 50 }}
               >
                 <Image
                   src={post.image}
-                  width={200}
-                  height={200}
+                  width={300}
+                  height={300}
                   alt={post.name}
                   className="rounded-t-lg"
                 />
@@ -80,7 +81,7 @@ const BlogPostCarousel = ({data}) => {
                   <h3 className="font-bold">{post.name}</h3>
                   <p className="text-sm text-gray-600">{post.country}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>

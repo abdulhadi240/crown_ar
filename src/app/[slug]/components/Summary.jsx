@@ -63,7 +63,7 @@ const Summary = ({ summary }) => {
             </div>
           </div>
         </div>
-
+        <div className="flex justify-center">
         <div className="course_details flex flex-col gap-3 w-80 text-left h-80 p-3 bg-[#e2f0ff]">
           <div className="flex justify-between tags">
             <h1 className="">Price</h1>
@@ -94,6 +94,7 @@ const Summary = ({ summary }) => {
             <p>English1</p>
           </div>
           <Link href={`/register?course=${summary.slug}`} className="p-2 text-white bg-primary text-center">Register Now</Link>
+        </div>
         </div>
       </div>
       <div className="border-[1px] border-dashed mt-10 mb-5 mx-10 " />

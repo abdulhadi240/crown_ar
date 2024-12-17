@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <>
     <header className="md:hidden">
-      <MobileMenu/>
+      <MobileMenu color={'white'}/>
     </header>
       
     <section>

@@ -11,6 +11,7 @@ const Design = () => {
     <>
       <div className="relative w-full h-[700px] overflow-hidden">
         {/* Background Image */}
+        <Link href={'/'}>
         <Image
           src="/hero-bg.webp"
           layout="fill"
@@ -20,6 +21,7 @@ const Design = () => {
           priority
           loading="eager"
         />
+        </Link>
 
         {/* Navbar (z-index 10 for visibility over the image) */}
         <div className="relative z-10">
