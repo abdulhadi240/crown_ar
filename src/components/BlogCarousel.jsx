@@ -52,11 +52,13 @@ const BlogCarousel = ({ data }) => {
             className="flex gap-5 sm:ml-32"
           >
             {data?.data.map((article, index) => (
+              index < 6 && 
               <div
                 key={index}
                 className="flex-shrink-0"
                 style={{ width: CARD_WIDTH }}
               >
+                
                 <ArticleCard
                   key={index}
                   title={article.title}

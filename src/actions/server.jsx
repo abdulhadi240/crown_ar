@@ -127,3 +127,4 @@ export default async function fetchData(url) {
     return null; // Return null on error
   }
 }
+

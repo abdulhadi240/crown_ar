@@ -1,32 +1,40 @@
-import React from 'react'
+import React from 'react';
 import { cn } from '@/lib/utils';
-const Card = ({ number, title, description }) => (
+
+const Card = ({ number, title, description }) => {
+  const getColorClass = (num) => {
+    const colors = [
+      'bg-orange-500',
+      'bg-gray-800',
+      'bg-teal-600',
+      'bg-black',
+      'bg-green-500',
+      'bg-red-500',
+      'bg-yellow-600',
+      'bg-blue-700',
+    ];
+    return colors[(num - 1) % colors.length];
+  };
+
+  return (
     <div className="flex flex-col items-center justify-center p-6 rounded-lg hover:shadow-md hover:bg-white group">
       <div
         className={cn(
           'h-12 w-12 flex items-center justify-center rounded-full text-white font-bold mb-4',
-          {
-            'bg-orange-500': number === 1,
-            'bg-gray-800': number === 2,
-            'bg-teal-600': number === 3,
-            'bg-black': number === 4,
-            'bg-green-500': number === 5,
-            'bg-red-500': number === 6,
-            'bg-yellow-600': number === 7,
-            'bg-blue-700': number === 8,
-          }
+          getColorClass(number)
         )}
       >
         {number}
       </div>
-      <h3 className="mb-2 font-semibold text-md">{title}</h3>
-      <p className="mb-4 text-xs text-center text-gray-600">{description}</p>
+      <h3 className="mb-2 font-semibold text-md text-center">{title}</h3>
+      <div className='text-xs'>
+        <p className="mb-4 text-center text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: description }}></p>
+      </div>
       <button className="px-4 py-2 text-xs text-black transition border-2 rounded group-hover:bg-primary group-hover:text-white border-primary hover:bg-blue-700">
-        Class Details
+        More Details
       </button>
     </div>
   );
-  
-export default Card
+};
 
- 
+export default Card;
