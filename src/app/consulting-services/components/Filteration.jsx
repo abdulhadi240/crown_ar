@@ -85,6 +85,7 @@ const Filteration = ({ data, category }) => {
           <Card
             key={index}
             number={index + 1}
+            slug={service.slug}
             title={service.title}
             description={service.content}
           />
