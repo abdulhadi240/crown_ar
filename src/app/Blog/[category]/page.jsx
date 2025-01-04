@@ -2,18 +2,20 @@
 import HeaderSection from "@/components/HeaderSection";
 import ArticleCard from "../ArticleCard";
 
-export const revalidate = 60;
+export const revalidate = 60; // Revalidate data every 60 seconds
 
 export const dynamicParams = true;
 
+// Fetch Metadata Dynamically
 export async function generateMetadata({ params }) {
+  const locale = params.locale || "en"; // Fallback to English if no locale is provided
+
   const product = await fetch(
     `${process.env.BACKEND_URL}/blogs/${params.category}/category`,
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
-
+        "Accept-Language": locale,
       },
     }
   ).then((res) => res.json());
@@ -28,20 +30,20 @@ export async function generateMetadata({ params }) {
     "British Academy for Training & Development";
 
   return {
-    title: title,
-    description: description,
-    keywords: keywords,
+    title,
+    description,
+    keywords,
     openGraph: {
       type: "website",
-      locale:`${process.env.LOCALE_LANGUAGE}`,
+      locale,
       site_name: "British Academy for Training & Development",
-      description: "British Academy for Training & Development",
+      description,
       url: `https://client-academy.vercel.app/blogs/${params.category}/category`,
-      images: [product?.data[0]?.image],
+      images: [product?.data?.featured_image],
     },
     twitter: {
       site_name: "British Academy for Training & Development",
-      description: "British Academy for Training & Development",
+      description,
       url: `https://client-academy.vercel.app/blogs/${params.category}/category`,
       images: [
         {
@@ -58,24 +60,38 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
+  const locales = ["en", "ar"]; // Supported locales
   const posts = await fetch(`${process.env.BACKEND_URL}/blogs/`, {
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
     },
   }).then((res) => res.json());
-  return posts.data.map((post) => ({
-    slug: post.slug,
-  }));
+
+  // Check if `posts.data` is an array and generate paths correctly
+  if (Array.isArray(posts?.data)) {
+    return posts.data.flatMap((post) =>
+      post.categories.flatMap((category) =>
+        locales.map((locale) => ({
+          locale,
+          category: category.slug, // Use the slug from each category
+        }))
+      )
+    );
+  }
+
+  return []; // Return an empty array if posts data is not iterable
 }
 
+// Main Page Component with SSR
 export default async function Page({ params }) {
+  const locale = params.locale || "en"; // Determine locale from params
+
   const articles = await fetch(
     `${process.env.BACKEND_URL}/blogs/${params.category}/category`,
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": locale,
       },
     }
   ).then((res) => res.json());
@@ -85,11 +101,12 @@ export default async function Page({ params }) {
       <HeaderSection />
       <div className="px-4 py-8 mx-auto max-w-7xl">
         <h1 className="mb-8 text-4xl font-bold text-center dark:text-white uppercase">
-          {params.category}
+          {locale === "ar" ? "المقالات" : params.category}
         </h1>
         <p className="mb-8 text-center text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit interdum
-          ullamcorper et pharetra sem.
+          {locale === "ar"
+            ? "لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت."
+            : "Lorem ipsum dolor sit amet consectetur adipiscing elit interdum ullamcorper et pharetra sem."}
         </p>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

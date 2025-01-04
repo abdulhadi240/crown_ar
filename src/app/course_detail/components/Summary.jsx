@@ -80,10 +80,15 @@ const Summary = ({ summary }) => {
             <h1>Language</h1>
             <p>English</p>
           </div>
-          <Link href={`/register?course=${summary.slug}`} className="p-2 text-white bg-primary text-center">Register Now</Link>
+          <Link
+            href={`/register?course=${summary.slug}`}
+            className="p-2 text-white bg-primary text-center"
+          >
+            Register Now
+          </Link>
         </div>
       </div>
-      <div className="border-[1px] border-dashed mt-10 mb-5 mx-10 " />
+    <div className="border-[1px] border-dashed mt-10 mb-5 mx-10 " />
       <h1 className="pr-8 text-xl font-bold text-center md:text-start text-primary">
         Available Dates
       </h1>
@@ -117,7 +122,10 @@ const Summary = ({ summary }) => {
                       ))}
                     </select>
                   </div>
-                  <Link href={`/register?course=${summary.slug}&date=${item.date}&city=${selectedCities}`} className="px-5 text-sm text-white rounded-md items-center text-center flex bg-primary">
+                  <Link
+                    href={`/register?course=${summary.slug}&date=${item.date}&city=${selectedCities}`}
+                    className="px-5 text-sm text-white rounded-md items-center text-center flex bg-primary"
+                  >
                     Register
                   </Link>
                 </div>
