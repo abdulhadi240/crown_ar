@@ -1,6 +1,7 @@
-// pages/index.js
-import HeaderSection from "@/components/HeaderSection";
-import ArticleCard from "../ArticleCard";
+import Design from "@/app/homepage1/components/Design";
+import { Blog_Category } from "@/components/Blog_Category";
+import BlogCarousel from "@/components/BlogCarousel";
+import Wrapper from "@/components/Wrapper";
 
 export const revalidate = 60; // Revalidate data every 60 seconds
 
@@ -96,36 +97,34 @@ export default async function Page({ params }) {
     }
   ).then((res) => res.json());
 
+  console.log(articles);
+  
+
   return (
     <>
-      <HeaderSection />
-      <div className="px-4 py-8 mx-auto max-w-7xl">
-        <h1 className="mb-8 text-4xl font-bold text-center dark:text-white uppercase">
-          {locale === "ar" ? "المقالات" : params.category}
+      <Design iamge={"/blog3.png"} center input={false} image_height={false}>
+        <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+          Explore <span className="text-secondary ">{params.category}</span>{" "}
+          <br />
         </h1>
-        <p className="mb-8 text-center text-gray-500">
-          {locale === "ar"
-            ? "لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت."
-            : "Lorem ipsum dolor sit amet consectetur adipiscing elit interdum ullamcorper et pharetra sem."}
-        </p>
+      </Design>
+      <div className="px-4 py-8 mx-auto max-w-7xl">    
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {articles?.data?.map((article, index) => (
-              <ArticleCard
-                key={index}
-                title={article.title}
-                category={article.category}
-                date={article.published_date}
-                description={article.content}
-                imageSrc={article.featured_image}
-                button_data={article.tags}
-                slug={article.slug}
-                params={params.category}
-              />
-            ))}
-          </div>
+          <Blog_Category initialArticles={articles} params={params}/>
         </div>
       </div>
+
+      {/* Latest Blog Section */}
+      <div className="flex justify-center">
+          <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-3xl font-bold">
+          Related Articles You May Find Interesting
+          </h1>
+        </div>
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        <Wrapper>
+          <BlogCarousel data={articles} />
+          </Wrapper>
+        </div>
     </>
   );
 }

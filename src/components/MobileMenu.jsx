@@ -18,7 +18,7 @@ export default function MobileMenu({color}) {
         {/* Menu Button */}
         <div className="flex justify-between mx-2">
           <div>
-            <Image src={"/logobat.png"} width={80} height={80} alt="logo" />
+            <Image src={"/logo1.png"} width={80} height={80} alt="logo" />
           </div>
           <div
             className="flex justify-center items-center text-center"
@@ -41,7 +41,7 @@ export default function MobileMenu({color}) {
           <div
             aria-label="Close menu"
             onClick={toggleMenu}
-            className="flex justify-end py-2 px-2 bg-[#DEEEFD] w-full text-[#111F51] hover:text-gray-800 "
+            className="flex justify-end py-2 px-2 bg-primary w-full text-secondary hover:text-gray-800 "
           >
             <svg
               className="w-6 h-6"
@@ -58,11 +58,11 @@ export default function MobileMenu({color}) {
               />
             </svg>
           </div>
-          <div className="bg-[#DEEEFD] p-4">
+          <div className="bg-primary p-4">
             <div className="flex flex-col ">
               <div className="flex justify-center">
                 <Image
-                  src="/logobat.png" // Optimized image usage
+                  src="/logo1.png" // Optimized image usage
                   alt="Logo"
                   width={100}
                   height={100}
@@ -73,14 +73,14 @@ export default function MobileMenu({color}) {
               <div className="flex justify-between gap-10">
                 <Link
                   href="/login"
-                  className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-[#111F51] border-[1px] text-[#111F51] rounded hover:bg-blue-700"
+                  className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-secondary border-[1px] text-secondary rounded hover:bg-blue-700"
                   onClick={toggleMenu}
                 >
                   <FaLock className="mr-2 " /> Login
                 </Link>
                 <Link
                   href="/login"
-                  className="flex items-center w-full h-8 px-4 mt-4 text-xs text-white rounded bg-primary "
+                  className="flex items-center w-full border-primary border-[1px] h-8 px-4 mt-4 text-xs text-white rounded bg-secondary "
                   onClick={toggleMenu}
                 >
                   <FaLock className="mr-2 " /> Signup

@@ -3,6 +3,8 @@ import { BiSolidQuoteLeft } from "react-icons/bi";
 import ArticleCard from "../../ArticleCard";
 import Link from "next/link";
 import HeaderSection from "@/components/HeaderSection";
+import Design from "@/app/homepage1/components/Design";
+import Header from "@/app/homepage1/components/Header";
 
 export async function generateMetadata({ params }) {
   const product = await fetch(
@@ -87,17 +89,10 @@ const BlogPost = async ({ params }) => {
 
   return (
     <>
-      <HeaderSection />
+      <Header/>
       <div className="p-4 md:mx-12 lg:mx-24 xl:mx-48">
         <div className="flex justify-center">
-          <Image
-            src={data.data.featured_image}
-            alt="hero"
-            height={800}
-            width={800}
-            className="w-full h-auto rounded-3xl"
-            priority
-          />
+         
         </div>
         <div className="px-4 py-8 mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row">

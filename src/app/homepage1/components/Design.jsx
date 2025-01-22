@@ -1,77 +1,84 @@
 import Image from "next/image";
 import React from "react";
 import Header from "./Header";
-import { FaSearch } from "react-icons/fa";
-import Link from "next/link";
 import Inputs from "./Inputs";
 
-const Design = () => {
-  
+const Design = ({icon_white, iamge, children, center, input, image_height, secondary }) => {
   return (
     <>
-      <div className="relative w-full h-[700px] overflow-hidden">
-        {/* Background Image */}
-        <Link href={'/'}>
-        <Image
-          src="/hero-bg.webp"
-          layout="fill"
-          objectFit="cover"
-          alt="Hero Background"
-          className="absolute inset-0 brightness-75"
-          priority
-          loading="eager"
-        />
-        </Link>
+      {secondary ? (
+        // If secondary is true, ONLY display the Header
+        <Header secondary={secondary} />
+      ) : (
+        // Otherwise, display the background image section + Header + other content
+        <div
+          className={`relative w-full ${
+            image_height ? "h-[700px]" : "md:h-[400px] h-[300px]"
+          } overflow-hidden`}
+        >
+          {/* Background Image */}
+          <Image
+            src={iamge}
+            layout="fill"
+            objectFit="cover"
+            alt="Hero Background"
+            className="absolute inset-0 brightness-75"
+            priority
+            loading="eager"
+          />
 
-        {/* Navbar (z-index 10 for visibility over the image) */}
-        <div className="relative z-10">
-          <Header />
-          <div className="flex flex-col items-center justify-center h-full px-4">
-            {/* Heading and Subheading */}
-            <div className="text-center">
-              <h1 className="max-w-3xl mt-5 text-3xl font-semibold text-white md:text-6xl">
-                Developing People To Improve Performance
-              </h1>
-              <p className="max-w-xl mx-auto mt-4 text-sm text-white md:text-xl">
-                The world's most trusted training partner for improving knowledge, skills, and capabilities.
-              </p>
+          {/* Overlay with #061939 */}
+          <div className="absolute inset-0 bg-[#061939] bg-opacity-60"></div>
+
+          {/* Optional SVG Waves if image_height is set */}
+          {image_height && (
+            <div>
+              <svg
+                className="absolute bottom-0 w-full"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 250"
+              >
+                <path
+                  fill="#FFFFFF"
+                  d="M0,200 C1150,-50 1700,40 1440,50 L1440,250 L0,250 Z"
+                />
+              </svg>
+
+              <svg
+                className="absolute -bottom-10 w-full"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 250"
+                height={1}
+              >
+                <path
+                  fill="#fbba07"
+                  d="M0,200 C1150,-50 1700,40 1440,50 L1440,250 L0,250 Z"
+                />
+              </svg>
             </div>
+          )}
 
-            {/* Search Bar */}
-            <Inputs/>
+          <div className="relative z-10">
+            {/* Header */}
+            <Header icon_white/>
 
-            {/* Stats Section */}
-            <div className="grid grid-cols-2 gap-3 mt-6 text-center text-white md:grid-cols-4">
-              <div>
-                <span className="block text-xl font-bold">3.5+</span>
-                <span>million attendees</span>
-              </div>
-              <div>
-                <span className="block text-xl font-bold">500+</span>
-                <span>advisors</span>
-              </div>
-              <div>
-                <span className="block text-xl font-bold">65,000+</span>
-                <span>organisations</span>
-              </div>
-              <div>
-                <span className="block text-xl font-bold">600+</span>
-                <span>courses</span>
-              </div>
-            </div>
+            {/* Content Wrapper */}
+            <div
+              className={`flex flex-col ${
+                center
+                  ? "items-center justify-center"
+                  : "items-start justify-start px-10 md:px-20"
+              } md:mt-16`}
+            >
+              {/* Children Content (Headings, Subheadings, etc.) */}
+              <div className={center ? "text-center" : "text-start"}>{children}</div>
 
-            {/* Call-to-Action Buttons */}
-            <div className="flex flex-col gap-4 mt-6 md:flex-row">
-              <Link href={'/'} className="px-8 hover:bg-primary transition-all py-4 text-sm font-bold text-white uppercase rounded-full bg-secondary hover:bg-opacity-90">
-                Explore Advantage Plan
-              </Link>
-              <Link href={'/diploma'} className="px-8 hover:bg-primary transition-all py-4 text-sm font-bold text-white uppercase rounded-full bg-secondary hover:bg-opacity-90">
-                View Course Catalogue
-              </Link>
+              {/* Search Bar or Other Inputs */}
+              {input && <Inputs />}
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

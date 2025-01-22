@@ -141,7 +141,7 @@ const page = async ({ params }) => {
         }}
       />
     </Head>
-      <HeaderSection />
+     
       {type === "courses" ? (
         <div>
           <Content_extend categories={category}>

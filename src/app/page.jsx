@@ -8,7 +8,6 @@ import MainContent from '../components/MainContent';
 import MobileFilter from '../components/MobileFilter';
 import fetchData from '@/actions/server';
 import Design from './homepage1/components/Design';
-import CustomerCarasoul from '@/components/CustomerCarasoul';
 
 
 
@@ -20,7 +19,6 @@ const Training = dynamic(() => import('../components/Training'));
 const RequestCourse = dynamic(() => import('../components/RequestCourse'));
 const DynamicTabs = dynamic(() => import('../components/DynamicTabs'));
 const Team = dynamic(() => import('../components/Team'));
-// const CustomerCarasoul = dynamic(() => import('../components/CustomerCarasoul'), { ssr: false });
 
 // Metadata for the page
 
@@ -32,18 +30,17 @@ const Page = async () => {
   return (
     <section>
       {/* Hero Section */}
-      <Design/>
+      <Design iamge={'/Images.png'} center={false} input image_height >
+    <h1 className="max-w-3xl mt-5 text-4xl font-semibold text-white md:text-[55px] md:leading-[60px]">
+          Welcome to <span className="text-secondary font-bold">TrainEdge</span> <br />
+          Expert Employee <br /> Training Solutions
+        </h1>
+        <p className="max-w-xl mt-4 text-sm text-white md:text-xl">
+          Advancing employee skills and driving business growth through tailored training programs for companies worldwide.
+        </p>
+        </Design>
       <div className="block sm:hidden">
         <MobileFilter />
-      </div>
-
-      {/* Search and Main Content */}
-      <div className="container hidden mt-10 sm:block sm:px-4 sm:mt-0 sm:py-16">
-        <div className="flex justify-center">
-          <SearchFilters />
-        </div>
-        <SectionTitle title="What is" highlight="BRITISH ACADEMY?" />
-        <MainContent />
       </div>
 
       {/* Specialization Section */}

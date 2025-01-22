@@ -277,3 +277,31 @@ body {
   background: #65c4fa;
   filter: blur(150px);
 }
+
+
+.curve-bottom {
+  clip-path: path(
+    "M0 0 H100% V90% C75% 95% 25% 95% 0 90% Z"
+  );
+}
+
+/* Custom scrollbar styles */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 12px; /* Height of the scrollbar for horizontal scrolling */
+  padding-top: 100px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #6E3B95; /* primary1 color */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 3px solid #f1f1f1; /* Adds spacing around the thumb */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #4e2a6e; /* Darker shade of primary1 on hover */
+}

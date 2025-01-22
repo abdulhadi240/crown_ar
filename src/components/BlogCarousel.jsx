@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
+import BLogsCardIndiviual from "./BLogsCardIndiviual";
 
 const CARD_WIDTH = 320; // Width of each card
 const MARGIN = 20; // Margin between cards
@@ -38,7 +39,7 @@ const BlogCarousel = ({ data }) => {
   };
 
   return (
-    <section className="py-8" ref={ref}>
+    <section className="pb-8" ref={ref}>
       <div className="relative overflow-hidden p-4">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -49,33 +50,29 @@ const BlogCarousel = ({ data }) => {
               ease: "easeInOut",
               duration: 0.5,
             }}
-            className="flex gap-5 sm:ml-32"
+            className="flex gap-5 md:gap-0  pl-4"
           >
-            {data?.data.map((article, index) => (
-              index < 6 && 
-              <div
-                key={index}
-                className="flex-shrink-0"
-                style={{ width: CARD_WIDTH }}
-              >
-                
-                <ArticleCard
-                  key={index}
-                  title={article.title}
-                  category={article.categories[0]}
-                  date={article.published_date}
-                  description={article.description}
-                  imageSrc={article.featured_image}
-                  button_data={article.tags}
-                  slug={article.slug} // Pass the slug to ArticleCard
-                  blog={true}
-                />
-              </div>
-            ))}
+            {data?.data.map(
+              (article, index) =>
+                index < 6 && (
+                  <div
+                    key={index}
+                    className="flex-shrink-0"
+                    style={{ width: CARD_WIDTH }}
+                  >
+                    <BLogsCardIndiviual
+                      background
+                      list={article}
+                      index={index}
+                      params={article.categories[0].slug}
+                    />
+                  </div>
+                )
+            )}
           </motion.div>
         </div>
       </div>
-      
+
       <div className="flex justify-center md:justify-end items-end mt-4 md:mr-32">
         {/* Navigation Buttons */}
         <div className="flex items-center gap-4 mb-2">
@@ -86,7 +83,7 @@ const BlogCarousel = ({ data }) => {
             disabled={currentIndex === 0}
             onClick={shiftLeft}
           >
-            <FiArrowLeft color="white"/>
+            <FiArrowLeft color="white" />
           </button>
           <button
             className={`rounded-lg border-[1px] bg-primary p-2 text-2xl transition-opacity ${
@@ -95,7 +92,7 @@ const BlogCarousel = ({ data }) => {
             disabled={currentIndex === totalDots - 1}
             onClick={shiftRight}
           >
-            <FiArrowRight color="white"/>
+            <FiArrowRight color="white" />
           </button>
         </div>
       </div>

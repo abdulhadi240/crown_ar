@@ -32,31 +32,32 @@ export const metadata = {
   },
 };
 
-const Header = () => {
+const Header = ({secondary , icon_white}) => {
   return (
     <>
     <header className="md:hidden">
-      <MobileMenu color={'white'}/>
+      <MobileMenu color={icon_white ? 'white' : 'black'}/>
     </header>
       
     <section>
         {/* Main Navigation */}
-        <nav className="items-center justify-between hidden p-4 text-white bg-transparent md:flex ">
+        <nav className={`relative items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex`}>
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center  justify-between">
             <Link href="/">
               <Image
-                src="/logobat.png"
+                src="/logo1.png"
                 alt="British Academy logo"
-                width={80}
+                width={90}
                 height={50}
                 priority
+                className="absolute top-0"
               />
             </Link>
           </div>
 
           {/* Navigation Links */}
-          <div className="hidden space-x-6 sm:flex sm:gap-4">
+          <div className="hidden space-x-6 sm:flex ml-16 sm:gap-4">
             {menu.map((item, index) => (
               <Link
                 key={index}

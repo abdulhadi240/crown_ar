@@ -10,18 +10,25 @@ module.exports = {
   },
   theme: {
     extend: {
+      clipPath: {
+        'bottom-curve': 'path("M0,0 C0,100 100,100 100,80 L100,100 L0,100 Z")',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#152765", // Primary color (you can change it as per your design)
+          DEFAULT: "#061839", // Primary color (you can change it as per your design)
         },
         secondary: {
-          DEFAULT: "#B12E33", // Secondary color (you can change it as per your design)
+          DEFAULT: "#fbba07", // Secondary color (you can change it as per your design)
         },
       },
     },
     
   },
-  plugins: []
+  plugins: [
+      require('tailwind-scrollbar-hide'),
+      require("tailwindcss-animate")
+  
+  ]
 };
