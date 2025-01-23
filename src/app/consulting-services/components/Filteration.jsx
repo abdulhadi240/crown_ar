@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Card from './Card';
+import { CiSearch } from "react-icons/ci";
 
 const Filteration = ({ data, category }) => {
   const [title, setTitle] = useState('');
@@ -42,8 +43,9 @@ const Filteration = ({ data, category }) => {
 
   return (
     <div>
-      <div className="max-w-3xl mx-auto mb-8">
-        <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex">
+      <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg">
+      <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
+        <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex bg-white">
           <input
             type="text"
             value={title}
@@ -72,10 +74,11 @@ const Filteration = ({ data, category }) => {
           />
           <button
             onClick={handleSearch}
-            className="px-10 py-3 text-sm text-center text-white transition rounded-lg sm:px-16 bg-primary hover:bg-primary/70"
+            className=" py-3 text-sm px-4 text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
           >
-            Search
+            <CiSearch size={24}/>
           </button>
+        </div>
         </div>
       </div>
 
@@ -87,7 +90,8 @@ const Filteration = ({ data, category }) => {
             number={index + 1}
             slug={service.slug}
             title={service.title}
-            description={service.content}
+            description={service.short}
+
           />
         ))}
       </div>

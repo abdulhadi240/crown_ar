@@ -1,29 +1,27 @@
+import React from 'react';
 import fetchData from '@/actions/server';
+import Design from '@/app/homepage1/components/Design';
+import BlogCarousel from '@/components/BlogCarousel';
 import HeaderSection from '@/components/HeaderSection';
+import Wrapper from '@/components/Wrapper';
 import Image from 'next/image';
-import React from 'react'
-
+import Consult_form from '@/components/Consult_form';
 
 export const revalidate = 60;
 export const dynamicParams = true;
-
-
-
 
 async function fetchConsultData(slug) {
   return fetchData(`${process.env.BACKEND_URL}/consultations/${slug}`);
 }
 
-// --------- GENERATE METADATA FUNCTION ---------
 export async function generateMetadata({ params }) {
   const { service } = params;
 
-  // Fetch course or blog details based on slug
   const [consultingData] = await Promise.all([
     fetchConsultData(service),
   ]);
 
-  const data = consultingData
+  const data = consultingData;
 
   if (!data) {
     return {
@@ -63,166 +61,79 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
-    const posts = await fetch(`${process.env.BACKEND_URL}/consultations`, {
+  const posts = await fetch(`${process.env.BACKEND_URL}/consultations`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+    },
+  }).then((res) => res.json());
+  return posts.data.map((post) => ({
+    id: post.id,
+  }));
+}
+
+const page = async ({ params }) => {
+  const details = await fetch(
+    `${process.env.BACKEND_URL}/consultations/${params.service}`,
+    {
       headers: {
         "Content-Type": "application/json",
         "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
       },
-    }).then((res) => res.json());
-    return posts.data.map((post) => ({
-      id: post.id,
-    }));
-  }
+    }
+  ).then((res) => res.json());
 
-const page = async ({params}) => {
-    const details = await fetch(
-        `${process.env.BACKEND_URL}/consultations/${params.service}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
-        },
-        }
-      ).then((res) => res.json());
+  const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`);
+
   return (
-    <div>
-    <HeaderSection />
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Header Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold mb-2 uppercase">{details.data.title}</h1>
-        <p className="text-gray-600">{details.data.category}</p>
+    <div className='overflow-hidden'>
+      <Design
+        icon_white
+        iamge={"/blog3.png"}
+        center
+        input={false}
+        image_height={false}
+      >
+        <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+          {details.data.title}
+        </h1>
+      </Design>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-2xl text-primary font-bold mb-2">
+            Why Choose {details.data.title}
+          </h1>
+          <div className="h-[1px] bg-secondary w-full text-secondary" />
+        </div>
+
+        <div dangerouslySetInnerHTML={{ __html: details.data.content }}></div>
+
+        <div className="text-2xl text-primary font-bold mb-3 text-center mt-32">
+          Consult with Us
+        </div>
+        <div className="h-[2px] bg-secondary w-full text-secondary" />
+        <p className="text-center text-primary mt-3 ">
+          Let’s shape the future of learning together. Book a consultation today!
+        </p>
+      </main>
+      <div className='-mt-4'>
+      <Wrapper>
+        <Consult_form/>
+      </Wrapper>
       </div>
 
-      {/* Image Gallery Section */}
-      <div className="grid grid-cols-12 gap-4 mb-16">
-        <div className="col-span-8">
-          <Image
-            src="/placeholder.svg?height=400&width=600"
-            alt="Team collaboration"
-            width={600}
-            height={400}
-            className="rounded-lg w-full h-full object-cover"
-          />
-        </div>
-        <div className="col-span-4 grid gap-4">
-          <Image
-            src="/placeholder.svg?height=195&width=300"
-            alt="Team meeting"
-            width={300}
-            height={195}
-            className="rounded-lg w-full h-full object-cover"
-          />
-          <Image
-            src="/placeholder.svg?height=195&width=300"
-            alt="Team discussion"
-            width={300}
-            height={195}
-            className="rounded-lg w-full h-full object-cover"
-          />
-        </div>
+      <div className="flex justify-center overflow-hidden">
+        <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
+          New Articles You May Find Interesting
+        </h1>
       </div>
-
-      {/* What We Do Section */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-4">What we do</h2>
-        <p dangerouslySetInnerHTML={{ __html: details.data.content }}></p>      </div>
-
-      {/* Stats Section */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
-        <div className="text-center">
-          <div className="text-4xl font-bold mb-2">100M</div>
-          <div className="text-gray-600">Client Satisfaction</div>
-        </div>
-        <div className="text-center">
-          <div className="text-4xl font-bold mb-2">24 h</div>
-          <div className="text-gray-600">Expert Support Team</div>
-        </div>
-        <div className="text-center">
-          <div className="text-4xl font-bold mb-2">98 k+</div>
-          <div className="text-gray-600">Sales Count</div>
-        </div>
-        <div className="text-center">
-          <div className="text-4xl font-bold mb-2">208 +</div>
-          <div className="text-gray-600">Count Worldwide</div>
-        </div>
+      <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
+        <Wrapper>
+          <BlogCarousel data={blogs} />
+        </Wrapper>
       </div>
-
-      {/* Our Lorem Section */}
-      <div className="grid md:grid-cols-2 gap-8 mb-16">
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Our Lorem</h2>
-          <p className="text-gray-600 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in
-            ante viverra, rutrum erat rutrum, consectetur mi. Proin at
-            maximus est. Nullam purus ex, iaculis sed erat sed, blandit
-            tincidunt quam. Cras scelerisque id quam sed dignissim.
-          </p>
-          <p className="text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in
-            ante viverra, rutrum erat rutrum, consectetur mi. Proin at maximus
-            est. Nullam purus ex, iaculis sed erat sed, blandit tincidunt quam.
-          </p>
-        </div>
-        <div>
-          <Image
-            src="/placeholder.svg?height=300&width=500"
-            alt="Digital tablet"
-            width={500}
-            height={300}
-            className="rounded-lg w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
-      {/* Bottom Section */}
-      <div className="text-center mb-12">
-        <button className="bg-blue-900 text-white px-6 py-2 rounded-full mb-8">
-          See more
-        </button>
-        <h2 className="text-2xl font-bold mb-8">loreme loremloreme lorem<br />loreme lorem</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="flex items-start gap-4">
-            <div className="bg-blue-900 p-4 rounded-lg">
-              <div className="w-8 h-8 text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-            </div>
-            <div className="text-left">
-              <h3 className="font-bold mb-2">Innovation</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Proin in ante viverra, rutrum erat rutrum, consectetur
-                mi. Proin at maximus est. Nullam purus ex.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-4">
-            <div className="bg-blue-900 p-4 rounded-lg">
-              <div className="w-8 h-8 text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-            </div>
-            <div className="text-left">
-              <h3 className="font-bold mb-2">Team work</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Proin in ante viverra, rutrum erat rutrum, consectetur
-                mi. Proin at maximus est. Nullam purus ex.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

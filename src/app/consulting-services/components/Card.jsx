@@ -3,37 +3,30 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 const Card = ({ number, title, description , slug }) => {
-  const getColorClass = (num) => {
-    const colors = [
-      'bg-orange-500',
-      'bg-gray-800',
-      'bg-teal-600',
-      'bg-black',
-      'bg-green-500',
-      'bg-red-500',
-      'bg-yellow-600',
-      'bg-blue-700',
-    ];
-    return colors[(num - 1) % colors.length];
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center p-6 rounded-lg hover:shadow-md hover:bg-white group">
+    <div className="flex flex-col border-[1px] border-primary items-center justify-center p-6 rounded-lg hover:shadow-md hover:bg-white group">
       <div
         className={cn(
-          'h-12 w-12 flex items-center justify-center rounded-full text-white font-bold mb-4',
-          getColorClass(number)
+          'h-12 w-12 flex items-center justify-center bg-primary text-white rounded-full font-bold mb-4',
+         
         )}
       >
-        {number}
+        {number}.
       </div>
       <h3 className="mb-2 font-semibold text-md text-center">{title}</h3>
       <div className='text-xs'>
-        <p className="mb-4 text-center text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: description }}></p>
+        <p className="mb-4 text-center text-gray-600 line-clamp-3">{description}</p>
       </div>
-      <Link href={`consulting-services/${slug}`} className="px-4 py-2 text-xs text-black transition border-2 rounded group-hover:bg-primary group-hover:text-white border-primary hover:bg-blue-700">
-        More Details
-      </Link>
+      <Link href={`consulting-services/${slug}`} 
+              className="text-white py-2 rounded-full px-4 shadow-lg text-center flex justify-center font-medium tracking-wide mt-4 text-xs transition-all hover:scale-105"
+              style={{
+                background:
+                  "linear-gradient(90deg, #FBBA07 0%, #F8C63D 50%, #F5D273 100%)",
+              }}
+            >
+              More Details
+            </Link>
+   
     </div>
   );
 };

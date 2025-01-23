@@ -2,7 +2,7 @@ import React from "react";
 
 const Wrapper = ({ children }) => {
   return (
-    <div className="relative w-screen min-h-64 pb-10 pt-16 md:pt-32 bg-gradient-to-b from-primary/70 to-primary/90">
+    <div className="relative overflow-hidden w-screen min-h-64 pb-10 pt-16 md:pt-32 bg-gradient-to-b from-primary/70 to-primary/90">
       {/* SVG for top curve */}
       <svg
         className="absolute top-0 w-full"
