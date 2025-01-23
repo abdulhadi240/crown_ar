@@ -44,7 +44,9 @@ const BlogsCategory = ({ category }) => {
       {/* Mapped Cards */}
       <div className="flex flex-wrap justify-center gap-4">
         {filteredCategory.map((list, index) => (
+          <div key={index}>
           <BLogsCard list={list} index={index}/>
+          </div>
         ))}
       </div>
     </div>

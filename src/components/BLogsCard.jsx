@@ -1,5 +1,6 @@
-import { Link } from 'next-view-transitions'
+
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const BLogsCard = ({list , index}) => {
@@ -14,6 +15,7 @@ const BLogsCard = ({list , index}) => {
                   objectFit="cover"
                   alt={list.name}
                   className="rounded-md"
+                  priority
                 />
                 <h1 className="absolute top-3 right-3 bg-[#d9d9d9] px-5 py-1 text-xs rounded-full shadow-lg opacity-80">
                   Blogs: {list.number_of_blogs}
