@@ -7,6 +7,7 @@ import NotFound from "@/app/not-found";
 import HeaderSection from "@/components/HeaderSection";
 import CarasoulCourse from "@/components/CarasoulCourse";
 import Head from "next/head";
+import Design from "@/app/homepage1/components/Design";
 
 async function fetchCourseData() {
   return fetchData(`${process.env.BACKEND_URL}/courses`);
@@ -143,22 +144,22 @@ const page = async ({ params }) => {
     </Head>
      
       {type === "courses" ? (
-        <div>
-          <Content_extend categories={category}>
-            <div className="mt-10 font-semibold text-center md:text-left title text-xl">
-              {data?.data?.title}
-            </div>
-            <Suspense fallback={"loading..."}>
-              <Details course={data} />
-            </Suspense>
-          </Content_extend>
-          <h1 className="md:ml-32 mx-6  mt-10 text-xl font-bold text-center md:text-start md:mb-10 text-primary">
-            Trending Courses
+        <><Design icon_white iamge={"/blog3.png"} center input={false} image_height={false}>
+          <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+            {data?.data?.title || "British Academy for Training & Development"}
+            <br />
           </h1>
-          <div className="">
-            <CarasoulCourse data={course_carasoul} carasoul={true} />{" "}
-          </div>
-        </div>
+        </Design><div>        
+              <Suspense fallback={"loading..."}>
+                <Details course={data.data} />
+              </Suspense>
+            <h1 className="md:ml-32 mx-6  mt-10 text-xl font-bold text-center md:text-start md:mb-10 text-primary">
+              Trending Courses
+            </h1>
+            <div className="">
+              <CarasoulCourse data={course_carasoul} carasoul={true} />{" "}
+            </div>
+          </div></>
       ) : (
         <div>
           <BlogPage data={data} />

@@ -50,7 +50,7 @@ const BlogCarousel = ({ data }) => {
               ease: "easeInOut",
               duration: 0.5,
             }}
-            className="flex gap-5 md:gap-0  pl-4"
+            className="flex gap-5 md:gap-0  md:pl-4"
           >
             {data?.data.map(
               (article, index) =>

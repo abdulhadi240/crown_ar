@@ -3,13 +3,16 @@ import Content_extend from "../components/Content_extend";
 import Carasoul from "../../blogs/components/Carasoul";
 import DesktopCarasoul from "../../blogs-details/components/DesktopCarasoul";
 import Details1 from "../components/Details1";
-import { GetSpecialization, GetSpecificSpecialization } from "@/actions/server";
+import fetchData, { GetSpecialization, GetSpecificSpecialization } from "@/actions/server";
 import NotFound from "@/app/not-found";
 import Head from "next/head";
 import SectionTitle from "@/components/SectionTitle";
 import Image from "next/image";
 import SearchFilters_cities from '@/app/cities/[slug]/components/SearchFilters_cities'
 import HeaderSection from "@/components/HeaderSection";
+import Design from "@/app/homepage1/components/Design";
+import BlogCarousel from "@/components/BlogCarousel";
+import Wrapper from "@/components/Wrapper";
 
 
 // Function to fetch specialization data
@@ -148,27 +151,33 @@ const page = async ({params}) => {
 
   const course_specialization = await GetSpecificSpecialization(course)
   console.log(course_specialization);
+  const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`);
   
   
   return (
     <div>
-      
-      <HeaderSection/>
       {type === "course" ? (
-        <><Content_extend categories={category}>
-          <div className="mt-10 font-semibold text-center md:text-left title text-xl">
-            {data?.title}
-          </div>
+        <>
+        <Design icon_white iamge={"/image_consult.png"} center input={false} image_height={false}>
+        <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+        {data?.title}
+        </h1>
+      </Design>
           <Suspense fallback={"loading..."}>
             <Details1 course={data} />
           </Suspense>
-        </Content_extend><h1 className="mx-6 mt-10 text-xl font-bold text-center md:text-start md:mb-10 text-primary">
-            Trending Courses
-          </h1><div className="hidden sm:block">
-            <DesktopCarasoul />
-          </div><div className="flex justify-center sm:hidden">
-            <Carasoul />
-          </div></>
+
+          <div className="flex justify-center overflow-hidden">
+        <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
+          New Articles You May Find Interesting
+        </h1>
+      </div>
+      <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
+        <Wrapper>
+          <BlogCarousel data={blogs} />
+        </Wrapper>
+      </div>
+          </>
     
       ) : (
         <div>
