@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./Header";
 import Inputs from "./Inputs";
 
-const Design = ({icon_white, iamge, children, center, input, image_height, secondary }) => {
+const Design = ({icon_white, iamge, children, center, input, image_height, secondary , search_height }) => {
   return (
     <>
       {secondary ? (
@@ -12,9 +12,13 @@ const Design = ({icon_white, iamge, children, center, input, image_height, secon
       ) : (
         // Otherwise, display the background image section + Header + other content
         <div
-          className={`relative w-full ${
-            image_height ? "h-[700px]" : "md:h-[400px] h-[300px]"
-          } overflow-hidden`}
+            className={`relative w-full ${
+    search_height
+      ? "h-[400px]"
+      : image_height
+      ? "h-[700px]"
+      : "md:h-[400px] h-[300px]"
+  } overflow-hidden`}
         >
           {/* Background Image */}
           <Image

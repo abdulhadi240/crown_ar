@@ -17,11 +17,11 @@ module.exports = {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			primary: {
-  				DEFAULT: '#061839',
+  				DEFAULT: '#12283E',
   				
   			},
   			secondary: {
-  				DEFAULT: '#fbba07',
+  				DEFAULT: '#D59A32',
   			},
   			card: {
   				DEFAULT: 'hsl(var(--card))',

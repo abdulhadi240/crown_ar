@@ -4,17 +4,17 @@ import { Facebook, Linkedin, Instagram, Twitter, Youtube } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="relative border-t-2  border-[#c3c3c3] shadow-lg mt-10 overflow-hidden">
+    <footer className="relative border-t-2  border-[#c3c3c3] shadow-lg  overflow-hidden">
       <div className="bg-white text-primary">
-        <div className="container  px-4 py-12">
+        <div className="container  px-4 py-6">
           <div className="md:flex md:flex-row flex flex-col justify-between gap-10">
             {/* Left Column */}
-            <div className="space-y-6">
+            <div className="">
               <Image
-                src="/logo1.png"
+                src="/logocrown.webp"
                 alt="trainEdge Logo"
-                width={100}
-                height={100}
+                width={150}
+                height={150}
                 className="mb-4"
               />
               <div className="space-y-4 ">

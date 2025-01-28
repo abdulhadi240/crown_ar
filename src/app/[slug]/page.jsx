@@ -6,7 +6,6 @@ import Head from "next/head";
 import NotFound from "../not-found";
 import fetchData, { GetAllCategory, GetSpecificSpecialization } from "@/actions/server";
 import Programs from "@/components/Programs";
-import HeaderSection from "@/components/HeaderSection";
 
 
 // Fetch city, specialization, and program data
@@ -120,7 +119,6 @@ export default async function Page({ params }) {
 
     return (
       <>
-        <HeaderSection/>
         {type === "city" ? (
           <div>
             <section className="mt-12 mb-12 text-center">

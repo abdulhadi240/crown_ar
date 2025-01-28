@@ -46,7 +46,7 @@ const Header = ({secondary , icon_white}) => {
           <div className="flex items-center  justify-between">
             <Link href="/">
               <Image
-                src="/logo1.png"
+                src="/logocrown.webp"
                 alt="British Academy logo"
                 width={90}
                 height={50}
