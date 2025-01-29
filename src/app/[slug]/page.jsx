@@ -30,7 +30,7 @@ async function fetchCityCourses(slug) {
 }
 
 async function fetchProgramCourses(slug) {
-  return fetchData(`${process.env.BACKEND_URL}/courses/${slug}/programs`);
+  return fetchData(`${process.env.BACKEND_URL}/courses?program=${slug}&per_page=10&page=1`);
 }
 
 async function fetchCategoryData() {
@@ -103,7 +103,8 @@ export default async function Page({ params }) {
 
     const category = await GetAllCategory().catch(() => []);
     const specialization_courses = await GetSpecificSpecialization(slug).catch(() => []);
-  
+    console.log(programCourses , 'program course');
+    
 
     const city = cityData?.data?.find((c) => c.slug === slug);
     const specialization = specializationData?.data?.find((s) => s.slug === slug);

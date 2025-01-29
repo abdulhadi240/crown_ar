@@ -124,9 +124,9 @@ export default function CourseListing({ filteredCourses , params}) {
                           key={course.id}
                           className="rounded-lg shadow-sm border border-gray-200"
                       >
-                          <CardContent className="p-4 space-y-4">
+                          <CardContent className="p-4 space-y-4 ">
                               <Link href={`/${params}/${course.available_cities[0].slug}/${course.slug}`}
-                                  className={`text-base font-semibold ${course.highlight ? "text-amber-500" : "text-gray-800"}`}
+                                  className={`text-base font-semibold items-center flex  ${course.highlight ? "text-amber-500" : "text-gray-800"}`}
                               >
                                   {course.title}
                               </Link>
@@ -205,87 +205,6 @@ export default function CourseListing({ filteredCourses , params}) {
                   ))}
               </div>
           </CardContent>
-      </Card><main className="min-h-screen bg-white p-6 md:p-12">
-              <article className=" text-start max-w-4xl">
-                  {/* Header */}
-                  <h1 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">
-                      Mastering the Project Stages: A Comprehensive Training Course
-                  </h1>
-
-                  {/* Introduction */}
-                  <p className="mb-8 text-gray-700">
-                      Managing projects successfully requires a deep understanding of the project lifecycle and the skills to
-                      navigate each stage effectively. Our Project Stages Training Course is designed to equip you with the
-                      knowledge and tools to excel in every phase of project management, from initiation to closure.
-                  </p>
-
-                  {/* Course Content */}
-                  <section>
-                      <h2 className="mb-4 text-xl font-semibold text-gray-900">What Does the Course Cover?</h2>
-                      <p className="mb-6 text-gray-700">
-                          This course takes a structured approach to the key stages of project management:
-                      </p>
-
-                      <div className="space-y-6">
-                          {/* Initiation */}
-                          <section>
-                              <h3 className="mb-2 font-semibold text-gray-900">1. Initiation:</h3>
-                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
-                                  <li>Learn how to define the project scope, objectives, and deliverables.</li>
-                                  <li>Develop skills to identify key stakeholders and create a project charter.</li>
-                                  <li>Gain insights into feasibility analysis and risk identification.</li>
-                              </ul>
-                          </section>
-
-                          {/* Planning */}
-                          <section>
-                              <h3 className="mb-2 font-semibold text-gray-900">2. Planning:</h3>
-                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
-                                  <li>Master the art of creating detailed project plans, timelines, and budgets.</li>
-                                  <li>Understand resource allocation and learn how to develop a robust risk management plan.</li>
-                                  <li>Explore tools and techniques for setting milestones and performance metrics.</li>
-                              </ul>
-                          </section>
-
-                          {/* Execution */}
-                          <section>
-                              <h3 className="mb-2 font-semibold text-gray-900">3. Execution:</h3>
-                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
-                                  <li>Discover how to implement project plans effectively while managing resources.</li>
-                                  <li>Learn team management, task delegation, and conflict resolution strategies.</li>
-                                  <li>Understand how to track progress using project management software.</li>
-                              </ul>
-                          </section>
-
-                          {/* Monitoring and Controlling */}
-                          <section>
-                              <h3 className="mb-2 font-semibold text-gray-900">4. Monitoring and Controlling:</h3>
-                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
-                                  <li>Explore techniques for tracking performance and making real-time adjustments.</li>
-                                  <li>
-                                      Learn how to manage change requests, ensure quality control, and maintain alignment with project
-                                      goals.
-                                  </li>
-                                  <li>Gain insights into reporting tools to keep stakeholders informed.</li>
-                              </ul>
-                          </section>
-
-                          {/* Closure */}
-                          <section>
-                              <h3 className="mb-2 font-semibold text-gray-900">5. Closure:</h3>
-                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
-                                  <li>
-                                      Understand the importance of proper project closure, including delivering outcomes and final
-                                      documentation.
-                                  </li>
-                                  <li>Learn how to conduct post-project evaluations to identify successes and lessons learned.</li>
-                                  <li>Explore best practices for celebrating achievements and disbanding project teams.</li>
-                              </ul>
-                          </section>
-                      </div>
-                  </section>
-
-              </article>
-          </main></>
+      </Card></>
   );
 }

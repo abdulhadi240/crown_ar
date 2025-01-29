@@ -16,9 +16,9 @@ export default function MobileMenu({color}) {
     <div>
       <div className="py-4 mx-4 md:hidden">
         {/* Menu Button */}
-        <div className="flex justify-between mx-2">
+        <div className="flex justify-between mx-2 -mt-8">
           <div>
-            <Image src={"/logo1.png"} width={80} height={80} alt="logo" />
+            <Image src={"/logo13.png"} width={120} height={120} alt="logo" />
           </div>
           <div
             className="flex justify-center items-center text-center"
@@ -60,12 +60,12 @@ export default function MobileMenu({color}) {
           </div>
           <div className="bg-primary p-4">
             <div className="flex flex-col ">
-              <div className="flex justify-center">
+              <div className="flex justify-center -mt-6">
                 <Image
-                  src="/logo1.png" // Optimized image usage
+                  src="/logo13.png" // Optimized image usage
                   alt="Logo"
-                  width={100}
-                  height={100}
+                  width={120}
+                  height={120}
                   className=""
                   priority // To load the image faster
                 />
@@ -73,7 +73,7 @@ export default function MobileMenu({color}) {
               <div className="flex justify-between gap-10">
                 <Link
                   href="/login"
-                  className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-secondary border-[1px] text-secondary rounded hover:bg-blue-700"
+                  className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-secondary border-[1px] text-white rounded hover:bg-blue-700"
                   onClick={toggleMenu}
                 >
                   <FaLock className="mr-2 " /> Login

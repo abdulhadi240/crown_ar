@@ -1,14 +1,11 @@
 "use client";
-
-import Courses_Card from "@/app/account/components/Courses_Card";
-import Content_extend from "@/app/course_detail/components/Content_extend";
-import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import HeaderSection from "./HeaderSection";
 import Design from "@/app/homepage1/components/Design";
 import CourseListing from "./ItemList";
-
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+import { motion } from "framer-motion";
 const Programs = ({
   SpecializationCategory,
   params,
@@ -23,6 +20,7 @@ const Programs = ({
 
   const [coursedata, setCourseData] = useState(data); // Full data
   const [filteredCourses, setFilteredCourses] = useState(data?.data || []); // Filtered data for rendering
+  const [page, setPage] = useState(1);
   const [searchInput, setSearchInput] = useState(
     searchParams.get("search") || ""
   ); // Search input
@@ -76,7 +74,7 @@ const Programs = ({
 
       try {
         const response = await fetch(
-          `https://backendbatd.clinstitute.co.uk/api/courses?${query}&program=${slug}`,
+          `https://backendbatd.clinstitute.co.uk/api/courses?${query}&program=${slug}&per_page=10&page=${page}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -101,6 +99,7 @@ const Programs = ({
     selectedCity,
     selectedLanguage,
     selectedMonth,
+    page
   ]);
 
   useEffect(() => {
@@ -257,6 +256,144 @@ const Programs = ({
       <div className="mt-6">
         <CourseListing filteredCourses={filteredCourses} params={slug}/>
       </div>
+
+{/* Pagination Controls */}
+<div className="flex justify-center items-center mt-6 space-x-2">
+  {/* Previous Button */}
+  <motion.button
+    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+    disabled={page === 1}
+    className={`w-9 h-9 flex items-center justify-center rounded-md text-base ${
+      page === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-primary text-white"
+    }`}
+    whileHover={{ scale: page === 1 ? 1 : 1.1 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <IoIosArrowBack className="text-lg" />
+  </motion.button>
+
+  {/* Page Buttons */}
+  {coursedata?.pagination?.total_pages > 1 &&
+    (() => {
+      let firstPage = page === coursedata.pagination.total_pages ? page - 1 : page;
+      let secondPage = firstPage + 1 > coursedata.pagination.total_pages ? coursedata.pagination.total_pages : firstPage + 1;
+
+      return [firstPage, secondPage].map((pageNumber) => (
+        <motion.button
+          key={pageNumber}
+          onClick={() => setPage(pageNumber)}
+          className={`w-9 h-9 flex items-center justify-center rounded-md text-base  ${
+            pageNumber === page ? "bg-primary text-white" : "bg-gray-400 text-white"
+          }`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {pageNumber}
+        </motion.button>
+      ));
+    })()}
+
+  {/* Next Button */}
+  <motion.button
+    onClick={() =>
+      setPage((prev) =>
+        Math.min(prev + 1, coursedata?.pagination?.total_pages)
+      )
+    }
+    disabled={page === coursedata?.pagination?.total_pages}
+    className={`w-9 h-9 flex items-center justify-center rounded-md text-base ${
+      page === coursedata?.pagination?.total_pages
+        ? "bg-gray-300 cursor-not-allowed"
+        : "bg-primary text-white"
+    }`}
+    whileHover={{ scale: page === coursedata?.pagination?.total_pages ? 1 : 1.1 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <IoIosArrowForward className="text-base" />
+  </motion.button>
+</div>
+      <main className="min-h-screen bg-white p-6 md:p-12">
+              <article className=" text-start max-w-4xl">
+                  {/* Header */}
+                  <h1 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">
+                      Mastering the Project Stages: A Comprehensive Training Course
+                  </h1>
+
+                  {/* Introduction */}
+                  <p className="mb-8 text-gray-700">
+                      Managing projects successfully requires a deep understanding of the project lifecycle and the skills to
+                      navigate each stage effectively. Our Project Stages Training Course is designed to equip you with the
+                      knowledge and tools to excel in every phase of project management, from initiation to closure.
+                  </p>
+
+                  {/* Course Content */}
+                  <section>
+                      <h2 className="mb-4 text-xl font-semibold text-gray-900">What Does the Course Cover?</h2>
+                      <p className="mb-6 text-gray-700">
+                          This course takes a structured approach to the key stages of project management:
+                      </p>
+
+                      <div className="space-y-6">
+                          {/* Initiation */}
+                          <section>
+                              <h3 className="mb-2 font-semibold text-gray-900">1. Initiation:</h3>
+                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                                  <li>Learn how to define the project scope, objectives, and deliverables.</li>
+                                  <li>Develop skills to identify key stakeholders and create a project charter.</li>
+                                  <li>Gain insights into feasibility analysis and risk identification.</li>
+                              </ul>
+                          </section>
+
+                          {/* Planning */}
+                          <section>
+                              <h3 className="mb-2 font-semibold text-gray-900">2. Planning:</h3>
+                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                                  <li>Master the art of creating detailed project plans, timelines, and budgets.</li>
+                                  <li>Understand resource allocation and learn how to develop a robust risk management plan.</li>
+                                  <li>Explore tools and techniques for setting milestones and performance metrics.</li>
+                              </ul>
+                          </section>
+
+                          {/* Execution */}
+                          <section>
+                              <h3 className="mb-2 font-semibold text-gray-900">3. Execution:</h3>
+                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                                  <li>Discover how to implement project plans effectively while managing resources.</li>
+                                  <li>Learn team management, task delegation, and conflict resolution strategies.</li>
+                                  <li>Understand how to track progress using project management software.</li>
+                              </ul>
+                          </section>
+
+                          {/* Monitoring and Controlling */}
+                          <section>
+                              <h3 className="mb-2 font-semibold text-gray-900">4. Monitoring and Controlling:</h3>
+                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                                  <li>Explore techniques for tracking performance and making real-time adjustments.</li>
+                                  <li>
+                                      Learn how to manage change requests, ensure quality control, and maintain alignment with project
+                                      goals.
+                                  </li>
+                                  <li>Gain insights into reporting tools to keep stakeholders informed.</li>
+                              </ul>
+                          </section>
+
+                          {/* Closure */}
+                          <section>
+                              <h3 className="mb-2 font-semibold text-gray-900">5. Closure:</h3>
+                              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                                  <li>
+                                      Understand the importance of proper project closure, including delivering outcomes and final
+                                      documentation.
+                                  </li>
+                                  <li>Learn how to conduct post-project evaluations to identify successes and lessons learned.</li>
+                                  <li>Explore best practices for celebrating achievements and disbanding project teams.</li>
+                              </ul>
+                          </section>
+                      </div>
+                  </section>
+
+              </article>
+          </main>
 
     </>
   );
