@@ -3,6 +3,8 @@ import Image from "next/image";
 import { IoIosSearch } from "react-icons/io";
 import Link from "next/link";
 import HeaderSection from "@/components/HeaderSection";
+import Design from "../homepage1/components/Design";
+import CourseListing from "@/components/ItemList";
 
 
 // --------- GENERATE METADATA FUNCTION ---------
@@ -76,24 +78,19 @@ const Page = async () => {
   
   return (
     <>
-      <HeaderSection />
-      <div className="container p-4 mx-auto">
-        {/* Heading and World Map */}
-        <section className="mt-12 mb-12 text-center">
-          <h2 className="text-2xl font-bold text-[#1B2559] dark:text-white">
-            Courses By <span className="text-secondary">City</span>
+      <Design
+        icon_white
+        iamge={"/image_consult.png"}
+        center
+        input={false}
+        image_height={false}
+        search_height={true}
+      >
+       <h2 className="text-5xl max-w-xl font-bold text-white dark:text-white">
+            Courses Offered By  <span className="text-secondary">Location</span>
           </h2>
-          <div className="flex justify-center my-6">
-            <Image
-              src="/map.png" // Replace with actual world map image
-              alt="World Map"
-              width={1000}
-              height={200}
-              priority
-            />
-          </div>
-        </section>
-
+      </Design>
+      <div className="container p-4 mx-auto">
         {/* Search Bar (Visible on Mobile Only) */}
         <div className="flex items-center pl-2 mb-8 rounded-lg lg:hidden border-primary bg-primary">
           <IoIosSearch size={25} color="white" />
@@ -105,38 +102,9 @@ const Page = async () => {
         </div>
 
         {/* Courses Grid */}
-        <div className="flex justify-center">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {res.data.map(
-              (course, index) =>
-                index > 0 && (
-                  <div
-                    key={course.id}
-                    className="w-64 p-2 bg-white rounded-lg shadow-md "
-                  >
-                    <Image
-                      src={course.image || "/image.webp"}
-                      alt={course.name}
-                      width={300}
-                      height={200}
-                      className="w-64 rounded-lg h-72 brightness-75"
-                    />
-                    <div className="mt-4 text-start">
-                      <h3 className="text-sm font-semibold  dark:text-black">
-                        {course.name}
-                      </h3>
-                      <div className="flex justify-center mb-4">
-                        <Link
-                          href={`/${course.slug}`}
-                          className="flex justify-center w-auto px-24 py-2 mx-4 mt-2 text-sm text-center text-white rounded bg-primary hover:bg-secondary"
-                        >
-                          Details
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
+        <div className="flex justify-center max-w-6xl">
+            <div className="mt-6">
+                    <CourseListing cities={res.data}/>
           </div>
         </div>
       </div>

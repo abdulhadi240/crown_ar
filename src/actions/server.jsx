@@ -68,7 +68,7 @@ export async function GetSpecialization() {
 
 export async function GetSpecificSpecialization(slug) {
   try {
-    const response = await fetch(`${process.env.BACKEND_URL}/courses/${slug}/specializations`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/courses/${slug}/specializations?per_page=10&page=1`, {
       headers: {
         "Content-Type": "application/json",
         "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,

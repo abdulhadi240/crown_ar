@@ -6,6 +6,8 @@ import Head from "next/head";
 import NotFound from "../not-found";
 import fetchData, { GetAllCategory, GetSpecificSpecialization } from "@/actions/server";
 import Programs from "@/components/Programs";
+import Specialization from "@/components/Specialization";
+import City from "@/components/City";
 
 
 // Fetch city, specialization, and program data
@@ -26,7 +28,7 @@ async function fetchProgramData() {
 }
 
 async function fetchCityCourses(slug) {
-  return fetchData(`${process.env.BACKEND_URL}/courses/${slug}/cities`);
+  return fetchData(`${process.env.BACKEND_URL}/courses/${slug}/cities?per_page=10&page=1`);
 }
 
 async function fetchProgramCourses(slug) {
@@ -121,47 +123,9 @@ export default async function Page({ params }) {
     return (
       <>
         {type === "city" ? (
-          <div>
-            <section className="mt-12 mb-12 text-center">
-              <SectionTitle title="Courses by" highlight={slug} />
-              <div className="flex justify-center my-6">
-                <Image
-                  src="/map.png" // Replace with actual world map image
-                  alt="World Map"
-                  width={1000}
-                  height={200}
-                />
-              </div>
-            </section>
-            <SearchFiltersCities
-              post={cityCourses}
-              params={slug}
-              specialization={specializationData}
-              Category={category}
-              search={true}
-            />
-          </div>
+          <City cities params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
         ) : type === "specialization" ? (
-          <div>
-            <section className="mt-12 mb-12 text-center">
-              <SectionTitle title="Courses by" highlight={slug} />
-              <div className="flex justify-center my-6">
-                <Image
-                  src="/map.png" // Replace with actual world map image
-                  alt="World Map"
-                  width={1000}
-                  height={200}
-                />
-              </div>
-            </section>
-            <SearchFiltersCities
-              post={specialization_courses}
-              params={slug}
-              specialization={specializationData}
-              Category={category}
-              search={false}
-            />
-          </div>
+          <Specialization params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
         ) : (
           <Programs params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
       

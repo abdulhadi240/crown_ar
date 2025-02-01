@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import Card from './Card';
+//import Card from './Card';
 import { CiSearch } from "react-icons/ci";
 
 const Filteration_Job = ({ data }) => {
@@ -85,7 +85,8 @@ const Filteration_Job = ({ data }) => {
       {/* Services List */}
       <div className="grid grid-cols-1 gap-8 md:mx-28 max-w-7xl sm:grid-cols-2 lg:grid-cols-4">
         {filtered.map((service, index) => (
-          <Card
+          <>
+          {/** <Card
             key={index}
             number={index + 1}
             slug={service.slug}
@@ -93,6 +94,9 @@ const Filteration_Job = ({ data }) => {
             description={service.short}
 
           />
+          */}
+          <div>hello</div>
+          </>
         ))}
       </div>
     </div>
