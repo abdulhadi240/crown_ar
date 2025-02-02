@@ -109,7 +109,7 @@ export default function MobileMenu({color}) {
               Home
             </Link>
             <Link
-              href="/search_course/training-courses/"
+              href="/training-courses/"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
