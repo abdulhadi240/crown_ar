@@ -164,6 +164,7 @@ const Filteration = () => {
       </div>
 
       {/* Services List */}
+      <div className='flex justify-center'>
       <div className="grid grid-cols-1 gap-8 md:mx-28 max-w-full sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {dummyJobData && dummyJobData.length > 0 ? (
           dummyJobData.map((service, index) => (
@@ -174,6 +175,7 @@ const Filteration = () => {
         ) : (
           <p>No jobs found</p>
         )}
+      </div>
       </div>
     </div>
   );

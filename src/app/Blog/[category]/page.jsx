@@ -1,3 +1,4 @@
+import fetchData from "@/actions/server";
 import Design from "@/app/homepage1/components/Design";
 import { Blog_Category } from "@/components/Blog_Category";
 import BlogCarousel from "@/components/BlogCarousel";
@@ -97,6 +98,9 @@ export default async function Page({ params }) {
     }
   ).then((res) => res.json());
 
+  const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`)
+  
+
   console.log(articles);
   
 
@@ -122,7 +126,7 @@ export default async function Page({ params }) {
         </div>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
         <Wrapper>
-          <BlogCarousel data={articles} />
+          <BlogCarousel data={blogs} />
           </Wrapper>
         </div>
     </>

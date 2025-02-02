@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import BLogsCard from './BLogsCard';
+import BLogsCardIndiviual from './BLogsCardIndiviual';
 const BlogsCategory = ({ category }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCategory, setFilteredCategory] = useState(category);
@@ -45,7 +46,12 @@ const BlogsCategory = ({ category }) => {
       <div className="flex flex-wrap justify-center gap-4">
         {filteredCategory.map((list, index) => (
           <div key={index}>
-          <BLogsCard list={list} index={index}/>
+          <BLogsCardIndiviual
+                      background
+                      list={list}
+                      index={index}
+                      params={list.categories[0].slug}
+                    />
           </div>
         ))}
       </div>
