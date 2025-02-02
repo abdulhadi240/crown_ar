@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Design from "../homepage1/components/Design";
+import { CheckCircle, XCircle } from "lucide-react"
 export const dynamic = "force-dynamic";
 
 export default function Page() {
@@ -574,45 +575,47 @@ export default function Page() {
         </div>
       </div>
       {modal && (
-        <div className="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white md:p-6 p-4 rounded-lg maxw-md shadow-lg text-center">
-            {success ? (
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  Congratulations!
-                </h2>
-                <p className="text-gray-600 mb-6">
-                  Your registration has been submitted successfully. You will be
-                  notified via email or phone shortly.
-                </p>
-              </div>
-            ) : (
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  ERROR!
-                </h2>
-                <p className="text-gray-600 mb-6">
-                  We are Sorry but there was an error submitting your
-                  registration. Please try again later or contact{" "}
-                  <Link
-                    href={"/customer_service"}
-                    className="text-primary font-bold underline"
-                  >
-                    Customer Support
-                  </Link>
-                </p>
-              </div>
-            )}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-[100%] sm:max-w-[540px] overflow-hidden">
+        <div className="p-4 sm:p-6 md:p-8">
+          {success ? (
+            <div className="text-center">
+              <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Registration Successful</h2>
+              <p className="text-sm sm:text-base text-gray-600 mb-6">
+                Your registration has been submitted successfully. You will be notified via email or phone shortly.
+              </p>
+            </div>
+          ) : (
+            <div className="text-center">
+              <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Registration Error</h2>
+              <p className="text-sm sm:text-base text-gray-600 mb-6">
+                We apologize, but there was an error submitting your registration. Please try again later or contact{" "}
+                <Link href="/customer_service" className="font-medium text-blue-600 hover:underline">
+                  Customer Support
+                </Link>
+                .
+              </p>
+            </div>
+          )}
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setModal(false)}
-              className={`mt-4 ${
-                success ? "bg-primary" : "bg-secondary"
-              } text-white px-4 py-2 rounded-md`}
+              className="w-full sm:w-1/2 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors text-sm sm:text-base"
             >
               Close
             </button>
+            <Link
+              href="/diploma"
+              className="w-full sm:w-1/2 text-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/70 transition-colors text-sm sm:text-base"
+            >
+              Discover New Courses
+            </Link>
           </div>
         </div>
+      </div>
+    </div>
       )}
     </>
   );
