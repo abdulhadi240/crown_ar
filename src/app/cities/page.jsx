@@ -5,6 +5,7 @@ import Link from "next/link";
 import HeaderSection from "@/components/HeaderSection";
 import Design from "../homepage1/components/Design";
 import CourseListing from "@/components/ItemList";
+import CityListing from "@/components/CityCourseList";
 
 
 // --------- GENERATE METADATA FUNCTION ---------
@@ -104,7 +105,7 @@ const Page = async () => {
         {/* Courses Grid */}
         <div className="flex justify-center max-w-6xl">
             <div className="mt-6">
-                    <CourseListing cities={res.data}/>
+              <CityListing cities={res.data}/>
           </div>
         </div>
       </div>

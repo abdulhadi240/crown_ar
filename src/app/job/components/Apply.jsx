@@ -141,7 +141,7 @@ const Apply = () => {
                 />
               </div>
               <div className="flex justify-between">
-                <Button type="button" onClick={prevStep} className="w-[48%] text-white">
+                <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary">
                   Previous
                 </Button>
                 <Button type="button" onClick={nextStep} className="w-[48%] text-white">
@@ -166,7 +166,7 @@ const Apply = () => {
                 />
               </div>
               <div className="flex justify-between">
-                <Button type="button" onClick={prevStep} className="w-[48%] text-white">
+                <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary">
                   Previous
                 </Button>
                 <Button type="submit" className="w-[48%] text-white">

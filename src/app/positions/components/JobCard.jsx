@@ -2,9 +2,11 @@ import React from 'react'
 import { cn } from '@/lib/utils';
 import { FcGoogle } from "react-icons/fc";
 import { CiLocationOn } from "react-icons/ci";
+import Link from 'next/link';
 const JobCard = ({ job }) => {
     return (
-      <div className={`p-6 transition-shadow rounded-md shadow-md ${job.type === 'Full-Time' ? "bg-gradient-to-r from-yellow-50" : "bg-white"}  hover:shadow-lg`}>
+      <Link href={`/job/${job.slug}`}>
+      <div className={`p-6 max-w-72 transition-shadow rounded-md shadow-md ${job.type === 'Full-Time' ? "bg-gradient-to-r from-yellow-50" : "bg-white"}  hover:shadow-lg`}>
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold md:text-xl">{job.title}</h3>
           <span className={`text-center py-1 rounded-md  text-xs md:text-sm ${
@@ -15,9 +17,6 @@ const JobCard = ({ job }) => {
         </div>
         <p className="mt-2 text-gray-600">Salary: {job.salary}</p>
         <div className='flex items-center gap-2 mt-2'>
-          <div className='flex items-center w-auto h-auto p-2 bg-gray-50'>
-            <FcGoogle size={30}/>
-          </div>
           <div className='flex flex-col '>
         <p className="text-gray-500 text-md">{job.company}</p>
         <div className='flex gap-1'>
@@ -27,6 +26,7 @@ const JobCard = ({ job }) => {
         </div>
         </div>
         </div>
+        </Link>
       
     );
   };
