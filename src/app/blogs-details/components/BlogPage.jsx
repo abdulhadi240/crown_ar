@@ -9,7 +9,7 @@ const BlogPage = async ({ data }) => {
   const blogs = await fetch(`${process.env.BACKEND_URL}/blogs/`, {
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
     },
   }).then((res) => res.json());
 

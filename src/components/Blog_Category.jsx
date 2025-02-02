@@ -45,6 +45,7 @@ export const Blog_Category = ({ initialArticles, params }) => {
         {articles.map((article, index) => (
           <BLogsCardIndiviual
             list={article}
+            background={true}
             index={index}
             params={params.category}
           />

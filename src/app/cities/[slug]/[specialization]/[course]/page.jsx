@@ -1,43 +1,63 @@
 import React, { Suspense } from "react";
-import Content_extend from "@/app/course_detail/components/Content_extend";
-import Details from "@/app/course_detail/components/Details";
-import fetchData, { GetSpecialization } from "@/actions/server";
-import BlogPage from "@/app/blogs-details/components/BlogPage";
+import Details1 from "@/app/[slug]/components/Details1";
+import fetchData, { GetSpecialization, GetSpecificSpecialization } from "@/actions/server";
 import NotFound from "@/app/not-found";
-import HeaderSection from "@/components/HeaderSection";
-import CarasoulCourse from "@/components/CarasoulCourse";
 import Head from "next/head";
+import SectionTitle from "@/components/SectionTitle";
+import Image from "next/image";
+import SearchFilters_cities from '@/app/cities/[slug]/components/SearchFilters_cities'
 import Design from "@/app/homepage1/components/Design";
+import BlogCarousel from "@/components/BlogCarousel";
+import Wrapper from "@/components/Wrapper";
 
-async function fetchCourseData() {
-  return fetchData(`${process.env.BACKEND_URL}/courses`);
+
+// Function to fetch specialization data
+async function fetchSpecializationData() {
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/specializations`,
+    {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
+      },
+    }
+  );
+  return res.json();
 }
 
-async function fetchBlogData() {
-  return fetchData(`${process.env.BACKEND_URL}/blogs`);
+async function fetchCourses() {
+  const courses = await fetch(
+    `${process.env.BACKEND_URL}/courses`,
+    {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
+      },
+    }
+  )
+  return courses.json();
 }
 
-async function fetchCourseDetail(slug) {
-  return fetchData(`${process.env.BACKEND_URL}/courses/${slug}`);
-}
 
-async function fetchBlogDetail(slug) {
-  return fetchData(`${process.env.BACKEND_URL}/blogs/${slug}`);
-}
-
-
-// --------- GENERATE METADATA FUNCTION ---------
 export async function generateMetadata({ params }) {
-  const { course } = params;
+  const { course, slug } = params;
 
-  // Fetch course or blog details based on slug
-  const [courseData, blogData] = await Promise.all([
-    fetchCourseDetail(course),
-    fetchBlogDetail(course),
+  // Fetch course and specialization data
+  const [courseData, specializationData] = await Promise.all([
+    fetchCourses(),
+    fetchSpecializationData(),
   ]);
 
-  const data = courseData || blogData;
+  // Match data based on the slug or course
+  const courses = courseData?.data?.find((c) => c.slug === course);
+  const specialization = specializationData?.data?.find((s) => s.slug === course);
 
+  // Fallback to 404 if no valid data found
+  const data = courses || specialization;
   if (!data) {
     return {
       title: "Page Not Found",
@@ -46,139 +66,154 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: data?.data?.meta_title || "British Academy for Training & Development",
-    description: data?.data?.meta_description || "Explore top courses and blogs",
-    keywords: data?.data?.meta_keywords || "training, courses, blogs, development",
+    title: data.meta_title || "British Academy for Training & Development",
+    description: data.meta_description || "Discover specialized courses and training programs.",
+    keywords: data.meta_keywords || "courses, specialization, training, programs",
     alternates: {
-      canonical: `https://clinstitute.co.uk/${course}`,
+      canonical: `https://clinstitute.co.uk/${slug}/${course}`,
     },
     openGraph: {
-      title: data?.data?.meta_title,
-      description: data?.data?.meta_description,
-      url: `https://clinstitute.co.uk/${course}`,
+      title: data.meta_title || "British Academy for Training & Development",
+      description: data.meta_description || "Explore top-notch training programs and courses.",
+      url: `https://clinstitute.co.uk/${slug}/${course}`,
       images: [
         {
-          url: data?.data?.image || "/logobat.webp",
+          url: data.image || "/logobat.webp",
           width: 800,
           height: 600,
-          alt: data?.data?.meta_title || "Course Image",
+          alt: data.meta_title || "Course Image",
         },
       ],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: data?.data?.meta_title,
-      description: data?.data?.meta_description,
-      images: [data?.data?.image || "/logobat.webp"],
+      title: data.meta_title || "British Academy for Training & Development",
+      description: data.meta_description || "Explore specialized training programs and courses.",
+      images: [data.image || "/logobat.webp"],
     },
   };
 }
 
 
+const page = async ({params}) => {
 
-const page = async ({ params }) => {
-  const { course } = params;
-
-  const [course1, blog, courseData, blogData] = await Promise.all([
-    fetchCourseData(),
-    fetchBlogData(),
-    fetchCourseDetail(course),
-    fetchBlogDetail(course),
+  const {course} = params;
+  const {slug} = params;
+  // Fetch both city and specialization data
+  const [courseData, specializationData] = await Promise.all([
+    fetchCourses(),
+    fetchSpecializationData(),
   ]);
 
-  const courses = course1?.data?.find((c) => c.slug === course);
-  const blogs = blog?.data?.find((s) => s.slug === course);
+  const specialization1 = await fetch(`${process.env.BACKEND_URL}/specializations`,{
+    headers : {
+      'Content-Type': 'application/json',
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
 
-  if (!courses && !blogs) {
-    return <NotFound />;
+    },
+  }).then(
+    (res) => res.json()
+  )
+
+
+  const Category1 = await fetch(`${process.env.BACKEND_URL}/categories`,{
+    headers : {
+      'Content-Type': 'application/json',
+      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+
+    },
+  }).then(
+    (res) => res.json()
+  )
+  
+ 
+
+  const category = await GetSpecialization()  
+
+  // Match slug with city or specialization
+  const courses = courseData.data.find((c) => c.slug === course);
+  const specialization = specializationData.data.find((s) => s.slug === course);
+
+    
+  // If not found, throw a 404
+  if (!courses && !specialization) {
+    return <NotFound/>;
   }
 
-  const course_carasoul = await fetchData(`${process.env.BACKEND_URL}/courses`)
+  const data = courses || specialization;
+  const type = courses ? "course" : "specialization";
 
-  const data = courseData || blogData;
-  const type = courses ? "courses" : "blogs";
 
-  const category = await GetSpecialization();
-
+  const course_specialization = await GetSpecificSpecialization(course)
+  console.log(course_specialization);
+  const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`);
+  
+  
   return (
-    <>
-      <Head>
-      <title>{data?.data?.meta_title || "British Academy for Training & Development12"}</title>
-      <meta name="title" content={data?.data?.meta_title || "British Academy for Training & Development"} />
-      <meta name="description" content={data?.data?.meta_description || "British Academy for Training & Development"} />
-      <meta name="keywords" content={data?.data?.meta_keywords || "British Academy for Training & Development"} />
-      <meta name="author" content={data?.data?.meta_author || "British Academy for Training & Development"} />
-      <meta name="robots" content="index, follow" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={data?.data?.meta_title} />
-      <meta property="og:description" content={data?.data?.meta_description} />
-      <meta property="og:image" content={data?.data?.image || "/logobat.webp"} />
-      <meta property="og:url" content={data?.data?.meta_url || `https://clinstitute.co.uk/cities`} />
-      <meta property="og:site_name" content={data?.data?.site_name || "British Academy for Training & Development"} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={data?.data?.meta_title} />
-      <meta name="twitter:description" content={data?.data?.meta_description} />
-      <meta name="twitter:image" content={data?.data?.image || "/logobat.webp"} />
-      <meta name="twitter:site" content={data?.data?.twitter_site || "@yourTwitterHandle"} />
-      <link rel="canonical" href={`https://clinstitute.co.uk/cities`} />
-      <link rel="icon" href="/favicon.ico" />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: data?.data?.meta_title || "British Academy for Training & Development",
-            description: data?.data?.meta_description || "British Academy for Training & Development",
-            url: data?.data?.meta_url || `https://clinstitute.co.uk/cities`,
-            image: data?.data?.image || "//logobat.webp",
-            author: {
-              "@type": "Person",
-              name: data?.meta_author || "British Academy for Training & Development",
-            },
-          }),
-        }}
-      />
-    </Head>
-     
-      {type === "courses" ? (
-        <><Design icon_white iamge={"/blog3.png"} center input={false} image_height={false}>
-          <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-            {data?.data?.title || "British Academy for Training & Development"}
-            <br />
-          </h1>
-        </Design><div>        
-              <Suspense fallback={"loading..."}>
-                <Details course={data.data} />
-              </Suspense>
-            <h1 className="md:ml-32 mx-6  mt-10 text-xl font-bold text-center md:text-start md:mb-10 text-primary">
-              Trending Courses
-            </h1>
-            <div className="">
-              <CarasoulCourse data={course_carasoul} carasoul={true} />{" "}
-            </div>
-          </div></>
+    <div>
+      {type === "course" ? (
+        <>
+        <Design icon_white iamge={"/image_consult.png"} center input={false} image_height={false}>
+        <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+        {data?.title}
+        </h1>
+      </Design>
+          <Suspense fallback={"loading..."}>
+            <Details1 course={data} />
+          </Suspense>
+
+          <div className="flex justify-center overflow-hidden">
+        <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
+          New Articles You May Find Interesting
+        </h1>
+      </div>
+      <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
+        <Wrapper>
+          <BlogCarousel data={blogs} />
+        </Wrapper>
+      </div>
+          </>
+    
       ) : (
         <div>
-          <BlogPage data={data} />
+        <section className="mt-12 mb-12 text-center">
+        <SectionTitle title="Courses by" highlight={course} />
+
+        <div className="flex justify-center my-6">
+          <Image    
+            src="/map.png" // Replace with actual world map image
+            alt="World Map"
+            width={1000}
+            height={200}
+          />
         </div>
-      )}
-    </>
+      </section>
+        <SearchFilters_cities post={course_specialization} search params={course} specialization={specialization1} Category={Category1.data}/>
+        
+    </div>
+      ) }
+      </div>
+      
   );
 };
 
 export default page;
 
+
+
+// Generate dynamic paths for SSG
 export async function generateStaticParams() {
-  const [course, blog] = await Promise.all([
-    fetchCourseData(),
-    fetchBlogData(),
+  const [courseData, specializationData] = await Promise.all([
+    fetchCourses(),
+    fetchSpecializationData(),
   ]);
 
-  const courses = course?.data?.map((course) => ({ slug: course.slug })) || [];
-  const blogs = blog?.data?.map((blog) => ({ slug: blog.slug })) || [];
+  // Collect all slugs from city and specialization data
+  const coursePaths = courseData.data.map((city) => ({ slug: city.slug }));
+  const specializationPaths = specializationData.data.map((specialization) => ({
+    slug: specialization.slug,
+  }));
 
-  return [...courses, ...blogs];
+  return [...coursePaths, ...specializationPaths];
 }

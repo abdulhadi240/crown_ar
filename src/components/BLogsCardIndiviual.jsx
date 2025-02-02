@@ -20,7 +20,7 @@ const BLogsCardIndiviual = ({ list, index, params ,background}) => {
               priority
             />
             <h1 className="absolute top-3 right-3 bg-[#efefef] px-5 py-1 text-xs rounded-full shadow-lg opacity-80">
-              {list.tags[0].name}
+              Latest
             </h1>
           </div>
           <div className="text-[10px] text-[#5d5d5d] pt-3">

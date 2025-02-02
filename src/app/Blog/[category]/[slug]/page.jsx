@@ -102,7 +102,7 @@ const BlogPost = async ({ params }) => {
             <div className="flex items-center mt-4 md:mt-0 md:ml-4">
               <div className="relative w-12 h-12">
                 <Image
-                  src="/blog1.png"
+                  src={data.data.featured_image}
                   alt={data.data.author}
                   layout="fill"
                   objectFit="cover"

@@ -16,7 +16,7 @@ const BlogCarousel = ({ data }) => {
   const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+console.log(data , "data")
   const totalDots = Math.ceil(data.data.length / CARDS_PER_DOT);
 
   const shiftLeft = () => {

@@ -35,13 +35,13 @@ export const metadata = {
 const Header = ({secondary , icon_white}) => {
   return (
     <>
-    <header className="md:hidden">
+    <header className="md:hidden z-50">
       <MobileMenu color={icon_white ? 'white' : 'black'}/>
     </header>
       
     <section>
         {/* Main Navigation */}
-        <nav className={`relative items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex`}>
+        <nav className={`relative z-50 items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex`}>
           {/* Logo */}
           <div className="flex items-center  justify-between">
             <Link href="/">

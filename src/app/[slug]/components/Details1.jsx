@@ -38,7 +38,7 @@ const Details1 = ({ course }) => {
           <div>{course.title}</div>
           <Link
             href={getRegisterLink()}
-            className={`md:text-sm text-[10px] text-center w-[100px] md:w-auto p-1 font-medium md:p-2 md:px-3 text-full rounded-md md:rounded-full bg-secondary text-black`}
+            className={`md:text-sm text-[10px] text-white text-center w-[100px] md:w-auto p-1 font-medium md:p-2 md:px-3 text-full rounded-md md:rounded-full bg-secondary text-black`}
           >
             Register Now
           </Link>

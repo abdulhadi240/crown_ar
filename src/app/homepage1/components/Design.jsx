@@ -5,7 +5,7 @@ import Inputs from "./Inputs";
 
 const Design = ({icon_white, iamge, children, center, input, image_height, secondary , search_height }) => {
   return (
-    <>
+    <div className="z-50">
       {secondary ? (
         // If secondary is true, ONLY display the Header
         <Header secondary={secondary} />
@@ -83,7 +83,7 @@ const Design = ({icon_white, iamge, children, center, input, image_height, secon
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
