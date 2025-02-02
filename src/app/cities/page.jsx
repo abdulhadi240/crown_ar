@@ -103,7 +103,7 @@ const Page = async () => {
         </div>
 
         {/* Courses Grid */}
-        <div className="flex justify-center max-w-6xl">
+        <div className="flex justify-center ">
             <div className="mt-6">
               <CityListing cities={res.data}/>
           </div>

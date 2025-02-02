@@ -7,7 +7,7 @@ export default function CityListing({ cities }) {
   const cityData = cities || [];  // Make sure cities data exists
 
   return (
-    <div className="w-[900px] overflow-hidden bg-white rounded-md shadow-md">
+    <div className="w-screen md:w-[900px] overflow-hidden bg-white rounded-md shadow-md">
       <Table className="w-full border-collapse">
         <TableHeader>
           <TableRow className="border-b border-gray-200">
@@ -40,7 +40,13 @@ export default function CityListing({ cities }) {
               >
                 <Link
                   href={`/${city.slug}`}
-                  className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary/70 transition-colors"
+                  className="px-4 sm:hidden py-2 w-full sm:text-sm text-xs font-medium text-white bg-secondary rounded-md hover:bg-secondary/70 transition-colors"
+                >
+                  View All
+                </Link>
+                <Link
+                  href={`/${city.slug}`}
+                  className="px-4 hidden sm:block py-2  sm:text-sm text-xs font-medium text-white bg-secondary rounded-md hover:bg-secondary/70 transition-colors"
                 >
                   View All Courses
                 </Link>

@@ -117,7 +117,7 @@ export default function MobileMenu({color}) {
               Training Courses
             </Link>
             <Link
-              href="/search_course/diploma"
+              href="/diploma"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
@@ -125,7 +125,7 @@ export default function MobileMenu({color}) {
               Diploma
             </Link>
             <Link
-              href="/search_course/masters"
+              href="/masters"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
@@ -149,20 +149,20 @@ export default function MobileMenu({color}) {
               Consulting
             </Link>
             <Link
-              href="/Academy-Vision"
+              href="/Blog"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
             >
-              How We Are
+              Blogs
             </Link>
             <Link
-              href="/plan"
+              href="/job"
               passHref
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
             >
-              Plans
+              Jobs
             </Link>
             <Link
               href="/contact"
