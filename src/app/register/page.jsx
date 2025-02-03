@@ -160,17 +160,10 @@ export default function Page() {
     }
 
     try {
-      const response = await fetch(
-        "https://backendbatd.clinstitute.co.uk/api/course-register",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Accept-Language": "en",
-          },
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/arcjet", {
+        method: "POST",
+        body: formData,
+      });
 
       const responseData = await response.json(); // Parse JSON response
       console.log("Response Data:", responseData.status);
