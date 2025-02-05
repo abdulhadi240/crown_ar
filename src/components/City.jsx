@@ -6,6 +6,8 @@ import CourseListing from "./ItemList";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { motion } from "framer-motion";
+import SectionTitle from "./SectionTitle";
+import SectionTitle1 from "./SectionTitle1";
 const City = ({
   SpecializationCategory,
   params,
@@ -136,6 +138,10 @@ const City = ({
         image_height={false}
         search_height={true}
       >
+      <div>
+      <SectionTitle1 title="Courses By" highlight={slug} />
+
+      </div>
         <div className="relative flex items-center justify-center ">
           {/* Overlay Content */}
           <div className="relative flex flex-col items-center w-full max-w-4xl p-6  bg-opacity-90 rounded-lg  md:p-8">
@@ -298,7 +304,7 @@ const City = ({
     <IoIosArrowForward className="text-base" />
   </motion.button>
 </div>
-      <main className="min-h-screen bg-white p-6 md:p-12">
+      <main className="min-h-screen bg-white p-6 md:p-12 text-base">
               <article className=" text-start max-w-4xl">
                   {/* Header */}
                   <h1 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">

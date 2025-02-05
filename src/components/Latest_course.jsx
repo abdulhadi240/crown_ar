@@ -68,7 +68,7 @@ const Latest_course = ({ courses }) => {
                 <Link href={`/${course.available_cities[0].slug}/${course.specialization_slug}/${course.slug}`} className="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-secondary transition">
                   Details
                 </Link>
-                <Link href={`/${register}?course=${course.slug}`} className="bg-secondary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary transition">
+                <Link href={`/register?course=${course.slug}`} className="bg-secondary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary transition">
                   Register
                 </Link>
               </div>

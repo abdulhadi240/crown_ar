@@ -6,6 +6,7 @@ import CourseListing from "./ItemList";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { motion } from "framer-motion";
+import SectionTitle1 from "./SectionTitle1";
 const Specialization = ({
   SpecializationCategory,
   params,
@@ -135,6 +136,8 @@ const Specialization = ({
         image_height={false}
         search_height={true}
       >
+            <SectionTitle1 title="Courses By" highlight={slug} />
+
         <div className="relative flex items-center justify-center ">
           {/* Overlay Content */}
           <div className="relative flex flex-col items-center w-full max-w-4xl p-6  bg-opacity-90 rounded-lg  md:p-8">
