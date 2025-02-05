@@ -3,6 +3,7 @@ import Wrapper from "./Wrapper";
 import Image from "next/image";
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import Link from "next/link";
 const Latest_course = ({ courses }) => {
   return (
     <Wrapper>
@@ -64,12 +65,12 @@ const Latest_course = ({ courses }) => {
 
               {/* Action Buttons */}
               <div className="mt-4 flex justify-between w-full">
-                <button className="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-secondary transition">
+                <Link href={`/${course.available_cities[0].slug}/${course.specialization_slug}/${course.slug}`} className="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-secondary transition">
                   Details
-                </button>
-                <button className="bg-secondary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary transition">
+                </Link>
+                <Link href={`/${register}?course=${course.slug}`} className="bg-secondary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary transition">
                   Register
-                </button>
+                </Link>
               </div>
             </div>
           ))}
