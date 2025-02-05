@@ -5,19 +5,9 @@ import BlogCarousel from "@/components/BlogCarousel";
 import Design from "../homepage1/components/Design";
 import Wrapper from "@/components/Wrapper";
 
-const dummyData = [
-  {
-    id: 1,
-    title: 'Management Course Trainer',
-    salary: '$100,000 - $150,000',
-    category: 'Part Time',
-    type:'Remote / On-Site (Flexible)'
-
-  }
-]
 
 const page = async () => {
-  const services = await fetchData(`${process.env.BACKEND_URL}/jobs?per_page=5&page=1`)
+  const services = await fetchData(`${process.env.BACKEND_URL}/jobs?per_page=10&page=1`)
   const catgory = await fetchData(`${process.env.BACKEND_URL}/companies`)
   const blogs = await  fetchData(`${process.env.BACKEND_URL}/blogs?per_page=5&page=1`);
   
@@ -31,7 +21,7 @@ const page = async () => {
       </Design>
       <div className="min-h-screen px-4 py-12 bg-white">
         {/* Filter Bar */}
-        <Filteration category={catgory} data={dummyData}/>
+        <Filteration category={catgory} data={services}/>
         
        
       </div>

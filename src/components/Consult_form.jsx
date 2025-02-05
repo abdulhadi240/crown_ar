@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-const Consult_form = () => {
+const Consult_form = ({title}) => {
   return (
     <div className='md:flex md:justify-center overflow-hidden'>
     <form className="max-w-4xl md:mx-auto p-6 bg-white shadow-md mx-2 rounded">
@@ -29,7 +29,8 @@ const Consult_form = () => {
             />
           </div>
           </div>
-          <div className="mb-4">
+          <div className='flex md:flex-row flex-col justify-between gap-6'>
+          <div className="mb-4 w-1/2">
             <label
               htmlFor="consultation"
               className="block text-gray-700 font-bold mb-2"
@@ -38,10 +39,26 @@ const Consult_form = () => {
             </label>
             <input
               id="consultation"
+              value={title}
               type="text"
-              className="w-full px-3 py-2 border rounded-full"
+              className="w-full px-3 py-2 border rounded-full "
               placeholder="Enter the topic of consultation"
             />
+          </div>
+          <div className="mb-4 w-1/2">
+            <label
+              htmlFor="consultation"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Mobile Number
+            </label>
+            <input
+              id="consultation"
+              type="text"
+              className="w-full px-3 py-2 border rounded-full"
+              placeholder="Enter Your Number"
+            />
+          </div>
           </div>
           <div className="mb-4">
             <label

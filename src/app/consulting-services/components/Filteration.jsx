@@ -41,44 +41,34 @@ const Filteration = ({ data, category }) => {
     setFiltered(filteredData);
   };
 
+  // Function to handle Enter key press
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div>
       <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg">
-      <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
-        <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex bg-white">
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Search Services"
-            className="flex-1 p-3 text-sm border rounded-lg shadow-md"
-          />
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="flex-1 p-3 border rounded-lg shadow-md"
-          >
-            <option value="">Category</option>
-            <option value="Artificial Intelligence">Artificial Intelligence</option>
-            {category.data.map((cat, index) => (
-              <option key={index} value={cat.slug} className="text-black">
-                {cat.name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="month"
-            value={selectedMonth}
-            onChange={(e) => setSelectedMonth(e.target.value)}
-            className="flex-1 p-3 text-sm border rounded-lg shadow-md"
-          />
-          <button
-            onClick={handleSearch}
-            className=" py-3 text-sm px-4 text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
-          >
-            <CiSearch size={24}/>
-          </button>
-        </div>
+        <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
+          <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex bg-white">
+            {/* Input Field with Enter Key Trigger */}
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onKeyDown={handleKeyPress} // Handle Enter Key
+              placeholder="Search Services"
+              className="flex-1 p-3 text-sm border rounded-lg shadow-md"
+            />
+            <button
+              onClick={handleSearch}
+              className="py-3 text-sm px-4 text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
+            >
+              <CiSearch size={24}/>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -91,7 +81,6 @@ const Filteration = ({ data, category }) => {
             slug={service.slug}
             title={service.title}
             description={service.short}
-
           />
         ))}
       </div>

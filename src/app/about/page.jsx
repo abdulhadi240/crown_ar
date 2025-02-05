@@ -5,21 +5,8 @@ import { CheckCircle } from "lucide-react";
 import Carasoul from "./components/Carasoul";
 import Link from "next/link";
 import Hero from "./components/Hero";
+import Design from "../homepage1/components/Design";
 
-const services = [
-  { id: 1, title: "Lorem ipsum", color: "bg-orange-500" },
-  { id: 2, title: "Lorem ipsum lorem", color: "bg-gray-900" },
-  { id: 3, title: "Lorem ipsum", color: "bg-teal-500" },
-  { id: 4, title: "Lorem ipsum lorem", color: "bg-gray-700" },
-  { id: 5, title: "Lorem ipsum", color: "bg-emerald-500" },
-  { id: 6, title: "Lorem ipsum", color: "bg-red-500" },
-  { id: 7, title: "Lorem ipsum", color: "bg-rose-500" },
-  { id: 8, title: "Lorem ipsum lorem", color: "bg-amber-500" },
-  { id: 9, title: "Lorem ipsum", color: "bg-green-500" },
-  { id: 10, title: "Lorem ipsum", color: "bg-yellow-500" },
-  { id: 11, title: "Lorem ipsum lorem", color: "bg-emerald-500" },
-  { id: 12, title: "Lorem ipsum", color: "bg-blue-500" },
-];
 
 const benefits = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -50,10 +37,12 @@ const team = [
   },
 ];
 
-export default function ConsultingPage() {
+export default function ConsultingPage({params}) {
+  console.log(params.locale);
+  
   return (
     <>
-      <HeaderSection />
+      <Design secondary bg></Design>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -234,48 +223,6 @@ export default function ConsultingPage() {
             </div>
           </div>
         </div>
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold mb-2">
-              loreme lorem loreme lorem
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              A lorem sit amet is a placeholder text often used to demonstrate
-              the visual form of a document without relying on meaningful
-              content.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="border rounded-lg p-6 text-center"
-              >
-                <div
-                  className={`w-8 h-8 ${service.color} rounded-full flex items-center justify-center text-white mx-auto mb-4`}
-                >
-                  {service.id}
-                </div>
-                <h3 className="font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam cursus tellus in imperdiet finibus.
-                </p>
-                <button className="text-sm text-gray-600 hover:text-gray-900">
-                  View More
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link href={'/consulting-services'} className="bg-primary text-white px-6 py-2 rounded-full">
-              View all service
-            </Link>
-          </div>
-        </div>
-
         {/* What Will You Get Section */}
         <div className="">
           <div className="grid md:grid-cols-2 md:mx-20 mb-20 ">

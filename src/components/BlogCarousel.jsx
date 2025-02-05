@@ -41,7 +41,7 @@ console.log(data , "data")
   return (
     <section className="pb-8" ref={ref}>
       <div className="relative overflow-hidden p-4">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto ">
           <motion.div
             animate={{
               x: offset,

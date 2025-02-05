@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -32,26 +33,51 @@ export const metadata = {
   },
 };
 
-const Header = ({secondary , icon_white}) => {
+const Header = ({ secondary, icon_white , bg }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  // Function to handle scroll event
+  const handleScroll = () => {
+    if (window.scrollY > 50) {  // Change this value based on when you want the effect to trigger
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  // Set up the scroll event listener
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-    <header className="md:hidden z-50">
-      <MobileMenu color={icon_white ? 'white' : 'black'}/>
-    </header>
-      
-    <section>
+      <header className="md:hidden z-50">
+        <MobileMenu color={icon_white ? 'white' : 'black'} bg={bg}/>
+      </header>
+
+      <section>
         {/* Main Navigation */}
-        <nav className={`relative z-50 items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex`}>
+        <nav
+          className={`relative z-50 text-sm items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex transition-all duration-300 ease-in-out sticky top-0 ${
+            scrolled ? 'bg-white shadow-lg' : ''
+          }`}
+        >
           {/* Logo */}
-          <div className="flex items-center  justify-between">
+          <div className="flex items-center justify-between">
             <Link href="/">
               <Image
-                src="/logo13.png"
+                src={scrolled ? "/logo13-white.png" : "/logo13.png"}  // Update the logo based on scroll
                 alt="British Academy logo"
                 width={120}
                 height={120}
                 priority
-                className="absolute top-0 -mt-7"
+                className={`absolute top-0 -mt-7 transition-all duration-300 ease-in-out ${
+                  scrolled ? 'filter brightness-0 invert' : ''
+                }`}
               />
             </Link>
           </div>
@@ -59,11 +85,7 @@ const Header = ({secondary , icon_white}) => {
           {/* Navigation Links */}
           <div className="hidden space-x-6 sm:flex ml-16 sm:gap-4">
             {menu.map((item, index) => (
-              <Link
-                key={index}
-                href={item.link}
-                className="hover:text-white/80"
-              >
+              <Link key={index} href={item.link} className="hover:text-white/80">
                 {item.name}
               </Link>
             ))}
@@ -75,9 +97,9 @@ const Header = ({secondary , icon_white}) => {
               href="/login"
               className="flex items-center text-white hover:text-blue-900"
             >
-              <FaLock className="mr-1" color="white"/> Login
+              <FaLock className="mr-1" color="white" /> Login
             </Link>
-            <button className="px-4 py-2 text-white rounded bg-secondary ">
+            <button className="px-4 py-2 text-white rounded bg-secondary">
               Sign up
             </button>
           </div>

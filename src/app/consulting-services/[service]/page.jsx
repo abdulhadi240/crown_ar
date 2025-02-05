@@ -118,14 +118,14 @@ const page = async ({ params }) => {
       </main>
       <div className='-mt-4'>
       <Wrapper>
-        <Consult_form/>
+        <Consult_form title={details.data.title}/>
       </Wrapper>
       </div>
 
       <div className="flex justify-center overflow-hidden">
-        <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
+        <h2 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
           New Articles You May Find Interesting
-        </h1>
+        </h2>
       </div>
       <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
         <Wrapper>

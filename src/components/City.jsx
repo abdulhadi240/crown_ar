@@ -75,7 +75,7 @@ const City = ({
 
       try {
         const response = await fetch(
-          `https://backendbatd.clinstitute.co.uk/api/courses/${slug}/cities?per_page=10&page=${page}`,
+          `https://backendbatd.clinstitute.co.uk/api/courses/${slug}/cities?${query}&per_page=10&page=${page}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -160,7 +160,7 @@ const City = ({
             </div>
 
             {/* Dropdowns */}
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
               <select
                 value={selectedMonth}
                 onChange={(e) => {
@@ -231,21 +231,6 @@ const City = ({
                 {category?.data?.map((cat) => (
                   <option key={cat.id} value={cat.slug}>
                     {cat.name}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={selectedCity}
-                onChange={(e) => {
-                  setSelectedCity(e.target.value);
-                  updateSearchParams("city", e.target.value);
-                }}
-                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option value="">City</option>
-                {city?.data?.map((c) => (
-                  <option key={c.id} value={c.slug}>
-                    {c.name}
                   </option>
                 ))}
               </select>

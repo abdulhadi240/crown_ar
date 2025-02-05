@@ -16,7 +16,7 @@ const BlogPage = async ({ data }) => {
   return (
     <>
       {/* Top header (secondary variant) */}
-      <Header secondary={true} />
+      <Header secondary={true} bg={true}/>
 
       {/* Outer container */}
       <div className="p-4 md:mx-12">

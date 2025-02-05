@@ -11,7 +11,7 @@ import {
       <div className='relative w-full px-4'>
         <Carousel>
           <CarouselContent className='-ml-4'>
-            <CarouselItem className='basis-1/1 md:basis-1/3 pl-4'>
+            <CarouselItem className='basis-1/1 md:basis-1/4 pl-4'>
               <div className='flex flex-col aspect-square p-2 items-center justify-center border border-zinc-200 dark:border-zinc-800'>
                 <Image src={'/member.webp'} height={100} width={500} alt='member'/>
                 <div className='py-3'>
@@ -20,7 +20,7 @@ import {
                 </div>
               </div>
             </CarouselItem>
-            <CarouselItem className='basis-1/1 md:basis-1/3 pl-4'>
+            <CarouselItem className='basis-1/1 md:basis-1/4 pl-4'>
               <div className='flex flex-col aspect-square p-2 items-center justify-center border border-zinc-200 dark:border-zinc-800'>
                 <Image src={'/member.webp'} height={100} width={500} alt='member'/>
                 <div className='py-3'>
@@ -29,7 +29,7 @@ import {
                 </div>
               </div>
             </CarouselItem>
-            <CarouselItem className='basis-1/1 md:basis-1/3 pl-4'>
+            <CarouselItem className='basis-1/1 md:basis-1/4 pl-4'>
               <div className='flex flex-col aspect-square p-2 items-center justify-center border border-zinc-200 dark:border-zinc-800'>
                 <Image src={'/member.webp'} height={100} width={500} alt='member'/>
                 <div className='py-3'>
@@ -38,7 +38,7 @@ import {
                 </div>
               </div>
             </CarouselItem>
-            <CarouselItem className='basis-1/1 md:basis-1/3 pl-4'>
+            <CarouselItem className='basis-1/1 md:basis-1/4 pl-4'>
               <div className='flex flex-col aspect-square p-2 items-center justify-center border border-zinc-200 dark:border-zinc-800'>
                 <Image src={'/member.webp'} height={100} width={500} alt='member'/>
                 <div className='py-3'>
@@ -47,7 +47,7 @@ import {
                 </div>
               </div>
             </CarouselItem>
-            <CarouselItem className='basis-1/1 md:basis-1/3 pl-4'>
+            <CarouselItem className='basis-1/1 md:basis-1/4 pl-4'>
               <div className='flex flex-col aspect-square p-2 items-center justify-center border border-zinc-200 dark:border-zinc-800'>
                 <Image src={'/member.webp'} height={100} width={500} alt='member'/>
                 <div className='py-3'>

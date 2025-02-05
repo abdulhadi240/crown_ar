@@ -1,143 +1,134 @@
-import Image from 'next/image';
-import { AiOutlineUser, AiOutlineMail, AiOutlinePhone, AiOutlineBook } from 'react-icons/ai';
-import React from 'react';
+"use client";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import Wrapper from "./Wrapper";
 
-const RequestCourse = () => {
+const schema = z.object({
+  fullName: z.string().min(2, { message: "Full name must be at least 2 characters" }),
+  email: z.string().email({ message: "Invalid email address" }),
+  mobile: z.string().regex(/^[0-9]{10}$/, { message: "Mobile number must be 10 digits" }),
+  category: z.string().min(1, { message: "Please select a category" }),
+  city: z.string().min(1, { message: "Please select a city" }),
+});
+
+function RequestCourse({ cities, categories }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+    console.log(data);
+    setIsSubmitting(false);
+  };
+
   return (
-    <section className="bg-[#152765] text-white py-24 px-4 relative rounded-lg">
-      <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row">
+    <Wrapper>
+      <div className="flex flex-col md:flex-row justify-center items-center mx-auto  gap-10 md:gap-32 p-4 md:p-6">
         
-        {/* Text and Form Container */}
-        <div className="text-center lg:w-1/2 lg:text-left">
-          <h2 className="flex justify-center text-3xl">Request Course</h2>
-          <p className="flex justify-center text-white">You can contact us for a special course</p>
+        <div className="text-center md:text-left max-w-md">
+          <h1 className="text-2xl md:text-5xl font-bold text-[#fcc839]">
+            Request a Course
+          </h1>
+          <p className="text-gray-100 text-sm mt-6 md:text-base w-full md:max-w-80 mt-1">
+            Get in touch with us to arrange a customized course tailored to your needs.
+          </p>
+        </div>
 
-          {/* Form */}
-          <form className="mt-6">
-            <div className="flex flex-col lg:flex-row lg:space-x-4">
-              <div className="flex items-center w-full mb-2 border-b-2">
-                <AiOutlineUser className="mr-2 text-white " size={24} />
-                <input 
-                  type="text" 
-                  placeholder="Full Name" 
-                  className="w-full py-2 bg-transparent border-0 border-white placeholder:text-white focus:outline-none"
+        <div className="bg-white w-full max-w-md rounded-lg p-6 shadow-md border border-gray-200">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div>
+              <label className="text-gray-700 text-sm font-medium">Full Name</label>
+              <input
+                {...register("fullName")}
+                type="text"
+                placeholder="Enter your full name"
+                className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
+              />
+              {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-gray-700 text-sm font-medium">Email</label>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
               </div>
-              <div className="flex items-center w-full mb-2 border-b-2">
-                <AiOutlineMail className="mr-2 text-white" size={24} />
-                <input 
-                  type="email" 
-                  placeholder="Email" 
-                  className="w-full py-2 bg-transparent border-white placeholder:text-white focus:outline-none"
+              
+              <div>
+                <label className="text-gray-700 text-sm font-medium">Mobile Number</label>
+                <input
+                  {...register("mobile")}
+                  type="tel"
+                  placeholder="Enter your mobile number"
+                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
+                {errors.mobile && <p className="text-red-500 text-xs mt-1">{errors.mobile.message}</p>}
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:space-x-4">
-              <div className="flex items-center w-full mb-2 border-b-2">
-                <AiOutlinePhone className="mr-2 text-white" size={24} />
-                <input 
-                  type="text" 
-                  placeholder="Mobile" 
-                  className="w-full py-2 bg-transparent border-white placeholder:text-white focus:outline-none"
-                />
-              </div>
-              <div className="flex items-center w-full mb-2 border-b-2">
-              <AiOutlineBook className="mr-2 text-gray-300" size={24} />
-                <select 
-                  className="w-full py-2 text-white bg-primary border-white focus:outline-none "
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-gray-700 text-sm font-medium">Category</label>
+                <select
+                  {...register("category")}
+                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
                 >
-                  <option value="request_course text-black">Request Course</option>
-                  <option value="course_1 text-black">Course 1</option>
-                  <option value="course_2 text-black">Course 2</option>
+                  <option value="">Select a category</option>
+                  {categories.map((category) => (
+                    <option key={category.value} value={category.slug}>
+                      {category.name}
+                    </option>
+                  ))}
                 </select>
+                {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category.message}</p>}
+              </div>
+              
+              <div>
+                <label className="text-gray-700 text-sm font-medium">City</label>
+                <select
+                  {...register("city")}
+                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
+                >
+                  <option value="">Select a city</option>
+                  {cities.map((city) => (
+                    <option key={city.value} value={city.slug}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
               </div>
             </div>
 
-            <button className="w-full p-2 mt-5 text-white bg-[#B12E33] rounded-lg">Send</button>
+            <div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-secondary text-white font-medium py-2 px-4 rounded-md hover:bg-amber-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+              >
+                {isSubmitting ? "Processing..." : "Send Request"}
+              </button>
+            </div>
           </form>
         </div>
-
-        {/* Decorative Circles */}
-        <div className="absolute top-4 left-4 lg:block">
-          <div className="grid grid-cols-4 gap-2">
-            {Array(20).fill().map((_, idx) => (
-              <div key={idx} className="w-1 h-1 bg-white rounded-full"></div>
-            ))}
-          </div>
-        </div>
-
-        <div className="absolute bottom-4 right-4 lg:block">
-          <div className="grid grid-cols-4 gap-2">
-            {Array(20).fill().map((_, idx) => (
-              <div key={idx} className="w-1 h-1 bg-white rounded-full"></div>
-            ))}
-          </div>
-        </div>
-
-        {/* Circular Profile Images */}
-        <div className="absolute top-32 left-32 lg:top-48 lg:left-8">
-          <Image
-            src="/1.png" 
-            alt="Profile"
-            height={50}
-            width={50} 
-            className="hidden rounded-full sm:block"
-          />
-        </div>
-
-        <div className="absolute top-32 left-32 lg:bottom-32">
-          <Image
-            src="/1.png" 
-            alt="Profile"
-            height={50}
-            width={50} 
-            className="hidden rounded-full sm:block"
-          />
-        </div>
-
-        <div className="absolute top-48 right-32">
-          <Image
-            src="/1.png" 
-            alt="Profile"
-            height={50}
-            width={50} 
-            className="hidden rounded-full sm:block"
-          />
-        </div>
-
-        <div className="absolute bottom-32 right-8">
-          <Image
-            src="/1.png" 
-            alt="Profile"
-            height={50}
-            width={50} 
-            className="hidden rounded-full sm:block"
-          />
-        </div>
-
-        <div className="absolute top-64 left-32">
-          <Image
-            src="/1.png" 
-            alt="Profile"
-            height={50}
-            width={50} 
-            className="hidden rounded-full sm:block"
-          />
-        </div>
-
-        <div className="absolute bottom-64 right-8">
-          <Image
-            src="/1.png" 
-            alt="Profile"
-            height={50}
-            width={50} 
-            className="hidden rounded-full sm:block"
-          />
-        </div>
       </div>
-    </section>
+    </Wrapper>
   );
-};
+}
 
 export default RequestCourse;

@@ -5,10 +5,11 @@ import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import BLogsCard from './BLogsCard';
 import BLogsCardIndiviual from './BLogsCardIndiviual';
+import BLogsCardCategory from './BLogsCardCategory';
 const BlogsCategory = ({ category }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCategory, setFilteredCategory] = useState(category);
-
+  console.log(category , " blogs")
   const handleSearch = () => {
     const filtered = category.filter((item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -46,11 +47,9 @@ const BlogsCategory = ({ category }) => {
       <div className="flex flex-wrap justify-center gap-4">
         {filteredCategory.map((list, index) => (
           <div key={index}>
-          <BLogsCardIndiviual
-                      background
+          <BLogsCardCategory
                       list={list}
                       index={index}
-                      params={list.categories[0].slug}
                     />
           </div>
         ))}

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import HeaderSection from "@/components/HeaderSection";
+import Design from "../homepage1/components/Design";
 
 const Page = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -12,31 +13,8 @@ const Page = () => {
 
   return (
     <>
-    <HeaderSection/>
+    <Design secondary={true} bg={true}></Design>
       <div className="banner-container">
-        <div className="relative h-32 banner sm:h-64">
-          {" "}
-          {/* Set height and make container relative */}
-          <Image
-            src="/plan.webp"
-            alt="banner"
-            layout="fill" // Fill the entire container
-            objectFit="cover" // Maintain aspect ratio without stretching
-            priority
-            className="object-cover"
-          />
-          {/* Text box overlay */}
-          <div className="absolute z-10 bottom-0 left-1/2 transform -translate-x-1/2 w-[150px] sm:w-[300px] flex justify-center items-center h-[60px] sm:h-[80px] rounded-t-2xl bg-white shadow-lg">
-            <div>
-              <p className="font-semibold sm:text-xl text-primary">
-                <span className="text-secondary">FAQ</span> PAGES
-              </p>
-              <p className="flex justify-center text-xs font-normal sm:text-sm text-primary">
-                Home / FAQ
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
       <div className="container p-4 mx-auto md:p-10">
         {/* FAQ Section */}

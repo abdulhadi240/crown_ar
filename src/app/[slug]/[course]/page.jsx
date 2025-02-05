@@ -180,22 +180,22 @@ const page = async ({params}) => {
           </>
     
       ) : (
-        <div>
-        <section className="mt-12 mb-12 text-center">
-        <SectionTitle title="Courses by" highlight={course} />
+        <>
+          <Suspense fallback={"loading..."}>
+          <SearchFilters_cities post={course_specialization} search params={course} specialization={specialization1} Category={Category1.data}/>
+          </Suspense>
 
-        <div className="flex justify-center my-6">
-          <Image    
-            src="/map.png" // Replace with actual world map image
-            alt="World Map"
-            width={1000}
-            height={200}
-          />
-        </div>
-      </section>
-        <SearchFilters_cities post={course_specialization} search params={course} specialization={specialization1} Category={Category1.data}/>
-        
-    </div>
+          <div className="flex justify-center overflow-hidden">
+        <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
+          New Articles You May Find Interesting
+        </h1>
+      </div>
+      <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
+        <Wrapper>
+          <BlogCarousel data={blogs} />
+        </Wrapper>
+      </div>
+          </>
       ) }
       </div>
       

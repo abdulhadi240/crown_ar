@@ -5,22 +5,17 @@ import Card_Quality from "./components/Card_Quality";
 import { LuBadgeCheck } from "react-icons/lu";
 import { FaHandshake } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
-import HeaderSection from "@/components/HeaderSection";
+import Design from "../homepage1/components/Design";
 const page = () => {
   return (
-    <>
-    <HeaderSection/>
-      <div className="relative flex items-center justify-center h-32 banner sm:h-64">
-        {/* Set height and make container relative */}
-        <Image
-          src="/consulting.webp"
-          alt="banner"
-          fill // replaces layout="fill"
-          priority
-          className="object-cover" // replaced objectFit="cover"
-        />
-        
-      </div>
+    <div className="mb-10">
+    <Design  iamge={'/consulting.webp'}>
+    <div className="w-screen">
+    <h1 className=" text-center mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+          Explore Our <span className="text-secondary font-bold">Consultations</span>{" "}
+        </h1>
+        </div>
+    </Design>
       <div className="mx-5 md:mx-10 ">
         <Vision_Card text={"Overview of BATD"}>
           The British Academy for Training and Development (BATD), located in
@@ -76,7 +71,7 @@ const page = () => {
           Britain and Europe to the other countries of the world.
         </Vision_Card>
       </div>
-    </>
+    </div>
   );
 };
 

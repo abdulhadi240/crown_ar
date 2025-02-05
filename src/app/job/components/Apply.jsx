@@ -34,19 +34,33 @@ const Apply = () => {
     }))
   }
 
+  const isStepValid = () => {
+    switch (step) {
+      case 1:
+        return formData.name && formData.email && formData.phone
+      case 2:
+        return formData.currentPosition && formData.expectedSalary && formData.resumeFile
+      case 3:
+        return formData.coverLetter
+      default:
+        return false
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Here you would typically send the form data to your server
     console.log("Form submitted:", formData)
-    // You'd use FormData to handle file upload in a real scenario
+
+    // Prepare FormData for API submission
     const formDataToSend = new FormData()
     for (const key in formData) {
       formDataToSend.append(key, formData[key])
     }
     console.log("FormData to send:", formDataToSend)
+
+    // Reset form and close dialog
     setIsOpen(false)
     setStep(1)
-    // Reset form after submission
     setFormData({
       name: "",
       email: "",
@@ -58,13 +72,20 @@ const Apply = () => {
     })
   }
 
-  const nextStep = () => setStep(step + 1)
+  const nextStep = () => {
+    if (isStepValid()) {
+      setStep(step + 1)
+    }
+  }
+
   const prevStep = () => setStep(step - 1)
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full bg-amber-200 hover:bg-amber-300 text-gray-800 my-2" onClick={()=>{console.log("pressed")}}>Apply Now</Button>
+        <Button className="w-full bg-amber-200 hover:bg-amber-300 text-gray-800 my-2">
+          Apply Now
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
@@ -80,27 +101,13 @@ const Apply = () => {
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
+                <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
               </div>
               <div>
                 <Label htmlFor="phone">Phone</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                />
+                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} required />
               </div>
-              <Button type="button" onClick={nextStep} className="w-full text-white">
+              <Button type="button" onClick={nextStep} disabled={!isStepValid()} className="w-full text-white bg-primary hover:bg-primary-dark">
                 Next
               </Button>
             </div>
@@ -110,41 +117,21 @@ const Apply = () => {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="currentPosition">Current Position</Label>
-                <Input
-                  id="currentPosition"
-                  name="currentPosition"
-                  value={formData.currentPosition}
-                  onChange={handleInputChange}
-                  required
-                />
+                <Input id="currentPosition" name="currentPosition" value={formData.currentPosition} onChange={handleInputChange} required />
               </div>
               <div>
                 <Label htmlFor="expectedSalary">Expected Salary</Label>
-                <Input
-                  id="expectedSalary"
-                  name="expectedSalary"
-                  type="text"
-                  value={formData.expectedSalary}
-                  onChange={handleInputChange}
-                  required
-                />
+                <Input id="expectedSalary" name="expectedSalary" type="text" value={formData.expectedSalary} onChange={handleInputChange} required />
               </div>
               <div>
-                <Label htmlFor="resumeFile">Resume</Label>
-                <Input
-                  id="resumeFile"
-                  name="resumeFile"
-                  type="file"
-                  onChange={handleInputChange}
-                  accept=".pdf,.doc,.docx"
-                  required
-                />
+                <Label htmlFor="resumeFile">Resume (PDF, DOC)</Label>
+                <Input id="resumeFile" name="resumeFile" type="file" accept=".pdf,.doc,.docx" onChange={handleInputChange} required />
               </div>
               <div className="flex justify-between">
-                <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary">
+                <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
                   Previous
                 </Button>
-                <Button type="button" onClick={nextStep} className="w-[48%] text-white">
+                <Button type="button" onClick={nextStep} disabled={!isStepValid()} className="w-[48%] text-white bg-primary hover:bg-primary-dark">
                   Next
                 </Button>
               </div>
@@ -155,21 +142,13 @@ const Apply = () => {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="coverLetter">Cover Letter</Label>
-                <Textarea
-                  id="coverLetter"
-                  name="coverLetter"
-                  value={formData.coverLetter}
-                  onChange={handleInputChange}
-                  placeholder="Tell us why you're a great fit for this position..."
-                  required
-                  className="h-40"
-                />
+                <Textarea id="coverLetter" name="coverLetter" value={formData.coverLetter} onChange={handleInputChange} placeholder="Tell us why you're a great fit for this position..." required className="h-40" />
               </div>
               <div className="flex justify-between">
-                <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary">
+                <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
                   Previous
                 </Button>
-                <Button type="submit" className="w-[48%] text-white">
+                <Button type="submit" disabled={!isStepValid()} className="w-[48%] text-white bg-green-500 hover:bg-green-600">
                   Submit Application
                 </Button>
               </div>
@@ -182,4 +161,3 @@ const Apply = () => {
 }
 
 export default Apply
-

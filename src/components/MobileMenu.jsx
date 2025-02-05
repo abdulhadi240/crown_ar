@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaHamburger, FaLock } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 
-export default function MobileMenu({color}) {
+export default function MobileMenu({color , bg}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,12 +13,12 @@ export default function MobileMenu({color}) {
   };
 
   return (
-    <div>
-      <div className="py-4 mx-4 md:hidden">
+    <div className={`${bg ? 'bg-primary' : ''}`}>
+      <div className="mx-4 md:hidden ">
         {/* Menu Button */}
-        <div className="flex justify-between mx-2 -mt-8">
+        <div className="flex justify-between mx-2 h-16">
           <div>
-            <Image src={"/logo13.png"} width={120} height={120} alt="logo" />
+            <Image src={"/logo13.png"} width={120} height={120} alt="logo" className="-mt-8"/>
           </div>
           <div
             className="flex justify-center items-center text-center"

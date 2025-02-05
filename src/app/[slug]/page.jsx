@@ -1,8 +1,4 @@
 import React from "react";
-import SearchFiltersCities from "../cities/[slug]/components/SearchFilters_cities";
-import Image from "next/image";
-import SectionTitle from "@/components/SectionTitle";
-import Head from "next/head";
 import NotFound from "../not-found";
 import fetchData, { GetAllCategory, GetSpecificSpecialization } from "@/actions/server";
 import Programs from "@/components/Programs";
@@ -134,7 +130,6 @@ export default async function Page({ params }) {
     );
   
 }
-
 
 export async function generateStaticParams() {
   const [cityData, specializationData, programs ,SpecializationCategory , categoryData] =

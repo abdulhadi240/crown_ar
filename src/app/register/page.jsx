@@ -1,11 +1,10 @@
 "use client";
-import HeaderSection from "@/components/HeaderSection";
 import Head from "next/head";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Design from "../homepage1/components/Design";
-import { CheckCircle, XCircle } from "lucide-react"
+import { CheckCircle, XCircle } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default function Page() {
@@ -16,10 +15,7 @@ export default function Page() {
   const [category, setCategory] = useState("");
   const [specialization, setSpecialization] = useState("");
   const [city, setCity] = useState("");
-  const [cityid, setCityId] = useState(null);
   const [language, setLanguage] = useState("");
-  const [attendees, setAttendees] = useState("");
-  const [duration, setDuration] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [modal, setModal] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -32,6 +28,25 @@ export default function Page() {
   const [company, setCompany] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
+  const [loading , setLoading] = useState(false)
+
+  // Regex for valid phone number format (allowing + and digits only)
+  const phoneRegex = /^[+]?[0-9]{10,15}$/; // Valid phone number
+  const mobileRegex = /^[+]?[0-9]{10,15}$/; // Same for mobile number
+
+  // Handle phone number input change
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value); // Allow any input
+  };
+
+  // Handle mobile number input change
+  const handleMobileChange = (e) => {
+    setMobile(e.target.value); // Allow any input
+  };
+
+  // Validate phone and mobile number before form submission
+  const validatePhone = () => phoneRegex.test(phone);
+  const validateMobile = () => mobileRegex.test(mobile);
 
   const [participants, setParticipants] = useState([
     {
@@ -69,7 +84,8 @@ export default function Page() {
   useEffect(() => {
     setSlug(searchParams.get("course") || "");
     setSelectedDate(searchParams.get("date") || "");
-    //setCity(searchParams.get("city") || "");
+    setCity(searchParams.get("city") || "");
+    console.log(searchParams.get("city"));
   }, [searchParams]);
 
   useEffect(() => {
@@ -123,8 +139,13 @@ export default function Page() {
   }, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (!validatePhone() || !validateMobile()) {
+      alert("Please enter valid phone and mobile numbers.");
+      return;
+    }
 
+    e.preventDefault();
+    setLoading(true)
     // Create a new FormData object
     const formData = new FormData();
 
@@ -171,10 +192,12 @@ export default function Page() {
       // Handle success based on `status`
       if (responseData.status === "success") {
         setModal(true);
+        setLoading(false)
         setSuccess(true);
         console.log(responseData.message); // Log success message
       } else {
         setModal(true);
+        setLoading(false)
         setSuccess(false);
         console.error("Unexpected status:", responseData.status);
       }
@@ -188,7 +211,7 @@ export default function Page() {
       <Head>
         <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
       </Head>
-      <Design secondary={true}></Design>
+      <Design secondary={true} bg></Design>
       <div className="min-h-screen py-10 bg-gray-100 flex items-center justify-center">
         <div className="bg-white shadow-md rounded-lg md:p-6 p-4 w-full max-w-3xl">
           <h1 className="text-2xl font-semibold mb-6 text-center">
@@ -239,17 +262,19 @@ export default function Page() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">City</label>
+                <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
+                  City
+                </label>
                 <select
-                  value={city}
+                  value={city} // This binds the selected city to the state
                   required
                   onChange={(e) => setCity(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
                   {!city && <option>Select City</option>}
-                  {detail?.data?.available_cities?.map((city) => (
-                    <option key={city.id} value={city.id}>
-                      {city.name}
+                  {detail?.data?.available_cities?.map((cityOption) => (
+                    <option key={cityOption.id} value={cityOption.slug}>
+                      {cityOption.name}
                     </option>
                   ))}
                 </select>
@@ -329,16 +354,19 @@ export default function Page() {
                               name="date"
                               value={dateObj.date}
                               checked={selectedDate === dateObj.date}
-                              onChange={(e) => setSelectedDate(e.target.value)}
+                              onChange={(e) => setSelectedDate(e.target.value)} // Update state directly
+                              onClick={() => setSelectedDate(dateObj.date)} // Handle click directly
                               className="focus:ring-blue-500"
                             />
                           </td>
-                          <td className="px-4 py-2 text-sm text-gray-700 border-b">
+                          <td
+                            className="px-4 py-2 text-sm text-gray-700 border-b cursor-pointer"
+                            onClick={() => setSelectedDate(dateObj.date)} // Clicking on the row updates the date
+                          >
                             {dateObj.date}
                           </td>
                         </tr>
                       ))}
-
                       <tr className="hover:bg-gray-100">
                         <td className="px-4 py-2 text-sm text-gray-700 border-b">
                           <input
@@ -351,6 +379,7 @@ export default function Page() {
                               )
                             }
                             onChange={(e) => setSelectedDate(e.target.value)}
+                            onClick={() => setSelectedDate(selectedDate)} // Ensure custom date selection
                             className="focus:ring-blue-500"
                           />
                         </td>
@@ -358,7 +387,7 @@ export default function Page() {
                           <input
                             type="date"
                             value={selectedDate}
-                            onChange={(e) => setSelectedDate(e.target.value)}
+                            onChange={(e) => setSelectedDate(e.target.value)} // Handle custom date change
                             className="w-full border border-gray-300 rounded-md p-2"
                           />
                         </td>
@@ -432,22 +461,32 @@ export default function Page() {
                     onChange={(e) => setJobTitle(e.target.value)}
                     className="w-full border border-gray-300 rounded-lg p-2"
                   />
+                  <div className='flex flex-col gap-2'>
                   <input
-                    type="text"
+                    type="tel"
                     placeholder="Phone"
                     required
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e)=>handlePhoneChange(e)}
                     className="w-full border border-gray-300 rounded-lg p-2"
                   />
+                  {!phoneRegex.test(phone) && phone && (
+                  <p className="text-xs text-red-500">Please enter a valid phone number.</p>
+                )}
+                </div>
+                <div className="flex flex-col gap-2">
                   <input
-                    type="text"
+                    type="tel"
                     placeholder="Mobile"
                     required
                     value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
+                    onChange={handleMobileChange}
                     className="w-full border border-gray-300 rounded-lg p-2"
                   />
+                  {!mobileRegex.test(mobile) && mobile && (
+                  <p className="text-xs text-red-500">Please enter a valid mobile number.</p>
+                )}
+                </div>
                   <input
                     type="text"
                     placeholder="Company"
@@ -522,21 +561,24 @@ export default function Page() {
                             className="w-full border border-gray-300 rounded-lg p-2"
                           />
                           <input
-                            type="text"
+                            type="tel"
                             placeholder="Phone"
                             value={participant.phone}
                             onChange={(e) =>
                               handleInputChange(index, "phone", e.target.value)
                             }
+                            pattern="^\+?[1-9]\d{1,14}$"
                             className="w-full border border-gray-300 rounded-lg p-2"
                           />
                           <input
-                            type="text"
+                            type="tel"
                             placeholder="Mobile"
+                            required
                             value={participant.mobile}
                             onChange={(e) =>
                               handleInputChange(index, "mobile", e.target.value)
                             }
+                            pattern="^\+?[1-9]\d{1,14}$"
                             className="w-full border border-gray-300 rounded-lg p-2"
                           />
                         </div>
@@ -561,7 +603,7 @@ export default function Page() {
                 type="submit"
                 className="px-6 py-3 bg-primary text-white rounded-lg"
               >
-                Submit Form
+                {loading ? 'Loading ...' : 'Submit'}
               </button>
             </div>
           </form>
@@ -569,46 +611,55 @@ export default function Page() {
       </div>
       {modal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-[100%] sm:max-w-[540px] overflow-hidden">
-        <div className="p-4 sm:p-6 md:p-8">
-          {success ? (
-            <div className="text-center">
-              <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Registration Successful</h2>
-              <p className="text-sm sm:text-base text-gray-600 mb-6">
-                Your registration has been submitted successfully. You will be notified via email or phone shortly.
-              </p>
-            </div>
-          ) : (
-            <div className="text-center">
-              <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Registration Error</h2>
-              <p className="text-sm sm:text-base text-gray-600 mb-6">
-                We apologize, but there was an error submitting your registration. Please try again later or contact{" "}
-                <Link href="/customer_service" className="font-medium text-blue-600 hover:underline">
-                  Customer Support
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-[100%] sm:max-w-[540px] overflow-hidden">
+            <div className="p-4 sm:p-6 md:p-8">
+              {success ? (
+                <div className="text-center">
+                  <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                    Registration Successful
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600 mb-6">
+                    Your registration has been submitted successfully. You will
+                    be notified via email or phone shortly.
+                  </p>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                    Registration Error
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600 mb-6">
+                    We apologize, but there was an error submitting your
+                    registration. Please try again later or contact{" "}
+                    <Link
+                      href="/customer_service"
+                      className="font-medium text-blue-600 hover:underline"
+                    >
+                      Customer Support
+                    </Link>
+                    .
+                  </p>
+                </div>
+              )}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => setModal(false)}
+                  className="w-full sm:w-1/2 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors text-sm sm:text-base"
+                >
+                  Close
+                </button>
+                <Link
+                  href="/diploma"
+                  className="w-full sm:w-1/2 text-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/70 transition-colors text-sm sm:text-base"
+                >
+                  Discover New Courses
                 </Link>
-                .
-              </p>
+              </div>
             </div>
-          )}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => setModal(false)}
-              className="w-full sm:w-1/2 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors text-sm sm:text-base"
-            >
-              Close
-            </button>
-            <Link
-              href="/diploma"
-              className="w-full sm:w-1/2 text-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/70 transition-colors text-sm sm:text-base"
-            >
-              Discover New Courses
-            </Link>
           </div>
         </div>
-      </div>
-    </div>
       )}
     </>
   );

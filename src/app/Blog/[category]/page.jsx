@@ -89,7 +89,7 @@ export default async function Page({ params }) {
   const locale = params.locale || "en"; // Determine locale from params
 
   const articles = await fetch(
-    `${process.env.BACKEND_URL}/blogs/${params.category}/category`,
+    `${process.env.BACKEND_URL}/blogs/${params.category}/category?per_page=6&page=1`,
     {
       headers: {
         "Content-Type": "application/json",

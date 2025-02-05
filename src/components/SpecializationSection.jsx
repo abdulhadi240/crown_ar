@@ -1,73 +1,74 @@
-"use client";
-import { useState } from "react";
-import SpecializationCard from "./SpecializationCard";
+'use client'
+import React, { useState } from 'react'
+import Link from 'next/link'
 
 const SpecializationSection = ({ data }) => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState(data[2].id); // Initially select the third menu item
-
-  // Function to handle menu item click
-  const handleMenuItemClick = (id) => {
-    setSelectedMenuItem(id);
-  };
-
-  // Find the selected menu item's data
-  const selectedItem = data.find((item) => item.id === selectedMenuItem);
+  // State to track the currently selected specialization.
+  // By default, we select the first one if available.
+  const [selectedSpec, setSelectedSpec] = useState(data && data.length > 0 ? data[0] : null)
 
   return (
-    <section className="py-16 overflow-hidden">
-      <div className="">
-        {/* Title and Description */}
-        <h1 className="text-[#a9becc] text-5xl max-w-4xl mx-auto text-center">
-          Take Your <span className="text-primary font-bold">First Step</span>{" "}
-          Towards Achieving Professional Goals
-        </h1>
-
-        {/* Main Layout - Side Menus and Card Grid */}
-        <div className="md:mx-10 flex flex-col md:flex-row">
-          <div className="flex flex-col justify-center gap-4 mx-1 mt-10">
-            {/* Horizontal Scrollable Categories */}
-            <div
-              className="flex overflow-x-scroll gap-4 px-2 scrollbar-hide"
-              style={{
-                maxWidth: "100%",
-                paddingBottom: "1rem", // Space for the scrollbar
-              }}
-            >
-              {data.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleMenuItemClick(item.id)}
-                  className={`py-3 w-56 px-1 items-center text-center flex justify-center rounded-lg text-sm border-[1px] border-primary shadow-xl transition-all cursor-pointer hover:bg-primary active:bg-primary hover:text-white active:text-white ${
-                    selectedMenuItem === item.id ? "bg-primary text-white" : ""
-                  }`}
-                >
-                  {item.name}
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom-aligned Scrollbar */}
-            <div className="w-full h-[1px] border-[1px] border-primary text-primary" />
-
-            {/* Center - Grid of Cards */}
-            <div className="gap-5 mt-2 flex justify-center items-center text-center flex-wrap">
-              {selectedItem.courses.map((title, index) => (
-                <SpecializationCard key={index} title={title} />
-              ))}
-            </div>
-          </div>
-          <div className="flex justify-center sm:hidden ">
-            <p className="mt-4 text-[8px] sm:text-base w-full p-3 sm:p-0 text-center text-gray-500 sm:w-[800px] items-center">
-              The British Academy for Training and Development differs from
-              other companies operating in the same field because it is a
-              British-European company with excellence and there are specialized
-              cadres with great practical experience...
-            </p>
-          </div>
+    <div className="container mx-auto p-4">
+      {/* Specializations Horizontal List */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Specializations</h2>
+        <div className="flex space-x-4 overflow-x-auto py-2">
+          {data && data.length > 0 ? (
+            data.map((spec) => (
+              <button
+                key={spec.id}
+                onClick={() => setSelectedSpec(spec)}
+                className={`px-4 py-2 rounded-full border transition-colors whitespace-nowrap ${
+                  selectedSpec && selectedSpec.id === spec.id
+                    ? 'bg-blue-500 text-white border-blue-500'
+                    : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
+                }`}
+              >
+                {spec.name}
+              </button>
+            ))
+          ) : (
+            <p>No specializations available</p>
+          )}
         </div>
       </div>
-    </section>
-  );
-};
 
-export default SpecializationSection;
+      {/* Courses List for the Selected Specialization */}
+      <div>
+        <h2 className="text-xl font-semibold mb-4">
+          {selectedSpec ? `Courses in ${selectedSpec.name}` : 'Courses'}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {selectedSpec && selectedSpec.courses && selectedSpec.courses.length > 0 ? (
+            selectedSpec.courses.map((course) => (
+              <Link
+                key={course.id}
+                href={`/courses/${course.slug}`}
+                passHref
+              >
+                <a className="block p-4 border rounded-lg shadow hover:shadow-md transition-shadow">
+                  <div className="flex items-center space-x-4">
+                    <img
+                      src={course.icon}
+                      alt={course.title}
+                      className="w-16 h-16 object-cover rounded-full"
+                    />
+                    <div>
+                      <h3 className="text-lg font-medium">{course.title}</h3>
+                      <p className="text-sm text-gray-600">{course.category}</p>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-gray-700 line-clamp-2">{course.summary}</p>
+                </a>
+              </Link>
+            ))
+          ) : (
+            <p>No courses available for this specialization.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SpecializationSection

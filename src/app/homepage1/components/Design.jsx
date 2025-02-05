@@ -3,12 +3,12 @@ import React from "react";
 import Header from "./Header";
 import Inputs from "./Inputs";
 
-const Design = ({icon_white, iamge, children, center, input, image_height, secondary , search_height }) => {
+const Design = ({icon_white, iamge, children, center, input, image_height, secondary , search_height , bg }) => {
   return (
     <div className="z-50">
       {secondary ? (
         // If secondary is true, ONLY display the Header
-        <Header secondary={secondary} />
+        <Header secondary={secondary} icon_white bg={bg}/>
       ) : (
         // Otherwise, display the background image section + Header + other content
         <div
@@ -71,7 +71,7 @@ const Design = ({icon_white, iamge, children, center, input, image_height, secon
               className={`flex flex-col ${
                 center
                   ? "items-center justify-center"
-                  : "items-start justify-start px-10 md:px-20"
+                  : "items-start justify-start"
               } md:mt-16`}
             >
               {/* Children Content (Headings, Subheadings, etc.) */}

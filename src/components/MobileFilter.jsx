@@ -1,98 +1,124 @@
-// components/SearchForm.js
-import { AiOutlineSearch, AiOutlineCalendar } from 'react-icons/ai';
+"use client";
 
-export default function SearchForm() {
+import { useState } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useRouter } from "next/navigation"; // Ensure correct import
+
+export default function SearchForm({ cities, specialization }) {
+  const router = useRouter(); // Router instance for navigation
+
+  // State for search fields
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("english");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
+
+  // List of months
+  const months = [
+    { name: "January", value: "1" },
+    { name: "February", value: "2" },
+    { name: "March", value: "3" },
+    { name: "April", value: "4" },
+    { name: "May", value: "5" },
+    { name: "June", value: "6" },
+    { name: "July", value: "7" },
+    { name: "August", value: "8" },
+    { name: "September", value: "9" },
+    { name: "October", value: "10" },
+    { name: "November", value: "11" },
+    { name: "December", value: "12" },
+  ];
+
+  // Handle search button click
+  const handleSearch = () => {
+    // Construct query parameters
+    const queryParams = new URLSearchParams({
+      month: selectedMonth,
+      specialization: selectedSpecialization,
+      city: selectedCity,
+      language: selectedLanguage,
+    });
+
+    // Include search keyword if provided
+    if (searchQuery.trim() !== "") {
+      queryParams.append("search", searchQuery);
+    }
+
+    // Redirect to /diploma with query parameters
+    router.push(`/diploma?${queryParams.toString()}`);
+  };
+
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-black">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {/* Search bar */}
-        <div className='flex gap-2'>
-        <div className="flex items-center w-full bg-gray-100 border rounded-md dark:text-black ">
-          <div className='dark:text-black'>
-        <AiOutlineSearch size={25}/>
-        </div>
-
-          <input
-            type="text"
-            placeholder="Find Your Course"
-            className="w-full p-1 bg-gray-100 rounded-md focus:outline-none"
-          />
-          
-        </div>          
-          <button className="flex items-center justify-between gap-4 py-1 px-2 text-white bg-[#152765] rounded-md ">
-            <div>Search</div>
-
-          </button>
-        </div>
-
-        {/* Year field */}
-        <div className='flex gap-2 '>
-        {/* Year Field */}
-<div className="flex items-center w-full bg-gray-100 space-x-2 border-[1px]">
-  <input
-    type="number"
-    placeholder="Year"
-    className="w-full p-2 bg-gray-100 rounded-md dark:text-black placeholder:text-black"
-    min="1900"
-    max="2100"
-  />
-  <button className="p-2 rounded-md dark:text-black">
-    <AiOutlineCalendar size={20} />
-  </button>
-</div>
-
-{/* Month Field */}
-<div className="flex items-center w-full bg-gray-100 space-x-2 border-[1px]">
-  <select
-    className="w-full p-2 bg-gray-100 rounded-md placeholder:text-black dark:text-black"
-  >
-    <option value="" disabled selected>Month</option>
-    <option value="1">January</option>
-    <option value="2">February</option>
-    <option value="3">March</option>
-    <option value="4">April</option>
-    <option value="5">May</option>
-    <option value="6">June</option>
-    <option value="7">July</option>
-    <option value="8">August</option>
-    <option value="9">September</option>
-    <option value="10">October</option>
-    <option value="11">November</option>
-    <option value="12">December</option>
-  </select>
- 
-</div>
-
-        </div>
-        <div className='grid grid-cols-2 gap-2'>
-        {/* Subject dropdown */}
-        <select className="p-2 bg-gray-100 border dark:text-black">
-          <option className='dark:text-black '>Subject</option>
-          {/* Add more options here */}
-        </select>
-
-        {/* Language dropdown */}
-        <select className="p-2 bg-gray-100 border dark:text-black">
-          <option className='dark:text-black '>Language</option>
-          {/* Add more options here */}
-        </select>
-
-        {/* Category dropdown */}
-        <select className="p-2 bg-gray-100 border dark:text-black">
-          <option className='dark:text-black '>Category</option>
-          {/* Add more options here */}
-        </select>
-
-        {/* Place dropdown */}
-        <select className="p-2 bg-gray-100 border dark:text-black">
-          <option className='dark:text-black '>Place</option>
-          {/* Add more options here */}
-        </select>
-        </div>
-      </div>
+    <div className="absolute bottom-[-350px] md:-bottom-56 md:right-20 md:w-[500px] max-w-xl bg-white rounded-lg shadow-2xl p-6 border border-gray-300">
+      {/* Search Bar */}
+      <div className="flex items-center bg-gray-100 border border-[#E5C17C] rounded-lg md:px-4 px-2 md:py-3 w-full">
+        <input
+          type="text"
+          placeholder="Search in specific course"
+          value={searchQuery} // Binds input to state
+          onChange={(e) => setSearchQuery(e.target.value)} // Updates state on change
+          className="w-full bg-gray-100 text-gray-600 placeholder-gray-400 focus:outline-none text-sm md:text-lg"
+        />
+        <button onClick={handleSearch} className="p-2 text-[#E5C17C] cursor-pointer hover:bg-secondary hover:text-white transition-all rounded-full">
+          <AiOutlineSearch className="" size={26} />
+        </button>
       </div>
 
-      
-    
+      {/* Filters Section */}
+      <div className="grid grid-cols-2 gap-4 mt-4 w-full">
+        {/* Specialization Dropdown */}
+        <select
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          value={selectedSpecialization}
+          onChange={(e) => setSelectedSpecialization(e.target.value)}
+        >
+          <option value="">Select Specialization</option>
+          {specialization?.map((spec) => (
+            <option key={spec.slug} value={spec.slug}>
+              {spec.name}
+            </option>
+          ))}
+        </select>
+
+        {/* Language Dropdown */}
+        <select
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          value={selectedLanguage}
+          onChange={(e) => setSelectedLanguage(e.target.value)}
+        >
+          <option value="english">English</option>
+          <option value="arabic">Arabic</option>
+        </select>
+
+        {/* City Dropdown */}
+        <select
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          value={selectedCity}
+          onChange={(e) => setSelectedCity(e.target.value)}
+        >
+          <option value="">Select City</option>
+          {cities?.map((city) => (
+            <option key={city.slug} value={city.slug}>
+              {city.name}
+            </option>
+          ))}
+        </select>
+
+        {/* Month Dropdown */}
+        <select
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          value={selectedMonth}
+          onChange={(e) => setSelectedMonth(e.target.value)}
+        >
+          <option value="">Select Month</option>
+          {months.map((month) => (
+            <option key={month.value} value={month.value}>
+              {month.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
   );
 }
