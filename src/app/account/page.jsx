@@ -6,6 +6,10 @@ import { cn } from '@/lib/utils';
 import Courses_Selected from './components/Courses_Selected';
 import Design from '../homepage1/components/Design';
 import Cards_Information from './components/Cards_Information';
+import { CiUser } from 'react-icons/ci';
+import { FaGlobeAmericas } from 'react-icons/fa';
+import { LiaLanguageSolid } from 'react-icons/lia';
+import { BiLogoGmail } from 'react-icons/bi';
 
 const Page = () => {
   const router = useRouter();

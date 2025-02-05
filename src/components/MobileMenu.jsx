@@ -35,7 +35,7 @@ export default function MobileMenu({ color, bg }) {
           <div className="flex gap-3">
           {isAuthenticated && user && (
             // 🎭 Show user avatar & dropdown when logged in
-            <div className="">
+            <div className="items-center">
               <button
                 className="w-10 h-10 flex items-center justify-center bg-secondary text-white font-bold rounded-full text-sm focus:outline-none"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
