@@ -11,7 +11,7 @@ export default function Footer() {
             {/* Left Column */}
             <div className="">
               <Image
-                src="/logocrown.webp"
+                src="/Logocrown1.webp"
                 alt="trainEdge Logo"
                 width={150}
                 height={150}
