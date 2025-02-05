@@ -4,27 +4,64 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaHamburger, FaLock } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
+import { useAuth } from "./context/AuthContext";
 
-export default function MobileMenu({color , bg}) {
+export default function MobileMenu({ color, bg }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { user, isAuthenticated, logout } = useAuth();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className={`${bg ? 'bg-primary' : ''}`}>
+    <div className={`${bg ? "bg-primary" : ""}`}>
       <div className="mx-4 md:hidden ">
         {/* Menu Button */}
         <div className="flex justify-between mx-2 h-16">
           <div>
-            <Image src={"/logo13.png"} width={120} height={120} alt="logo" className="-mt-8"/>
+            <Image
+              src={"/logo13.png"}
+              width={120}
+              height={120}
+              alt="logo"
+              className="-mt-8"
+            />
           </div>
+
+          {isAuthenticated && user && (
+            // 🎭 Show user avatar & dropdown when logged in
+            <div className="relative">
+              <button
+                className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full focus:outline-none"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                {getInitials(user.name)}
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+                  <div className="p-3 border-b text-gray-700">{user.name}</div>
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={logout} // Calls `logout()` from `AuthProvider`
+                    className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
           <div
             className="flex justify-center items-center text-center"
             onClick={toggleMenu}
           >
-            <MdMenu size={28} color={color || 'black'}/>
+            <MdMenu size={28} color={color || "black"} />
           </div>
         </div>
       </div>
@@ -98,7 +135,6 @@ export default function MobileMenu({color , bg}) {
               onClick={toggleMenu}
             >
               {" "}
-              
             </Link>
             <Link
               href="/"
@@ -138,7 +174,7 @@ export default function MobileMenu({color , bg}) {
               className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               onClick={toggleMenu}
             >
-              Cities 
+              Cities
             </Link>
             <Link
               href="/consulting-services"

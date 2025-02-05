@@ -5,6 +5,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { menu } from "../../../components/Menu";
 import MobileMenu from "../../../components/MobileMenu";
+import Login_ from "@/components/Login_";
 
 const FaLock = dynamic(() =>
   import("react-icons/fa").then((mod) => mod.FaLock)
@@ -92,17 +93,8 @@ const Header = ({ secondary, icon_white , bg }) => {
           </div>
 
           {/* Login and Sign Up */}
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/login"
-              className="flex items-center text-white hover:text-blue-900"
-            >
-              <FaLock className="mr-1" color="white" /> Login
-            </Link>
-            <button className="px-4 py-2 text-white rounded bg-secondary">
-              Sign up
-            </button>
-          </div>
+          <Login_/>
+          
         </nav>
       </section>
     </>
