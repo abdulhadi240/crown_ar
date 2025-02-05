@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'; // Import useRouter
 import Personal_Information from './components/Personal_Information';
 import { cn } from '@/lib/utils';
 import Courses_Selected from './components/Courses_Selected';
-import HeaderSection from '@/components/HeaderSection';
 import Design from '../homepage1/components/Design';
 
 const Page = () => {
@@ -75,15 +74,21 @@ const Page = () => {
       </div>
       
       {userData && (
-        <div className="p-4 border rounded-md bg-gray-100 mt-4">
-          <h2 className="text-lg font-semibold">User Details</h2>
-          <p><strong>ID:</strong> {userData.id}</p>
-          <p><strong>Username:</strong> {userData.username}</p>
-          <p><strong>Name:</strong> {userData.name}</p>
-          <p><strong>Email:</strong> {userData.email}</p>
-          <p><strong>Status:</strong> {userData.status}</p>
-          <p><strong>Created At:</strong> {new Date(userData.created_at).toLocaleDateString()}</p>
+        <div>
+        <h1 className='flex justify-center mt-10 text-xl uppercase '>Personal Information</h1>
+        <p className='mb-10 text-xs text-center'>Manage your information including phone numbers and email address where you can be contacted</p>
+        <div className='flex justify-center'>
+        <div className='grid grid-cols-1 gap-3 md:grid-cols-3'>
+        <Cards_Information title={'Name'} Icon={CiUser} des={'Jhon Doe'}/>
+        <Cards_Information title={'Date Of Birth'} Icon={CiCalendarDate} des={'07 july 1993'}/>
+        <Cards_Information title={'Country Region'} Icon={FaGlobeAmericas} des={'United Kingdom'}/>
+        <Cards_Information title={'Language'} Icon={LiaLanguageSolid} des={'English (UK) - English'}/>
+        <Cards_Information title={'Contactable at'} Icon={BiLogoGmail} des={'ah912425@gmail.com'}/>
+
         </div>
+        </div>
+
+    </div>
       )}
     </div>
   );

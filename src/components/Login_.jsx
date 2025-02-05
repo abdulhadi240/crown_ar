@@ -20,7 +20,7 @@ const Login_ = () => {
         // 🎭 Show user avatar & dropdown when logged in
         <div className="relative">
           <button
-            className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full focus:outline-none"
+            className="w-10 h-10 flex items-center justify-center bg-secondary text-sm text-white font-bold rounded-full focus:outline-none"
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
             {getInitials(user.name)}
@@ -30,14 +30,14 @@ const Login_ = () => {
             <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
               <div className="p-3 border-b text-gray-700">{user.name}</div>
               <Link
-                href="/profile"
+                href="/account"
                 className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
               >
                 Profile
               </Link>
               <button
                 onClick={logout} // Calls `logout()` from `AuthProvider`
-                className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                className="block w-full text-left px-4 py-2 bg-primary text-white"
               >
                 Logout
               </button>

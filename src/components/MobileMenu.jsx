@@ -43,17 +43,17 @@ export default function MobileMenu({ color, bg }) {
               </button>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+                <div className=" mt-2 w-auto bg-white border rounded shadow-lg text-sm">
                   <div className="p-3 border-b text-gray-700">{user.name}</div>
                   <Link
-                    href="/profile"
+                    href="/account"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   >
                     Profile
                   </Link>
                   <button
                     onClick={logout} // Calls `logout()` from `AuthProvider`
-                    className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                    className="block w-full text-left px-4 py-2 text-white bg-primary "
                   >
                     Logout
                   </button>
@@ -111,6 +111,9 @@ export default function MobileMenu({ color, bg }) {
                   priority // To load the image faster
                 />
               </div>
+              {!user && (
+
+              
               <div className="flex justify-between gap-10">
                 <Link
                   href="/sign-in"
@@ -127,6 +130,7 @@ export default function MobileMenu({ color, bg }) {
                   <FaLock className="mr-2 " /> Signup
                 </Link>
               </div>
+            )}
             </div>
           </div>
 
