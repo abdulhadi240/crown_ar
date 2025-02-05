@@ -30,6 +30,8 @@ export default function Page() {
     const [address, setAddress] = useState("");
     const [country, setCountry] = useState("");
     const [loading , setLoading] = useState(false)
+
+    console.log(city)
   
     // Regex for valid phone number format (allowing + and digits only)
     const phoneRegex = /^[+]?[0-9]{10,15}$/; // Valid phone number
