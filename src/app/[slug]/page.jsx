@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
   // Fetch details for city, specialization, or program
   const [cityCourses, specializationCourses, programCourses] = await Promise.all([
     fetchCityCourses(slug),
-    fetchSpecializationData(slug),
+    fetchSpecializationData(),
     fetchProgramCourses(slug),
   ]);
 
@@ -132,20 +132,34 @@ export default async function Page({ params }) {
 }
 
 export async function generateStaticParams() {
-  const [cityData, specializationData, programs ,SpecializationCategory , categoryData] =
-    await Promise.all([
-      fetchCityData(),
-      fetchSpecializationData(),
-      fetchProgramData(),
-      fetchSpecializationCategory(),
-      fetchCategoryData()
-    ]);
+  const [cityData, specializationData, programs] = await Promise.all([
+    fetchCityData(),
+    fetchSpecializationData(),
+    fetchProgramData(),
+  ]);
 
-  // Generate paths from city, specialization, and program data
-  const cityPaths = cityData?.data?.map((city) => ({ slug: city.slug })) || [];
+  // Ensure data exists before mapping and extract slug properly
+  const cityPaths =
+    cityData?.data?.map((city) => ({
+      slug: String(city.slug), // Convert to string explicitly
+    })) || [];
+
   const specializationPaths =
-    specializationData?.data?.map((specialization) => ({ slug: specialization.slug })) || [];
-  const programPaths = programs?.data?.map((program) => ({ slug: program.slug })) || [];
+    specializationData?.data?.map((specialization) => ({
+      slug: String(specialization.slug),
+    })) || [];
+
+  const programPaths =
+    programs?.data?.map((program) => ({
+      slug: String(program.slug),
+    })) || [];
+
+  // Debugging logs
+  console.log("Generated Static Params:", [
+    ...cityPaths,
+    ...specializationPaths,
+    ...programPaths,
+  ]);
 
   return [...cityPaths, ...specializationPaths, ...programPaths];
 }

@@ -23,7 +23,7 @@ async function fetchSpecializationData() {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+        "Accept-Language": "en",
 
       },
     }
@@ -38,7 +38,7 @@ async function fetchCourses() {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+        "Accept-Language": "en",
 
       },
     }
@@ -113,7 +113,7 @@ const page = async ({params}) => {
   const specialization1 = await fetch(`${process.env.BACKEND_URL}/specializations`,{
     headers : {
       'Content-Type': 'application/json',
-      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+      "Accept-Language": "en",
 
     },
   }).then(
@@ -124,7 +124,7 @@ const page = async ({params}) => {
   const Category1 = await fetch(`${process.env.BACKEND_URL}/categories`,{
     headers : {
       'Content-Type': 'application/json',
-      "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+      "Accept-Language": "en",
 
     },
   }).then(
@@ -206,18 +206,25 @@ export default page;
 
 
 
-// Generate dynamic paths for SSG
 export async function generateStaticParams() {
   const [courseData, specializationData] = await Promise.all([
     fetchCourses(),
     fetchSpecializationData(),
   ]);
 
-  // Collect all slugs from city and specialization data
-  const coursePaths = courseData.data.map((city) => ({ slug: city.slug }));
-  const specializationPaths = specializationData.data.map((specialization) => ({
-    slug: specialization.slug,
-  }));
+  // Ensure data exists before mapping
+  const coursePaths =
+    courseData?.data?.map((c) => ({
+      slug: String(c.slug), // Ensure slug is a string
+      course: String(c.slug),
+    })) || [];
+
+  const specializationPaths =
+    specializationData?.data?.map((s) => ({
+      slug: String(s.slug), // Ensure slug is a string
+      course: String(s.slug),
+    })) || [];
 
   return [...coursePaths, ...specializationPaths];
 }
+
