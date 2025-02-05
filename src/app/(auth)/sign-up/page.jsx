@@ -1,5 +1,4 @@
 import Design from "@/app/homepage1/components/Design";
-import AuthForm from "@/components/AuthForm";
 import AuthFormSignup from "@/components/AuthFormSignup";
 import Image from "next/image";
 
@@ -12,12 +11,11 @@ const Page = () => {
           src="/sign.webp"
           alt="signin"
           className="hidden h-[500px] w-[500px] m-20 rounded-3xl md:block"
-          layout="responsive" // Use intrinsic layout to manage dimensions through the CSS
-          height={560} // These values are optional but can help with preloading
-          width={560}
+          height={300} // These values are optional but can help with preloading
+          width={300}
         />
 
-        <div className="flex flex-col items-center justify-center gap-3 md:mx-20">
+        <div className="flex flex-col items-center justify-center gap-3 ">
           <div className="flex justify-center mt-2">
             <Image src="/logocrown.webp" width={200} height={200} alt="logo" />
           </div>

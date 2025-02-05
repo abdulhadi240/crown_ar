@@ -47,10 +47,10 @@ const Login_ = () => {
       ) : (
         // 🔐 Show Login & Signup buttons if not authenticated
         <>
-          <Link href="/login" className="flex items-center text-white hover:text-blue-900">
+          <Link href="/sign-in" className="flex items-center text-white hover:text-blue-900">
             <FaLock className="mr-1" color="white" /> Login
           </Link>
-          <Link href="/signup" className="px-4 py-2 text-white rounded bg-secondary hover:bg-secondary-dark">
+          <Link href="/sign-up" className="px-4 py-2 text-white rounded bg-secondary hover:bg-secondary-dark">
             Sign up
           </Link>
         </>

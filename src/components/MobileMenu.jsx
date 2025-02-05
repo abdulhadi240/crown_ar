@@ -9,6 +9,7 @@ import { useAuth } from "./context/AuthContext";
 export default function MobileMenu({ color, bg }) {
   const [isOpen, setIsOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -109,14 +110,14 @@ export default function MobileMenu({ color, bg }) {
               </div>
               <div className="flex justify-between gap-10">
                 <Link
-                  href="/login"
+                  href="/sign-in"
                   className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-secondary border-[1px] text-white rounded hover:bg-blue-700"
                   onClick={toggleMenu}
                 >
                   <FaLock className="mr-2 " /> Login
                 </Link>
                 <Link
-                  href="/login"
+                  href="/sign-up"
                   className="flex items-center w-full border-primary border-[1px] h-8 px-4 mt-4 text-xs text-white rounded bg-secondary "
                   onClick={toggleMenu}
                 >

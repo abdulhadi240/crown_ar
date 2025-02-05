@@ -10,10 +10,10 @@ const Page = () => {
         <Image
           src="/sign.webp"
           alt="signin"
-          className="hidden h-[500px] w-[500px] m-20 rounded-3xl md:block"
+          className="hidden h-[400px] w-[400px] m-20 rounded-3xl md:block"
           layout="responsive" // Use intrinsic layout to manage dimensions through the CSS
-          height={500} // These values are optional but can help with preloading
-          width={500}
+          height={300} // These values are optional but can help with preloading
+          width={300}
         />
 
         <div className="flex flex-col items-center justify-center gap-3 mx-20">

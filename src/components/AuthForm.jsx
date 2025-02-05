@@ -29,7 +29,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg w-[500px] sm:w-[360px]">
+    <div className="bg-white p-8 rounded-xl shadow-lg w-[600px] sm:w-[360px] text-sm -mt-16">
       <h1 className="text-xl font-semibold text-center text-gray-700">Welcome Back!</h1>
       <p className="mt-2 text-sm text-gray-500 text-center">Login to access your account.</p>
 
@@ -70,7 +70,7 @@ const AuthForm = () => {
 
         <button 
           type="submit"
-          className="mt-4 p-3 text-white rounded-full bg-primary hover:bg-[#1F3A98] transition-all"
+          className="mt-4 p-3 text-white rounded-full  bg-primary hover:bg-[#1F3A98] transition-all"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}

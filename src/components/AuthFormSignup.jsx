@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // 🎯 Validation Schema
 const schema = yup.object().shape({
@@ -55,7 +56,7 @@ const AuthFormSignup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+    <div className="flex items-center justify-center  px-4 text-sm max- w-[500px]">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">
         <h2 className="text-3xl font-bold text-center text-gray-800">Create an Account</h2>
         {apiError && <p className="text-red-500 text-center">{apiError}</p>}
@@ -125,7 +126,7 @@ const AuthFormSignup = () => {
           <button
             type="submit"
             className={`w-full p-3 text-white font-bold rounded-md transition duration-200 ${
-              isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+              isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"
             }`}
             disabled={isLoading}
           >
@@ -136,12 +137,11 @@ const AuthFormSignup = () => {
         {/* Redirect to Login */}
         <p className="text-center text-gray-600">
           Already have an account?{" "}
-          <span
-            className="text-blue-500 cursor-pointer hover:underline"
-            onClick={() => navigate("/login")}
+          <Link href={'/sign-in'}
+            className="text-secondary cursor-pointer hover:underline"
           >
             Log in
-          </span>
+          </Link>
         </p>
       </div>
     </div>
