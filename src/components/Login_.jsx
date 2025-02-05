@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FaLock } from "react-icons/fa";
-import { useAuth } from "@/context/AuthProvider"; // Adjust path based on your structure
+import { useAuth } from "./context/AuthContext";
 
 const Login_ = () => {
   const { user, isAuthenticated, logout } = useAuth();
