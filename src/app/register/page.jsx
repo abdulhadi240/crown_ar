@@ -277,7 +277,7 @@ export default function Page() {
                 >
                   {!city && <option>Select City</option>}
                   {detail?.data?.available_cities?.map((cityOption) => (
-                    <option key={cityOption.id} value={cityOption.slug}>
+                    <option key={cityOption.id} value={cityOption.id}>
                       {cityOption.name}
                     </option>
                   ))}
