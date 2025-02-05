@@ -5,6 +5,7 @@ import Personal_Information from './components/Personal_Information';
 import { cn } from '@/lib/utils';
 import Courses_Selected from './components/Courses_Selected';
 import Design from '../homepage1/components/Design';
+import Cards_Information from './components/Cards_Information';
 
 const Page = () => {
   const router = useRouter();
@@ -79,11 +80,10 @@ const Page = () => {
         <p className='mb-10 text-xs text-center'>Manage your information including phone numbers and email address where you can be contacted</p>
         <div className='flex justify-center'>
         <div className='grid grid-cols-1 gap-3 md:grid-cols-3'>
-        <Cards_Information title={'Name'} Icon={CiUser} des={'Jhon Doe'}/>
-        <Cards_Information title={'Date Of Birth'} Icon={CiCalendarDate} des={'07 july 1993'}/>
-        <Cards_Information title={'Country Region'} Icon={FaGlobeAmericas} des={'United Kingdom'}/>
+        <Cards_Information title={'Name'} Icon={CiUser} des={userData.name}/>
+        <Cards_Information title={'status'} Icon={FaGlobeAmericas} des={userData.status}/>
         <Cards_Information title={'Language'} Icon={LiaLanguageSolid} des={'English (UK) - English'}/>
-        <Cards_Information title={'Contactable at'} Icon={BiLogoGmail} des={'ah912425@gmail.com'}/>
+        <Cards_Information title={'Contactable at'} Icon={BiLogoGmail} des={userData.email}/>
 
         </div>
         </div>

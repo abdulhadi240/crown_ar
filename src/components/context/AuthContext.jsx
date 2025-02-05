@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     setUser(null);
     setIsAuthenticated(false);
-    router.push("/login");
+    router.push("/sign-in");
   };
 
   return (

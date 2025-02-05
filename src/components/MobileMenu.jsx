@@ -32,18 +32,19 @@ export default function MobileMenu({ color, bg }) {
             />
           </div>
 
+          <div className="flex gap-3">
           {isAuthenticated && user && (
             // 🎭 Show user avatar & dropdown when logged in
-            <div className="relative">
+            <div className="">
               <button
-                className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full focus:outline-none"
+                className="w-10 h-10 flex items-center justify-center bg-secondary text-white font-bold rounded-full text-sm focus:outline-none"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 {getInitials(user.name)}
               </button>
 
               {dropdownOpen && (
-                <div className=" mt-2 w-auto bg-white border rounded shadow-lg text-sm">
+                <div className=" mt-2 w-auto z-9999 bg-white border rounded shadow-lg text-sm">
                   <div className="p-3 border-b text-gray-700">{user.name}</div>
                   <Link
                     href="/account"
@@ -61,12 +62,15 @@ export default function MobileMenu({ color, bg }) {
               )}
             </div>
           )}
+
           <div
             className="flex justify-center items-center text-center"
             onClick={toggleMenu}
           >
             <MdMenu size={28} color={color || "black"} />
           </div>
+          </div>
+          
         </div>
       </div>
 
