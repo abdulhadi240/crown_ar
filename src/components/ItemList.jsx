@@ -17,16 +17,18 @@ export default function CourseListing({
   cities,
   cities_,
 }) {
+  // Initialize selectedOptions state with empty strings for selected date and city
   const [selectedOptions, setSelectedOptions] = useState(
     filteredCourses
       ? filteredCourses.map((course) => ({
           courseId: course.id,
-          selectedDate: "",
-          selectedCity: "",
+          selectedDate: "",  // Default to empty string for date
+          selectedCity: "",  // Default to empty string for city
         }))
       : []
   );
 
+  // Handle change in selected date or city for a course
   const handleSelectChange = (courseId, type, value) => {
     setSelectedOptions((prev) =>
       prev.map((option) =>
@@ -42,7 +44,7 @@ export default function CourseListing({
           {/* Desktop View */}
           {cities ? (
             <>
-              <div className="hidden md:block ">
+              <div className="hidden md:block">
                 <Table className="w-[300px] border-collapse">
                   <TableHeader>
                     <TableRow className="border-b border-gray-200">
@@ -87,7 +89,7 @@ export default function CourseListing({
                     key={course.id}
                     className="rounded-lg shadow-sm border border-gray-200"
                   >
-                    <CardContent className="p-4 space-y-4 ">
+                    <CardContent className="p-4 space-y-4">
                       <Link
                         href={`/${course.slug}`}
                         className={`text-base font-semibold items-center flex  ${
@@ -237,7 +239,7 @@ export default function CourseListing({
                     key={course.id}
                     className="rounded-lg shadow-sm border border-gray-200"
                   >
-                    <CardContent className="p-4 space-y-4 ">
+                    <CardContent className="p-4 space-y-4">
                       <Link
                         href={`/${params}/${course.available_cities[0].slug}/${course.slug}`}
                         className={`text-base font-semibold items-center flex  ${
@@ -310,7 +312,7 @@ export default function CourseListing({
                               Select City
                             </option>
                             {course.available_cities.map((city) => (
-                              <option key={city.id} value={city.slug}>
+                              <option key={city.id} value={city.id}>
                                 {city.name}
                               </option>
                             ))}

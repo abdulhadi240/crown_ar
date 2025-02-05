@@ -91,7 +91,11 @@ export default function Page() {
   }, [searchParams]);
 
   useEffect(() => {
-    async function getDetail() {
+    setSlug(searchParams.get("course") || "");
+    const initialCitySlug = searchParams.get("city"); // Get the city slug from the URL
+
+    // Fetch the course details after slug is set
+    const getDetail = async () => {
       if (slug) {
         try {
           const res = await fetch(
@@ -106,18 +110,28 @@ export default function Page() {
             }
           );
           if (!res.ok) throw new Error(`Failed to fetch details`);
-
           const d = await res.json();
           setDetail(d);
+
+          // Automatically select the city based on the slug
+          if (d?.data?.available_cities && initialCitySlug) {
+            const cityFromSlug = d.data.available_cities.find(
+              (cityOption) => cityOption.slug === initialCitySlug
+            );
+            if (cityFromSlug) {
+              setCity(cityFromSlug.id); // Set city ID based on the slug
+            }
+          }
+
           return d;
         } catch (error) {
           console.error(error.message);
         }
       }
-    }
+    };
 
     getDetail();
-  }, [slug]);
+  }, [slug, searchParams]);
 
   useEffect(() => {
     const fetchCountries = async () => {

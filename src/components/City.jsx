@@ -304,7 +304,7 @@ const City = ({
     <IoIosArrowForward className="text-base" />
   </motion.button>
 </div>
-      <main className="min-h-screen bg-white p-6 md:p-12 text-base">
+      <main className="min-h-screen bg-white p-6 md:p-12 text-sm">
               <article className=" text-start max-w-4xl">
                   {/* Header */}
                   <h1 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">
