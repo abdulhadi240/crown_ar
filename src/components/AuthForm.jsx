@@ -29,7 +29,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg w-[600px] sm:w-[360px] text-sm -mt-16">
+    <div className="bg-white p-8 rounded-xl shadow-lg md:w-[400px] w-[300px] text-sm -mt-16">
       <h1 className="text-xl font-semibold text-center text-gray-700">Welcome Back!</h1>
       <p className="mt-2 text-sm text-gray-500 text-center">Login to access your account.</p>
 

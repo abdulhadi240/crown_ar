@@ -75,7 +75,7 @@ export default function Footer() {
                   { name: "Customer Service", link: "/customer_service" },
                   { name: "Jobs", link: "/job" },
                   { name: "Team Staff", link: "/team-staff" },
-                  { name: "In-House Training", link: "/in-house-training" },
+                  { name: "Profile", link: "/account" },
                   { name: "Blog", link: "/Blog" },
                   { name: "Privacy Policy", link: "/privacy-policy" },
                   { name: "Contact Us", link: "/contact" },

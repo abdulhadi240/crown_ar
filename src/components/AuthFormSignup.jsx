@@ -58,12 +58,12 @@ const AuthFormSignup = () => {
   
 
   return (
-    <div className="flex items-center justify-center  px-4 text-sm max- w-[500px]">
+    <div className="flex items-center justify-center  px-4 text-sm md:w-[500px] w-[350px] -mt-10">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">
         <h2 className="text-3xl font-bold text-center text-gray-800">Create an Account</h2>
         {apiError && <p className="text-red-500 text-center">{apiError}</p>}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
           {/* Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Full Name</label>

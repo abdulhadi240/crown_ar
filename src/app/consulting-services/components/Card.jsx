@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Card = ({ number, title, description , slug }) => {
   return (
-    <div className="flex flex-col border-[1px] border-primary items-center justify-center p-6 rounded-lg hover:shadow-md hover:bg-white group">
+    <div className="flex flex-col border-[1px] border-primary text-base items-center justify-center p-6 rounded-lg hover:shadow-md hover:bg-white group">
       <div
         className={cn(
           'h-12 w-12 flex items-center justify-center bg-primary text-white rounded-full font-bold mb-4',

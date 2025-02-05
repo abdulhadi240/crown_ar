@@ -175,7 +175,7 @@ export default function TeamStaff({ params }) {
           </TabsContent>
         </Tabs>
 
-        <section className="mb-6 sm:mb-8">
+        <section className="mb-6 sm:mb-8 text-base">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6">{isArabic ? "قيمنا" : "Our Values"}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {values[locale].map((value, index) => (

@@ -58,7 +58,7 @@ export default function SearchForm({ cities, specialization }) {
           placeholder="Search in specific course"
           value={searchQuery} // Binds input to state
           onChange={(e) => setSearchQuery(e.target.value)} // Updates state on change
-          className="w-full bg-gray-100 text-gray-600 placeholder-gray-400 focus:outline-none text-sm md:text-lg"
+          className="w-full bg-gray-100 text-gray-600 placeholder-gray-400 focus:outline-none text-base"
         />
         <button onClick={handleSearch} className="p-2 text-[#E5C17C] cursor-pointer hover:bg-secondary hover:text-white transition-all rounded-full">
           <AiOutlineSearch className="" size={26} />
@@ -69,11 +69,11 @@ export default function SearchForm({ cities, specialization }) {
       <div className="grid grid-cols-2 gap-4 mt-4 w-full">
         {/* Specialization Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700 text-sm md:text-lg focus:outline-none"
           value={selectedSpecialization}
           onChange={(e) => setSelectedSpecialization(e.target.value)}
         >
-          <option value="">Select Specialization</option>
+          <option value="Specialization" className="text-base">Select Specialization</option>
           {specialization?.map((spec) => (
             <option key={spec.slug} value={spec.slug}>
               {spec.name}
@@ -83,7 +83,7 @@ export default function SearchForm({ cities, specialization }) {
 
         {/* Language Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700  md:text-lg focus:outline-none"
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
         >
@@ -93,7 +93,7 @@ export default function SearchForm({ cities, specialization }) {
 
         {/* City Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700  md:text-lg focus:outline-none"
           value={selectedCity}
           onChange={(e) => setSelectedCity(e.target.value)}
         >
@@ -107,7 +107,7 @@ export default function SearchForm({ cities, specialization }) {
 
         {/* Month Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-gray-700 text-sm md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700  md:text-lg focus:outline-none"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >

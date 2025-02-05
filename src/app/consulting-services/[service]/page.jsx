@@ -116,7 +116,7 @@ const page = async ({ params }) => {
           Let’s shape the future of learning together. Book a consultation today!
         </p>
       </main>
-      <div className='-mt-4'>
+      <div className='-mt-4 text-base'>
       <Wrapper>
         <Consult_form title={details.data.title}/>
       </Wrapper>

@@ -32,7 +32,7 @@ export default function ContactPage() {
       </div>
 
       {/* Description Section */}
-      <div className="max-w-3xl mx-auto text-center px-4 py-8">
+      <div className="max-w-3xl mx-auto text-center px-4 py-8 text-base">
         <p className="text-gray-600">
           At the British Academy, we're dedicated to supporting you at every step. If you have questions about our
           courses or services, or if you need additional information, simply complete the section below with a brief

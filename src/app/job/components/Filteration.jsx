@@ -54,7 +54,7 @@ const Filteration = ({ category, data }) => {
 
   return (
     <div>
-      <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg">
+      <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg text-base">
         <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
           <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex bg-white">
             <input
@@ -92,7 +92,7 @@ const Filteration = ({ category, data }) => {
       </div>
 
       {/* Services List */}
-      <div className='flex justify-center'>
+      <div className='flex justify-center  text-base'>
         <div className="grid grid-cols-1 gap-8 md:mx-28 max-w-full sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {filtered && filtered.length > 0 ? (
             filtered.map((service, index) => (

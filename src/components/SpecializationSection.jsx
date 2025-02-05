@@ -8,65 +8,58 @@ const SpecializationSection = ({ data }) => {
   const [selectedSpec, setSelectedSpec] = useState(data && data.length > 0 ? data[0] : null)
 
   return (
-    <div className="container mx-auto p-4">
-      {/* Specializations Horizontal List */}
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Specializations</h2>
-        <div className="flex space-x-4 overflow-x-auto py-2">
-          {data && data.length > 0 ? (
-            data.map((spec) => (
-              <button
-                key={spec.id}
-                onClick={() => setSelectedSpec(spec)}
-                className={`px-4 py-2 rounded-full border transition-colors whitespace-nowrap ${
-                  selectedSpec && selectedSpec.id === spec.id
-                    ? 'bg-blue-500 text-white border-blue-500'
-                    : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
-                }`}
-              >
-                {spec.name}
-              </button>
-            ))
-          ) : (
-            <p>No specializations available</p>
-          )}
+  <div className="container md:px-16 p-4 ">
+<div className="mb-6 -mt-16">
+  <div className="flex space-x-4 overflow-x-auto py-2">
+    {data && data.length > 0 ? (
+      data.map((spec) => (
+        <div
+          key={spec.id}
+          onClick={() => setSelectedSpec(spec)}
+          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${
+            selectedSpec && selectedSpec.id === spec.id
+              ? 'bg-primary text-white border-blue-500'
+              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'
+          }`}
+        >
+          {spec.name}
         </div>
-      </div>
+      ))
+    ) : (
+      <p>No specializations available</p>
+    )}
+  </div>
+</div>
+
+
+
 
       {/* Courses List for the Selected Specialization */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">
-          {selectedSpec ? `Courses in ${selectedSpec.name}` : 'Courses'}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {selectedSpec && selectedSpec.courses && selectedSpec.courses.length > 0 ? (
-            selectedSpec.courses.map((course) => (
-              <Link
-                key={course.id}
-                href={`/courses/${course.slug}`}
-                passHref
-              >
-                <a className="block p-4 border rounded-lg shadow hover:shadow-md transition-shadow">
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={course.icon}
-                      alt={course.title}
-                      className="w-16 h-16 object-cover rounded-full"
-                    />
-                    <div>
-                      <h3 className="text-lg font-medium">{course.title}</h3>
-                      <p className="text-sm text-gray-600">{course.category}</p>
-                    </div>
-                  </div>
-                  <p className="mt-2 text-gray-700 line-clamp-2">{course.summary}</p>
-                </a>
-              </Link>
-            ))
-          ) : (
-            <p>No courses available for this specialization.</p>
-          )}
-        </div>
+  <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6 text-center  md:px-20 border-[2px] py-6 rounded-lg">
+    {selectedSpec && selectedSpec.courses && selectedSpec.courses.length > 0 ? (
+      selectedSpec.courses.map((course) => (
+        <Link
+          key={course.id}
+          href={`/${course.available_cities[0].slug}/${course.specialization_slug}/${course.slug}`}
+          passHref
+          className="mt-2 text-gray-700 text-sm font-light relative p-4 rounded-lg transition-all ease-in-out duration-300 hover:text-primary hover:shadow-lg"
+        >
+          <div className="relative flex justify-center line-clamp-2">
+            <p className="mb-2 line-clamp-2 text-center w-64 pb-3 flex justify-center">{course.title}</p>
+            <div className="absolute bottom-0 left-0 w-full h-[1px]  bg-primary transition-all duration-300"></div>
+          </div>
+        </Link>
+      ))
+    ) : (
+      <div className='flex justify-center'>
+      <p className='flex justify-center text-center text-sm mx-auto'>No courses available for this specialization.</p>
       </div>
+    )}
+  </div>
+</div>
+
+
     </div>
   )
 }

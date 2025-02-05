@@ -30,6 +30,15 @@ const Details1 = ({ course }) => {
   return (
     <div className="md:mx-10 mx-2">
       {/* Sticky Title and Register Button */}
+      <div className="sticky md:hidden top-0 bg-white">
+      <div className="flex justify-between mt-6">
+      <h2 className="text-lg w-44 text-gray-900 mt-1 font-medium ">{course.title}</h2>
+      <Link href={getRegisterLink()} className="bg-secondary text-white text-sm items-center flex justify-center px-4 h-10 mt-2  rounded-lg">Register</Link>
+      </div>
+      <div className="h-[1px] bg-secondary w-full my-2"/>
+
+
+</div>
       <div className="md:mx-10 mx-2 flex gap-10">
         {/* Main Content */}
         <div className="flex-1">
@@ -127,10 +136,10 @@ const Details1 = ({ course }) => {
                 </div>
                 {/* Price Section Below Cities */}
                 <div className="mt-4">
-                  <h3 className="text-lg my-6 font-bold text-primary mb-2">
+                  <h3 className="text-base my-6 font-bold text-primary mb-2">
                     Price
                   </h3>
-                  ${course.price}
+                  <p className="text-base">${course.price}</p>
                 </div>
               </div>
             </div>
@@ -173,8 +182,8 @@ const Details1 = ({ course }) => {
             </div>
           </div>
         </div>
-
-        <div className="sticky top-24 w-[350px] h-[390px] p-5 bg-white border border-gray-300 rounded-lg shadow-md transition-all duration-300">
+        <div className="hidden md:block">
+        <div className="md:sticky md:text-base md:top-24 md:w-[350px] md:h-[390px] md:p-5 bg-white border border-gray-300 md:rounded-lg md:shadow-md transition-all md:duration-300">
           <h1 className="text-xl font-semibold text-gray-800">
             {course.title}
           </h1>
@@ -227,6 +236,7 @@ const Details1 = ({ course }) => {
             Register Now
           </Link>
         </div>
+      </div>
       </div>
     </div>
   );

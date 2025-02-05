@@ -56,7 +56,11 @@ const Page = async () => {
       
 
       {/* Specialization Section */}
+      <SectionTitle title="Take Your" highlight="First Step Towards Achieving 
+      Professional Goals" /> 
+      <div className="md:mx-20">
       <SpecializationSection data={specialization.data} />
+      </div>
       <div>
         <SectionTitle title="Latest" highlight="Courses" />
         <Latest_course courses={courses.data} />

@@ -48,7 +48,7 @@ export default function Page({ params }) {
       </div>
 
       {/* Form Section */}
-      <div className={`flex mb-10 justify-center ${isArabic ? "rtl text-right" : "ltr text-left"}`}>
+      <div className={`flex mb-10 text-base justify-center ${isArabic ? "rtl text-right" : "ltr text-left"}`}>
         <div className="w-full sm:w-[450px] bg-white dark:text-black shadow-lg p-6 h-auto sm:h-[490px]">
           <h1 className="mb-4 text-2xl font-bold text-center">
             {createTicketTitle}

@@ -79,7 +79,7 @@ const Page = () => {
         <h1 className='flex justify-center mt-10 text-xl uppercase '>Personal Information</h1>
         <p className='mb-10 text-xs text-center'>Manage your information including phone numbers and email address where you can be contacted</p>
         <div className='flex justify-center'>
-        <div className='grid grid-cols-1 gap-3 md:grid-cols-3 mb-10'>
+        <div className='grid grid-cols-1 gap-3 md:grid-cols-3 mb-10 text-base'>
         <Cards_Information title={'Name'} Icon={CiUser} des={userData.name}/>
         <Cards_Information title={'status'} Icon={FaGlobeAmericas} des={userData.status}/>
         <Cards_Information title={'Language'} Icon={LiaLanguageSolid} des={'English (UK) - English'}/>

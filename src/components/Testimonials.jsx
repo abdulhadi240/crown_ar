@@ -10,7 +10,7 @@ const Testimonials = () => {
         <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
           <div className="mb-4 flex flex-row">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="/2.webp"
               alt=""
               className="mr-4 inline-block h-16 w-16 object-cover rounded-full"
             />
@@ -55,7 +55,7 @@ const Testimonials = () => {
         <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
           <div className="mb-4 flex flex-row">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="/2.webp"
               alt=""
               className="mr-4 inline-block h-16 w-16 object-cover rounded-full"
             />
@@ -100,7 +100,7 @@ const Testimonials = () => {
         <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
           <div className="mb-4 flex flex-row">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="/2.webp"
               alt=""
               className="mr-4 inline-block h-16 w-16 object-cover rounded-full"
             />
@@ -148,7 +148,7 @@ const Testimonials = () => {
         <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
           <div className="mb-4 flex flex-row">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="/2.webp"
               alt=""
               className="mr-4 inline-block h-16 w-16 object-cover rounded-full"
             />
@@ -193,7 +193,7 @@ const Testimonials = () => {
         <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
           <div className="mb-4 flex flex-row">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="/2.webp"
               alt=""
               className="mr-4 inline-block h-16 w-16 object-cover rounded-full"
             />
@@ -238,7 +238,7 @@ const Testimonials = () => {
         <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
           <div className="mb-4 flex flex-row">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="/2.webp"
               alt=""
               className="mr-4 inline-block h-16 w-16 object-cover rounded-full"
             />
