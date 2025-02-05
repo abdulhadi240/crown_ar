@@ -15,14 +15,14 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "British Academy for Training & Development",
-  description: "British Academy for Training & Development",
+  title: "Crown Institute for Training & Development",
+  description: "Crown Institute for Training & Development",
   keywords: "Next.js, Tailwind CSS, TypeScript",
   openGraph: {
     type: "website",
     locale: "en_US",
-    site_name: "British Academy for Training & Development",
-    description: "British Academy for Training & Development",
+    site_name: "Crown Institute for Training & Development",
+    description: "Crown Institute for Training & Development",
     url: "https://clinstitute.co.uk/",
     images: [
       {
@@ -35,18 +35,18 @@ export const metadata = {
   },
   twitter: {
     site_name: "clinstitute",
-    description: "British Academy for Training & Development",
+    description: "Crown Institute for Training & Development",
     url: "https://clinstitute.co.uk/",
     images: [
       {
-        url: "/logobat.png",
+        url: "/logocrown1.webp",
         width: 800,
         height: 600,
         alt: "Og Image Alt",
       },
     ],
     card: "summary_large_image",
-    creator: "British Academy",
+    creator: "Crown Institute",
   },
 };
 
