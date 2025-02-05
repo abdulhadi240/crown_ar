@@ -13,6 +13,9 @@ export default function MobileMenu({ color, bg }) {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const getInitials = (name) => {
+    return name ? name.split(" ").map(n => n[0]).join("").toUpperCase() : "U";
+  };
 
   return (
     <div className={`${bg ? "bg-primary" : ""}`}>

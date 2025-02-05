@@ -55,6 +55,8 @@ const AuthFormSignup = () => {
     }
   };
 
+  
+
   return (
     <div className="flex items-center justify-center  px-4 text-sm max- w-[500px]">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">
