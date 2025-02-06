@@ -1,4 +1,5 @@
-'use client'
+"use client"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,64 +13,114 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { useToast } from "@/components/ui/use-toast"
 
 const Apply = () => {
+  const { toast } = useToast()
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(1)
+  const [loading, setLoading] = useState(false)
+  
+  // Form data state
   const [formData, setFormData] = useState({
+    job_id: "2",
     name: "",
     email: "",
-    phone: "",
+    contact_number: "",
+    resume: null,
+  })
+
+  // Other fields (shown but not sent)
+  const [extraFields, setExtraFields] = useState({
     currentPosition: "",
     expectedSalary: "",
-    resumeFile: null,
     coverLetter: "",
   })
 
+  // Handle input change
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === "file" ? files[0] : value,
-    }))
+    if (["currentPosition", "expectedSalary", "coverLetter"].includes(name)) {
+      setExtraFields((prevData) => ({ ...prevData, [name]: value }))
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: type === "file" ? files[0] : value,
+      }))
+    }
   }
 
+  // Validation for required fields
   const isStepValid = () => {
     switch (step) {
       case 1:
-        return formData.name && formData.email && formData.phone
+        return formData.name && formData.email && formData.contact_number
       case 2:
-        return formData.currentPosition && formData.expectedSalary && formData.resumeFile
+        return formData.resume
       case 3:
-        return formData.coverLetter
+        return true
       default:
         return false
     }
   }
 
-  const handleSubmit = (e) => {
+  // Submit Form
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setLoading(true)
 
-    // Prepare FormData for API submission
     const formDataToSend = new FormData()
-    for (const key in formData) {
-      formDataToSend.append(key, formData[key])
-    }
-    console.log("FormData to send:", formDataToSend)
+    formDataToSend.append("job_id", formData.job_id)
+    formDataToSend.append("name", formData.name)
+    formDataToSend.append("email", formData.email)
+    formDataToSend.append("contact_number", formData.contact_number)
+    formDataToSend.append("resume", formData.resume)
 
-    // Reset form and close dialog
-    setIsOpen(false)
-    setStep(1)
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      currentPosition: "",
-      expectedSalary: "",
-      resumeFile: null,
-      coverLetter: "",
-    })
+    try {
+      const response = await fetch("https://backendbatd.clinstitute.co.uk/api/job-application", {
+        method: "POST",
+        headers: {
+          "Accept-Language": "en",
+        },
+        body: formDataToSend,
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        toast({
+          title: "Application Submitted",
+          description: "Your application has been sent successfully!",
+          variant: "success",
+        })
+
+        // Reset Form
+        setIsOpen(false)
+        setStep(1)
+        setFormData({
+          job_id: "2",
+          name: "",
+          email: "",
+          contact_number: "",
+          resume: null,
+        })
+        setExtraFields({
+          currentPosition: "",
+          expectedSalary: "",
+          coverLetter: "",
+        })
+      } else {
+        throw new Error(data.message || "Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   const nextStep = () => {
@@ -81,7 +132,7 @@ const Apply = () => {
   const prevStep = () => setStep(step - 1)
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen} className="overflow-hidden">
       <DialogTrigger asChild>
         <Button className="w-full bg-amber-200 hover:bg-amber-300 text-gray-800 my-2">
           Apply Now
@@ -104,8 +155,8 @@ const Apply = () => {
                 <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
               </div>
               <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} required />
+                <Label htmlFor="contact_number">Contact Number</Label>
+                <Input id="contact_number" name="contact_number" type="tel" value={formData.contact_number} onChange={handleInputChange} required />
               </div>
               <Button type="button" onClick={nextStep} disabled={!isStepValid()} className="w-full text-white bg-primary hover:bg-primary-dark">
                 Next
@@ -116,16 +167,8 @@ const Apply = () => {
           {step === 2 && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="currentPosition">Current Position</Label>
-                <Input id="currentPosition" name="currentPosition" value={formData.currentPosition} onChange={handleInputChange} required />
-              </div>
-              <div>
-                <Label htmlFor="expectedSalary">Expected Salary</Label>
-                <Input id="expectedSalary" name="expectedSalary" type="text" value={formData.expectedSalary} onChange={handleInputChange} required />
-              </div>
-              <div>
-                <Label htmlFor="resumeFile">Resume (PDF, DOC)</Label>
-                <Input id="resumeFile" name="resumeFile" type="file" accept=".pdf,.doc,.docx" onChange={handleInputChange} required />
+                <Label htmlFor="resume">Upload Resume (PDF, DOC)</Label>
+                <Input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" onChange={handleInputChange} required />
               </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
@@ -139,17 +182,25 @@ const Apply = () => {
           )}
 
           {step === 3 && (
-            <div className="space-y-4">
+            <div className="space-y-4 overflow-y-hidden">
+              <div>
+                <Label htmlFor="currentPosition">Current Position</Label>
+                <Input id="currentPosition" name="currentPosition" value={extraFields.currentPosition} onChange={handleInputChange} />
+              </div>
+              <div>
+                <Label htmlFor="expectedSalary">Expected Salary</Label>
+                <Input id="expectedSalary" name="expectedSalary" type="text" value={extraFields.expectedSalary} onChange={handleInputChange} />
+              </div>
               <div>
                 <Label htmlFor="coverLetter">Cover Letter</Label>
-                <Textarea id="coverLetter" name="coverLetter" value={formData.coverLetter} onChange={handleInputChange} placeholder="Tell us why you're a great fit for this position..." required className="h-40" />
+                <Textarea id="coverLetter" name="coverLetter" value={extraFields.coverLetter} onChange={handleInputChange} placeholder="Tell us why you're a great fit for this position..." className="h-40" />
               </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
                   Previous
                 </Button>
-                <Button type="submit" disabled={!isStepValid()} className="w-[48%] text-white bg-green-500 hover:bg-green-600">
-                  Submit Application
+                <Button type="submit" disabled={!isStepValid() || loading} className="w-[48%] text-white bg-green-500 hover:bg-green-600">
+                  {loading ? "Submitting..." : "Submit Application"}
                 </Button>
               </div>
             </div>

@@ -39,7 +39,6 @@ export default function ContactPage() {
         headers: {
           "Accept-Language": "en",
           "Accept": "application/json",
-          "Content-Type": "multipart/form-data",
         },
         body: formattedData,
       })
