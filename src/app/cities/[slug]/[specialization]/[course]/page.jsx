@@ -12,6 +12,13 @@ import Details1 from "@/app/[slug]/components/Details1";
 import BlogCarousel from "@/components/BlogCarousel";
 import Wrapper from "@/components/Wrapper";
 
+
+
+
+export const dynamic = "force-dynamic";
+
+
+
 async function fetchCourseData() {
   return fetchData(`${process.env.BACKEND_URL}/courses`);
 }
@@ -40,7 +47,7 @@ export async function generateMetadata({ params }) {
   ]);
 
   const data = courseData || blogData;
-
+  console.log(data , "data")
   if (!data) {
     return {
       title: "Page Not Found",
@@ -92,10 +99,6 @@ const page = async ({ params }) => {
 
   const courses = course1?.data?.find((c) => c.slug === course);
   const blogs = blog?.data?.find((s) => s.slug === course);
-
-  if (!courses && !blogs) {
-    return <NotFound />;
-  }
 
   const course_carasoul = await fetchData(`${process.env.BACKEND_URL}/courses`)
 
