@@ -150,8 +150,7 @@ const page = async ({params}) => {
 
 
   const course_specialization = await GetSpecificSpecialization(course)
-  console.log(course_specialization);
-  const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`);
+   const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`);
   
   
   return (

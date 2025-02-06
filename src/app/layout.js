@@ -26,7 +26,7 @@ export const metadata = {
     url: "https://clinstitute.co.uk/",
     images: [
       {
-        url: "/logobat.png",
+        url: "/logocrown1.webp",
         width: 800,
         height: 600,
         alt: "Og Image Alt",

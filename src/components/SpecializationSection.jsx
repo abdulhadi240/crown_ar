@@ -13,17 +13,33 @@ const SpecializationSection = ({ data }) => {
   <div className="flex space-x-4 overflow-x-auto py-2">
     {data && data.length > 0 ? (
       data.map((spec) => (
-        <div
+        <><div
           key={spec.id}
           onClick={() => setSelectedSpec(spec)}
-          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${
-            selectedSpec && selectedSpec.id === spec.id
+          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${selectedSpec && selectedSpec.id === spec.id
               ? 'bg-primary text-white border-blue-500'
-              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'
-          }`}
+              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
         >
           {spec.name}
-        </div>
+        </div><div
+          key={spec.id}
+          onClick={() => setSelectedSpec(spec)}
+          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${selectedSpec && selectedSpec.id === spec.id
+              ? 'bg-primary text-white border-blue-500'
+              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
+        >
+            {spec.name}
+          </div>
+          <div
+          key={spec.id}
+          onClick={() => setSelectedSpec(spec)}
+          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${selectedSpec && selectedSpec.id === spec.id
+              ? 'bg-primary text-white border-blue-500'
+              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
+        >
+            {spec.name}
+          </div>
+          </>
       ))
     ) : (
       <p>No specializations available</p>

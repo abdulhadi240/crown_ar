@@ -7,31 +7,77 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Phone, Mail } from "lucide-react"
+import { useToast } from "@/components/ui/use-toast"
 import Design from "../homepage1/components/Design"
 
 export default function ContactPage() {
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
-    phoneNumber: "",
-    subject: "",
+    number: "",
+    po_box: "",
     message: "",
   })
 
+  const [loading, setLoading] = useState(false)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission
-    console.log(formData)
+    setLoading(true)
+
+    const formattedData = new FormData()
+    formattedData.append("name", formData.name)
+    formattedData.append("email", formData.email)
+    formattedData.append("number", formData.number)
+    formattedData.append("po_box", formData.po_box)
+    formattedData.append("message", formData.message)
+
+    try {
+      const response = await fetch("https://backendbatd.clinstitute.co.uk/api/contact-us", {
+        method: "POST",
+        headers: {
+          "Accept-Language": "en",
+          "Accept": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+        body: formattedData,
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Your message has been sent successfully!",
+          variant: "success",
+        })
+        setFormData({
+          name: "",
+          email: "",
+          number: "",
+          po_box: "",
+          message: "",
+        })
+      } else {
+        throw new Error(data.message || "Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <><Design secondary bg></Design><div className="min-h-screen bg-white">
-      {/* Header Section */}
       <div className="bg-[#0A1828] py-8">
         <h1 className="text-center text-3xl font-bold text-white">Contact Us</h1>
       </div>
-
-      {/* Description Section */}
       <div className="max-w-3xl mx-auto text-center px-4 py-8 text-base">
         <p className="text-gray-600">
           At the British Academy, we're dedicated to supporting you at every step. If you have questions about our
@@ -39,12 +85,9 @@ export default function ContactPage() {
           description of your needs, and we'll respond promptly.
         </p>
       </div>
-
-      {/* Contact Form and Map Section */}
       <div className="max-w-7xl mx-auto px-4 pb-16">
         <Card className="p-6 md:p-8 shadow-lg">
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Form Section */}
             <div>
               <h2 className="text-2xl font-semibold mb-6">
                 Get in <span className="text-secondary">Touch</span>
@@ -54,8 +97,8 @@ export default function ContactPage() {
                   <Label htmlFor="fullName">Full Name</Label>
                   <Input
                     id="fullName"
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required />
                 </div>
                 <div>
@@ -72,15 +115,15 @@ export default function ContactPage() {
                   <Input
                     id="phoneNumber"
                     type="tel"
-                    value={formData.phoneNumber}
-                    onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })} />
+                    value={formData.number}
+                    onChange={(e) => setFormData({ ...formData, number: e.target.value })} />
                 </div>
                 <div>
                   <Label htmlFor="subject">Subject</Label>
                   <Input
                     id="subject"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    value={formData.po_box}
+                    onChange={(e) => setFormData({ ...formData, po_box: e.target.value })}
                     required />
                 </div>
                 <div>
@@ -92,12 +135,10 @@ export default function ContactPage() {
                     className="min-h-[120px]"
                     required />
                 </div>
-                <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90  text-white">
-                  Send
+                <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90 text-white" disabled={loading}>
+                  {loading ? "Sending..." : "Send"}
                 </Button>
               </form>
-
-              {/* Contact Information */}
               <div className="mt-8 flex gap-4">
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Phone className="h-4 w-4" />
@@ -109,11 +150,9 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-
-            {/* Map Section */}
             <div className="relative h-[400px] md:h-full min-h-[400px] rounded-lg overflow-hidden bg-gray-100">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.2889612073266!2d-0.1276534!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzI2LjQiTiAwwrAwNyc0MC43Ilc!5e0!3m2!1sen!2suk!4v1635959573000!5m2!1sen!2suk"
+                src="https://www.google.com/maps/embed?..."
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -128,4 +167,3 @@ export default function ContactPage() {
     </div></>
   )
 }
-

@@ -43,7 +43,6 @@ const Programs = ({
   const [selectedCity, setSelectedCity] = useState(
     searchParams.get("city") || ""
   );
-  console.log(searchInput);
 
   // Update URL search params
   const updateSearchParams = (key, value) => {
@@ -86,7 +85,6 @@ const Programs = ({
         const result = await response.json();
         setCourseData(result);
         setFilteredCourses(result?.data || []);
-        console.log("Fetched Data:", result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -121,10 +119,7 @@ const Programs = ({
       );
       setFilteredCourses(filtered);
     }
-  };
-
-  console.log("Filtered Courses:", filteredCourses);
-  
+  };  
 
   return (
     <>

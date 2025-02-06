@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token)
     if (token) {
       fetch(`https://backendbatd.clinstitute.co.uk/api/user`, {
         headers: { Authorization: `Bearer ${token}` },

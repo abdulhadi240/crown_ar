@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: data?.data?.meta_title || "British Academy for Training & Development",
+    title: data?.data?.meta_title || "Crown Academy for Training & Development",
     description: data?.data?.meta_description || "Explore top courses, programs, and specializations.",
     keywords: data?.data?.meta_keywords || "training, courses, programs, specialization",
     alternates: {
@@ -101,9 +101,7 @@ export default async function Page({ params }) {
 
     const category = await GetAllCategory().catch(() => []);
     const specialization_courses = await GetSpecificSpecialization(slug).catch(() => []);
-    console.log(programCourses , 'program course');
     
-
     const city = cityData?.data?.find((c) => c.slug === slug);
     const specialization = specializationData?.data?.find((s) => s.slug === slug);
     const program = programs?.data?.find((p) => p.slug === slug);
@@ -153,13 +151,5 @@ export async function generateStaticParams() {
     programs?.data?.map((program) => ({
       slug: String(program.slug),
     })) || [];
-
-  // Debugging logs
-  console.log("Generated Static Params:", [
-    ...cityPaths,
-    ...specializationPaths,
-    ...programPaths,
-  ]);
-
   return [...cityPaths, ...specializationPaths, ...programPaths];
 }

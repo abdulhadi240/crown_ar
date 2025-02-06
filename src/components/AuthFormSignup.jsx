@@ -42,13 +42,8 @@ const AuthFormSignup = () => {
         ...formData,
         locale: "en",
       });
-
-      alert("Signup successful! Redirecting to login...");
-      console.log("Response:", response.data);
-
       navigate.push("/login"); // ✅ Redirect to the login page after successful signup
     } catch (error) {
-      console.error("Signup failed:", error.response?.data);
       setApiError(error.response?.data?.message || "Something went wrong.");
     } finally {
       setIsLoading(false);
