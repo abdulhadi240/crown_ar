@@ -179,7 +179,7 @@ export default function PrivacyPolicy({ params }) {
         <nav className="lg:w-64 lg:min-h-screen border-r mt-2 bg-background">
           <div className="sticky top-0 p-4 lg:p-6 mt-2">
             <button
-              className="lg:hidden mb-4 p-2 bg-accent rounded"
+              className="lg:hidden mb-4 p-2 bg-accent text-sm rounded"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen
@@ -217,7 +217,7 @@ export default function PrivacyPolicy({ params }) {
         {/* Content Section */}
         <main className="p-4 lg:p-6 overflow-hidden">
           <div className="max-w-5xl mx-auto">
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h1 className="text-xl lg:text-2xl font-bold mb-4">
               {isArabic ? "سياسة الخصوصية" : "Privacy Policy"}
             </h1>
             <div className="text-sm text-muted-foreground mb-6">
@@ -245,7 +245,7 @@ export default function PrivacyPolicy({ params }) {
                   <h2 className="text-xl font-semibold mb-2">
                     {section.title[locale]}
                   </h2>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-base">
                     {section.content[locale]}
                   </p>
                 </section>

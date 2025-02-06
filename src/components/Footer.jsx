@@ -71,7 +71,7 @@ export default function Footer() {
               <nav className="space-y-3">
                 {[
                   { name: "Home", link: "/" },
-                  { name: "Vision", link: "/academy-vision" },
+                  { name: "Our Services", link: "/academy-service" },
                   { name: "Customer Service", link: "/customer_service" },
                   { name: "Jobs", link: "/job" },
                   { name: "Team Staff", link: "/team-staff" },

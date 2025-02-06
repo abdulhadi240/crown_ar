@@ -236,10 +236,10 @@ export default function AcademyService({ params }) {
             {t.reasons.map((reason, index) => (
               <Card key={index}>
                 <CardHeader>
-                  <CardTitle className='text-primary'>{reason.title}</CardTitle>
+                  <CardTitle className='text-primary text-xl'>{reason.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>{reason.content}</p>
+                  <p className='text-base'>{reason.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -247,8 +247,8 @@ export default function AcademyService({ params }) {
         </section>
 
         <section className="text-center">
-          <h2 className="text-3xl font-bold mb-6 text-primary">{t.getStarted}</h2>
-          <p className="mb-8 max-w-2xl mx-auto">{t.description}</p>
+          <h2 className="text-3xl font-bold mb-6 text-primary ">{t.getStarted}</h2>
+          <p className="mb-8 max-w-2xl mx-auto text-base">{t.description}</p>
           <Link
             href={`/consulting-services`}
             className="text-white text-sm bg-secondary p-2 rounded-sm"
@@ -267,14 +267,14 @@ function ServiceCards({ services, isRTL }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-base">
       {services.map((service, index) => (
         <Card key={index} className="flex flex-col">
           <CardHeader>
-            <CardTitle className={`text-primary ${isRTL ? 'text-right' : 'text-left'}`}>
+            <CardTitle className={`text-primary text-base ${isRTL ? 'text-right' : 'text-left'}`}>
               {service.name}
             </CardTitle>
-            <CardDescription className={`${isRTL ? 'text-right' : 'text-left'}`}>
+            <CardDescription className={`text-base ${isRTL ? 'text-right' : 'text-left'}`}>
               {service.description}
             </CardDescription>
           </CardHeader>
@@ -296,7 +296,7 @@ function ServiceCards({ services, isRTL }) {
                       isRTL ? 'ml-2' : 'mr-2'
                     }`}
                   />
-                  <span>{feature}</span>
+                  <span className='text-base'>{feature}</span>
                 </li>
               ))}
             </ul>
