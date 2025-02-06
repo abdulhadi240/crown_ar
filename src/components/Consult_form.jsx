@@ -1,92 +1,163 @@
-'use client'
-import React from 'react'
+"use client"
 
-const Consult_form = ({title}) => {
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { useToast } from "@/components/ui/use-toast"
+
+const ConsultForm = ({ title }) => {
+  const { toast } = useToast()
+  const [loading, setLoading] = useState(false)
+
+  // Form State
+  const [formData, setFormData] = useState({
+    consultation_id: "2",
+    name: "",
+    email: "",
+    contact_number: "",
+    message: "",
+  })
+
+  // Handle Input Change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+
+  // Validate Form
+  const isFormValid = () => {
+    return formData.name && formData.email && formData.contact_number && formData.message
+  }
+
+  // Handle Form Submission
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!isFormValid()) {
+      toast({ title: "Error", description: "All fields are required!", variant: "destructive" })
+      return
+    }
+
+    setLoading(true)
+    const formDataToSend = new FormData()
+    formDataToSend.append("consultation_id", formData.consultation_id)
+    formDataToSend.append("name", formData.name)
+    formDataToSend.append("email", formData.email)
+    formDataToSend.append("contact_number", formData.contact_number)
+    formDataToSend.append("message", formData.message)
+
+    try {
+      const response = await fetch("https://backendbatd.clinstitute.co.uk/api/consultation_query", {
+        method: "POST",
+        headers: {
+          "Accept-Language": "en",
+        },
+        body: formDataToSend,
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Your consultation request has been submitted successfully!",
+          variant: "success",
+        })
+        setFormData({
+          consultation_id: "2",
+          name: "",
+          email: "",
+          contact_number: "",
+          message: "",
+        })
+      } else {
+        throw new Error(data.message || "Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
-    <div className='md:flex md:justify-center overflow-hidden'>
-    <form className="max-w-4xl md:mx-auto p-6 bg-white shadow-md mx-2 rounded">
-    <div className='flex flex-col md:flex-row justify-between md:gap-6 '>
+    <div className="md:flex md:justify-center overflow-hidden">
+      <form onSubmit={handleSubmit} className="max-w-4xl md:mx-auto p-6 bg-white shadow-md mx-2 rounded">
+        <div className="flex flex-col md:flex-row justify-between md:gap-6">
           <div className="mb-4">
-            <label htmlFor="full-name" className="block text-gray-700 font-bold mb-2">
-              Full Name
-            </label>
-            <input
-              id="full-name"
+            <Label htmlFor="name">Full Name</Label>
+            <Input
+              id="name"
+              name="name"
               type="text"
-              className="w-full md:w-72 px-3 py-2 border rounded-full"
+              value={formData.name}
+              onChange={handleInputChange}
               placeholder="Enter your name"
+              required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-              Email
-            </label>
-            <input
+            <Label htmlFor="email">Email</Label>
+            <Input
               id="email"
+              name="email"
               type="email"
-              className="w-full md:w-72 px-3 py-2 border rounded-full"
+              value={formData.email}
+              onChange={handleInputChange}
               placeholder="Enter your email"
+              required
             />
           </div>
+        </div>
+
+        <div className="flex md:flex-row flex-col justify-between md:gap-6">
+          <div className="mb-4 md:w-1/2">
+            <Label htmlFor="consultation">Consultation for</Label>
+            <Input id="consultation" type="text" value={title} readOnly className="bg-gray-200 cursor-not-allowed" />
           </div>
-          <div className='flex md:flex-row flex-col justify-between gap-6'>
-          <div className="mb-4 w-1/2">
-            <label
-              htmlFor="consultation"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Consultation for
-            </label>
-            <input
-              id="consultation"
-              value={title}
+          <div className="mb-4 md:w-1/2">
+            <Label htmlFor="contact_number">Mobile Number</Label>
+            <Input
+              id="contact_number"
+              name="contact_number"
               type="text"
-              className="w-full px-3 py-2 border rounded-full "
-              placeholder="Enter the topic of consultation"
-            />
-          </div>
-          <div className="mb-4 w-1/2">
-            <label
-              htmlFor="consultation"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Mobile Number
-            </label>
-            <input
-              id="consultation"
-              type="text"
-              className="w-full px-3 py-2 border rounded-full"
+              value={formData.contact_number}
+              onChange={handleInputChange}
               placeholder="Enter Your Number"
+              required
             />
           </div>
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="message"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              rows="4"
-              className="w-full px-3 py-2 border rounded-lg"
-              placeholder="Enter your message"
-            />
-          </div>
-          <div className='flex justify-center'>
-          <button
-              className="text-white py-2  rounded-full px-16 shadow-lg text-center flex justify-center font-medium tracking-wide mt-4 text-xs transition-all hover:scale-105"
-              style={{
-                background:
-                  "linear-gradient(90deg, #FBBA07 0%, #F8C63D 50%, #F5D273 100%)",
-              }}
-            >
-              Submit
-            </button>
-            </div>
-        </form></div>
+        </div>
+
+        <div className="mb-4">
+          <Label htmlFor="message">Message</Label>
+          <Textarea
+            id="message"
+            name="message"
+            rows="4"
+            value={formData.message}
+            onChange={handleInputChange}
+            placeholder="Enter your message"
+            required
+          />
+        </div>
+
+        <div className="flex justify-center">
+          <Button type="submit" disabled={loading} className="w-full bg-yellow-500 hover:bg-yellow-600 text-white rounded-full py-2">
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
+        </div>
+      </form>
+    </div>
   )
 }
 
-export default Consult_form
+export default ConsultForm

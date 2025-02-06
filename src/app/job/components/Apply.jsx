@@ -199,7 +199,7 @@ const Apply = () => {
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
                   Previous
                 </Button>
-                <Button type="submit" disabled={!isStepValid() || loading} className="w-[48%] text-white bg-green-500 hover:bg-green-600">
+                <Button type="submit" disabled={!isStepValid() || loading} className="w-[48%] text-white bg-primary ">
                   {loading ? "Submitting..." : "Submit Application"}
                 </Button>
               </div>
