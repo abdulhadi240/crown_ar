@@ -7,8 +7,8 @@ import Link from "next/link";
 const Latest_course = ({ courses }) => {
   return (
     <Wrapper>
-      <div className="flex justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="flex justify-center -z-10">
+        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-6">
           {courses.map((course) => (
             <div
               key={course.id}

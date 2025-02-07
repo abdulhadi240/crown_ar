@@ -38,7 +38,7 @@ const Page = async () => {
       {/* Hero Section */}
       <Design iamge={"/Images.png"} center={false} image_height>
         <h1 className="max-w-3xl md:mt-5 mt-10 text-4xl mx-10 font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Welcome to <span className="text-secondary font-bold">TrainEdge</span>{" "}
+          Welcome to <br/><span className="text-secondary font-bold">TrainEdge</span>{" "}
           <br />
           Expert Employee <br /> Training Solutions
         </h1>

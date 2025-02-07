@@ -50,7 +50,7 @@ export default function SearchForm({ cities, specialization }) {
   };
 
   return (
-    <div className="absolute bottom-[-350px] md:-bottom-56 md:right-20 md:w-[500px] max-w-xl bg-white rounded-lg shadow-2xl p-6 border border-gray-300">
+    <div className="absolute mt-10  md:-bottom-56 md:right-20 md:w-[500px] w-full bg-white rounded-lg shadow-2xl p-6 border border-gray-300">
       {/* Search Bar */}
       <div className="flex items-center bg-gray-100 border border-[#E5C17C] rounded-lg md:px-4 px-2 md:py-3 w-full">
         <input
@@ -58,7 +58,7 @@ export default function SearchForm({ cities, specialization }) {
           placeholder="Search in specific course"
           value={searchQuery} // Binds input to state
           onChange={(e) => setSearchQuery(e.target.value)} // Updates state on change
-          className="w-full bg-gray-100 text-gray-600 placeholder-gray-400 focus:outline-none text-base"
+          className="w-full bg-gray-100 text-gray-600  placeholder-gray-400 focus:outline-none text-base"
         />
         <button onClick={handleSearch} className="p-2 text-[#E5C17C] cursor-pointer hover:bg-secondary hover:text-white transition-all rounded-full">
           <AiOutlineSearch className="" size={26} />
@@ -69,13 +69,13 @@ export default function SearchForm({ cities, specialization }) {
       <div className="grid grid-cols-2 gap-4 mt-4 w-full">
         {/* Specialization Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700 text-sm md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg  text-gray-700 text-sm md:text-base focus:outline-none"
           value={selectedSpecialization}
           onChange={(e) => setSelectedSpecialization(e.target.value)}
         >
-          <option value="Specialization" className="text-base">Select Specialization</option>
+          <option value="Specialization" className="text-sm">Select Specialization</option>
           {specialization?.map((spec) => (
-            <option key={spec.slug} value={spec.slug}>
+            <option key={spec.slug} value={spec.slug} className='text-sm'>
               {spec.name}
             </option>
           ))}
@@ -83,7 +83,7 @@ export default function SearchForm({ cities, specialization }) {
 
         {/* Language Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700  md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-sm text-gray-700  md:text-base focus:outline-none"
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
         >
@@ -93,11 +93,11 @@ export default function SearchForm({ cities, specialization }) {
 
         {/* City Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700  md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-sm text-gray-700  md:text-base focus:outline-none"
           value={selectedCity}
           onChange={(e) => setSelectedCity(e.target.value)}
         >
-          <option value="">Select City</option>
+          <option value="" className='text-sm'>Select City</option>
           {cities?.map((city) => (
             <option key={city.slug} value={city.slug}>
               {city.name}
@@ -107,11 +107,11 @@ export default function SearchForm({ cities, specialization }) {
 
         {/* Month Dropdown */}
         <select
-          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-base text-gray-700  md:text-lg focus:outline-none"
+          className="w-full p-3 bg-white border border-[#E5C17C] rounded-lg text-sm text-gray-700  md:text-base focus:outline-none"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
-          <option value="">Select Month</option>
+          <option value="" className='text-sm'>Select Month</option>
           {months.map((month) => (
             <option key={month.value} value={month.value}>
               {month.name}

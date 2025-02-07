@@ -12,7 +12,7 @@ const BlogPostCarousel = ({data}) => {
             {data?.data.map((post, index) => (
               <Link href={`/${post.slug}`}
                 key={index}
-                className="flex-shrink-0 border-secondary group border-2 rounded-lg overflow-hidden shadow-lg"
+                className="flex-shrink-0 w-40 h-40  border-secondary group border-2 rounded-lg overflow-hidden shadow-lg"
               >
                 <Image
                   src={post.image}
@@ -22,7 +22,7 @@ const BlogPostCarousel = ({data}) => {
                   className="group-hover:scale-110 transition-all"
                 />
                 <div className="py-4 text-start">
-                  <h3 className="font-bold text-base text-center">{post.name}</h3>
+                  <h3 className="font-bold text-sm text-center">{post.name}</h3>
                 </div>
               </Link>
             ))}

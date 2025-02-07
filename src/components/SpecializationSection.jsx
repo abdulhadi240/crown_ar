@@ -10,41 +10,24 @@ const SpecializationSection = ({ data }) => {
   return (
   <div className="container md:px-16 p-4 ">
 <div className="mb-6 -mt-16">
-  <div className="flex space-x-4 overflow-x-auto py-2">
-    {data && data.length > 0 ? (
-      data.map((spec) => (
-        <><div
-          key={spec.id}
-          onClick={() => setSelectedSpec(spec)}
-          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${selectedSpec && selectedSpec.id === spec.id
-              ? 'bg-primary text-white border-blue-500'
-              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
-        >
-          {spec.name}
-        </div><div
-          key={spec.id}
-          onClick={() => setSelectedSpec(spec)}
-          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${selectedSpec && selectedSpec.id === spec.id
-              ? 'bg-primary text-white border-blue-500'
-              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
-        >
-            {spec.name}
-          </div>
-          <div
-          key={spec.id}
-          onClick={() => setSelectedSpec(spec)}
-          className={`w-48 px-4 py-4 h-24 items-center flex cursor-pointer rounded-lg text-base border transition-colors whitespace-nowrap ${selectedSpec && selectedSpec.id === spec.id
-              ? 'bg-primary text-white border-blue-500'
-              : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
-        >
-            {spec.name}
-          </div>
-          </>
-      ))
-    ) : (
-      <p>No specializations available</p>
-    )}
-  </div>
+<div className="flex space-x-4 overflow-x-auto py-2 custom-scrollbar">
+  {data && data.length > 0 ? (
+    data.map((spec) => (
+      <div
+        key={spec.id}
+        onClick={() => setSelectedSpec(spec)}
+        className={`w-48 px-4 py-4 h-20 flex items-center justify-center text-center cursor-pointer rounded-lg text-base border transition-colors  ${selectedSpec && selectedSpec.id === spec.id
+          ? 'bg-primary text-white border-blue-500'
+          : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
+      >
+        {spec.name.split(' ')[0]}
+      </div>
+    ))
+  ) : (
+    <p>No specializations available</p>
+  )}
+</div>
+
 </div>
 
 
@@ -69,7 +52,7 @@ const SpecializationSection = ({ data }) => {
       ))
     ) : (
       <div className='flex justify-center'>
-      <p className='flex justify-center text-center text-sm mx-auto'>No courses available for this specialization.</p>
+      <p className='flex justify-center text-center text-sm mx-auto w-screen'>No courses available for this specialization.</p>
       </div>
     )}
   </div>

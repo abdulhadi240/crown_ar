@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,11 +34,12 @@ export const metadata = {
   },
 };
 
-const Header = ({ secondary, icon_white , bg }) => {
+const Header = ({ secondary, icon_white, bg }) => {
   const [scrolled, setScrolled] = useState(false);
 
   // Function to handle scroll event
   const handleScroll = () => {
+    console.log(window.scrollY); // Debugging the scroll position
     if (window.scrollY > 50) {  // Change this value based on when you want the effect to trigger
       setScrolled(true);
     } else {
@@ -56,29 +57,27 @@ const Header = ({ secondary, icon_white , bg }) => {
 
   return (
     <>
-      <header className="md:hidden z-50">
-        <MobileMenu color={icon_white ? 'white' : 'black'} bg={bg}/>
+      <header className="md:hidden z-[9999]">
+        <MobileMenu color={icon_white ? 'white' : 'black'} bg={bg} />
       </header>
 
-      <section>
+      <section className="fixed top-0 w-full z-[999]">
         {/* Main Navigation */}
         <nav
-          className={`relative z-50 text-sm items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex transition-all duration-300 ease-in-out sticky top-0 ${
-            scrolled ? 'bg-white shadow-lg' : ''
+          className={`z-[999] text-sm items-center justify-between hidden p-4 text-white bg-primary ${secondary ? 'bg-opacity-100' : 'bg-opacity-70'} md:flex transition-all duration-300 ease-in-out ${
+            scrolled ? 'bg-opacity-100 shadow-lg z-[99999]' : 'z-[50]'
           }`}
         >
           {/* Logo */}
           <div className="flex items-center justify-between">
             <Link href="/">
               <Image
-                src={scrolled ? "/logo13-white.png" : "/logo13.png"}  // Update the logo based on scroll
-                alt="British Academy logo"
+                src={"/logo13.png"}  // Update the logo based on scroll
+                alt="Crown Academy logo"
                 width={120}
                 height={120}
                 priority
-                className={`absolute top-0 -mt-7 transition-all duration-300 ease-in-out ${
-                  scrolled ? 'filter brightness-0 invert' : ''
-                }`}
+                className={`absolute top-0 -mt-7 transition-all duration-300 ease-in-out`}
               />
             </Link>
           </div>
@@ -93,8 +92,7 @@ const Header = ({ secondary, icon_white , bg }) => {
           </div>
 
           {/* Login and Sign Up */}
-          <Login_/>
-          
+          <Login_ />
         </nav>
       </section>
     </>

@@ -16,7 +16,7 @@ const Wrapper = ({ children }) => {
       </svg>
 
       {/* Children content */}
-      <div className="relative z-10">{children}</div>
+      <div className="relative">{children}</div>
     </div>
   );
 };
