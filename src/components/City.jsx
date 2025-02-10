@@ -127,48 +127,46 @@ const City = ({
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: filteredCourses.map((course, index) => ({
+    "itemListElement": (filteredCourses || []).map((course, index) => ({
       "@type": "ListItem",
-      position: index + 1,
-      item: {
+      "position": index + 1,
+      "item": {
         "@type": "Course",
-        name: course.name,
-        description: course.description || "No description available",
-        url: `https://clinstitute.co.uk/${params}/${course.specialization_slug}/${course.slug}`,
-        provider: {
+        "name": course?.name || "Unnamed Course",
+        "description": course?.description || "No description available.",
+        "url": `https://clinstitute.co.uk/${params || "default-category"}/${course?.specialization_slug || "default-specialization"}/${course?.slug || "default-course"}`,
+        "provider": {
           "@type": "Organization",
-          name: "Crown Academy",
-          sameAs: "https://clinstitute.co.uk/",
+          "name": "Crown Academy",
+          "sameAs": "https://clinstitute.co.uk/"
         },
-        image: {
+        "image": {
           "@type": "ImageObject",
-          url: course.image || "/logocrown.webp",
+          "url": course?.image || "https://clinstitute.co.uk/default-course-image.webp"
         },
-        hasCourseInstance: {
+        "hasCourseInstance": {
           "@type": "CourseInstance",
-          courseMode: "Onsite",
-          courseWorkload: "PT22H",
-          courseSchedule: {
+          "courseMode": "Onsite",
+          "courseWorkload": "PT22H",
+          "courseSchedule": {
             "@type": "Schedule",
-            duration: "P1W",
-            repeatCount: "1",
-            repeatFrequency: "Weekly",
-          },
+            "duration": "P1W",
+            "repeatCount": "1",
+            "repeatFrequency": "Weekly"
+          }
         },
-        offers: {
+        "offers": {
           "@type": "Offer",
-          category: "Paid",
-          price: course.price || "3000",
-          priceCurrency: "GBP",
-          availability: "https://schema.org/InStock",
-          validFrom:
-            course.available_dates.length > 0
-              ? course.available_dates[0].date
-              : null,
-        },
-      },
-    })),
+          "category": "Paid",
+          "price": course?.price || "3000",
+          "priceCurrency": "GBP",
+          "availability": "https://schema.org/InStock",
+          "validFrom": (course?.available_dates?.length > 0 && course?.available_dates[0]?.date) || "2025-01-01"
+        }
+      }
+    }))
   };
+  
 
   return (
     <>

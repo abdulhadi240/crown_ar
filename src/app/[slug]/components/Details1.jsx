@@ -29,72 +29,62 @@ const Details1 = ({ course }) => {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "Course",
-    name: course.title,
-    description: course.summary || "No description available",
-    category: course.category || "Training",
-    provider: {
+    "name": course?.title || "Unnamed Course",
+    "description": course?.summary || "No description available.",
+    "category": course?.category || "Training",
+    "provider": {
       "@type": "Organization",
-      name: "Crown Academy",
-      sameAs: "https://clinstitute.co.uk/",
+      "name": "Crown Academy",
+      "sameAs": "https://clinstitute.co.uk/"
     },
-    image: {
+    "image": {
       "@type": "ImageObject",
-      url: course.image || "/logocrown.webp",
+      "url": course?.image || "https://clinstitute.co.uk/default-course-image.webp"
     },
-    hasCourseInstance: {
+    "hasCourseInstance": {
       "@type": "CourseInstance",
-      courseMode: "Onsite",
-      courseWorkload: "PT22H",
-      courseSchedule: {
+      "courseMode": "Onsite",
+      "courseWorkload": "PT22H",
+      "courseSchedule": {
         "@type": "Schedule",
-        duration: "P1W",
-        repeatCount: "1",
-        repeatFrequency: "Weekly",
-        startDate:
-          course.available_dates.length > 0
-            ? course.available_dates[0].date
-            : null,
-        endDate:
-          course.available_dates.length > 1
-            ? course.available_dates[1].date
-            : course.available_dates[0].date,
+        "duration": "P1W",
+        "repeatCount": "1",
+        "repeatFrequency": "Weekly",
+        "startDate": (course?.available_dates?.length > 0 && course?.available_dates[0]?.date) || "2025-01-01",
+        "endDate": (course?.available_dates?.length > 1 && course?.available_dates[1]?.date) || (course?.available_dates?.length > 0 && course?.available_dates[0]?.date) || "2025-01-07"
       },
-      location: {
+      "location": {
         "@type": "Place",
-        name: course.available_cities.map((city) => city.name).join(", "),
-        address: {
+        "name": course?.available_cities?.length > 0 
+          ? course?.available_cities.map(city => city.name).join(", ") 
+          : "Default City",
+        "address": {
           "@type": "PostalAddress",
-          addressLocality:
-            course.available_cities.length > 0
-              ? course.available_cities[0].name
-              : "Unknown Location",
-        },
-      },
+          "addressLocality": (course?.available_cities?.length > 0 && course?.available_cities[0]?.name) || "Unknown Location"
+        }
+      }
     },
-    offers: {
+    "offers": {
       "@type": "Offer",
-      category: "Paid",
-      price: course.price || "3200.00",
-      priceCurrency: "GBP",
-      availability: "https://schema.org/InStock",
-      validFrom:
-        course.available_dates.length > 0
-          ? course.available_dates[0].date
-          : null,
+      "category": "Paid",
+      "price": course?.price || "3200.00",
+      "priceCurrency": "GBP",
+      "availability": "https://schema.org/InStock",
+      "validFrom": (course?.available_dates?.length > 0 && course?.available_dates[0]?.date) || "2025-01-01"
     },
-    review: {
+    "review": {
       "@type": "Review",
-      datePublished: new Date().toISOString(),
-      dateModified: new Date().toISOString(),
-      author: {
+      "datePublished": new Date().toISOString(),
+      "dateModified": new Date().toISOString(),
+      "author": {
         "@type": "Person",
-        name: "Admin",
+        "name": "Admin"
       },
-      reviewRating: {
+      "reviewRating": {
         "@type": "Rating",
-        ratingValue: "4.6",
-      },
-    },
+        "ratingValue": "4.6"
+      }
+    }
   };
 
   return (

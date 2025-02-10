@@ -124,54 +124,53 @@ const Specialization = ({
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: filteredCourses.map((course, index) => ({
+    "itemListElement": (filteredCourses || []).map((course, index) => ({
       "@type": "ListItem",
-      position: index + 1,
-      item: {
+      "position": index + 1,
+      "item": {
         "@type": "Course",
-        name: course.title,
-        description: course.summary || "No description available",
-        category: course.category || "Training",
-        url: `https://clinstitute.co.uk/${params}/${course.available_cities[0].slug}/${course.slug}`,
-        provider: {
+        "name": course?.title || "Unnamed Course",
+        "description": course?.summary || "No description available.",
+        "category": course?.category || "Training",
+        "url": `https://clinstitute.co.uk/${params || "default-category"}/${(course?.available_cities?.[0]?.slug) || "default-city"}/${course?.slug || "default-course"}`,
+        "provider": {
           "@type": "Organization",
-          name: "Crown Academy",
-          sameAs: "https://clinstitute.co.uk/",
+          "name": "Crown Academy",
+          "sameAs": "https://clinstitute.co.uk/"
         },
-        image: {
+        "image": {
           "@type": "ImageObject",
-          url: course.image || "/logocrown.webp",
+          "url": course?.image || "https://clinstitute.co.uk/default-course-image.webp"
         },
-        hasCourseInstance: {
+        "hasCourseInstance": {
           "@type": "CourseInstance",
-          courseMode: "Onsite",
-          courseWorkload: "PT22H",
-          courseSchedule: {
+          "courseMode": "Onsite",
+          "courseWorkload": "PT22H",
+          "courseSchedule": {
             "@type": "Schedule",
-            duration: "P1W",
-            repeatCount: "1",
-            repeatFrequency: "Weekly",
+            "duration": "P1W",
+            "repeatCount": "1",
+            "repeatFrequency": "Weekly"
           },
-          location: {
+          "location": {
             "@type": "Place",
-            name: course.available_cities.map((city) => city.name).join(", "),
-          },
+            "name": course?.available_cities?.length > 0 
+              ? course?.available_cities.map(city => city.name).join(", ") 
+              : "Default City"
+          }
         },
-        offers: {
+        "offers": {
           "@type": "Offer",
-          category: "Paid",
-          price: course.price || "3000",
-          priceCurrency: "GBP",
-          availability: "https://schema.org/InStock",
-          validFrom:
-            course.available_dates.length > 0
-              ? course.available_dates[0].date
-              : null,
-        },
-      },
-    })),
+          "category": "Paid",
+          "price": course?.price || "3000",
+          "priceCurrency": "GBP",
+          "availability": "https://schema.org/InStock",
+          "validFrom": (course?.available_dates?.length > 0 && course?.available_dates[0]?.date) || "2025-01-01"
+        }
+      }
+    }))
   };
-
+  
   return (
     <>
       {/* Inject JSON-LD for SEO */}
