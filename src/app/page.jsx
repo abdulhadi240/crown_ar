@@ -18,7 +18,7 @@ const RequestCourse = dynamic(() => import("../components/RequestCourse"));
 
 const Page = async () => {
   const cities = await fetchData(
-    "https://backendbatd.clinstitute.co.uk/api/cities?per_page=5&page=1"
+    "https://backendbatd.clinstitute.co.uk/api/cities?per_page=6&page=1"
   );
   const cities_all = await fetchData(
     "https://backendbatd.clinstitute.co.uk/api/cities"

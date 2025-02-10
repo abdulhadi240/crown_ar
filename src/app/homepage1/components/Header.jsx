@@ -156,6 +156,8 @@ const Header = ({ secondary, icon_white, bg }) => {
             ))}
           </div>
 
+         
+
           {/* Login and Sign Up */}
           <Login_ />
         </nav>
