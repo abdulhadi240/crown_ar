@@ -64,7 +64,7 @@ const Page = () => {
     <div>
       <Design secondary={true} bg />
       <div className='flex justify-center gap-4 mb-6 select-none text-sm'>
-        <div className='flex items-center p-1 mt-10 text-white rounded-full md:p-2 md:px-4 bg-primary'>
+        <div className='flex items-center p-1 mt-20 text-white rounded-full md:p-2 md:px-4 bg-primary'>
           <div
             onClick={() => handleSelect('Personal_Information')}
             className={cn('p-1 px-2 cursor-pointer', select === 'Personal_Information' && 'border-primary rounded-full text-white transition-all delay-200')}

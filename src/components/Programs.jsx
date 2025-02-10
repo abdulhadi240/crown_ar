@@ -130,6 +130,7 @@ const Programs = ({
         input={false}
         image_height={false}
         search_height={true}
+        search
       >
             <SectionTitle1 title="Courses By" highlight={slug} />
 

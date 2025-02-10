@@ -111,13 +111,14 @@ export default function TeamStaff({ params }) {
 
   return (
     <>
-            <Design  iamge={'/consulting.webp'}>
+            <Design  iamge={'/consulting.webp'} search>
     <div className="w-screen">
     <h1 className=" text-center mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
           Meet Our <span className="text-secondary font-bold">Team</span>{" "}
         </h1>
         </div>
     </Design>
+    {/** 
       <div className={`container mx-auto px-2 sm:px-4 py-6 sm:py-4 ${isArabic ? "rtl text-right" : "ltr text-left"}`}>
         <Tabs defaultValue="all" className="mb-6 sm:mb-8">
           <TabsList className="grid w-full grid-cols-3">
@@ -191,6 +192,7 @@ export default function TeamStaff({ params }) {
           </div>
         </section>
       </div>
+      */}
     </>
   );
 }

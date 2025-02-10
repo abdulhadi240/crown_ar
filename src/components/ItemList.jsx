@@ -16,32 +16,26 @@ export default function CourseListing({
   params,
   cities,
   cities_,
+  check_city_courses
 }) {
-  // Initialize selectedOptions state with empty strings for selected date and city
-  const [selectedOptions, setSelectedOptions] = useState(
-    filteredCourses
-      ? filteredCourses.map((course) => ({
-          courseId: course.id,
-          selectedDate: "",  // Default to empty string for date
-          selectedCity: "",  // Default to empty string for city
-        }))
-      : []
-  );
+  // Use object state instead of array for better updates
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   // Handle change in selected date or city for a course
   const handleSelectChange = (courseId, type, value) => {
-    setSelectedOptions((prev) =>
-      prev.map((option) =>
-        option.courseId === courseId ? { ...option, [type]: value } : option
-      )
-    );
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [courseId]: {
+        ...prev[courseId],
+        [type]: value,
+      },
+    }));
   };
 
   return (
     <>
       <Card className="w-full max-w-6xl mx-auto shadow-md rounded-lg">
         <CardContent className="p-6">
-          {/* Desktop View */}
           {cities ? (
             <>
               <div className="hidden md:block">
@@ -58,22 +52,14 @@ export default function CourseListing({
                   </TableHeader>
                   <TableBody>
                     {cities.map((course) => (
-                      <TableRow
-                        key={course.id}
-                        className="hover:bg-gray-50 transition-colors"
-                      >
-                        <Link href={`/${course.slug}`}>
-                          <TableCell
-                            className={`py-3 px-4 text-sm font-medium text-primary hover:text-secondary`}
-                          >
-                            {course.name}
-                          </TableCell>
-                        </Link>
-
+                      <TableRow key={course.id} className="hover:bg-gray-50">
+                        <TableCell className="py-3 px-4 text-sm font-medium text-primary hover:text-secondary">
+                          <Link href={`/${course.slug}`}>{course.name}</Link>
+                        </TableCell>
                         <TableCell className="py-3 px-4 text-center">
                           <Link
                             href={`/${course.slug}`}
-                            className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary transition-colors"
+                            className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary"
                           >
                             View All Courses
                           </Link>
@@ -82,37 +68,6 @@ export default function CourseListing({
                     ))}
                   </TableBody>
                 </Table>
-              </div>
-              <div className="space-y-4 md:hidden">
-                {cities.map((course) => (
-                  <Card
-                    key={course.id}
-                    className="rounded-lg shadow-sm border border-gray-200"
-                  >
-                    <CardContent className="p-4 space-y-4">
-                      <Link
-                        href={`/${course.slug}`}
-                        className={`text-base font-semibold items-center flex  ${
-                          course.highlight ? "text-amber-500" : "text-gray-800"
-                        }`}
-                      >
-                        {course.name}
-                      </Link>
-                      <div className="flex flex-col gap-4"></div>
-                      <div className="flex items-center justify-between mt-4">
-                        <span className="text-base font-semibold text-gray-800">
-                          {course.price}
-                        </span>
-                        <Link
-                          href={`/${course.slug}`}
-                          className="px-4 py-2 text-sm font-medium text-white bg-amber-500 rounded-lg hover:bg-amber-600 transition-colors"
-                        >
-                          View All Courses
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
               </div>
             </>
           ) : (
@@ -140,37 +95,20 @@ export default function CourseListing({
                   </TableHeader>
                   <TableBody>
                     {filteredCourses.map((course) => (
-                      <TableRow
-                        key={course.id}
-                        className="hover:bg-gray-50 transition-colors"
-                      >
-                        <Link
-                          href={`${
-                            cities_
-                              ? `/${params}/${course.specialization_slug}/${course.slug}`
-                              : `/${params}/${course.available_cities[0].slug}/${course.slug}`
-                          }`}
-                        >
-                          <TableCell
-                            className={`py-3 px-4 text-sm font-medium text-primary hover:text-secondary`}
+                      <TableRow key={course.id} className="hover:bg-gray-50">
+                        <TableCell className="py-3 px-4 text-sm font-medium text-primary hover:text-secondary">
+                          <Link
+                            href={`${check_city_courses ? `/${params}/${course.category_slug}/${course.slug}` : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`}`}
                           >
                             {course.title}
-                          </TableCell>
-                        </Link>
+                          </Link>
+                        </TableCell>
                         <TableCell className="py-3 px-4">
                           <select
                             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
-                            value={
-                              selectedOptions.find(
-                                (option) => option.courseId === course.id
-                              )?.selectedDate || ""
-                            }
+                            value={selectedOptions[course.id]?.selectedDate || ""}
                             onChange={(e) =>
-                              handleSelectChange(
-                                course.id,
-                                "selectedDate",
-                                e.target.value
-                              )
+                              handleSelectChange(course.id, "selectedDate", e.target.value)
                             }
                           >
                             <option value="" disabled>
@@ -186,17 +124,9 @@ export default function CourseListing({
                         <TableCell className="py-3 px-4">
                           <select
                             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
-                            value={
-                              selectedOptions.find(
-                                (option) => option.courseId === course.id
-                              )?.selectedCity || ""
-                            }
+                            value={selectedOptions[course.id]?.selectedCity || ""}
                             onChange={(e) =>
-                              handleSelectChange(
-                                course.id,
-                                "selectedCity",
-                                e.target.value
-                              )
+                              handleSelectChange(course.id, "selectedCity", e.target.value)
                             }
                           >
                             <option value="" disabled>
@@ -214,16 +144,8 @@ export default function CourseListing({
                         </TableCell>
                         <TableCell className="py-3 px-4 text-center">
                           <Link
-                            href={`/register?course=${course.slug}&date=${
-                              selectedOptions.find(
-                                (option) => option.courseId === course.id
-                              )?.selectedDate || ""
-                            }&city=${
-                              selectedOptions.find(
-                                (option) => option.courseId === course.id
-                              )?.selectedCity || ""
-                            }`}
-                            className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary transition-colors"
+                            href={`/register?course=${course.slug}&date=${selectedOptions[course.id]?.selectedDate || ""}&city=${selectedOptions[course.id]?.selectedCity || ""}`}
+                            className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary"
                           >
                             Register
                           </Link>
@@ -232,115 +154,6 @@ export default function CourseListing({
                     ))}
                   </TableBody>
                 </Table>
-              </div>
-              <div className="space-y-4 md:hidden">
-                {filteredCourses.map((course) => (
-                  <Card
-                    key={course.id}
-                    className="rounded-lg shadow-sm border border-gray-200"
-                  >
-                    <CardContent className="p-4 space-y-4">
-                      <Link
-                        href={`/${params}/${course.available_cities[0].slug}/${course.slug}`}
-                        className={`text-base font-semibold items-center flex  ${
-                          course.highlight ? "text-amber-500" : "text-gray-800"
-                        }`}
-                      >
-                        {course.title}
-                      </Link>
-                      <div className="flex flex-col gap-4">
-                        {/* Dropdown for Dates */}
-                        <div className="w-full">
-                          <label
-                            htmlFor="date-select"
-                            className="block text-sm font-medium text-gray-700 mb-1"
-                          >
-                            Select Date
-                          </label>
-                          <select
-                            id="date-select"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-amber-400 focus:border-amber-400 bg-gray-50"
-                            value={
-                              selectedOptions.find(
-                                (option) => option.courseId === course.id
-                              )?.selectedDate || ""
-                            }
-                            onChange={(e) =>
-                              handleSelectChange(
-                                course.id,
-                                "selectedDate",
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option value="" disabled>
-                              Select Date
-                            </option>
-                            {course.available_dates.map((date) => (
-                              <option key={date.id} value={date.date}>
-                                {date.date}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-
-                        {/* Dropdown for Cities */}
-                        <div className="w-full">
-                          <label
-                            htmlFor="city-select"
-                            className="block text-sm font-medium text-gray-700 mb-1"
-                          >
-                            Select City
-                          </label>
-                          <select
-                            id="city-select"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-amber-400 focus:border-amber-400 bg-gray-50"
-                            value={
-                              selectedOptions.find(
-                                (option) => option.courseId === course.id
-                              )?.selectedCity || ""
-                            }
-                            onChange={(e) =>
-                              handleSelectChange(
-                                course.id,
-                                "selectedCity",
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option value="" disabled>
-                              Select City
-                            </option>
-                            {course.available_cities.map((city) => (
-                              <option key={city.id} value={city.id}>
-                                {city.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between mt-4">
-                        <span className="text-base font-semibold text-gray-800">
-                          {course.price}
-                        </span>
-                        <Link
-                          href={`/register?course=${course.slug}&date=${
-                            selectedOptions.find(
-                              (option) => option.courseId === course.id
-                            )?.selectedDate || ""
-                          }&city=${
-                            selectedOptions.find(
-                              (option) => option.courseId === course.id
-                            )?.selectedCity || ""
-                          }`}
-                          className="px-4 py-2 text-sm font-medium text-white bg-amber-500 rounded-lg hover:bg-amber-600 transition-colors"
-                        >
-                          Register
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
               </div>
             </>
           )}

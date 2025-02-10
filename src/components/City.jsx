@@ -15,7 +15,8 @@ const City = ({
   category,
   city,
   specialization,
-  cities
+  cities,
+  check_city_courses
 }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -133,9 +134,13 @@ const City = ({
         input={false}
         image_height={false}
         search_height={true}
+        search
       >
       <div>
-      <SectionTitle1 title="Courses By" highlight={slug} />
+      <SectionTitle1 title="Courses By" highlight={slug.replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+      .split(' ') // Split the string into an array of words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(' ')} />
 
       </div>
         <div className="relative flex items-center justify-center ">
@@ -242,7 +247,7 @@ const City = ({
       </Design>
 
       <div className="mt-6">
-        <CourseListing filteredCourses={filteredCourses} cities_={cities} params={slug}/>
+        <CourseListing check_city_courses filteredCourses={filteredCourses} cities_={cities} params={slug}/>
       </div>
 
 {/* Pagination Controls */}

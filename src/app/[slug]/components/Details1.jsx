@@ -183,7 +183,7 @@ const Details1 = ({ course }) => {
           </div>
         </div>
         <div className="hidden md:block">
-        <div className="md:sticky md:text-base md:top-24 md:w-[350px] md:h-[390px] md:p-5 bg-white border border-gray-300 md:rounded-lg md:shadow-md transition-all md:duration-300">
+        <div className="md:sticky md:text-base md:top-24 md:w-[350px] md:h-auto md:p-5 bg-white border border-gray-300 md:rounded-lg md:shadow-md transition-all md:duration-300">
           <h1 className="text-xl font-semibold text-gray-800">
             {course.title}
           </h1>

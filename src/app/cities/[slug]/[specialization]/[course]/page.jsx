@@ -150,9 +150,12 @@ const page = async ({ params }) => {
     </Head>
       {type === "courses" ? (
         <>
-        <Design icon_white iamge={"/image_consult.png"} center input={false} image_height={false}>
+        <Design icon_white iamge={"/image_consult.png"} center search input={false} image_height={false}>
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-        {data?.data.title}
+        {data?.data.title.replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+      .split(' ') // Split the string into an array of words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(' ')}
         </h1>
       </Design>
           <Suspense fallback={"loading..."}>

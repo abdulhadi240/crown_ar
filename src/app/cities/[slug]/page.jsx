@@ -109,7 +109,10 @@ const page = async ({ params }) => {
       <HeaderSection />
       <div>
         <section className="mt-12 mb-12 text-center">
-          <SectionTitle title="Courses by" highlight={params.slug} />
+          <SectionTitle title="Courses by" highlight={params.slug.replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+      .split(' ') // Split the string into an array of words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(' ')} />
 
           <div className="flex justify-center my-6">
             <Image

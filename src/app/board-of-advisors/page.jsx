@@ -114,13 +114,14 @@ export default function BoardOfAdvisers({ params }) {
 
   return (
     <>
-        <Design  iamge={'/consulting.webp'}>
+        <Design search  iamge={'/consulting.webp'}>
     <div className="w-screen">
     <h1 className=" text-center mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
           Check Our <span className="text-secondary font-bold">Advisors</span>{" "}
         </h1>
         </div>
     </Design>
+    {/** 
       <div
         className={`container mx-auto px-2 sm:px-4 py-6 sm:py-8 ${
           isArabic ? "rtl text-right" : "ltr text-left"
@@ -207,6 +208,7 @@ export default function BoardOfAdvisers({ params }) {
           </Accordion>
         </section>
       </div>
+      */}
     </>
   );
 }

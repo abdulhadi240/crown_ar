@@ -13,93 +13,223 @@ const translations = {
       'Take the first step towards unlocking your full potential. Contact us today to learn more about our services and how we can tailor them to your unique needs.',
     schedule: 'Schedule A Consultation',
     tabs: {
-      all: 'All Services',
-      academic: 'Academic',
-      support: 'Support',
+      all: 'Training',
+      academic: 'Corporate',
+      support: 'Consulting',
     },
     services: [
       {
-        name: 'Personalized Learning Plans',
+        name: 'Executive Leadership Development',
         description:
-          'Tailored educational strategies designed to meet individual student needs and learning styles.',
+          'Develop leadership skills to manage teams and drive organizational success.',
         features: [
-          'Customized curriculum',
-          'Regular progress assessments',
-          'Adaptive learning technologies',
-          'One-on-one mentoring sessions',
+          'Leadership styles and strategies',
+          'Emotional intelligence in leadership',
+          'Decision-making and problem-solving skills',
         ],
       },
       {
-        name: 'Expert Tutoring',
+        name: 'Industry-Specific Certifications',
         description:
-          'Access to highly qualified tutors across various subjects to support and enhance student learning.',
+          'Get certified in sectors like finance, healthcare, IT, and project management.',
         features: [
-          'Subject matter experts',
-          'Flexible scheduling',
-          'In-person and online options',
-          'Small group and individual sessions',
+          'Industry-recognized credentials',
+          'Specialized training modules',
+          'Exam preparation and study materials',
         ],
       },
       {
-        name: 'State-of-the-Art Facilities',
+        name: 'Soft Skills Enhancement',
         description:
-          'Modern, well-equipped learning environments that foster creativity, collaboration, and academic excellence.',
+          'Build essential interpersonal skills for better workplace communication and collaboration.',
         features: [
-          'Advanced technology labs',
-          'Multimedia classrooms',
-          'Collaborative study spaces',
-          'Extensive library resources',
+          'Communication and negotiation skills',
+          'Conflict resolution strategies',
+          'Time management and productivity',
         ],
       },
       {
-        name: 'Career Counseling',
+        name: ' Compliance & Regulatory Training',
         description:
-          'Comprehensive guidance to help students explore career paths and make informed decisions about their future.',
+          'Stay ahead of industry regulations with courses focused on compliance and legal standards.',
         features: [
-          'Career aptitude assessments',
-          'Industry expert talks',
-          'Internship placements',
-          'College application support',
+          'Legal and ethical standards in business',
+          'Anti-money laundering (AML) & counter-terrorism financing (CTF)',
+          'Industry-specific compliance best practices',
         ],
       },
       {
-        name: 'Extracurricular Activities',
+        name: 'Career Advancement Programs',
         description:
-          'A wide range of programs to develop well-rounded individuals and foster personal growth.',
+          'Prepare for career transitions or progress in your current role with tailored learning paths.',
         features: [
-          'Sports teams and clubs',
-          'Arts and music programs',
-          'Community service initiatives',
-          'Leadership development workshops',
+          'Personal branding and networking',
+          'Resume building and job search strategies',
+          'Interview preparation and negotiation techniques',
         ],
       },
       {
-        name: 'Parent-Teacher Collaboration',
+        name: 'Technical Skills Development',
         description:
-          'Strong partnerships between educators and families to support student success.',
+          'Learn the technical skills necessary to stay competitive in your field.',
         features: [
-          'Regular parent-teacher conferences',
-          'Online progress tracking',
-          'Parent workshops and seminars',
-          'Family engagement events',
+          'Software training (Excel, CRM systems, etc.)',
+          'Project management tools (JIRA, Trello, etc.)',
+          ' Data analysis and coding fundamentals',
+        ],
+      },
+      {
+        name: 'Custom Training Programs',
+        description:
+          'Develop training tailored to the specific needs of your organization.',
+        features: [
+          'Needs assessment and skill gap analysis',
+          'Custom course creation',
+          'Flexible delivery methods (on-site, online, blended)',
+        ],
+      },
+      {
+        name: 'Team Building Workshops',
+        description:
+          'Build strong, collaborative teams through targeted workshops and group activities.',
+        features: [
+          'Trust-building exercises',
+          'Problem-solving in teams',
+          'Effective communication and collaboration',
+        ],
+      },
+      {
+        name: 'Leadership Development',
+        description:
+          'Cultivate effective leaders who can inspire and drive teams toward success.',
+        features: [
+          'Strategic thinking and vision',
+          'Change management',
+          'Employee motivation and engagement',
+        ],
+      },
+      {
+        name: 'Compliance & Risk Management',
+        description:
+          'Ensure your company meets legal and regulatory standards with specialized compliance training.',
+        features: [
+          'Anti-bribery and corruption training',
+          'Health and safety compliance',
+          'Industry-specific risk management',
+        ],
+      },
+      {
+        name: 'Employee Motivation & Retention',
+        description:
+          'Keep your workforce motivated with training that promotes engagement and reduces turnover. ',
+        features: [
+          'Employee recognition programs',
+          'Career development and growth opportunities',
+          'Enhancing workplace culture and satisfaction',
+        ],
+      },
+      {
+        name: 'Performance Improvement',
+        description:
+          'Improve the overall performance and efficiency of teams and individuals within your organization.',
+        features: [
+          'Performance appraisal techniques',
+          'Target setting and goal alignment',
+          'Monitoring and feedback systems',
+        ],
+      },
+
+      {
+        name: 'Workforce Development Strategy',
+        description:
+          'Create a workforce plan that aligns employee skills with business needs.',
+        features: [
+          'Skills gap analysis',
+          'Training needs assessment',
+          'Talent management strategies',
+        ],
+      },
+      {
+        name: 'Career Coaching & Development',
+        description:
+          'Receive personalized coaching to help you achieve your career goals and overcome challenges.',
+        features: [
+          'Goal setting and career planning',
+          'Professional growth strategies',
+          'Job transition support',
+        ],
+      },
+      {
+        name: 'Learning and Development Audits',
+        description:
+          'Evaluate your current training programs and identify areas for improvement.',
+        features: [
+          'Training effectiveness review',
+          'Employee feedback collection',
+          'Recommendations for training enhancements',
+        ],
+      },
+      {
+        name: 'Employee Engagement Strategies',
+        description:
+          'Develop strategies to boost employee engagement and satisfaction.',
+        features: [
+          'Communication strategies',
+          'Employee recognition programs',
+          'Creating a positive work culture',
+        ],
+      },
+      {
+        name: 'Organizational Change Management',
+        description:
+          'Effectively manage and implement change within your organization.',
+        features: [
+          'Change readiness assessments',
+          'Communication during change',
+          'Post-change evaluation and support',
+        ],
+      },
+      {
+        name: 'Bespoke Learning Solutions',
+        description:
+          'Design and deliver tailored learning solutions to meet your unique organizational needs.',
+        features: [
+          'Custom course development',
+          'Blended learning programs',
+          'Scalable learning platforms',
         ],
       },
     ],
     reasons: [
       {
-        title: 'Proven Track Record',
+        title: 'Industry Expertise',
         content:
-          'Our services have helped thousands of students achieve their academic and personal goals, with many going on to top universities and successful careers.',
+          'Our trainers are experts with years of experience in their respective fields, providing you with up-to-date, practical knowledge.',
       },
       {
-        title: 'Holistic Approach',
+        title: 'Tailored Solutions',
         content:
-          'We believe in developing well-rounded individuals. Our services address academic, social, emotional, and practical aspects of education.',
+          'We understand that every individual and organization is unique. Our programs are customized to meet specific needs, ensuring relevance and maximum impact.',
       },
       {
-        title: 'Continuous Innovation',
+        title: 'Proven Results',
         content:
-          'We constantly update our services to incorporate the latest educational research and technologies, ensuring our students are always ahead of the curve.',
+          'Our courses and training programs have a proven track record of enhancing skills, improving performance, and driving business success.',
+      },
+      {
+        title: 'Flexible Learning Options',
+        content:
+          'Whether on-site, online, or through blended learning, we offer flexible delivery methods to accommodate your preferences and schedules.',
+      },
+      {
+        title: 'Comprehensive Support',
+        content:
+          'From initial consultation to post-training follow-up, we provide ongoing support to ensure continued growth and development.',
+      },
+      {
+        title: 'Global Reach',
+        content:
+          'With clients across various industries and regions, we have the expertise and experience to serve businesses and professionals worldwide.',
       },
     ],
   },
@@ -210,7 +340,7 @@ export default function AcademyService({ params }) {
     <div>
     <Design secondary={true} bg={true}></Design>
     <div className="bg-[#0A1828] py-8">
-        <h1 className="text-center text-3xl font-bold text-white">Academy Services</h1>
+        <h1 className="text-center mt-10 pt-6 text-3xl font-bold text-white">Academy Services</h1>
       </div>
       <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="all" className="mb-12">
@@ -220,13 +350,13 @@ export default function AcademyService({ params }) {
             <TabsTrigger value="support">{t.tabs.support}</TabsTrigger>
           </TabsList>
           <TabsContent value="all">
-            <ServiceCards services={t.services} isRTL={isRTL} />
+            <ServiceCards services={t.services.slice(0, 6)} isRTL={isRTL} />
           </TabsContent>
           <TabsContent value="academic">
-            <ServiceCards services={t.services.slice(0, 3)} isRTL={isRTL} />
+            <ServiceCards services={t.services.slice(6, 12)} isRTL={isRTL} />
           </TabsContent>
           <TabsContent value="support">
-            <ServiceCards services={t.services.slice(3)} isRTL={isRTL} />
+            <ServiceCards services={t.services.slice(12,18)} isRTL={isRTL} />
           </TabsContent>
         </Tabs>
 

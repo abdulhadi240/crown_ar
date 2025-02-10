@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <>
       <Design secondary={true} bg={true}></Design>
-      <section className="flex justify-center -mt-10 size-full rounded-3xl max-sm:px-6">
+      <section className="flex justify-center mt-10 size-full rounded-3xl max-sm:px-6">
         <Image
           src="/sign.webp"
           alt="signin"

@@ -25,13 +25,13 @@ export default function Contacts() {
       : "We respond within 24 hours.";
 
   const labelLiveChat =
-    locale === "ar" ? "الدردشة المباشرة في الركن الأيمن" : "Live chat at the right corner";
+    locale === "ar" ? "الدردشة المباشرة في الركن الأيمن" : "Coming Soon";
   const headingChatWhatsApp =
     locale === "ar" ? "الدردشة على واتساب" : "Chat On Whatsapp";
   const text24_7 = locale === "ar" ? "متاح 24/7" : "Mon-Sat 24/7";
 
   const labelLiveTalk =
-    locale === "ar" ? "تحدث مباشرة مع فريقنا" : "Live Talk With Our Team";
+    locale === "ar" ? "تحدث مباشرة مع فريقنا" : "Coming Soon";
   const headingCallNow =
     locale === "ar" ? "اتصل الآن" : "Call Now";
 
@@ -55,12 +55,12 @@ export default function Contacts() {
           Ricons={BiLogoGmail}
           Heading={headingEmailTeam}
           text={textSpeakTeam}
-          link="https://mail.google.com/mail/?view=cm&to=info@batdacademy.org.uk&su=Your%20Subject&body=Your%20Message"
+          link="https://mail.google.com/mail/?view=cm&to=cs@clinstitute.co.uk&su=Your%20Subject&body=Your%20Message"
         >
           <p className="text-sm text-gray-600">
             {respondWithin}
             <br className="mt-2" />
-            <span className="mt-1">info@batdacademy.org.uk</span>
+            <span className="mt-1">cs@clinstitute.co.uk</span>
           </p>
         </ContactCard>
 
@@ -74,14 +74,14 @@ export default function Contacts() {
           link="https://api.whatsapp.com/send/?phone=%2B442035827999&text&type=phone_number&app_absent=0"
         >
           <div className="text-sm text-gray-600">
-            <ul>
+           {/*  <ul>
               <li>
                 {locale === "ar" ? "واتساب (EN):" : "WhatsApp (EN):"} 00442035827999
               </li>
               <li>
                 {locale === "ar" ? "واتساب (AR):" : "WhatsApp (AR):"} 00447724022466
               </li>
-            </ul>
+            </ul>*/}
           </div>
         </ContactCard>
 
@@ -95,10 +95,10 @@ export default function Contacts() {
           link="./"
         >
           <div className="text-sm text-gray-600">
-            <ul>
+           {/*  <ul>
               <li>{locale === "ar" ? "الهاتف المتحرك" : "Mobile"}: 442035827999</li>
               <li>{locale === "ar" ? "الخط الأرضي" : "Landline"}: 00442036036593</li>
-            </ul>
+            </ul>*/}
           </div>
         </ContactCard>
 
@@ -108,7 +108,7 @@ export default function Contacts() {
           size={24}
           Ricons={FaMapMarkerAlt}
           Heading={headingVisitUs}
-          link="https://www.google.com/maps/place/344+Grays+Inn+Rd,+London+WC1X+8BX,+UK/@51.5297723,-0.1226215,440m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48761b38dc7021e9:0xb35eda9a375cae5d!8m2!3d51.529769!4d-0.1200466!16s%2Fg%2F11c5pw6dvs?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D"
+          link="https://www.google.com/maps/place/6th+Floor,+2+Kingdom+St,+London+W2+6BD,+UK/@51.5190033,-0.1842779,17z/data=!3m1!4b1!4m6!3m5!1s0x48761aac0c5b8aa3:0x2c6c8204f8814686!8m2!3d51.519!4d-0.181703!16s%2Fg%2F11rhs4yh3t?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D"
         >
           <p className="text-sm text-gray-600">
             {inPersonSupport}

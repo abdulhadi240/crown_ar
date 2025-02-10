@@ -12,7 +12,7 @@ const Latest_course = ({ courses }) => {
           {courses.map((course) => (
             <div
               key={course.id}
-              className="bg-white border-2 border-gray-300 rounded-lg shadow-lg p-4 w-[250px] flex flex-col items-center relative"
+              className="bg-white border-2 border-gray-300 rounded-lg shadow-lg p-4 w-[300px] md:w-[250px]  flex flex-col items-center relative"
               style={{
                 outline: "3px solid white", // Creates an inner border effect
                 boxShadow: "0 0 0 3px #E5C17C", // Outer border effect
@@ -57,8 +57,8 @@ const Latest_course = ({ courses }) => {
                   )}
 
                   {/* Price */}
-                  <span className="text-primary font-semibold">
-                    Rs. {course.price}
+                  <span className="text-primary text-lg font-semibold">
+                    $ {course.price}
                   </span>
                 </div>
               </div>

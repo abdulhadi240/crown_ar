@@ -87,21 +87,11 @@ const Page = async () => {
         image_height={false}
         search_height={true}
       >
-       <h2 className="text-5xl max-w-xl font-bold text-white dark:text-white">
+       <h2 className="text-5xl mt-[25%] max-w-xl  font-bold text-white dark:text-white">
             Courses Offered By  <span className="text-secondary">Location</span>
           </h2>
       </Design>
       <div className="container p-4 mx-auto">
-        {/* Search Bar (Visible on Mobile Only) */}
-        <div className="flex items-center pl-2 mb-8 rounded-lg lg:hidden border-primary bg-primary">
-          <IoIosSearch size={25} color="white" />
-          <input
-            type="text"
-            placeholder="Search City"
-            className="w-full p-2 text-white border rounded-md placeholder:text-white border-primary bg-primary focus:outline-none focus:ring-primary"
-          />
-        </div>
-
         {/* Courses Grid */}
         <div className="flex justify-center ">
             <div className="mt-6">

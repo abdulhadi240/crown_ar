@@ -93,7 +93,7 @@ export default async function JobPosting({ params }) {
   return (
     <>
       <Design secondary={true} bg={true}></Design>
-      <div className="max-w-6xl mx-auto py-6 text-base">
+      <div className="max-w-6xl mx-auto py-6 text-base mt-10">
         <div className="bg-white shadow-lg">
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
             <div className="w-[300%] h-12 bg-primary md:-mx-12 -z-10" />
@@ -150,7 +150,7 @@ export default async function JobPosting({ params }) {
               Job Description
             </h2>
             <div
-              className="text-gray-700 text-lg  leading-relaxed"
+              className="text-gray-700 text-base  leading-relaxed"
               dangerouslySetInnerHTML={{ __html: data.description }}
             />
           </div>

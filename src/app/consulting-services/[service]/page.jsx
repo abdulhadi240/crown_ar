@@ -93,9 +93,13 @@ const page = async ({ params }) => {
         center
         input={false}
         image_height={false}
+        search
       >
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-          {details.data.title}
+          {details.data.title.replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+      .split(' ') // Split the string into an array of words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(' ')}
         </h1>
       </Design>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -106,13 +110,13 @@ const page = async ({ params }) => {
           <div className="h-[1px] bg-secondary w-full text-secondary" />
         </div>
 
-        <div dangerouslySetInnerHTML={{ __html: details.data.content }}></div>
+        <div dangerouslySetInnerHTML={{ __html: details.data.content }} className='text-base'></div>
 
         <div className="text-2xl text-primary font-bold mb-3 text-center mt-32">
           Consult with Us
         </div>
         <div className="h-[2px] bg-secondary w-full text-secondary" />
-        <p className="text-center text-primary mt-3 ">
+        <p className="text-center text-primary mt-3 text-base">
           Let’s shape the future of learning together. Book a consultation today!
         </p>
       </main>

@@ -16,7 +16,7 @@ const SpecializationSection = ({ data }) => {
       <div
         key={spec.id}
         onClick={() => setSelectedSpec(spec)}
-        className={`w-48 px-4 py-4 h-20 flex items-center justify-center text-center cursor-pointer rounded-lg text-base border transition-colors  ${selectedSpec && selectedSpec.id === spec.id
+        className={`w-48 px-4 py-4 h-10 md:h-20 flex items-center justify-center text-center cursor-pointer rounded-lg text-base border transition-colors  ${selectedSpec && selectedSpec.id === spec.id
           ? 'bg-primary text-white border-blue-500'
           : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
       >

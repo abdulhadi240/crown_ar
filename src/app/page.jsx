@@ -36,7 +36,7 @@ const Page = async () => {
   return (
     <section className="overflow-hidden">
       {/* Hero Section */}
-      <Design iamge={"/Images.png"} center={false} image_height>
+      <Design iamge={"/Images.png"} search center={false} image_height>
         <h1 className="max-w-3xl md:mt-5 mt-10 text-4xl mx-10 font-semibold text-white md:text-[55px] md:leading-[60px]">
           Welcome to <br/><span className="text-secondary font-bold">TrainEdge</span>{" "}
           <br />

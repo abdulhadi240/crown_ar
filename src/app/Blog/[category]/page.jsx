@@ -106,9 +106,15 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <Design iamge={"/blog3.png"} center input={false} image_height={false}>
+      <Design iamge={"/blog3.png"} search center input={false} image_height={false}>
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Explore <span className="text-secondary ">{params.category}</span>{" "}
+          Explore <span className="text-secondary">
+    {params.category
+      .replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+      .split(' ') // Split the string into an array of words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(' ')} {/* Join the words back with spaces */}
+  </span>{" "}
           <br />
         </h1>
       </Design>

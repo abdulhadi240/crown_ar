@@ -131,8 +131,13 @@ const Specialization = ({
         input={false}
         image_height={false}
         search_height={true}
+        search
       >
-            <SectionTitle1 title="Courses By" highlight={slug} />
+      <div className="">
+            <SectionTitle1 title="Courses By" highlight={slug.replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+      .split(' ') // Split the string into an array of words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(' ')} />
 
         <div className="relative flex items-center justify-center ">
           {/* Overlay Content */}
@@ -249,6 +254,7 @@ const Specialization = ({
               </select>
             </div>
           </div>
+        </div>
         </div>
       </Design>
 

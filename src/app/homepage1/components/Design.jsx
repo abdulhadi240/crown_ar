@@ -3,22 +3,22 @@ import React from "react";
 import Header from "./Header";
 import Inputs from "./Inputs";
 
-const Design = ({icon_white, iamge, children, center, input, image_height, secondary , search_height , bg }) => {
+const Design = ({search, icon_white, iamge, children, center, input, image_height, secondary, search_height, bg }) => {
   return (
     <div className="z-50">
       {secondary ? (
         // If secondary is true, ONLY display the Header
-        <Header secondary={secondary} icon_white bg={bg}/>
+        <Header secondary={secondary} icon_white bg={bg} />
       ) : (
         // Otherwise, display the background image section + Header + other content
         <div
-            className={`relative w-full ${
-    search_height
-      ? "h-[400px]"
-      : image_height
-      ? "h-[700px]"
-      : "md:h-[400px] h-[300px]"
-  } overflow-hidden`}
+          className={`relative w-full ${
+            search_height
+              ? "h-[400px]"
+              : image_height
+              ? "h-[700px]"
+              : "md:h-[400px] h-[300px]"
+          } overflow-hidden`}
         >
           {/* Background Image */}
           <Image
@@ -64,15 +64,13 @@ const Design = ({icon_white, iamge, children, center, input, image_height, secon
 
           <div className="relative z-10">
             {/* Header */}
-            <Header icon_white/>
+            <Header icon_white />
 
             {/* Content Wrapper */}
             <div
-              className={`flex flex-col ${
-                center
-                  ? "items-center justify-center"
-                  : "items-start justify-start"
-              } md:mt-16`}
+              className={`flex ${search ? 'mt-[10%]' : 'mt-[2%]'}  ${
+                center ? "items-center justify-center" : "items-start justify-start"
+              } h-full`} // Ensure the content is centered both vertically and horizontally
             >
               {/* Children Content (Headings, Subheadings, etc.) */}
               <div className={center ? "text-center" : "text-start"}>{children}</div>

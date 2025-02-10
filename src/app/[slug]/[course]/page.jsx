@@ -157,7 +157,7 @@ const page = async ({params}) => {
     <div>
       {type === "course" ? (
         <>
-        <Design icon_white iamge={"/image_consult.png"} center input={false} image_height={false}>
+        <Design search icon_white iamge={"/image_consult.png"} center input={false} image_height={false}>
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
         {data?.title}
         </h1>

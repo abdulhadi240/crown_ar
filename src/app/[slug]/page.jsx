@@ -117,7 +117,7 @@ export default async function Page({ params }) {
     return (
       <>
         {type === "city" ? (
-          <City cities params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
+          <City check_city_courses cities params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
         ) : type === "specialization" ? (
           <Specialization params={slug} data={data} city={cityData} specialization={specializationData} SpecializationCategory={SpecializationCategory} category={categoryData}/>
         ) : (

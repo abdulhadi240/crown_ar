@@ -13,7 +13,7 @@ const page = async () => {
 
   return (
     <div>
-      <Design icon_white iamge={"/blog3.png"} center input={false} image_height={false}>
+      <Design icon_white iamge={"/blog3.png"} search center input={false} image_height={false}>
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
           Explore Our <span className="text-secondary font-bold">Blogs</span>{" "}
           <br />

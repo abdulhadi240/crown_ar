@@ -9,9 +9,20 @@ import Design from "../homepage1/components/Design";
 
 
 const benefits = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+  {
+    title: "Expert Instructors",
+    description: "Our courses are led by experienced professionals, industry experts, and thought leaders who bring real-world insights into the classroom.",
+  },
+  {
+    title: "Practical Learning Approach",
+    description: "We focus on hands-on training, case studies, and interactive sessions to ensure that participants gain practical knowledge that can be immediately applied in their professional roles.",
+  },
+  {
+    title: "Customized Training Solutions",
+    description: "Understanding that every organization has unique training needs, we offer customized training solutions that align with specific business objectives.",
+  },
+
+
 ];
 
 const team = [
@@ -46,10 +57,9 @@ export default function ConsultingPage({params}) {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-base">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold mb-2 uppercase">About our Institute</h1>
+          <h1 className="text-3xl mt-10 pt-6 font-bold mb-2 uppercase">About Crown London Institute </h1>
           <p className="text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit officia unde
-            omnis
+          Empowering Professionals, Transforming Futures.
           </p>
         </div>
 
@@ -60,38 +70,24 @@ export default function ConsultingPage({params}) {
         <div className="my-16">
           <h2 className="text-2xl font-bold mb-4">What we do</h2>
           <p className="text-gray-600 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempus Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempus Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempus Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempus Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit, sed do eiusmod tempus Lorem
+          Crown London Institute is a premier training provider committed to delivering high-quality professional development programs. Based in the heart of London, we specialize in equipping individuals and organizations with the skills and knowledge required to excel in today’s dynamic business environment. Our courses are designed to meet the evolving needs of professionals across various industries, ensuring that they stay ahead in an increasingly competitive world.
           </p>
         </div>
         <div className="flex justify-center mb-20">
           <div className="flex flex-row gap-16 justify-center md:p-6 md:px-10 rounded-full md:bg-[#f9f9f9] flex-wrap">
-            <Stats number={100} icon={"M"} text={"Client Satisfaction"} />
-            <Stats number={24} icon={"h"} text={"Client Satisfaction"} />
-            <Stats number={98} icon={"k+"} text={"Client Satisfaction"} />
-            <Stats number={208} icon={"+"} text={"Client Satisfaction"} />
+            <Stats number={95} icon={"%"} text={"Course Satisfaction Rate"} />
+            <Stats number={5000} icon={"+"} text={"Professionals Trained"} />
+            <Stats number={100} icon={"+"} text={"Corporate Companies Partners"} />
+            <Stats number={85} icon={"%"} text={"Repeat Clients"} />
           </div>
         </div>
 
         {/* Our Lorem Section */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Our Lorem</h2>
+            <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
             <p className="text-gray-600 mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in
-              ante viverra, rutrum erat rutrum, consectetur mi. Proin at maximus
-              est. Nullam purus ex, iaculis sed erat sed, blandit tincidunt
-              quam. Cras scelerisque id quam sed dignissim.
-            </p>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in
-              ante viverra, rutrum erat rutrum, consectetur mi. Proin at maximus
-              est. Nullam purus ex, iaculis sed erat sed, blandit tincidunt
-              quam.
+            At Crown London Institute, our mission is to empower professionals and organizations through cutting-edge training programs that foster innovation, leadership, and excellence. We believe that continuous learning is the key to success, and we are dedicated to providing practical, industry-relevant education that enhances career growth and business performance.
             </p>
           </div>
           <div>
@@ -108,9 +104,7 @@ export default function ConsultingPage({params}) {
         {/* Bottom Section */}
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-8">
-            loreme loremloreme lorem
-            <br />
-            loreme lorem
+          What We Offer
           </h2>
           <div className="grid md:grid-cols-2 items-start gap-8">
             <div className="flex items-start gap-4">
@@ -132,11 +126,9 @@ export default function ConsultingPage({params}) {
                 </div>
               </div>
               <div className="text-left">
-                <h3 className="font-bold mb-2">Innovation</h3>
+                <h3 className="font-bold mb-2">Corporate Training</h3>
                 <p className="text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  in ante viverra, rutrum erat rutrum, consectetur mi. Proin at
-                  maximus est. Nullam purus ex.
+                Tailored programs for organizations looking to upskill their workforce.
                 </p>
               </div>
             </div>
@@ -159,11 +151,9 @@ export default function ConsultingPage({params}) {
                 </div>
               </div>
               <div className="text-left">
-                <h3 className="font-bold mb-2">Team work</h3>
+                <h3 className="font-bold mb-2">Executive Development</h3>
                 <p className="text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  in ante viverra, rutrum erat rutrum, consectetur mi. Proin at
-                  maximus est. Nullam purus ex.
+                Advanced training for business leaders and senior professionals.
                 </p>
               </div>
             </div>
@@ -186,11 +176,9 @@ export default function ConsultingPage({params}) {
                 </div>
               </div>
               <div className="text-left">
-                <h3 className="font-bold mb-2">Team work</h3>
+                <h3 className="font-bold mb-2">Technical & Industry-Specific Courses</h3>
                 <p className="text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  in ante viverra, rutrum erat rutrum, consectetur mi. Proin at
-                  maximus est. Nullam purus ex.
+                Specialized training in finance, project management, technology, healthcare, and more.
                 </p>
               </div>
             </div>
@@ -213,11 +201,9 @@ export default function ConsultingPage({params}) {
                 </div>
               </div>
               <div className="text-left">
-                <h3 className="font-bold mb-2">Team work</h3>
+                <h3 className="font-bold mb-2">Compliance & Regulatory Training</h3>
                 <p className="text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  in ante viverra, rutrum erat rutrum, consectetur mi. Proin at
-                  maximus est. Nullam purus ex.
+                Ensuring businesses and individuals stay compliant with industry standards.
                 </p>
               </div>
             </div>
@@ -239,7 +225,7 @@ export default function ConsultingPage({params}) {
             <div className="flex justify-center">
               <div className="flex justify-center flex-col">
                 <h2 className="text-2xl text-center font-bold mb-6">
-                  What Will You Get?
+                Why Choose Us?
                 </h2>
                 <div className="flex justify-center">
                   <div className="space-y-6">
@@ -250,9 +236,9 @@ export default function ConsultingPage({params}) {
                       >
                         <CheckCircle className=" w-10 md:w-6 h-6 text-blue-900 flex-shrink-0" />
                         <div>
-                          <p className="text-gray-600">{benefit}</p>
+                          <p className="text-gray-600">{benefit.title}</p>
                           <p className="text-sm text-gray-400 mt-1">
-                            Lorem ipsum dolor sit amet
+                           {benefit.description}
                           </p>
                         </div>
                       </div>
@@ -264,7 +250,7 @@ export default function ConsultingPage({params}) {
           </div>
         </div>
 
-        {/* Team Members Section */}
+        {/* Team Members Section 
         <div className="mb-20">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-bold text-start md:text-center">Colleague & team members</h2>
@@ -273,7 +259,7 @@ export default function ConsultingPage({params}) {
           <div className="">
             <Carasoul />
           </div>
-        </div>
+        </div>*/}
       </main>
     </>
   );
