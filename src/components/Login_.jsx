@@ -1,40 +1,49 @@
-"use client"; // ✅ Required for Next.js App Router
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaLock } from "react-icons/fa";
 import { useAuth } from "./context/AuthContext";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 const Login_ = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [subdomainUrl, setSubdomainUrl] = useState('');
+  const router = useRouter();
 
-  // Get initials from name
   const getInitials = (name) => {
     return name ? name.split(" ").map(n => n[0]).join("").toUpperCase() : "U";
   };
 
-  // Get the current URL and generate a subdomain-based URL
-  useEffect(() => {
-    const currentUrl = window.location.href;  // e.g., http://localhost:3000/about
-    const lang = 'ar';  // Set the language code dynamically if needed
+  const handleLanguageChange = () => {
+    if (typeof window !== 'undefined') {
+      const lang = 'ar'; // Or get this dynamically
+      const subdomain = `${lang}.clinstitute.co.uk`;
+      const currentHost = window.location.hostname;
 
-    // Assuming `ar` as the subdomain for Arabic
-    const subdomain = `${lang}.clinstitute.co.uk`;  // This can be dynamic based on your needs
-    const newUrl = currentUrl.replace('clinstitute.co.uk', subdomain);  // Replace 'localhost' with the subdomain
-    setSubdomainUrl(newUrl);  // Store the new URL
-  }, []);
+      // Handle cases where there might not be a current host (e.g., local dev)
+      if (currentHost) {
+        const newHost = subdomain;
+        const newUrl = window.location.href.replace(currentHost, newHost);
+        window.location.href = newUrl;  // Or use router.push(newUrl) if you want to stay within Next.js
+      } else {
+        // For local development or cases where hostname isn't available
+        const newUrl = `http://${subdomain}${window.location.pathname}${window.location.search}`; // Reconstruct URL
+        window.location.href = newUrl; // Or router.push(newUrl)
+      }
+
+    }
+  };
 
   return (
     <div className="relative flex items-center space-x-4">
-      <Link href={subdomainUrl} className="flex items-center gap-2 border-[1px] rounded-md border-slate-50/70 px-2 py-1">
-        <Image src={'/ar.webp'} height={30} width={30} alt="Arab Flag"/>
+      <button onClick={handleLanguageChange} className="flex items-center gap-2 border-[1px] rounded-md border-slate-50/70 px-2 py-1">
+        <Image src={'/ar.webp'} height={30} width={30} alt="Arab Flag" />
         العربية
-      </Link>
+      </button>
+
       {isAuthenticated && user ? (
-        // 🎭 Show user avatar & dropdown when logged in
         <div className="relative">
           <button
             className="w-10 h-10 flex items-center justify-center bg-secondary text-sm text-white font-bold rounded-full focus:outline-none"
@@ -53,7 +62,7 @@ const Login_ = () => {
                 Profile
               </Link>
               <button
-                onClick={logout} // Calls `logout()` from `AuthProvider`
+                onClick={logout}
                 className="block w-full text-left px-4 py-2 bg-primary text-white"
               >
                 Logout
@@ -62,7 +71,6 @@ const Login_ = () => {
           )}
         </div>
       ) : (
-        // 🔐 Show Login & Signup buttons if not authenticated
         <>
           <Link href="/sign-in" className="flex items-center text-white hover:text-secondary">
             <FaLock className="mr-1" color="white" /> Login
