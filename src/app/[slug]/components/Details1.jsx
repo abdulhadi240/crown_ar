@@ -31,7 +31,7 @@ const Details1 = ({ course }) => {
     "@type": "Course",
     "name": course?.title || "Unnamed Course",
     "description": course?.summary || "No description available.",
-    "category": course?.category || "Training",
+    "educationalCredentialAwarded": course?.category || "Engineering", // Use this field for course category or educational credential
     "provider": {
       "@type": "Organization",
       "name": "Crown Academy",
@@ -86,6 +86,7 @@ const Details1 = ({ course }) => {
       }
     }
   };
+  
 
   return (
     <>
