@@ -38,8 +38,8 @@ const Page = async () => {
       {/* Hero Section */}
       <Design iamge={"/Images.png"} search center={false} image_height>
         <h1 className="max-w-3xl md:mt-5 mt-10 text-4xl mx-10 font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Welcome to <br/><span className="text-secondary font-bold">TrainEdge</span>{" "}
-          <br />
+          Welcome to <br />
+          <span className="text-secondary font-bold">TrainEdge</span> <br />
           Expert Employee <br /> Training Solutions
         </h1>
         <p className="max-w-xl mt-4 text-sm mx-10 text-white md:text-xl">
@@ -47,19 +47,21 @@ const Page = async () => {
           training programs for companies worldwide.
         </p>
         <div className="">
-        <MobileFilter
-          cities={cities_all.data}
-          specialization={specialization_list.data}
-        />
-      </div>
+          <MobileFilter
+            cities={cities_all.data}
+            specialization={specialization_list.data}
+          />
+        </div>
       </Design>
-      
 
       {/* Specialization Section */}
-      <SectionTitle title="Take Your" highlight="First Step Towards Achieving 
-      Professional Goals" /> 
+      <SectionTitle
+        title="Take Your"
+        highlight="First Step Towards Achieving 
+      Professional Goals"
+      />
       <div className="md:mx-20">
-      <SpecializationSection data={specialization.data} />
+        <SpecializationSection data={specialization.data} />
       </div>
       <div>
         <SectionTitle title="Latest" highlight="Courses" />
@@ -82,9 +84,8 @@ const Page = async () => {
 
       <div className=" sm:mt-16">
         <SectionTitle title="What Customer are " highlight="Saying?" />
-        <Testimonials/>
+        <Testimonials />
       </div>
-
     </section>
   );
 };

@@ -3,7 +3,18 @@ import React from "react";
 import Header from "./Header";
 import Inputs from "./Inputs";
 
-const Design = ({search, icon_white, iamge, children, center, input, image_height, secondary, search_height, bg }) => {
+const Design = ({
+  search,
+  icon_white,
+  iamge,
+  children,
+  center,
+  input,
+  image_height,
+  secondary,
+  search_height,
+  bg,
+}) => {
   return (
     <div className="z-50">
       {secondary ? (
@@ -68,12 +79,16 @@ const Design = ({search, icon_white, iamge, children, center, input, image_heigh
 
             {/* Content Wrapper */}
             <div
-              className={`flex ${search ? 'mt-[10%]' : 'mt-[2%]'}  ${
-                center ? "items-center justify-center" : "items-start justify-start"
+              className={`flex ${search ? "mt-[10%]" : "mt-[2%]"}  ${
+                center
+                  ? "items-center justify-center"
+                  : "items-start justify-start"
               } h-full`} // Ensure the content is centered both vertically and horizontally
             >
               {/* Children Content (Headings, Subheadings, etc.) */}
-              <div className={center ? "text-center" : "text-start"}>{children}</div>
+              <div className={center ? "text-center" : "text-start"}>
+                {children}
+              </div>
 
               {/* Search Bar or Other Inputs */}
               {input && <Inputs />}

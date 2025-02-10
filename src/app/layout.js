@@ -26,7 +26,7 @@ export const metadata = {
     url: "https://clinstitute.co.uk/",
     images: [
       {
-        url: "/logocrown1.webp",
+        url: "/logocrown.webp",
         width: 800,
         height: 600,
         alt: "Og Image Alt",
@@ -34,12 +34,12 @@ export const metadata = {
     ],
   },
   twitter: {
-    site_name: "clinstitute",
+    site_name: "Crown Institute",
     description: "Crown Institute for Training & Development",
     url: "https://clinstitute.co.uk/",
     images: [
       {
-        url: "/logocrown1.webp",
+        url: "/logocrown.webp",
         width: 800,
         height: 600,
         alt: "Og Image Alt",

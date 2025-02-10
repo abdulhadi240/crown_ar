@@ -30,22 +30,21 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title:
-      data?.data?.meta_title || "British Academy for Training & Development",
+    title: data?.data?.meta_title || "Crown Academy for Training & Development",
     description:
       data?.data?.meta_description || "Explore top courses and blogs",
     keywords:
       data?.data?.meta_keywords || "training, courses, blogs, development",
     alternates: {
-      canonical: `https://clinstitute.co.uk/consulting-services/${service}`,
+      canonical: `https://clinstitute.co.uk/job/${service}`,
     },
     openGraph: {
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      url: `https://clinstitute.co.uk/consulting-services/${service}`,
+      url: `https://clinstitute.co.uk/job/${service}`,
       images: [
         {
-          url: data?.data?.image || "/logobat.webp",
+          url: data?.data?.image || "/logocrown.webp",
           width: 800,
           height: 600,
           alt: data?.data?.meta_title || "Course Image",
@@ -57,7 +56,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      images: [data?.data?.image || "/logobat.webp"],
+      images: [data?.data?.image || "/logocrown.webp"],
     },
   };
 }

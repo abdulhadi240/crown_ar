@@ -98,7 +98,7 @@ export default function CourseListing({
                       <TableRow key={course.id} className="hover:bg-gray-50">
                         <TableCell className="py-3 px-4 text-sm font-medium text-primary hover:text-secondary">
                           <Link
-                            href={`${check_city_courses ? `/${params}/${course.category_slug}/${course.slug}` : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`}`}
+                            href={`${check_city_courses ? `/${params}/${course.specialization_slug}/${course.slug}` : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`}`}
                           >
                             {course.title}
                           </Link>
