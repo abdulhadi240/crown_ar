@@ -1,18 +1,11 @@
 import React, { Suspense } from "react";
-import Content_extend from "../components/Content_extend";
-import Carasoul from "../../blogs/components/Carasoul";
-import DesktopCarasoul from "../../blogs-details/components/DesktopCarasoul";
 import Details1 from "../components/Details1";
 import fetchData, {
   GetSpecialization,
   GetSpecificSpecialization,
 } from "@/actions/server";
 import NotFound from "@/app/not-found";
-import Head from "next/head";
-import SectionTitle from "@/components/SectionTitle";
-import Image from "next/image";
 import SearchFilters_cities from "@/app/cities/[slug]/components/SearchFilters_cities";
-import HeaderSection from "@/components/HeaderSection";
 import Design from "@/app/homepage1/components/Design";
 import BlogCarousel from "@/components/BlogCarousel";
 import Wrapper from "@/components/Wrapper";
