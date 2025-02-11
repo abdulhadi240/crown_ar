@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,13 +8,14 @@ import Wrapper from "./Wrapper";
 const schema = z.object({
   fullName: z.string().min(2, { message: "Full name must be at least 2 characters" }),
   email: z.string().email({ message: "Invalid email address" }),
-  mobile: z.string().regex(/^[0-9]{10}$/, { message: "Mobile number must be 10 digits" }),
+  mobile: z.string().regex(/^[0-9]{11}$/, { message: "Mobile number must be 11 digits" }),
   category: z.string().min(1, { message: "Please select a category" }),
   city: z.string().min(1, { message: "Please select a city" }),
 });
 
 function RequestCourse({ cities, categories }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");  // Added state for success message
 
   const {
     register,
@@ -26,15 +27,37 @@ function RequestCourse({ cities, categories }) {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
-    console.log(data);
-    setIsSubmitting(false);
+    setSuccessMessage("");  // Reset the success message before submitting
+
+    const formData = new FormData();
+    formData.append("full_name", data.fullName);
+    formData.append("email", data.email);
+    formData.append("mobile", data.mobile);
+    formData.append("category_id", data.category);
+    formData.append("city_id", data.city);
+
+    try {
+      const response = await fetch("https://backendbatd.clinstitute.co.uk/api/course-request", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      // If successful, display the success message
+      setSuccessMessage("Request sent successfully!");
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <Wrapper>
       <div className="flex flex-col md:flex-row justify-center items-center mx-auto  gap-10 md:gap-32 p-4 md:p-6">
-        
         <div className="text-center md:text-left max-w-md">
           <h1 className="text-2xl md:text-5xl font-bold text-[#fcc839]">
             Request a Course
@@ -90,7 +113,7 @@ function RequestCourse({ cities, categories }) {
                 >
                   <option value="">Select a category</option>
                   {categories.map((category) => (
-                    <option key={category.value} value={category.slug}>
+                    <option key={category.value} value={category.id}>
                       {category.name}
                     </option>
                   ))}
@@ -106,7 +129,7 @@ function RequestCourse({ cities, categories }) {
                 >
                   <option value="">Select a city</option>
                   {cities.map((city) => (
-                    <option key={city.value} value={city.slug}>
+                    <option key={city.value} value={city.id}>
                       {city.name}
                     </option>
                   ))}
@@ -125,6 +148,13 @@ function RequestCourse({ cities, categories }) {
               </button>
             </div>
           </form>
+
+          {/* Success message */}
+          {successMessage && (
+            <div className="mt-4 text-center text-green-600 font-semibold">
+              {successMessage}
+            </div>
+          )}
         </div>
       </div>
     </Wrapper>
