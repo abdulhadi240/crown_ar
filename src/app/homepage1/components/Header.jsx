@@ -74,7 +74,7 @@ const Header = ({ secondary, icon_white, bg }) => {
     "@id": "https://clinstitute.co.uk/#organization",
     "name": "Crown London Institute",
     "url": "https://clinstitute.co.uk",
-    "logo": "https://clinstitute.co.uk/logo.png",
+    "logo": "/logocrown.webp",
     "sameAs": [
       "https://www.facebook.com/crowninstitute",
       "https://www.linkedin.com/company/crowninstitute",
@@ -97,7 +97,6 @@ const Header = ({ secondary, icon_white, bg }) => {
 
   return (
     <>
-      <Head>
         {/* Inject JSON-LD Structured Data */}
         <script
           type="application/ld+json"
@@ -117,7 +116,6 @@ const Header = ({ secondary, icon_white, bg }) => {
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
-      </Head>
 
       {/* Mobile Header */}
       <header className="md:hidden z-[9999]">
