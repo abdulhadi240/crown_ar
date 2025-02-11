@@ -75,7 +75,7 @@ export async function generateMetadata({ params }) {
       url: `https://clinstitute.co.uk/${slug}/${course}`,
       images: [
         {
-          url: data.image || "/logocrown.webp",
+          url: data.image || "https://clinstitute.co.uk/Logocrown.webp",
           width: 800,
           height: 600,
           alt: data.meta_title || "Course Image",
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }) {
       description:
         data.meta_description ||
         "Explore specialized training programs and courses.",
-      images: [data.image || "/logocrown.webp"],
+      images: [data.image || "https://clinstitute.co.uk/Logocrown.webp"],
     },
   };
 }

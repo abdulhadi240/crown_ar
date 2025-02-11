@@ -34,28 +34,28 @@ export async function generateMetadata({ params }) {
       canonical: `https://clinstitute.co.uk/${slug}`,
     },
     openGraph: {
-      title: metaData.meta_title || "Crown Academy  for Training & Development",
+      title: metaData.meta_title || "Crown Academy for Training & Development",
       description:
         metaData.meta_description ||
         "Explore courses offered by city at Crown Academy  for Training & Development.",
       url: `https://clinstitute.co.uk/${slug}`,
       images: [
         {
-          url: metaData.image || "/logocrown.webp",
+          url: metaData.image || "https://clinstitute.co.uk/Logocrown.webp",
           width: 800,
           height: 600,
-          alt: metaData.meta_title || "Crown Academy  Image",
+          alt: metaData.meta_title || "Crown Academy Image",
         },
       ],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: metaData.meta_title || "Crown Academy  for Training & Development",
+      title: metaData.meta_title || "Crown Academy for Training & Development",
       description:
         metaData.meta_description ||
         "Explore courses offered by city at Crown Academy  for Training & Development.",
-      images: [metaData.image || "/logocrown.webp"],
+      images: [metaData.image || "https://clinstitute.co.uk/Logocrown.webp"],
     },
   };
 }

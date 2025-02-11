@@ -10,6 +10,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'clinstitute.co.uk',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'batdacademy.com',
         port: '',
       },

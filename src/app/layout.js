@@ -17,7 +17,7 @@ const geistMono = localFont({
 export const metadata = {
   title: "Crown Institute for Training & Development",
   description: "Crown Institute for Training & Development",
-  keywords: "Next.js, Tailwind CSS, TypeScript",
+  keywords: "Training Courses, Professional Development, Diploma Programs, Master's Programs, Consulting Services, Team Building Workshops, Project Management Courses, Leadership Training, Human Resources Courses, Quality Management Training, Health and Safety Courses, Engineering Training, Information Technology Courses, Public Relations Training, Financial Management Courses, Business Training, Corporate Training Solutions, Employee Development Programs, Online Training Courses, Management Training, Skill Development Workshops, Executive Coaching, Business Consultancy, Workplace Training Programs, Human Resource Management, Continuous Professional Development, Leadership Skills Development, Certified Training Programs, Career Advancement Courses, Workplace Safety Training, Training Institute, Vocational Training Courses",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -26,7 +26,7 @@ export const metadata = {
     url: "https://clinstitute.co.uk/",
     images: [
       {
-        url: "/logocrown.webp",
+        url: "https://clinstitute.co.uk/Logocrown.webp",
         width: 800,
         height: 600,
         alt: "Og Image Alt",
@@ -39,7 +39,7 @@ export const metadata = {
     url: "https://clinstitute.co.uk/",
     images: [
       {
-        url: "/logocrown.webp",
+        url: "https://clinstitute.co.uk/Logocrown.webp",
         width: 800,
         height: 600,
         alt: "Og Image Alt",

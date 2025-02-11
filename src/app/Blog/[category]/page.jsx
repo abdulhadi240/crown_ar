@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
       site_name: "British Academy for Training & Development",
       description,
       url: `https://client-academy.vercel.app/blogs/${params.category}/category`,
-      images: [product?.data?.featured_image],
+      images: [product?.data?.featured_image || 'https://clinstitute.co.uk/Logocrown.webp'],
     },
     twitter: {
       site_name: "British Academy for Training & Development",
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
       url: `https://client-academy.vercel.app/blogs/${params.category}/category`,
       images: [
         {
-          url: "/logobat.png",
+          url: "https://clinstitute.co.uk/Logocrown.webp",
           width: 800,
           height: 600,
           alt: "Og Image Alt",

@@ -1,9 +1,5 @@
 import Image from "next/image";
-import { BiSolidQuoteLeft } from "react-icons/bi";
 import ArticleCard from "../../ArticleCard";
-import Link from "next/link";
-import HeaderSection from "@/components/HeaderSection";
-import Design from "@/app/homepage1/components/Design";
 import Header from "@/app/homepage1/components/Header";
 
 export async function generateMetadata({ params }) {
@@ -37,7 +33,7 @@ export async function generateMetadata({ params }) {
       site_name: "British Academy for Training & Development",
       description: "British Academy for Training & Development",
       url: `https://client-academy.vercel.app/blogs/${params.slug}`,
-      images: [product?.data[0]?.image],
+      images: [product?.data[0]?.image || 'https://clinstitute.co.uk/logocrown.webp'],
     },
     twitter: {
       site_name: "British Academy for Training & Development",
@@ -45,7 +41,7 @@ export async function generateMetadata({ params }) {
       url: `https://client-academy.vercel.app/blogs/${params.slug}`,
       images: [
         {
-          url: "/logobat.png",
+          url: "https://clinstitute.co.uk/logocrown.webp",
           width: 800,
           height: 600,
           alt: "Og Image Alt",

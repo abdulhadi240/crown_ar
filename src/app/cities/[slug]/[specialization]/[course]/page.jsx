@@ -61,7 +61,7 @@ export async function generateMetadata({ params }) {
       url: `https://clinstitute.co.uk/${slug}/${specialization}/${course}`,
       images: [
         {
-          url: data?.data?.image || "/logocrown.webp",
+          url: data?.data?.image || "https://clinstitute.co.uk/Logocrown.webp",
           width: 800,
           height: 600,
           alt: data?.data?.meta_title || "Course Image",
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      images: [data?.data?.image || "/logocrown.webp"],
+      images: [data?.data?.image || "https://clinstitute.co.uk/Logocrown.webp"],
     },
   };
 }
