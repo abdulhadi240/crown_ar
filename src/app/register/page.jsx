@@ -171,6 +171,7 @@ export default function Page() {
       formData.append("city_id", city || "");
       formData.append("date", selectedDate || "");
       formData.append("full_name", fullname || "");
+      formData.append("language", language || "");
       formData.append("email", email || "");
       formData.append("job_title", jobtitle || "");
       formData.append("phone", phone || "");
