@@ -52,7 +52,7 @@ const Filteration = ({ data, category }) => {
     <div>
       <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg">
         <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
-          <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex bg-white">
+          <div className="items-center gap-4 flex-row flex bg-white">
             {/* Input Field with Enter Key Trigger */}
             <input
               type="text"
@@ -60,11 +60,11 @@ const Filteration = ({ data, category }) => {
               onChange={(e) => setTitle(e.target.value)}
               onKeyDown={handleKeyPress} // Handle Enter Key
               placeholder="Search Services"
-              className="flex-1 p-3 text-sm border rounded-lg shadow-md"
+              className="flex-1 p-3 w-2/3 md:w-9/12 text-sm border rounded-lg shadow-md"
             />
             <button
               onClick={handleSearch}
-              className="py-3 text-sm px-4 text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
+              className="py-3 text-sm w-1/3 md:w-3/12 px-4 text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
             >
               <CiSearch size={24}/>
             </button>

@@ -56,7 +56,7 @@ const Filteration = ({ category, data }) => {
     <div>
       <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg text-base">
         <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
-          <div className="grid items-center grid-cols-2 gap-4 sm:flex-row sm:flex bg-white">
+          <div className="grid items-center grid-cols-3 gap-4 flex-row sm:flex bg-white">
             <input
               type="text"
               value={title}
@@ -83,7 +83,7 @@ const Filteration = ({ category, data }) => {
             </select>
             <button
               onClick={handleSearch}
-              className=" py-3 text-sm px-4 text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
+              className=" py-3 text-sm px-4 w-full text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
             >
               <CiSearch size={24} />
             </button>

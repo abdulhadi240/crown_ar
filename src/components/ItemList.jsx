@@ -16,7 +16,7 @@ export default function CourseListing({
   params,
   cities,
   cities_,
-  check_city_courses
+  check_city_courses,
 }) {
   // Use object state instead of array for better updates
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -98,7 +98,11 @@ export default function CourseListing({
                       <TableRow key={course.id} className="hover:bg-gray-50">
                         <TableCell className="py-3 px-4 text-sm font-medium text-primary hover:text-secondary">
                           <Link
-                            href={`${check_city_courses ? `/${params}/${course.specialization_slug}/${course.slug}` : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`}`}
+                            href={`${
+                              check_city_courses
+                                ? `/${params}/${course.specialization_slug}/${course.slug}`
+                                : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`
+                            }`}
                           >
                             {course.title}
                           </Link>
@@ -106,9 +110,15 @@ export default function CourseListing({
                         <TableCell className="py-3 px-4">
                           <select
                             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
-                            value={selectedOptions[course.id]?.selectedDate || ""}
+                            value={
+                              selectedOptions[course.id]?.selectedDate || ""
+                            }
                             onChange={(e) =>
-                              handleSelectChange(course.id, "selectedDate", e.target.value)
+                              handleSelectChange(
+                                course.id,
+                                "selectedDate",
+                                e.target.value
+                              )
                             }
                           >
                             <option value="" disabled>
@@ -124,9 +134,15 @@ export default function CourseListing({
                         <TableCell className="py-3 px-4">
                           <select
                             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
-                            value={selectedOptions[course.id]?.selectedCity || ""}
+                            value={
+                              selectedOptions[course.id]?.selectedCity || ""
+                            }
                             onChange={(e) =>
-                              handleSelectChange(course.id, "selectedCity", e.target.value)
+                              handleSelectChange(
+                                course.id,
+                                "selectedCity",
+                                e.target.value
+                              )
                             }
                           >
                             <option value="" disabled>
@@ -144,7 +160,11 @@ export default function CourseListing({
                         </TableCell>
                         <TableCell className="py-3 px-4 text-center">
                           <Link
-                            href={`/register?course=${course.slug}&date=${selectedOptions[course.id]?.selectedDate || ""}&city=${selectedOptions[course.id]?.selectedCity || ""}`}
+                            href={`/register?course=${course.slug}&date=${
+                              selectedOptions[course.id]?.selectedDate || ""
+                            }&city=${
+                              selectedOptions[course.id]?.selectedCity || ""
+                            }`}
                             className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary"
                           >
                             Register
@@ -154,6 +174,100 @@ export default function CourseListing({
                     ))}
                   </TableBody>
                 </Table>
+              </div>
+
+              {/* Mobile Version with Date, City, Price, and Register Button */}
+              <div className="space-y-4 md:hidden">
+                {filteredCourses.map((course) => (
+                  <Card
+                    key={course.id}
+                    className="rounded-lg shadow-sm border border-gray-200"
+                  >
+                    <CardContent className="p-4 space-y-4">
+                      <Link
+                        href={`${
+                          check_city_courses
+                            ? `/${params}/${course.specialization_slug}/${course.slug}`
+                            : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`
+                        }`}
+                        className="text-base font-semibold text-gray-800"
+                      >
+                        {course.title}
+                      </Link>
+                      <div className="flex flex-col gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700">
+                            Select Date
+                          </label>
+                          <select
+                            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
+                            value={
+                              selectedOptions[course.id]?.selectedDate || ""
+                            }
+                            onChange={(e) =>
+                              handleSelectChange(
+                                course.id,
+                                "selectedDate",
+                                e.target.value
+                              )
+                            }
+                          >
+                            <option value="" disabled>
+                              Select Date
+                            </option>
+                            {course.available_dates.map((date) => (
+                              <option key={date.id} value={date.date}>
+                                {date.date}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700">
+                            Select City
+                          </label>
+                          <select
+                            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
+                            value={
+                              selectedOptions[course.id]?.selectedCity || ""
+                            }
+                            onChange={(e) =>
+                              handleSelectChange(
+                                course.id,
+                                "selectedCity",
+                                e.target.value
+                              )
+                            }
+                          >
+                            <option value="" disabled>
+                              Select City
+                            </option>
+                            {course.available_cities.map((city) => (
+                              <option key={city.id} value={city.slug}>
+                                {city.name}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-4">
+                        <span className="text-base font-semibold text-gray-800">
+                          {course.price}
+                        </span>
+                        <Link
+                          href={`/register?course=${course.slug}&date=${
+                            selectedOptions[course.id]?.selectedDate || ""
+                          }&city=${
+                            selectedOptions[course.id]?.selectedCity || ""
+                          }`}
+                          className="px-4 py-2 text-sm font-medium text-white bg-amber-500 rounded-lg hover:bg-amber-600"
+                        >
+                          Register
+                        </Link>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </>
           )}

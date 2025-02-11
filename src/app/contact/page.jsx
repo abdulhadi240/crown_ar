@@ -82,7 +82,7 @@ export default function ContactPage() {
       <Design secondary bg></Design>
       <div className="relative">
         <div className="bg-[#0A1828] py-4">
-          <h1 className="text-center mt-10 pt-6 text-3xl items-center font-bold text-white">
+          <h1 className="text-center md:mt-10 md:pt-6 text-3xl items-center font-bold text-white">
             Contact Us
           </h1>
         </div>

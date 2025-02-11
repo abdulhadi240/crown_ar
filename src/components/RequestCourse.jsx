@@ -81,7 +81,7 @@ function RequestCourse({ cities, categories }) {
                 placeholder="Enter your full name"
                 className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
               />
-              {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
+              {errors.fullName && <p className="text-red-500 text-xs text-start mt-1">{errors.fullName.message}</p>}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -93,7 +93,7 @@ function RequestCourse({ cities, categories }) {
                   placeholder="Enter your email"
                   className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
-                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                {errors.email && <p className="text-red-500 text-start text-xs mt-1">{errors.email.message}</p>}
               </div>
               
               <div>
@@ -104,7 +104,7 @@ function RequestCourse({ cities, categories }) {
                   placeholder="Enter your mobile number"
                   className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
-                {errors.mobile && <p className="text-red-500 text-xs mt-1">{errors.mobile.message}</p>}
+                {errors.mobile && <p className="text-red-500 text-start text-xs mt-1">{errors.mobile.message}</p>}
               </div>
             </div>
 
@@ -122,7 +122,7 @@ function RequestCourse({ cities, categories }) {
                     </option>
                   ))}
                 </select>
-                {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category.message}</p>}
+                {errors.category && <p className="text-red-500 text-start text-xs mt-1">{errors.category.message}</p>}
               </div>
               
               <div>
@@ -138,7 +138,7 @@ function RequestCourse({ cities, categories }) {
                     </option>
                   ))}
                 </select>
-                {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
+                {errors.city && <p className="text-red-500 text-start text-xs mt-1">{errors.city.message}</p>}
               </div>
             </div>
 
@@ -155,7 +155,7 @@ function RequestCourse({ cities, categories }) {
 
           {/* Success message */}
           {successMessage && (
-            <div className="mt-4 text-center text-green-600 font-semibold">
+            <div className="mt-4 text-xs text-primary text-start font-semibold">
               {successMessage}
             </div>
           )}

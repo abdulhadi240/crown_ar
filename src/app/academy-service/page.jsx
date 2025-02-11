@@ -340,7 +340,7 @@ export default function AcademyService({ params }) {
     <div>
     <Design secondary={true} bg={true}></Design>
     <div className="bg-[#0A1828] py-8">
-        <h1 className="text-center mt-10 pt-6 text-3xl font-bold text-white">Academy Services</h1>
+        <h1 className="text-center md:mt-10 md:pt-6 text-3xl font-bold text-white">Academy Services</h1>
       </div>
       <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="all" className="mb-12">

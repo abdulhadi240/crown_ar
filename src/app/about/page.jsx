@@ -57,7 +57,7 @@ export default function ConsultingPage({params}) {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-base">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl mt-10 pt-6 font-bold mb-2 uppercase">About Crown London Institute </h1>
+          <h1 className="text-3xl md:mt-10 md:pt-6 font-bold mb-2 uppercase">About Crown London Institute </h1>
           <p className="text-gray-600">
           Empowering Professionals, Transforming Futures.
           </p>

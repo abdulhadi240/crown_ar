@@ -98,7 +98,7 @@ const AuthForm = () => {
 
         {/* Display Error Message Below Form */}
         {errorMessage && (
-          <p className="text-red-500 text-xs text-center mt-3">{'Invalid Email or Password'}</p>
+          <p className="text-red-500 text-xs text-start mt-3">{'Invalid Email or Password'}</p>
         )}
       </form>
     </div>

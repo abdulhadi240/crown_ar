@@ -187,9 +187,13 @@ const Programs = ({
         image_height={false}
         search_height={true}
         search
+        className=""
+        
       >
-        <SectionTitle1 title="Courses By" highlight={slug} />
-
+      <div className="-mt-16 md:-mt-0">
+      <div className="pt-3">
+        <SectionTitle1 title="Courses By" highlight={slug} className=""/>
+</div>
         <div className="relative flex items-center justify-center ">
           {/* Overlay Content */}
           <div className="relative flex flex-col items-center w-full max-w-4xl p-6  bg-opacity-90 rounded-lg  md:p-8">
@@ -305,6 +309,7 @@ const Programs = ({
               </select>
             </div>
           </div>
+        </div>
         </div>
       </Design>
 

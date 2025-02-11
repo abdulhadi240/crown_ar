@@ -9,7 +9,7 @@ import Design from "../homepage1/components/Design";
 const page = () => {
   return (
     <div className="mb-10">
-    <Design  iamge={'/consulting.webp'}>
+    <Design  iamge={'/consulting.webp'} search>
     <div className="w-screen">
     <h1 className=" text-center mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
           Explore Our <span className="text-secondary font-bold">Consultations</span>{" "}
@@ -17,9 +17,9 @@ const page = () => {
         </div>
     </Design>
       <div className="mx-5 md:mx-10 ">
-        <Vision_Card text={"Overview of BATD"}>
-          The British Academy for Training and Development (BATD), located in
-          London, is a British educational Academy specialized and accredited in
+        <Vision_Card text={"Overview of Crown Academy"}>
+          The Crown Academy for Training and Development, located in
+          London, is an academy specialized and accredited in
           the field of training, development and consultation for human and
           corporate cadres in several and various areas. The Academy holds its
           training courses and programs, studies and conferences in Britain in
@@ -32,18 +32,18 @@ const page = () => {
           professionally using the latest technologies of the world. These
           programs are presented in Arabic or English in addition to other
           languages such as (Spanish, French and German) based on the request of
-          the trainee entity. We are also registered at the British companies
-          accredited in the education and training field under No. 08758169.
+          the trainee entity.
         </Vision_Card>
         <div className="flex justify-center gap-10 my-10">
         <div className="grid justify-between grid-cols-1 gap-5 md:gap-10 md:grid-cols-3 sm:grid-cols-2">
-        <Card_Quality Icon={LuBadgeCheck} src={'/handshake.png'} text={'Quality'} para={'We will always provide you the highest quality education at the best price '}/>
-        <Card_Quality Icon={FaHandshake} src={'/handshake.png'} text={'Integrity'} para={'We will always provide you the highest quality education at the best price '}/>
-        <Card_Quality Icon={FaBookOpen} src={'/handshake.png'} text={'Experience'} para={'We will always provide you the highest quality education at the best price '}/>
+        <Card_Quality Icon={LuBadgeCheck} src={'/handshake.png'} text={'Quality'} para={'We ensure excellence in every aspect of our educational offerings.'}/>
+        <Card_Quality Icon={FaHandshake} src={'/handshake.png'} text={'Integrity'} para={'We uphold the highest ethical standards in all our interactions.'}/>
+        <Card_Quality Icon={FaBookOpen} src={'/handshake.png'} text={'Experience'} para={'Our team brings years of expertise to deliver unparalleled learning experiences.'}/>
+
         </div>
         </div>
         <Vision_Card text={"Our Vision"}>
-          The British Academy for Training and Development (BATD) is one of the
+          The Crown Academy  is one of the
           best training and developmental institutions in the world. This is
           demonstrated through its ability to combine between the scientific and
           practical methods needed by its trainees. In addition, it opens the

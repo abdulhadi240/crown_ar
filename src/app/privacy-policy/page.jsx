@@ -106,6 +106,7 @@ By registering for our courses or using our services, you acknowledge that you h
 
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
   const observerRef = useRef(null);
   const sectionRefs = useRef({});
 
@@ -140,18 +141,31 @@ export default function PrivacyPolicy() {
     }
   };
 
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   return (
     <>
       <Design secondary bg={true} />
       <div className="bg-[#0A1828] py-4">
-          <h1 className="text-center mt-10 pt-6 text-3xl items-center font-bold text-white">
-            Privacy Policy
-          </h1>
-        </div>
+        <h1 className="text-center md:mt-10 md:pt-6 text-3xl items-center font-bold text-white">
+          Privacy Policy
+        </h1>
+      </div>
       <div className="flex min-h-screen flex-col lg:flex-row text-left bg-white">
         {/* Sidebar Navigation */}
-        <nav className="lg:w-[320px] lg:min-h-screen border-r mt-2 bg-white">
+        <nav
+          className={cn(
+            "lg:w-[320px] lg:min-h-screen border-r mt-2 bg-white transition-transform transform lg:block",
+            isSidebarOpen ? "block" : "lg:block hidden"
+          )}
+        >
           <div className="sticky top-0 p-4 lg:p-6 mt-2">
+            <button
+              onClick={toggleSidebar}
+              className="lg:hidden block p-4 mb-4 text-lg font-bold text-black"
+            >
+              {isSidebarOpen ? "Close Menu" : "Open Menu"}
+            </button>
             <div className="space-y-1">
               {sections.map((section) => (
                 <button
@@ -172,9 +186,8 @@ export default function PrivacyPolicy() {
         </nav>
 
         {/* Content Section */}
-        <main className="p-4 lg:p-6 overflow-hidden bg-white">
+        <main className="p-4 lg:p-6 overflow-hidden bg-white flex-1">
           <div className="max-w-5xl mx-auto">
-
             <div className="space-y-8">
               {sections.map((section) => (
                 <section
