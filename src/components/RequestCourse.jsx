@@ -39,7 +39,7 @@ function RequestCourse({ cities, categories }) {
     try {
       const response = await fetch("https://backendbatd.clinstitute.co.uk/api/course-request", {
         method: "POST",
-        "Accept-Language": `${process.env.LOCALE_LANGUAGE}`,
+        "Accept-Language": "en",
         body: formData,
       });
 
