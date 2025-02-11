@@ -171,7 +171,7 @@ export default function Page() {
       formData.append("city_id", city || "");
       formData.append("date", selectedDate || "");
       formData.append("full_name", fullname || "");
-      formData.append("language", language || "");
+      formData.append("language", language || "en");
       formData.append("email", email || "");
       formData.append("job_title", jobtitle || "");
       formData.append("phone", phone || "");
@@ -311,9 +311,8 @@ export default function Page() {
                   onChange={(e) => setLanguage(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
-                  <option>Select Language</option>
-                  <option>English</option>
-                  <option>Arabic</option>
+                  <option value={'en'}>English</option>
+                  <option value={'ar'}>Arabic</option>
                 </select>
               </div>
 
