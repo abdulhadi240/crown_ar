@@ -5,12 +5,10 @@ import Link from "next/link";
 import { FaLock } from "react-icons/fa";
 import { useAuth } from "./context/AuthContext";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
 
 const Login_ = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const router = useRouter();
 
   const getInitials = (name) => {
     return name ? name.split(" ").map(n => n[0]).join("").toUpperCase() : "U";

@@ -14,64 +14,99 @@ export default function MobileMenu({ color, bg }) {
     setIsOpen(!isOpen);
   };
   const getInitials = (name) => {
-    return name ? name.split(" ").map(n => n[0]).join("").toUpperCase() : "U";
+    return name
+      ? name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase()
+      : "U";
+  };
+
+  const handleLanguageChange = () => {
+    if (typeof window !== "undefined") {
+      const lang = "ar"; // Or get this dynamically
+      const subdomain = `${lang}.clinstitute.co.uk`;
+      const currentHost = window.location.hostname;
+
+      // Handle cases where there might not be a current host (e.g., local dev)
+      if (currentHost) {
+        const newHost = subdomain;
+        const newUrl = window.location.href.replace(currentHost, newHost);
+        window.location.href = newUrl; // Or use router.push(newUrl) if you want to stay within Next.js
+      } else {
+        // For local development or cases where hostname isn't available
+        const newUrl = `http://${subdomain}${window.location.pathname}${window.location.search}`; // Reconstruct URL
+        window.location.href = newUrl; // Or router.push(newUrl)
+      }
+    }
   };
 
   return (
     <div className={`${bg ? "bg-primary" : ""}`}>
       <div className="mx-4 md:hidden ">
         {/* Menu Button */}
-        <div className="flex justify-between mx-2 h-16">
+        <div className="flex justify-between items-center mx-2 h-16">
           <div>
             <Image
               src={"/logo13.png"}
               width={120}
               height={120}
               alt="logo"
-              className="-mt-8"
+              className=""
             />
           </div>
+<div className="flex gap-2">
+          <button
+            onClick={handleLanguageChange}
+            className="flex items-center text-xs gap-2 h-10 px-2 border-[1px] rounded-md text-white border-slate-50/70"
+          >
+            <Image src={"/ar.webp"} height={30} width={30} alt="Arab Flag" />
+            العربية
+          </button>
 
           <div className="flex gap-3">
-          {isAuthenticated && user && (
-            // 🎭 Show user avatar & dropdown when logged in
-            <div className="items-center relative mt-3 md:mt-0">
-              <button
-                className="w-10 h-10 flex items-center justify-center bg-secondary text-white font-bold rounded-full text-sm focus:outline-none"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-              >
-                {getInitials(user.name)}
-              </button>
+            {isAuthenticated && user && (
+              // 🎭 Show user avatar & dropdown when logged in
+              <div className="items-center relative mt-3 md:mt-0">
+                <button
+                  className="w-10 h-10 flex items-center justify-center bg-secondary text-white font-bold rounded-full text-sm focus:outline-none"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                >
+                  {getInitials(user.name)}
+                </button>
 
-              {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 md:w-auto z-9999 bg-white border rounded shadow-lg text-sm">
-                  <div className="p-3 border-b text-gray-700">{user.name}</div>
-                  <Link
-                    href="/account"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={logout} // Calls `logout()` from `AuthProvider`
-                    className="block w-full text-left px-4 py-2 text-white bg-primary "
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-56 md:w-auto z-9999 bg-white border rounded shadow-lg text-sm">
+                    <div className="p-3 border-b text-gray-700">
+                      {user.name}
+                    </div>
+                    <Link
+                      href="/account"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={logout} // Calls `logout()` from `AuthProvider`
+                      className="block w-full text-left px-4 py-2 text-white bg-primary "
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div
+              className="flex justify-center items-center text-center"
+              onClick={toggleMenu}
+            >
+              <MdMenu size={28} color={color || "black"} />
             </div>
-          )}
-
-          <div
-            className="flex justify-center items-center text-center"
-            onClick={toggleMenu}
-          >
-            <MdMenu size={28} color={color || "black"} />
           </div>
-          </div>
-          
         </div>
+      </div>
       </div>
 
       {/* Mobile Menu */}
@@ -116,25 +151,23 @@ export default function MobileMenu({ color, bg }) {
                 />
               </div>
               {!user && (
-
-              
-              <div className="flex justify-between gap-10">
-                <Link
-                  href="/sign-in"
-                  className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-secondary border-[1px] text-white rounded hover:bg-blue-700"
-                  onClick={toggleMenu}
-                >
-                  <FaLock className="mr-2 " /> Login
-                </Link>
-                <Link
-                  href="/sign-up"
-                  className="flex items-center w-full border-primary border-[1px] h-8 px-4 mt-4 text-xs text-white rounded bg-secondary "
-                  onClick={toggleMenu}
-                >
-                  <FaLock className="mr-2 " /> Signup
-                </Link>
-              </div>
-            )}
+                <div className="flex justify-between gap-10">
+                  <Link
+                    href="/sign-in"
+                    className="flex items-center w-full h-8 px-4 mt-4 text-xs  border-secondary border-[1px] text-white rounded hover:bg-blue-700"
+                    onClick={toggleMenu}
+                  >
+                    <FaLock className="mr-2 " /> Login
+                  </Link>
+                  <Link
+                    href="/sign-up"
+                    className="flex items-center w-full border-primary border-[1px] h-8 px-4 mt-4 text-xs text-white rounded bg-secondary "
+                    onClick={toggleMenu}
+                  >
+                    <FaLock className="mr-2 " /> Signup
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 
