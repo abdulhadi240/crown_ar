@@ -269,21 +269,6 @@ const Specialization = ({
                   ))}
                 </select>
                 <select
-                  value={selectedSpecialization}
-                  onChange={(e) => {
-                    setSelectedSpecialization(e.target.value);
-                    updateSearchParams("specialization", e.target.value);
-                  }}
-                  className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  <option value="">Specialization</option>
-                  {specialization?.data?.map((spec) => (
-                    <option key={spec.id} value={spec.slug}>
-                      {spec.name}
-                    </option>
-                  ))}
-                </select>
-                <select
                   value={selectedCategory}
                   onChange={(e) => {
                     setSelectedCategory(e.target.value);
