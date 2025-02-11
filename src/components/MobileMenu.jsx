@@ -56,10 +56,10 @@ export default function MobileMenu({ color, bg }) {
               className=""
             />
           </div>
-<div className="flex gap-2">
+<div className="flex gap-2 items-center">
           <button
             onClick={handleLanguageChange}
-            className="flex items-center text-xs gap-2 h-10 px-2 border-[1px] rounded-md text-white border-slate-50/70"
+            className="flex items-center text-xs gap-2 h-10  px-2 border-[1px] rounded-md text-white border-slate-50/70"
           >
             <Image src={"/ar.webp"} height={30} width={30} alt="Arab Flag" />
             العربية
@@ -68,7 +68,7 @@ export default function MobileMenu({ color, bg }) {
           <div className="flex gap-3">
             {isAuthenticated && user && (
               // 🎭 Show user avatar & dropdown when logged in
-              <div className="items-center relative mt-3 md:mt-0">
+              <div className="items-center relative  md:mt-0">
                 <button
                   className="w-10 h-10 flex items-center justify-center bg-secondary text-white font-bold rounded-full text-sm focus:outline-none"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
