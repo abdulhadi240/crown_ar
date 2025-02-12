@@ -98,7 +98,7 @@ const Details1 = ({ course }) => {
         {/* Sticky Title and Register Button */}
         <div className="sticky md:hidden top-0 bg-white">
           <div className="flex justify-between mt-6">
-            <h2 className="text-lg w-44 text-gray-900 mt-1 font-medium ">
+            <h2 className="text-lg w-56 text-gray-900 mt-1 font-medium ">
               {course.title}
             </h2>
             <Link
@@ -142,7 +142,7 @@ const Details1 = ({ course }) => {
                                 )}
                               </div>
                             </td>
-                            <td className="px-4 py-2 border-b">{item.date}</td>
+                            <td className="px-4 py-2 border-b text-primary">{item.date}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -160,7 +160,7 @@ const Details1 = ({ course }) => {
                       <input
                         id="custom-date"
                         type="date"
-                        className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary"
+                        className="block w-full text-primary px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary"
                         value={customDate}
                         onChange={handleCustomDateChange}
                       />
@@ -199,7 +199,7 @@ const Details1 = ({ course }) => {
                                 )}
                               </div>
                             </td>
-                            <td className="px-4 py-2 border-b">{city.name}</td>
+                            <td className="px-4 py-2 border-b text-primary">{city.name}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -210,7 +210,7 @@ const Details1 = ({ course }) => {
                     <h3 className="text-base my-6 font-bold text-primary mb-2">
                       Price
                     </h3>
-                    <p className="text-base">${course.price}</p>
+                    <p className="text-base text-primary">${course.price}</p>
                   </div>
                 </div>
               </div>

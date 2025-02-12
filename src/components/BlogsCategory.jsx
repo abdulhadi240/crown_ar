@@ -33,7 +33,7 @@ const BlogsCategory = ({ category }) => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-grow p-2 rounded-md border-none outline-none bg-transparent"
+          className="flex-grow p-2 text-primary rounded-md border-none outline-none bg-transparent"
         />
         <button
           onClick={handleSearch}

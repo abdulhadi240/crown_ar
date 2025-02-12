@@ -209,7 +209,7 @@ const City = ({
                   value={searchInput}
                   onKeyDown={handleSearch}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  className="flex-grow px-4 py-2 text-sm rounded-md md:text-base placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="flex-grow text-primary px-4 py-2 text-sm rounded-md md:text-base placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <button
                   onClick={handleSearch}
@@ -228,7 +228,7 @@ const City = ({
                   setSelectedMonth(e.target.value);
                   updateSearchParams("month", e.target.value);
                 }}
-                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 text-primary py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">Month</option>
                 {[
@@ -256,7 +256,7 @@ const City = ({
                   setSelectedYear(e.target.value);
                   updateSearchParams("year", e.target.value);
                 }}
-                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 text-primary py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">Year</option>
                 {[2024, 2025, 2026].map((year) => (
@@ -271,7 +271,7 @@ const City = ({
                   setSelectedSpecialization(e.target.value);
                   updateSearchParams("specialization", e.target.value);
                 }}
-                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 text-primary py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">Specialization</option>
                 {specialization?.data?.map((spec) => (
@@ -286,7 +286,7 @@ const City = ({
                   setSelectedCategory(e.target.value);
                   updateSearchParams("category", e.target.value);
                 }}
-                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 text-primary py-2 text-sm border border-gray-300 rounded-md md:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">Category</option>
                 {category?.data?.map((cat) => (

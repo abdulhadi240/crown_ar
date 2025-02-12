@@ -193,13 +193,11 @@ export default function Page() {
       );
 
       const responseData = await response.json(); // Parse JSON response
-      console.log("Response Data:", responseData.status);
 
       // Handle success based on `status`
       if (responseData.status === "success") {
         setModal(true);
         setSuccess(true);
-        console.log(responseData.message); // Log success message
       } else {
         setModal(true);
         setSuccess(false);

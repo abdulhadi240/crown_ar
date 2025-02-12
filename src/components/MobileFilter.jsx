@@ -58,7 +58,7 @@ export default function SearchForm({ cities, specialization }) {
           placeholder="Search in specific course"
           value={searchQuery} // Binds input to state
           onChange={(e) => setSearchQuery(e.target.value)} // Updates state on change
-          className="w-full bg-gray-100 text-gray-600  placeholder-gray-400 focus:outline-none text-base"
+          className="w-full bg-gray-100 text-primary  placeholder-gray-400 focus:outline-none text-base"
         />
         <button onClick={handleSearch} className="p-2 text-[#E5C17C] cursor-pointer hover:bg-secondary hover:text-white transition-all rounded-full">
           <AiOutlineSearch className="" size={26} />

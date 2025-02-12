@@ -99,11 +99,7 @@ export default async function Page({ params }) {
   ).then((res) => res.json());
 
   const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`)
-  
-
-  console.log(articles);
-  
-
+    
   return (
     <>
       <Design iamge={"/blog3.png"} search center input={false} image_height={false}>

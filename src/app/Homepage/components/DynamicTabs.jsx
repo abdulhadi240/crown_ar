@@ -62,8 +62,6 @@ const WorkWithUsForm = () => {
     if (file) {
       formData.append('cv', file);
     }
-
-    console.log('Form submitted with data:', formData);
   };
 
   return (

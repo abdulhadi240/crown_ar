@@ -18,7 +18,7 @@ const Page = () => {
 
         <div className="flex flex-col items-center justify-center gap-3 md:mx-20">
           <div className="flex justify-center mt-2">
-            <Image src="/logocrown.webp" width={200} height={200} alt="logo" />
+            <Image src="/Logocrown.webp" width={200} height={200} alt="logo" />
           </div>
           <div className="flex justify-center mb-10 ">
             <AuthForm />

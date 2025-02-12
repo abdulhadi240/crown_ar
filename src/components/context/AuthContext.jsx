@@ -37,24 +37,27 @@ export const AuthProvider = ({ children }) => {
     formData.append("locale", language);
 
     try {
-      const res = await fetch(`https://backendbatd.clinstitute.co.uk/api/login`, {
-        method: "POST",
-        body: formData,
-      });
+        const res = await fetch(`https://backendbatd.clinstitute.co.uk/api/login`, {
+            method: "POST",
+            body: formData,
+        });
 
-      const data = await res.json();
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        setIsAuthenticated(true);
-        setUser(data.user);
-        router.push("/");
-      } else {
-        throw new Error("Invalid login");
-      }
+        const data = await res.json();
+
+        if (res.ok) {
+            localStorage.setItem("token", data.token);
+            setIsAuthenticated(true);
+            setUser(data.user);
+            router.push("/");
+        } else {
+            throw new Error(data.message || "Invalid login credentials");
+        }
     } catch (error) {
-      console.error("Login error:", error);
+        console.error("Login error:", error.message);
+        return error.message; // Return the error message so it can be displayed
     }
-  };
+};
+
 
   const logout = () => {
     localStorage.removeItem("token");

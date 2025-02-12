@@ -48,9 +48,7 @@ const team = [
   },
 ];
 
-export default function ConsultingPage({params}) {
-  console.log(params.locale);
-  
+export default function ConsultingPage({params}) {  
   return (
     <>
       <Design secondary bg></Design>

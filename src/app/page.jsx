@@ -4,7 +4,6 @@ import MobileFilter from "../components/MobileFilter";
 import fetchData from "@/actions/server";
 import Design from "./homepage1/components/Design";
 import Latest_course from "@/components/Latest_course";
-import ScrollingTestimonials from "@/components/Testimonials";
 import Testimonials from "@/components/Testimonials";
 
 // Dynamically imported components

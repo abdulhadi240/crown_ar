@@ -79,7 +79,7 @@ function RequestCourse({ cities, categories }) {
                 {...register("fullName")}
                 type="text"
                 placeholder="Enter your full name"
-                className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
+                className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
               />
               {errors.fullName && <p className="text-red-500 text-xs text-start mt-1">{errors.fullName.message}</p>}
             </div>
@@ -91,7 +91,7 @@ function RequestCourse({ cities, categories }) {
                   {...register("email")}
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
+                  className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
                 {errors.email && <p className="text-red-500 text-start text-xs mt-1">{errors.email.message}</p>}
               </div>
@@ -102,7 +102,7 @@ function RequestCourse({ cities, categories }) {
                   {...register("mobile")}
                   type="tel"
                   placeholder="Enter your mobile number"
-                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
+                  className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
                 {errors.mobile && <p className="text-red-500 text-start text-xs mt-1">{errors.mobile.message}</p>}
               </div>
@@ -113,7 +113,7 @@ function RequestCourse({ cities, categories }) {
                 <label className="text-gray-700 text-sm font-medium">Category</label>
                 <select
                   {...register("category")}
-                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
+                  className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
                 >
                   <option value="">Select a category</option>
                   {categories.map((category) => (
@@ -129,7 +129,7 @@ function RequestCourse({ cities, categories }) {
                 <label className="text-gray-700 text-sm font-medium">City</label>
                 <select
                   {...register("city")}
-                  className="w-full mt-1 px-3 py-2 rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
+                  className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
                 >
                   <option value="">Select a city</option>
                   {cities.map((city) => (

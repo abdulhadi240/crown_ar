@@ -10,13 +10,13 @@ const Testimonials = () => {
           <div className="mb-8 gap-5 py-4 [column-count:1] md:mb-12 md:[column-count:2] lg:mb-16 lg:[column-count:3]">
             {/* Item */}
             <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2">
+              <div className="mb-4 flex flex-row items-center">
+                <Avatar className="text-sm text-primary mr-2">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback>AA</AvatarFallback>
+                  <AvatarFallback className="text-primary">AA</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold">Ahmed Al-Mansoori</h6>
+                  <h6 className="text-base font-semibold -mt-4">Ahmed Al-Mansoori</h6>
                   <p className="text-sm text-gray-500">
                     Project Management Course
                   </p>
@@ -59,12 +59,12 @@ const Testimonials = () => {
             {/* Item */}
             <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
               <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2">
+                <Avatar className="text-sm mr-2 text-primary">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback>FA</AvatarFallback>
+                  <AvatarFallback className="text-primary">FA</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold">Fatima Al-Sayed</h6>
+                  <h6 className="text-base -mt-4 font-semibold">Fatima Al-Sayed</h6>
                   <p className="text-sm text-gray-500">
                     Leadership Training Course
                   </p>
@@ -107,12 +107,12 @@ const Testimonials = () => {
             {/* Item */}
             <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
               <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2">
+                <Avatar className="text-sm text-primary mr-2">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback>KA</AvatarFallback>
+                  <AvatarFallback className="text-primary">KA</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold"> Khalid Al-Farsi</h6>
+                  <h6 className="text-base -mt-4 font-semibold"> Khalid Al-Farsi</h6>
                   <p className="text-sm text-gray-500">
                     Business Communication Course
                   </p>
@@ -155,12 +155,12 @@ const Testimonials = () => {
             {/* Item */}
             <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
               <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2">
+                <Avatar className="text-sm text-primary mr-2">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback>LH</AvatarFallback>
+                  <AvatarFallback className="text-primary">LH</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold">Layla Hassan</h6>
+                  <h6 className="text-base -mt-4 font-semibold">Layla Hassan</h6>
                   <p className="text-sm text-gray-500">
                     Human Resource Management Course
                   </p>
@@ -203,12 +203,12 @@ const Testimonials = () => {
             {/* Item */}
             <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
               <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2">
+                <Avatar className="text-sm mr-2 text-primary">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback>OA</AvatarFallback>
+                  <AvatarFallback className="text-primary">OA</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold">Omar Al-Dabbagh</h6>
+                  <h6 className="text-base -mt-4 font-semibold">Omar Al-Dabbagh</h6>
                   <p className="text-sm text-gray-500">
                     Digital Marketing Course
                   </p>
@@ -251,12 +251,12 @@ const Testimonials = () => {
             {/* Item */}
             <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
               <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2">
+                <Avatar className="text-sm mr-2 text-primary">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback>HA</AvatarFallback>
+                  <AvatarFallback className="text-primary">HA</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold">Huda Al-Najjar</h6>
+                  <h6 className="text-base -mt-4 font-semibold">Huda Al-Najjar</h6>
                   <p className="text-sm text-gray-500">
                     {" "}
                     Financial Management Course

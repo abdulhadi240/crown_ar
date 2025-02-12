@@ -140,23 +140,23 @@ const Apply = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Job Application</DialogTitle>
+          <DialogTitle className="text-primary">Job Application</DialogTitle>
           <DialogDescription>Fill out the form below to apply for the position.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           {step === 1 && (
-            <div className="space-y-4">
+            <div className="space-y-4 text-primary">
               <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" value={formData.name} onChange={handleInputChange} required />
+                <Label htmlFor="name" className="text-primary">Name</Label>
+                <Input id="name" name="name" className="text-primary" value={formData.name} onChange={handleInputChange} required />
               </div>
               <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
+                <Label htmlFor="email" className="text-primary">Email</Label>
+                <Input id="email" name="email" className="text-primary" type="email" value={formData.email} onChange={handleInputChange} required />
               </div>
               <div>
-                <Label htmlFor="contact_number">Contact Number</Label>
-                <Input id="contact_number" name="contact_number" type="tel" value={formData.contact_number} onChange={handleInputChange} required />
+                <Label htmlFor="contact_number" className="text-primary">Contact Number</Label>
+                <Input id="contact_number" className="text-primary" name="contact_number" type="tel" value={formData.contact_number} onChange={handleInputChange} required />
               </div>
               <Button type="button" onClick={nextStep} disabled={!isStepValid()} className="w-full text-white bg-primary hover:bg-primary-dark">
                 Next
@@ -165,10 +165,10 @@ const Apply = () => {
           )}
 
           {step === 2 && (
-            <div className="space-y-4">
+            <div className="space-y-4 text-primary">
               <div>
-                <Label htmlFor="resume">Upload Resume (PDF, DOC)</Label>
-                <Input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" onChange={handleInputChange} required />
+                <Label htmlFor="resume" className="text-primary">Upload Resume (PDF, DOC)</Label>
+                <Input className="text-primary" id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" onChange={handleInputChange} required />
               </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
@@ -182,18 +182,18 @@ const Apply = () => {
           )}
 
           {step === 3 && (
-            <div className="space-y-4 overflow-y-hidden">
+            <div className="space-y-4 overflow-y-hidden text-primary">
               <div>
-                <Label htmlFor="currentPosition">Current Position</Label>
-                <Input id="currentPosition" name="currentPosition" value={extraFields.currentPosition} onChange={handleInputChange} />
+                <Label htmlFor="currentPosition"  className="text-primary">Current Position</Label>
+                <Input id="currentPosition"  className="text-primary" name="currentPosition" value={extraFields.currentPosition} onChange={handleInputChange} />
               </div>
               <div>
-                <Label htmlFor="expectedSalary">Expected Salary</Label>
-                <Input id="expectedSalary" name="expectedSalary" type="text" value={extraFields.expectedSalary} onChange={handleInputChange} />
+                <Label htmlFor="expectedSalary" className="text-primary">Expected Salary</Label>
+                <Input id="expectedSalary"  className="text-primary" name="expectedSalary" type="text" value={extraFields.expectedSalary} onChange={handleInputChange} />
               </div>
               <div>
-                <Label htmlFor="coverLetter">Cover Letter</Label>
-                <Textarea id="coverLetter" name="coverLetter" value={extraFields.coverLetter} onChange={handleInputChange} placeholder="Tell us why you're a great fit for this position..." className="h-40" />
+                <Label htmlFor="coverLetter" className="text-primary">Cover Letter</Label>
+                <Textarea id="coverLetter"  className="text-primary h-40" name="coverLetter" value={extraFields.coverLetter} onChange={handleInputChange} placeholder="Tell us why you're a great fit for this position..."  />
               </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">

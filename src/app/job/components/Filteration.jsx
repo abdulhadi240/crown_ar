@@ -4,7 +4,6 @@ import { CiSearch } from "react-icons/ci";
 import JobCard from '@/app/positions/components/JobCard';
 
 const Filteration = ({ category, data }) => {
-  console.log(data, 'data')
   const [title, setTitle] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
@@ -41,8 +40,6 @@ const Filteration = ({ category, data }) => {
         );
       });
     }
-
-    console.log("Filtered Data:", filteredData); // Log to check the filtered data
     setFiltered(filteredData);
   };
 
@@ -56,19 +53,19 @@ const Filteration = ({ category, data }) => {
     <div>
       <div className="max-w-3xl mx-auto p-3 mb-8 bg-white shadow-xl rounded-lg text-base">
         <div className='border-[1.5px] border-[#f5d273] p-2 rounded-lg'>
-          <div className="grid items-center grid-cols-3 gap-4 flex-row sm:flex bg-white">
+          <div className="flex items-center gap-4 flex-row sm:flex bg-white">
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               onKeyDown={handleKeyDown}  // Add the event listener here
               placeholder="Search Jobs"
-              className="flex-1 p-3 text-sm border rounded-lg shadow-md"
+              className="flex-1 text-primary w-4/5  md:w-full p-3 text-sm border rounded-lg shadow-md"
             />
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="flex-1 p-3 border rounded-lg shadow-md"
+              className="flex-1 p-3 hidden md:block border rounded-lg shadow-md"
             >
               <option value="">Company</option>
               {category.data && category.data.length > 0 ? (
@@ -81,15 +78,17 @@ const Filteration = ({ category, data }) => {
                 <option disabled>No categories available</option>
               )}
             </select>
+            </div>
+            <div>
             <button
               onClick={handleSearch}
-              className=" py-3 text-sm px-4 w-full text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
+              className=" py-3 text-sm px-4 w-1/5 md:w-full text-center items-center flex justify-center text-primary transition rounded-lg bg-[#f5d273] hover:bg-[#f5d273]/70"
             >
               <CiSearch size={24} />
             </button>
           </div>
+          </div>
         </div>
-      </div>
 
       {/* Services List */}
       <div className='flex justify-center  text-base'>

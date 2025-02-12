@@ -30,7 +30,7 @@ const page = async () => {
       </heading>
       <div className="min-h-screen px-4 py-12 bg-white">
         <div className="mb-12 text-center">
-          <h1 className="mb-2 text-4xl font-bold">
+          <h1 className="mb-2 text-4xl text-primary font-bold">
             Consultation Services in Academy
           </h1>
         </div>

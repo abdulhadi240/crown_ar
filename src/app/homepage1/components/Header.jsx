@@ -97,25 +97,25 @@ const Header = ({ secondary, icon_white, bg }) => {
 
   return (
     <>
-        {/* Inject JSON-LD Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(siteNavigationJsonLd),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(breadcrumbsJsonLd),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
-          }}
-        />
+      {/* Inject JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(siteNavigationJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbsJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationJsonLd),
+        }}
+      />
 
       {/* Mobile Header */}
       <header className="md:hidden z-[9999]">
@@ -125,11 +125,9 @@ const Header = ({ secondary, icon_white, bg }) => {
       {/* Desktop Header */}
       <section className="fixed top-0 w-full z-[999]">
         <nav
-          className={`z-[999] text-sm items-center justify-between hidden p-4 text-white bg-primary ${
-            secondary ? "bg-opacity-100" : "bg-opacity-70"
-          } md:flex transition-all duration-300 ease-in-out ${
-            scrolled ? "bg-opacity-100 shadow-lg z-[99999]" : "z-[50]"
-          }`}
+          className={`z-[999] text-sm items-center justify-between hidden p-4 text-white bg-primary ${secondary ? "bg-opacity-100" : "bg-opacity-70"
+            } md:flex transition-all duration-300 ease-in-out ${scrolled ? "bg-opacity-100 shadow-lg z-[99999]" : "z-[50]"
+            }`}
         >
           {/* Logo */}
           <div className="flex items-center justify-between">
@@ -145,16 +143,22 @@ const Header = ({ secondary, icon_white, bg }) => {
             </Link>
           </div>
 
-          {/* Navigation Menu */}
           <div className="hidden space-x-6 sm:flex ml-16 sm:gap-4">
             {menu.map((item, index) => (
-              <Link key={index} href={item.link} className="hover:text-white/80">
+              <Link
+                key={index}
+                href={item.link}
+                className={`hover:text-white/80 pb-1 border-b-2 transition-colors duration-300 ${currentPath === item.link
+                    ? "border-secondary"
+                    : "border-transparent"
+                  }`}
+              >
                 {item.name}
               </Link>
             ))}
           </div>
 
-         
+
 
           {/* Login and Sign Up */}
           <Login_ />

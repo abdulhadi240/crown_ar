@@ -24,7 +24,7 @@ const SpecializationSection = ({ data }) => {
       </div>
     ))
   ) : (
-    <p>No specializations available</p>
+    <p className='text-primary text-xs'>No specializations available</p>
   )}
 </div>
 
@@ -52,7 +52,7 @@ const SpecializationSection = ({ data }) => {
       ))
     ) : (
       <div className='flex justify-center'>
-      <p className='flex justify-center text-center text-sm mx-auto w-screen'>No courses available for this specialization.</p>
+      <p className='flex justify-center text-center text-sm text-primary mx-auto w-screen'>No courses available for this specialization.</p>
       </div>
     )}
   </div>

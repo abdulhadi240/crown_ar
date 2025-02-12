@@ -42,6 +42,10 @@ const AuthFormSignup = () => {
         ...formData,
         locale: "en",
       });
+      if(response?.message){
+        setApiError(response?.message || "Something went wrong.");
+
+      }
       navigate.push("/login"); // ✅ Redirect to the login page after successful signup
     } catch (error) {
       setApiError(error.response?.data?.message || "Something went wrong.");
@@ -53,9 +57,9 @@ const AuthFormSignup = () => {
   
 
   return (
-    <div className="flex items-center justify-center  px-4 text-sm md:w-[500px] w-[350px] -mt-10">
+    <div className="flex items-center justify-center  px-4 text-sm md:w-[500px] min-w-[350px] -mt-10">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Create an Account</h2>
+        <h2 className="text-2xl font-bold text-center text-primary">Create an Account</h2>
         {apiError && <p className="text-red-500 text-center">{apiError}</p>}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
@@ -65,7 +69,7 @@ const AuthFormSignup = () => {
             <input
               type="text"
               {...register("name")}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+              className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
               placeholder="Enter your full name"
             />
             <p className="text-red-500 text-sm">{errors.name?.message}</p>
@@ -77,7 +81,7 @@ const AuthFormSignup = () => {
             <input
               type="text"
               {...register("username")}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+              className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
               placeholder="Choose a username"
             />
             <p className="text-red-500 text-sm">{errors.username?.message}</p>
@@ -89,7 +93,7 @@ const AuthFormSignup = () => {
             <input
               type="email"
               {...register("email")}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+              className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
               placeholder="Enter your email"
             />
             <p className="text-red-500 text-sm">{errors.email?.message}</p>
@@ -101,7 +105,7 @@ const AuthFormSignup = () => {
             <input
               type="password"
               {...register("password")}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+              className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
               placeholder="Enter a strong password"
             />
             <p className="text-red-500 text-sm">{errors.password?.message}</p>
@@ -113,7 +117,7 @@ const AuthFormSignup = () => {
             <input
               type="password"
               {...register("password_confirmation")}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+              className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
               placeholder="Confirm your password"
             />
             <p className="text-red-500 text-sm">{errors.password_confirmation?.message}</p>
@@ -129,6 +133,8 @@ const AuthFormSignup = () => {
           >
             {isLoading ? "Signing Up..." : "Sign Up"}
           </button>
+          {apiError && <p className="text-red-500 text-xs text-start">{apiError}</p>
+        }
         </form>
 
         {/* Redirect to Login */}

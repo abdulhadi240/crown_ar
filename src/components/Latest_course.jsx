@@ -30,7 +30,7 @@ const Latest_course = ({ courses }) => {
               </div>
 
               {/* Course Title */}
-              <h3 className="text-center line-clamp-2 text-base font-semibold mt-3">
+              <h3 className="text-center line-clamp-2 text-primary text-base font-semibold mt-3">
                 {course.title}
               </h3>
 

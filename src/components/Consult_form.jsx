@@ -102,6 +102,7 @@ const ConsultForm = ({ title }) => {
               onChange={handleInputChange}
               placeholder="Enter your name"
               required
+              className="text-primary"
             />
           </div>
           <div className="mb-4">
@@ -114,6 +115,8 @@ const ConsultForm = ({ title }) => {
               onChange={handleInputChange}
               placeholder="Enter your email"
               required
+              className="text-primary"
+
             />
           </div>
         </div>
@@ -121,7 +124,7 @@ const ConsultForm = ({ title }) => {
         <div className="flex md:flex-row flex-col justify-between md:gap-6">
           <div className="mb-4 md:w-1/2">
             <Label htmlFor="consultation">Consultation for</Label>
-            <Input id="consultation" type="text" value={title} readOnly className="bg-gray-200 cursor-not-allowed" />
+            <Input id="consultation" type="text" value={title} readOnly className="bg-gray-200 text-primary cursor-not-allowed" />
           </div>
           <div className="mb-4 md:w-1/2">
             <Label htmlFor="contact_number">Mobile Number</Label>
@@ -133,6 +136,8 @@ const ConsultForm = ({ title }) => {
               onChange={handleInputChange}
               placeholder="Enter Your Number"
               required
+              className="text-primary"
+
             />
           </div>
         </div>
@@ -147,6 +152,8 @@ const ConsultForm = ({ title }) => {
             onChange={handleInputChange}
             placeholder="Enter your message"
             required
+            className="text-primary"
+
           />
         </div>
 

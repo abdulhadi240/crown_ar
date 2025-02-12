@@ -13,9 +13,9 @@ const Card = ({ number, title, description , slug }) => {
       >
         {number}.
       </div>
-      <h3 className="mb-2 font-semibold text-md text-center">{title}</h3>
+      <h3 className="mb-2 font-semibold text-md text-center text-primary">{title}</h3>
       <div className='text-xs'>
-        <p className="mb-4 text-center text-gray-600 line-clamp-3">{description}</p>
+        <p className="mb-4 text-center text-gray-600 line-clamp-3 text-primary">{description}</p>
       </div>
       <Link href={`consulting-services/${slug}`} 
               className="text-white py-2 rounded-full px-4 shadow-lg text-center flex justify-center font-medium tracking-wide mt-4 text-xs transition-all hover:scale-105"

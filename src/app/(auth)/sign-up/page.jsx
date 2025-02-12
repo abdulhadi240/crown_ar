@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <>
       <Design secondary={true} bg={true}></Design>
-      <section className="flex justify-center  size-full rounded-3xl max-sm:px-6">
+      <section className="flex justify-center md:mt-10 size-full rounded-3xl max-sm:px-6">
         <Image
           src="/sign.webp"
           alt="signin"
@@ -17,7 +17,7 @@ const Page = () => {
 
         <div className="flex flex-col items-center justify-center gap-3 ">
           <div className="flex justify-center mt-2">
-            <Image src="/logocrown.webp" width={200} height={200} alt="logo" />
+            <Image src="/Logocrown.webp" width={200} height={200} alt="logo" />
           </div>
           <div className="flex justify-center mb-10">
             <AuthFormSignup />

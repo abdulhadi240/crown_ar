@@ -86,7 +86,6 @@ const Page = async ({params}) => {
     }
   })
   const res = await data.json()
-  console.log(res);
 
 
   const category = await GetSpecialization()

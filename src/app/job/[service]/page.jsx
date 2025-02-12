@@ -86,7 +86,6 @@ export default async function JobPosting({ params }) {
   ).then((res) => res.json());
 
   const job_data = await fetchJobData(service);
-  console.log("job", job_data);
   const data = job_data.data;
 
   return (
@@ -121,21 +120,21 @@ export default async function JobPosting({ params }) {
               <Apply />
               <div className="space-y-3">
                 <div className="flex items-center gap-3 justify-start">
-                  <h3 className="font-medium min-w-[80px]">Salary:</h3>
+                  <h3 className="font-medium min-w-[80px] text-primary">Salary:</h3>
                   <span className="text-gray-600">
                     {data.min_salary} - {data.max_salary}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-medium min-w-[80px]">Job Type:</span>
+                  <span className="font-medium min-w-[80px] text-primary">Job Type:</span>
                   <span className="text-gray-600">{data.job_type}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-medium min-w-[80px]">Industry:</span>
+                  <span className="font-medium min-w-[80px] text-primary">Industry:</span>
                   <span className="text-gray-600">{data.company.industry}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="">Status:</span>
+                  <span className="text-primary">Job Status:</span>
                   <span className="text-gray-600">{data.status}</span>
                 </div>
               </div>

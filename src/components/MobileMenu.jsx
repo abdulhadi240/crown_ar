@@ -5,8 +5,10 @@ import Image from "next/image";
 import { FaHamburger, FaLock } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { useAuth } from "./context/AuthContext";
+import { usePathname } from "next/navigation";
 
 export default function MobileMenu({ color, bg }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -47,7 +49,7 @@ export default function MobileMenu({ color, bg }) {
       <div className="mx-4 md:hidden ">
         {/* Menu Button */}
         <div className="flex justify-between items-center mx-2 h-16">
-          <div>
+          <Link href={'/'}>
             <Image
               src={"/logo13.png"}
               width={120}
@@ -55,7 +57,7 @@ export default function MobileMenu({ color, bg }) {
               alt="logo"
               className=""
             />
-          </div>
+          </Link>
           <div className="flex gap-2 items-center">
             <button
               onClick={handleLanguageChange}
@@ -171,84 +173,84 @@ export default function MobileMenu({ color, bg }) {
             </div>
           </div>
 
-          {/* Menu Links */}
           <nav className="mt-8 space-y-4 text-sm space-x-7">
             <Link
               href="/"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-              onClick={toggleMenu}
-            >
-              {" "}
-            </Link>
-            <Link
-              href="/"
-              passHref
-              className="block text-[#111F51] font-semibold hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block ml-7 text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link
               href="/training-courses"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/training-courses" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Training Courses
             </Link>
             <Link
               href="/diploma"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/diploma" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Diploma
             </Link>
             <Link
               href="/masters"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/masters" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Masters
             </Link>
             <Link
               href="/cities"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/cities" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Cities
             </Link>
             <Link
               href="/consulting-services"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/consulting-services" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Consulting
             </Link>
             <Link
               href="/Blog"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/Blog" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Blogs
             </Link>
             <Link
               href="/job"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/job" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Jobs
             </Link>
             <Link
               href="/contact"
-              passHref
-              className="block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className={`block text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+                pathname === "/contact" ? "underline" : ""
+              }`}
               onClick={toggleMenu}
             >
               Contact Us
