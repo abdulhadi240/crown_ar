@@ -4,7 +4,7 @@ import Link from 'next/link';
 const ContactCard = ({ Ricons, Heading, text, link, label, size, isArabic, children }) => {
   return (
     <Link href={link} target="_blank">
-      <div className={`border-[1px] shadow-lg w-64 h-64 p-3 group transition-all ${isArabic ? 'rtl text-right' : 'ltr text-left'}`}>
+      <div className={`border-[1px]  text-right shadow-lg w-64 h-64 p-3 group transition-all ${isArabic ? 'rtl text-right' : 'ltr text-left'}`}>
         <div className={`w-10 p-2 rounded-lg border-[1px] flex justify-center items-center bg-primary text-white transition-all ${isArabic ? 'ml-auto' : 'ml-4'}`}>
           <Ricons size={size} color="white" />
         </div>

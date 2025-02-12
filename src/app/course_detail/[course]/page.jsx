@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": "ar",
       },
     }
   ).then((res) => res.json());
@@ -60,7 +60,7 @@ export async function generateStaticParams() {
   const posts = await fetch(`${process.env.BACKEND_URL}/courses/`, {
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      "Accept-Language": "ar",
     },
   }).then((res) => res.json());
   return posts.data.map((post) => ({
@@ -74,7 +74,7 @@ const page = async ({ params }) => {
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": "ar",
       },
     }
   ).then((res) => res.json());

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { IoMdArrowDropright } from "react-icons/io";
+import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 const BlogPostCarousel = ({data}) => {
   return (
     <section className="py-8">
@@ -28,8 +28,8 @@ const BlogPostCarousel = ({data}) => {
             ))}
           </div>
         </div>
-        <Link href={'/cities'} className="flex pt-10 justify-end text-sm items-center text-primary font-bold >">Show More Venues
-        <IoMdArrowDropright size={24}/>
+        <Link href={'/cities'} className="flex pt-10 justify-end text-sm items-center text-primary font-bold >">عرض المزيد من الأماكن
+        <IoMdArrowDropleft size={24}/>
         </Link>
       </div>      
     </section>

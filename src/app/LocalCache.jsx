@@ -12,7 +12,8 @@ export async function fetchProgramData() {
     const response = await fetch("https://backendbatd.clinstitute.co.uk/api/programs", {
       headers: { 
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": "ar",
+
       },
     });
     const data = await response.json();

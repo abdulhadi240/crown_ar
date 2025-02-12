@@ -22,7 +22,8 @@ const CoursesFilter = () => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/courses`, {
         headers: {
           "Content-Type": "application/json",
-          "Accept-Language": "en",
+          "Accept-Language": "ar",
+
         },
       });
       const data = await response.json();

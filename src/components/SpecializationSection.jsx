@@ -12,11 +12,11 @@ const SpecializationSection = ({ data }) => {
 <div className="mb-6 -mt-16">
 <div className="flex space-x-4 overflow-x-auto py-2 custom-scrollbar">
   {data && data.length > 0 ? (
-    data.map((spec) => (
+    data.map((spec , index) => (
       <div
         key={spec.id}
         onClick={() => setSelectedSpec(spec)}
-        className={`w-48 px-4 py-4 h-10  flex items-center justify-center text-center cursor-pointer rounded-lg text-base border transition-colors  ${selectedSpec && selectedSpec.id === spec.id
+        className={`w-48 px-4 py-4 h-10  ${index === 0 ? 'ml-4' : ''} flex items-center justify-center text-center cursor-pointer rounded-lg text-base border transition-colors  ${selectedSpec && selectedSpec.id === spec.id
           ? 'bg-primary text-white border-blue-500'
           : 'bg-white text-primary border-gray-300 hover:bg-gray-100'}`}
       >
@@ -24,7 +24,7 @@ const SpecializationSection = ({ data }) => {
       </div>
     ))
   ) : (
-    <p className='text-primary text-xs'>No specializations available</p>
+    <p className='text-primary text-xs'>لا توجد تخصصات متاحة</p>
   )}
 </div>
 
@@ -52,7 +52,7 @@ const SpecializationSection = ({ data }) => {
       ))
     ) : (
       <div className='flex justify-center'>
-      <p className='flex justify-center text-center text-sm text-primary mx-auto w-screen'>No courses available for this specialization.</p>
+      <p className='flex justify-center text-center text-sm text-primary mx-auto w-screen'>لا توجد دورات متاحة لهذا التخصص.</p>
       </div>
     )}
   </div>

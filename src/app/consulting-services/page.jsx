@@ -21,17 +21,17 @@ const page = async () => {
         search
       >
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Explore Our{" "}
-          <span className="text-secondary font-bold">Consultations</span> <br />
+        اكتشف لدينا{" "}
+          <span className="text-secondary font-bold">المشاورات</span> <br />
         </h1>
       </Design>
       <heading>
-        <title>All Services in Academy</title>
+        <title>جميع الخدمات بالأكاديمية</title>
       </heading>
       <div className="min-h-screen px-4 py-12 bg-white">
         <div className="mb-12 text-center">
           <h1 className="mb-2 text-4xl text-primary font-bold">
-            Consultation Services in Academy
+          الخدمات الاستشارية في الأكاديمية
           </h1>
         </div>
         {/* Filter Bar */}
@@ -39,7 +39,7 @@ const page = async () => {
       </div>
       <div className="flex justify-center overflow-hidden">
         <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-3xl font-bold">
-          New Articles You May Find Interesting
+        مقالات جديدة قد تجدها مثيرة للاهتمام
         </h1>
       </div>
       <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">

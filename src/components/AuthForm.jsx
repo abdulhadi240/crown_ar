@@ -10,15 +10,15 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 
-// Validation schema for login
+// مخطط التحقق من صحة تسجيل الدخول
 const loginSchema = yup.object().shape({
-  username: yup.string().required("Username is required"),
-  password: yup.string().required("Password is required"),
+  username: yup.string().required("اسم المستخدم مطلوب"),
+  password: yup.string().required("كلمة المرور مطلوبة"),
 });
 
-// Validation schema for Forgot Password
+// مخطط التحقق من صحة استعادة كلمة المرور
 const forgotPasswordSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup.string().email("البريد الإلكتروني غير صالح").required("البريد الإلكتروني مطلوب"),
 });
 
 const AuthForm = () => {
@@ -49,14 +49,14 @@ const AuthForm = () => {
     setErrorMessage("");
 
     try {
-      const response = await login(data.username, data.password, "en");
+      const response = await login(data.username, data.password, "ar");
 
       if (response) {
         setErrorMessage(response);
       }
     } catch (error) {
-      console.error("Login failed:", error.message);
-      setErrorMessage("Invalid Email or Password");
+      console.error("فشل تسجيل الدخول:", error.message);
+      setErrorMessage("البريد الإلكتروني أو كلمة المرور غير صحيحة");
     }
 
     setLoading(false);
@@ -75,7 +75,7 @@ const AuthForm = () => {
           },
           body: JSON.stringify({
             email: data.email,
-            locale: "en",
+            locale: "ar",
           }),
         }
       );
@@ -83,13 +83,13 @@ const AuthForm = () => {
       const result = await response.json();
 
       if (response.ok) {
-        setForgotPasswordMessage("Password reset email sent successfully.");
+        setForgotPasswordMessage("تم إرسال بريد استعادة كلمة المرور بنجاح.");
       } else {
-        setForgotPasswordMessage(result.message || "Something went wrong.");
+        setForgotPasswordMessage(result.message || "حدث خطأ ما.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      setForgotPasswordMessage("Failed to send reset email.");
+      console.error("خطأ:", error);
+      setForgotPasswordMessage("فشل في إرسال بريد الاستعادة.");
     }
   };
 
@@ -97,20 +97,20 @@ const AuthForm = () => {
     <Card className="md:p-6 p-3 shadow-lg w-[400px] -mt-10">
       <CardContent>
         <h1 className="text-xl font-semibold text-center text-gray-700">
-          Welcome Back!
+          مرحباً بعودتك!
         </h1>
         <p className="mt-2 text-sm text-gray-500 text-center">
-          Login to access your account.
+          قم بتسجيل الدخول للوصول إلى حسابك.
         </p>
 
         <form className="flex flex-col gap-2 mt-6" onSubmit={handleSubmit(onSubmit)}>
-          {/* Username Input */}
+          {/* إدخال اسم المستخدم */}
           <div>
-            <Label className="text-sm">User Name</Label>
+            <Label className="text-sm">اسم المستخدم</Label>
             <Input
               type="text"
               {...register("username")}
-              placeholder="Enter your Email"
+              placeholder="أدخل بريدك الإلكتروني"
               className="text-sm text-primary"
             />
             {errors.username && (
@@ -118,42 +118,41 @@ const AuthForm = () => {
             )}
           </div>
 
-          {/* Password Input */}
+          {/* إدخال كلمة المرور */}
           <div>
-            <Label className="text-sm">Password</Label>
+            <Label className="text-sm">كلمة المرور</Label>
             <Input
               type="password"
               {...register("password")}
-              placeholder="Enter your Password"
+              placeholder="أدخل كلمة المرور"
               className="text-sm text-primary"
-
             />
             {errors.password && (
               <p className="text-red-500 text-xs">{errors.password.message}</p>
             )}
           </div>
 
-          {/* Remember Me & Forgot Password */}
+          {/* تذكرني & استعادة كلمة المرور */}
           <div className="flex justify-between text-xs text-gray-500">
             <label className="flex items-center gap-2">
               <input type="checkbox" className="accent-primary" />
-              Remember me
+              تذكرني
             </label>
             <button
               type="button"
               className="hover:text-primary"
               onClick={() => setShowForgotPassword(true)}
             >
-              Forgot Password?
+              هل نسيت كلمة المرور؟
             </button>
           </div>
 
-          {/* Submit Button */}
+          {/* زر تسجيل الدخول */}
           <Button type="submit" disabled={loading} className="mt-4 text-white">
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "جارٍ تسجيل الدخول..." : "تسجيل الدخول"}
           </Button>
 
-          {/* Display Error Message Below Form */}
+          {/* عرض رسالة الخطأ أسفل النموذج */}
           {errorMessage && (
             <p className="text-red-500 text-xs text-start mt-3">
               {errorMessage}
@@ -162,20 +161,20 @@ const AuthForm = () => {
         </form>
       </CardContent>
 
-      {/* Forgot Password Dialog */}
+      {/* نافذة استعادة كلمة المرور */}
       <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Forgot Password</DialogTitle>
+            <DialogTitle className="text-primary">استعادة كلمة المرور</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleForgotPasswordSubmit(handleForgotPassword)}>
-            {/* Email Input */}
+            {/* إدخال البريد الإلكتروني */}
             <div>
-              <Label className="text-sm">Enter your email</Label>
+              <Label className="text-sm">أدخل بريدك الإلكتروني</Label>
               <Input
                 type="email"
                 {...registerForgotPassword("email")}
-                placeholder="Your Email"
+                placeholder="بريدك الإلكتروني"
                 className="text-primary"
               />
               {forgotPasswordErrors.email && (
@@ -185,12 +184,12 @@ const AuthForm = () => {
               )}
             </div>
 
-            {/* Submit Button */}
+            {/* زر التأكيد */}
             <Button type="submit" className="mt-4 text-white w-full">
-              Confirm
+              تأكيد
             </Button>
 
-            {/* Display Success/Error Message */}
+            {/* عرض رسالة النجاح أو الفشل */}
             {forgotPasswordMessage && (
               <p className="text-center mt-2 text-sm text-primary">
                 {forgotPasswordMessage}

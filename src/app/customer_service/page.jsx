@@ -6,26 +6,25 @@ import Contacts from "./Contacts";
 import Design from "../homepage1/components/Design";
 
 export default function Page({ params }) {
-  const locale = params?.locale || "en";
+  const locale = params?.locale || "ar";
   const isArabic = locale === "ar";
 
-  const customerServiceHeading = isArabic ? "خدمة العملاء" : "CUSTOMER SERVICE";
-  const createTicketTitle = isArabic ? "أنشئ تذكرتك الآن" : "CREATE YOUR TICKET NOW";
-  const aboutTicket = isArabic
-    ? "هذا نص تجريبي باللغة العربية لتوضيح كيف يمكن للمستخدم إنشاء التذكرة وكتابة تفاصيل المشكلة."
-    : "At Crown London Institute, we're committed to assisting you at every stage. Simply fill out the form below with a brief description of your inquiry, and we'll get back to you promptly.";
+  const customerServiceHeading = "خدمة العملاء";
+  const createTicketTitle = "أنشئ تذكرتك الآن";
+  const aboutTicket =
+    "في معهد كراون لندن، نحن ملتزمون بمساعدتك في كل خطوة. ما عليك سوى ملء النموذج أدناه مع وصف موجز لاستفسارك، وسنقوم بالرد عليك في أقرب وقت ممكن.";
 
-  const namePlaceholder = isArabic ? "الاسم" : "Name";
-  const emailPlaceholder = isArabic ? "البريد الإلكتروني" : "Email";
-  const phonePlaceholder = isArabic ? "رقم الهاتف" : "Phone";
-  const problemPlaceholder = isArabic ? "المشكلة" : "Problem";
-  const createTicketButton = isArabic ? "إنشاء التذكرة" : "Create Ticket";
+  const namePlaceholder = "الاسم";
+  const emailPlaceholder = "البريد الإلكتروني";
+  const phonePlaceholder = "رقم الهاتف";
+  const problemPlaceholder = "المشكلة";
+  const createTicketButton = "إنشاء التذكرة";
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     number: "",
-    po_box: "Problem",
+    po_box: "المشكلة",
     message: "",
   });
 
@@ -52,21 +51,30 @@ export default function Page({ params }) {
     formPayload.append("message", formData.message);
 
     try {
-      const response = await fetch("https://backendbatd.clinstitute.co.uk/api/contact-us", {
-        method: "POST",
-        body: formPayload, // Sending form data
-      });
+      const response = await fetch(
+        "https://backendbatd.clinstitute.co.uk/api/contact-us",
+        {
+          method: "POST",
+          body: formPayload, // Sending form data
+        }
+      );
 
       const result = await response.json();
 
       if (response.ok) {
-        setResponseMessage("Form submitted successfully!");
-        setFormData({ name: "", email: "", number: "", po_box: "", message: "" }); // Clear form
+        setResponseMessage("تم إرسال النموذج بنجاح!");
+        setFormData({
+          name: "",
+          email: "",
+          number: "",
+          po_box: "",
+          message: "",
+        }); // Clear form
       } else {
-        setResponseMessage(result.message || "Something went wrong!");
+        setResponseMessage(result.message || "حدث خطأ ما!");
       }
     } catch (error) {
-      setResponseMessage("Network error. Please try again.");
+      setResponseMessage("خطأ في الشبكة. يرجى المحاولة مرة أخرى.");
     } finally {
       setLoading(false);
     }
@@ -90,9 +98,13 @@ export default function Page({ params }) {
       </div>
 
       {/* Form Section */}
-      <div className={`flex mb-10 text-base justify-center ${isArabic ? "rtl text-right" : "ltr text-left"}`}>
+      <div
+        className={`flex mb-10 text-base justify-center rtl text-right`}
+      >
         <div className="w-full sm:w-[450px] bg-white dark:text-black shadow-lg p-6 h-auto sm:h-[530px]">
-          <h1 className="mb-4 text-2xl font-bold text-center">{createTicketTitle}</h1>
+          <h1 className="mb-4 text-2xl font-bold text-center">
+            {createTicketTitle}
+          </h1>
           <p className="mb-4 text-sm">{aboutTicket}</p>
           <form onSubmit={handleSubmit}>
             {/* Name Input */}
@@ -103,7 +115,7 @@ export default function Page({ params }) {
                 placeholder={namePlaceholder}
                 value={formData.name}
                 onChange={handleChange}
-                className={`w-full py-2 border-b border-gray-300 focus:outline-none focus:border-primary ${isArabic ? "text-right" : ""}`}
+                className="w-full py-2 border-b border-gray-300 focus:outline-none focus:border-primary text-right"
                 required
               />
             </div>
@@ -116,7 +128,7 @@ export default function Page({ params }) {
                 placeholder={emailPlaceholder}
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full py-2 border-b border-gray-300 focus:outline-none focus:border-primary ${isArabic ? "text-right" : ""}`}
+                className="w-full py-2 border-b border-gray-300 focus:outline-none focus:border-primary text-right"
                 required
               />
             </div>
@@ -129,12 +141,10 @@ export default function Page({ params }) {
                 placeholder={phonePlaceholder}
                 value={formData.number}
                 onChange={handleChange}
-                className={`w-full py-2 border-b border-gray-300 focus:outline-none focus:border-primary ${isArabic ? "text-right" : ""}`}
+                className="w-full py-2 border-b border-gray-300 focus:outline-none focus:border-primary text-right"
                 required
               />
             </div>
-
-            {/* PO Box Input */}
 
             {/* Message Textarea */}
             <div className="mb-4">
@@ -143,7 +153,7 @@ export default function Page({ params }) {
                 placeholder={problemPlaceholder}
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full h-24 py-2 border-b border-gray-300 resize-none focus:outline-none focus:border-primary ${isArabic ? "text-right" : ""}`}
+                className="w-full h-24 py-2 border-b border-gray-300 resize-none focus:outline-none focus:border-primary text-right"
                 required
               />
             </div>
@@ -154,13 +164,15 @@ export default function Page({ params }) {
               className="px-4 py-2 text-white rounded-lg bg-primary focus:border-primary/80"
               disabled={loading}
             >
-              {loading ? "Submitting..." : createTicketButton}
+              {loading ? "جارٍ الإرسال..." : createTicketButton}
             </button>
           </form>
 
           {/* Response Message */}
           {responseMessage && (
-            <p className="mt-4 text-center text-sm text-gray-700">{responseMessage}</p>
+            <p className="mt-4 text-center text-sm text-gray-700">
+              {responseMessage}
+            </p>
           )}
         </div>
       </div>

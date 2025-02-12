@@ -16,7 +16,7 @@ async function fetchSpecializationData() {
     next: { revalidate: 60 },
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      "Accept-Language": "ar",
     },
   });
   return res.json();
@@ -27,14 +27,18 @@ async function fetchCourses() {
     next: { revalidate: 60 },
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      "Accept-Language": "ar",
     },
   });
   return courses.json();
 }
 
 export async function generateMetadata({ params }) {
-  const { course, slug } = params;
+  const { course } = params;
+  const { slug } = params;
+
+  const course1 = decodeURIComponent(course)
+  const slug1 = decodeURIComponent(slug)
 
   // Fetch course and specialization data
   const [courseData, specializationData] = await Promise.all([
@@ -43,9 +47,9 @@ export async function generateMetadata({ params }) {
   ]);
 
   // Match data based on the slug or course
-  const courses = courseData?.data?.find((c) => c.slug === course);
+  const courses = courseData?.data?.find((c) => c.slug === course1);
   const specialization = specializationData?.data?.find(
-    (s) => s.slug === course
+    (s) => s.slug === course1
   );
 
   // Fallback to 404 if no valid data found
@@ -65,17 +69,17 @@ export async function generateMetadata({ params }) {
     keywords:
       data.meta_keywords || "courses, specialization, training, programs",
     alternates: {
-      canonical: `https://clinstitute.co.uk/${slug}/${course}`,
+      canonical: `https://ar.clinstitute.co.uk/${slug1}/${course1}`,
     },
     openGraph: {
       title: data.meta_title || "Crown Academy for Training & Development",
       description:
         data.meta_description ||
         "Explore top-notch training programs and courses.",
-      url: `https://clinstitute.co.uk/${slug}/${course}`,
+      url: `https://ar.clinstitute.co.uk/${slug1}/${course1}`,
       images: [
         {
-          url: data.image || "https://clinstitute.co.uk/Logocrown.webp",
+          url: data.image || "https://ar.clinstitute.co.uk/Logocrown.webp",
           width: 800,
           height: 600,
           alt: data.meta_title || "Course Image",
@@ -96,7 +100,7 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { course } = params;
-  const { slug } = params;
+  const course1 = decodeURIComponent(course)
   // Fetch both city and specialization data
   const [courseData, specializationData] = await Promise.all([
     fetchCourses(),
@@ -108,7 +112,7 @@ const page = async ({ params }) => {
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": "ar",
       },
     }
   ).then((res) => res.json());
@@ -116,25 +120,21 @@ const page = async ({ params }) => {
   const Category1 = await fetch(`${process.env.BACKEND_URL}/categories`, {
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      "Accept-Language": "ar",
     },
   }).then((res) => res.json());
 
   const category = await GetSpecialization();
 
   // Match slug with city or specialization
-  const courses = courseData.data.find((c) => c.slug === course);
-  const specialization = specializationData.data.find((s) => s.slug === course);
+  const courses = courseData.data.find((c) => c.slug === course1);
+  const specialization = specializationData.data.find((s) => s.slug === course1);
 
-  // If not found, throw a 404
-  if (!courses && !specialization) {
-    return <NotFound />;
-  }
 
   const data = courses || specialization;
   const type = courses ? "course" : "specialization";
 
-  const course_specialization = await GetSpecificSpecialization(course);
+  const course_specialization = await GetSpecificSpecialization(course1);
   const blogs = await fetchData(`${process.env.BACKEND_URL}/blogs`);
 
   return (
@@ -159,8 +159,7 @@ const page = async ({ params }) => {
 
           <div className="flex justify-center overflow-hidden">
             <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
-              New Articles You May Find Interesting
-            </h1>
+            مقالات جديدة قد تجدها مثيرة للاهتمام            </h1>
           </div>
           <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
             <Wrapper>
@@ -182,8 +181,7 @@ const page = async ({ params }) => {
 
           <div className="flex justify-center overflow-hidden">
             <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
-              New Articles You May Find Interesting
-            </h1>
+            مقالات جديدة قد تجدها مثيرة للاهتمام            </h1>
           </div>
           <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
             <Wrapper>

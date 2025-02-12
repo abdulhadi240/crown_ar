@@ -7,99 +7,87 @@ import Design from "../homepage1/components/Design";
 const sections = [
   {
     id: "introduction",
-    title: "Crown London Institute",
+    title: "معهد كراون لندن",
     content: `
-Effective Date: 01-February-2025
-
-Crown London Institute ("we," "our," or "us") is committed to protecting your privacy and ensuring that your personal data is handled securely and in compliance with applicable UK data protection laws, including the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
-
-This Privacy Policy explains how we collect, use, store, and protect your personal data when you register for our training courses or interact with our services.
+تاريخ السريان: 1 فبراير 2025
+يحرص معهد كراون لندن على حماية خصوصيتك وضمان التعامل مع بياناتك الشخصية بأمان وفقًا للقوانين المعمول بها في المملكة المتحدة، بما في ذلك اللائحة العامة لحماية البيانات في المملكة المتحدة (UK GDPR) وقانون حماية البيانات لعام 2018.
+توضح هذه السياسة كيفية جمع بياناتك الشخصية واستخدامها وتخزينها وحمايتها عند تسجيلك في دوراتنا التدريبية أو عند تفاعلك مع خدماتنا.
     `,
   },
   {
     id: "information-we-collect",
-    title: "1. Information We Collect",
+    title: "1. البيانات التي نقوم بجمعها",
     content: `
-When you register for a course or use our services, we may collect the following personal data:
+عند التسجيل في إحدى دوراتنا أو استخدام خدماتنا، قد نقوم بجمع البيانات الشخصية التالية:
 
-- Identity Information – Full name, job title, and company details.
-- Contact Information – Phone number, email address, and mailing address.
-- Payment Information – Billing details for course registration and transactions.
-- Course Preferences – Information on courses of interest and training history.
-- Marketing Preferences – Your consent for receiving updates and promotional material.
+المعلومات الشخصية –  الاسم الكامل، المسمى الوظيفي، وبيانات جهة العمل.
+معلومات الاتصال: رقم الهاتف، عنوان البريد الإلكتروني، والعنوان البريدي.
+معلومات الدفع: تفاصيل الفوترة الخاصة بتسجيل الدورات والمعاملات المالية.
+التفضيلات التدريبية: الدورات التي تهمك وسجلك التدريبي.
+خيارات التسويق: موافقتك على تلقي التحديثات والعروض الترويجية
     `,
   },
   {
     id: "how-we-use-your-data",
-    title: "2. How We Use Your Data",
+    title: "2. كيفية استخدام بياناتك",
     content: `
-We collect and process personal data for the following purposes:
-
-- Course Registration & Administration: To register you for training programs and manage course participation.
-- Communication: To send confirmation emails, course updates, and respond to inquiries.
-- Marketing & Future Contact: To keep you informed about future courses, offers, and related services (if you have given consent).
-- Legal & Compliance Requirements: To comply with legal obligations and UK regulations.
+نستخدم بياناتك الشخصية للأغراض التالية:
+إدارة التسجيل في الدورات: معالجة تسجيلك في الدورات التدريبية وإدارة مشاركتك بها.
+التواصل الفعّال: إرسال تأكيدات التسجيل، تحديثات الدورات، والرد على استفساراتك.
+التسويق والتواصل المستقبلي: تزويدك بمعلومات حول الدورات الجديدة والعروض والخدمات ذات الصلة، إذا كنت قد منحتنا موافقتك على ذلك.
+الامتثال القانوني: الامتثال للالتزامات القانونية والمتطلبات التنظيمية في المملكة المتحدة.
     `,
   },
   {
     id: "data-retention",
-    title: "3. Data Retention",
+    title: "3. مدة الاحتفاظ بالبياناتn",
     content: `
-We retain your personal data only for as long as necessary to fulfill the purposes outlined in this policy.
-
-If you register for a course, we may keep your information for future contact unless you request its deletion.
+    نحتفظ ببياناتك الشخصية فقط للمدة الضرورية لتحقيق الأغراض الموضحة في هذه السياسة. إذا سجلت في إحدى دوراتنا، فقد نحتفظ بمعلوماتك للتواصل معك مستقبلًا، ما لم تطلب حذفها.
     `,
   },
   {
     id: "data-security",
-    title: "4. Data Protection & Security",
+    title: "4. حماية البيانات والأمان",
     content: `
-We take appropriate technical and organizational measures to protect your personal data against unauthorized access, loss, or misuse.
-    `,
+نتخذ تدابير أمنية وتقنية صارمة لحماية بياناتك الشخصية من الوصول غير المصرح به أو الاستخدام غير القانوني أو الفقدان أو التلف.    `,
   },
   {
     id: "sharing-your-data",
-    title: "5. Sharing Your Data",
+    title: "5. مشاركة البيانات",
     content: `
-We do not sell or rent your personal data. However, we may share it in the following cases:
-
-- With Service Providers: Third-party providers assisting in course management, IT support, or payment processing.
-- Legal Requirements: If required by law or regulatory authorities.
+لا نقوم ببيع بياناتك الشخصية أو تأجيرها، ولكن قد نشاركها في الحالات التالية:
+مع مزودي الخدمات: مثل الشركات التي تساعد في إدارة الدورات التدريبية، ودعم تكنولوجيا المعلومات، ومعالجة المدفوعات.
+للامتثال القانوني: عندما يكون ذلك مطلوبًا بموجب القانون أو بناءً على طلب الجهات التنظيمية.
     `,
   },
   {
     id: "your-rights",
-    title: "6. Your Rights Under UK GDPR",
+    title: "6. حقوقك بموجب اللائحة العامة لحماية البيانات في المملكة المتحدة (UK GDPR)",
     content: `
-You have the right to:
-
-- Access the personal data we hold about you.
-- Request corrections to inaccurate data.
-- Withdraw consent for marketing communications.
-- Request deletion of your personal data (subject to legal obligations).
-- Object to data processing in certain cases.
+يحق لك:
+الوصول إلى بياناتك الشخصية التي نحتفظ بها.
+تصحيح أي بيانات غير دقيقة أو غير مكتملة.
+سحب الموافقة على تلقي الاتصالات التسويقية في أي وقت.
+طلب حذف بياناتك الشخصية، وفقًا للالتزامات القانونية.
+الاعتراض على معالجة بياناتك في بعض الحالات.
     `,
   },
   {
     id: "contact",
-    title: "7. Contact Us",
+    title: "7. كيفية التواصل معنا",
     content: `
-If you have any questions or wish to exercise your rights, please contact us at:
-
-Crown London Institute  
-6th Floor, 2 Kingdom St, London W2 6BD, United Kingdom  
-Email: privacy@clinstitute.co.uk
+إذا كانت لديك أي استفسارات أو رغبت في ممارسة حقوقك، يمكنك التواصل معنا عبر:
+معهد كراون لندن
+الطابق السادس، 2 كينغدوم ستريت Kingdom St) (2، لندن W2 6BD، المملكة المتحدة
+البريد الإلكتروني: privacy@clinstitute.co.uk
     `,
   },
   {
     id: "updates",
-    title: "8. Updates to This Policy",
+    title: "8. تحديث سياسة الخصوصية",
     content: `
-We may update this policy from time to time to reflect changes in regulations or our practices.
-
-Any significant changes will be communicated to you.
-
-By registering for our courses or using our services, you acknowledge that you have read and understood this Privacy Policy.
+قد يتم تحديث هذه السياسة من وقت لآخر لمواكبة التغيرات في القوانين أو في ممارساتنا التشغيلية. سيتم إخطارك بأي تغييرات جوهرية.
+عند تسجيلك في دوراتنا أو استخدام خدماتنا، فإنك تقر بأنك قد قرأت هذه السياسة وفهمتها ووافقت عليها.
     `,
   },
 ];
@@ -148,7 +136,7 @@ export default function PrivacyPolicy() {
       <Design secondary bg={true} />
       <div className="bg-[#0A1828] py-4">
         <h1 className="text-center md:mt-10 md:pt-6 text-3xl items-center font-bold text-white">
-          Privacy Policy
+        معهد كراون لندن
         </h1>
       </div>
       <div className="flex min-h-screen flex-col lg:flex-row text-left bg-white">
@@ -198,8 +186,8 @@ export default function PrivacyPolicy() {
                     activeSection === section.id ? "opacity-100 text-black" : "opacity-80 text-black/70"
                   )}
                 >
-                  <h2 className="text-xl font-semibold mb-2">{section.title}</h2>
-                  <p className="text-black text-base whitespace-pre-line">
+                  <h2 className="text-xl font-semibold mb-2 text-right">{section.title}</h2>
+                  <p className="text-black text-base whitespace-pre-line text-right">
                     {section.content}
                   </p>
                 </section>

@@ -9,8 +9,10 @@ export const revalidate = 60;
 export const dynamicParams = true;
 
 export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const slug1 = decodeURIComponent(slug)
   const product = await fetch(
-    `${process.env.BACKEND_URL}/cities/${params.slug}`,
+    `${process.env.BACKEND_URL}/cities/${slug1}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -36,25 +38,25 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: "website",
       locale: `${process.env.LOCALE_LANGUAGE}`,
-      site_name: "British Academy for Training & Development",
-      description: "British Academy for Training & Development",
-      url: `https://client-academy.vercel.app/show_cities/${params.slug}`,
+      site_name: "Crown Academy for Training & Development",
+      description: "Crown Academy for Training & Development",
+      url: `https://ar.client-academy.vercel.app/show_cities/${slug1}`,
       images: [product?.data[0]?.image],
     },
     twitter: {
       site_name: "British Academy for Training & Development",
       description: "British Academy for Training & Development",
-      url: `https://client-academy.vercel.app/show_cities/${params.slug}`,
+      url: `https://ar.client-academy.vercel.app/show_cities/${slug1}`,
       images: [
         {
-          url: "/logobat.png",
+          url: "/Logocrown.png",
           width: 800,
           height: 600,
           alt: "Og Image Alt",
         },
       ],
       card: "summary_large_image",
-      creator: "British Acadmey",
+      creator: "Crown Acadmey",
     },
   };
 }
@@ -73,8 +75,10 @@ export async function generateStaticParams() {
 }
 
 const page = async ({ params }) => {
+  const { slug } = params;
+  const slug1 = decodeURIComponent(slug)
   const post = await fetch(
-    `${process.env.BACKEND_URL}/courses/${params.slug}/cities`,
+    `${process.env.BACKEND_URL}/courses/${slug1}/cities`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -109,10 +113,7 @@ const page = async ({ params }) => {
       <HeaderSection />
       <div>
         <section className="mt-12 mb-12 text-center">
-          <SectionTitle title="Courses by" highlight={params.slug.replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
-      .split(' ') // Split the string into an array of words
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
-      .join(' ')} />
+          <SectionTitle title="Courses by" highlight={slug1} />
 
           <div className="flex justify-center my-6">
             <Image

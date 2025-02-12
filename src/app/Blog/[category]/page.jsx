@@ -11,7 +11,7 @@ export const dynamicParams = true;
 // Fetch Metadata Dynamically
 export async function generateMetadata({ params }) {
   const locale = params.locale || "en"; // Fallback to English if no locale is provided
-
+  
   const product = await fetch(
     `${process.env.BACKEND_URL}/blogs/${params.category}/category`,
     {

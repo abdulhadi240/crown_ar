@@ -143,12 +143,12 @@ const Header = ({ secondary, icon_white, bg }) => {
             </Link>
           </div>
 
-          <div className="hidden space-x-6 sm:flex ml-16 sm:gap-4">
+          <div className="hidden space-x-6 sm:flex -ml-32 sm:gap-4">
             {menu.map((item, index) => (
               <Link
                 key={index}
                 href={item.link}
-                className={`hover:text-white/80 pb-1 border-b-2 transition-colors duration-300 ${currentPath === item.link
+                className={`hover:text-white/80 pb-1 ${index === 0 ? 'ml-4' : ''} border-b-2 transition-colors duration-300 ${currentPath === item.link
                     ? "border-secondary"
                     : "border-transparent"
                   }`}

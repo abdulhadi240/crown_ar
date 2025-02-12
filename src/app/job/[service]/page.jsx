@@ -2,10 +2,7 @@ import React from "react";
 import fetchData from "@/actions/server";
 import Design from "@/app/homepage1/components/Design";
 import BlogCarousel from "@/components/BlogCarousel";
-import HeaderSection from "@/components/HeaderSection";
 import Wrapper from "@/components/Wrapper";
-import Image from "next/image";
-import Consult_form from "@/components/Consult_form";
 import Apply from "../components/Apply";
 
 export const revalidate = 60;
@@ -17,37 +14,38 @@ async function fetchJobData(slug) {
 
 export async function generateMetadata({ params }) {
   const { service } = params;
+  const service1 = decodeURIComponent(service);
 
-  const [consultingData] = await Promise.all([fetchJobData(service)]);
+  const [consultingData] = await Promise.all([fetchJobData(service1)]);
 
   const data = consultingData;
 
   if (!data) {
     return {
-      title: "Page Not Found",
-      description: "The requested page does not exist.",
+      title: "الصفحة غير موجودة",
+      description: "الصفحة المطلوبة غير متاحة.",
     };
   }
 
   return {
-    title: data?.data?.meta_title || "Crown Academy for Training & Development",
+    title: data?.data?.meta_title || "أكاديمية كراون للتدريب والتطوير",
     description:
-      data?.data?.meta_description || "Explore top courses and blogs",
+      data?.data?.meta_description || "استكشف أفضل الدورات والمدونات",
     keywords:
-      data?.data?.meta_keywords || "training, courses, blogs, development",
+      data?.data?.meta_keywords || "تدريب، دورات، مدونات، تطوير",
     alternates: {
-      canonical: `https://clinstitute.co.uk/job/${service}`,
+      canonical: `https://ar.clinstitute.co.uk/job/${service}`,
     },
     openGraph: {
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      url: `https://clinstitute.co.uk/job/${service}`,
+      url: `https://ar.clinstitute.co.uk/job/${service}`,
       images: [
         {
-          url: data?.data?.image || "/logocrown.webp",
+          url: data?.data?.image || "/Logocrown.webp",
           width: 800,
           height: 600,
-          alt: data?.data?.meta_title || "Course Image",
+          alt: data?.data?.meta_title || "صورة الدورة",
         },
       ],
       type: "website",
@@ -56,7 +54,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      images: [data?.data?.image || "/logocrown.webp"],
+      images: [data?.data?.image || "/Logocrown.webp"],
     },
   };
 }
@@ -75,6 +73,8 @@ export async function generateStaticParams() {
 
 export default async function JobPosting({ params }) {
   const { service } = params;
+  const service1 = decodeURIComponent(service);
+
   const blogs = await fetch(
     `${process.env.BACKEND_URL}/blogs?per_page=5&page=1`,
     {
@@ -85,7 +85,7 @@ export default async function JobPosting({ params }) {
     }
   ).then((res) => res.json());
 
-  const job_data = await fetchJobData(service);
+  const job_data = await fetchJobData(service1);
   const data = job_data.data;
 
   return (
@@ -95,17 +95,10 @@ export default async function JobPosting({ params }) {
         <div className="bg-white shadow-lg">
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
             <div className="w-[300%] h-12 bg-primary md:-mx-12 -z-10" />
-            {/*
-              - w-[300%]: The line is significantly wider than the container,
-                so its edges are more visible on the sides.
-              - h-16: The line's thickness (4rem). Adjust as you like.
-              - bg-primary: Tailwind color class (replace with your own color if needed).
-            */}
           </div>
 
-          {/* Header Section */}
+          {/* قسم العنوان */}
           <div className="flex flex-col lg:flex-row z-50">
-            {/* Left Column */}
             <div className="flex-1 p-4 md:p-6 lg:border-r lg:border-gray-200">
               <h1 className="text-2xl md:text-3xl font-bold font-inter tracking-tight mb-4 text-primary">
                 {data.title}
@@ -115,98 +108,53 @@ export default async function JobPosting({ params }) {
               </h2>
             </div>
 
-            {/* Right Column */}
             <div className="p-4 md:p-6 lg:w-96 flex flex-col justify-between z-50">
               <Apply />
               <div className="space-y-3">
                 <div className="flex items-center gap-3 justify-start">
-                  <h3 className="font-medium min-w-[80px] text-primary">Salary:</h3>
+                  <h3 className="font-medium min-w-[80px] text-primary">الراتب:</h3>
                   <span className="text-gray-600">
                     {data.min_salary} - {data.max_salary}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-medium min-w-[80px] text-primary">Job Type:</span>
+                  <span className="font-medium min-w-[80px] text-primary">نوع الوظيفة:</span>
                   <span className="text-gray-600">{data.job_type}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-medium min-w-[80px] text-primary">Industry:</span>
+                  <span className="font-medium min-w-[80px] text-primary">الصناعة:</span>
                   <span className="text-gray-600">{data.company.industry}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-primary">Job Status:</span>
+                  <span className="text-primary">حالة الوظيفة:</span>
                   <span className="text-gray-600">{data.status}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Key Responsibilities */}
-
+          {/* الوصف الوظيفي */}
           <div className="mt-6 p-3">
-            <h2 className="text-2xl font-bold text-primary mb-3">
-              Job Description
-            </h2>
+            <h2 className="text-2xl font-bold text-primary mb-3">الوصف الوظيفي</h2>
             <div
-              className="text-gray-700 text-base  leading-relaxed"
+              className="text-gray-700 text-base leading-relaxed"
               dangerouslySetInnerHTML={{ __html: data.description }}
             />
           </div>
         </div>
       </div>
 
-      {/* Latest Blog Section */}
+      {/* قسم المدونات ذات الصلة */}
       <div className="flex justify-center">
         <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-3xl font-bold">
-          Related Articles You May Find Interesting
+          مقالات ذات صلة قد تهمك
         </h1>
       </div>
-
       <div className="flex flex-col justify-center gap-4 sm:flex-row">
         <Wrapper>
           <BlogCarousel data={blogs} />
         </Wrapper>
       </div>
-      {/* Schema Markup for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org/",
-            "@type": "JobPosting",
-            title: data.title,
-            description: data.short_description,
-            datePosted: new Date().toISOString(),
-            validThrough: new Date(data.end_date).toISOString(),
-            employmentType: data.job_type,
-            industry: data.company.industry,
-            baseSalary: {
-              "@type": "MonetaryAmount",
-              currency: "USD",
-              value: {
-                "@type": "QuantitativeValue",
-                minValue: data.min_salary.replace("$ ", ""),
-                maxValue: data.max_salary.replace("$ ", ""),
-                unitText: "YEAR",
-              },
-            },
-            jobLocation: {
-              "@type": "Place",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: data.location,
-                addressCountry: "UK",
-              },
-            },
-            hiringOrganization: {
-              "@type": "Organization",
-              name: data.company.name,
-              logo: data.company.logo,
-              sameAs: data.company.website,
-            },
-          }),
-        }}
-      />
     </>
   );
 }

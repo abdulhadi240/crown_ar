@@ -31,40 +31,43 @@ export async function generateMetadata({ params }) {
   const { slug } = params;
   const { specialization } = params;
 
+  const course1 = decodeURIComponent(course)
+  const slug1 = decodeURIComponent(slug)
+  const specialization1 = decodeURIComponent(specialization)
+
   // Fetch course or blog details based on slug
   const [courseData, blogData] = await Promise.all([
-    fetchCourseDetail(course),
-    fetchBlogDetail(course),
+    fetchCourseDetail(course1),
+    fetchBlogDetail(course1),
   ]);
 
   const data = courseData || blogData;
-  console.log(data, "data");
   if (!data) {
     return {
-      title: "Page Not Found",
-      description: "The requested page does not exist.",
+      title: "الصفحة غير موجودة",
+      description: "الصفحة المطلوبة غير موجودة.",
     };
   }
 
   return {
-    title: data?.data?.meta_title || "Crown Academy for Training & Development",
+    title: data?.data?.meta_title || "أكاديمية كراون للتدريب والتطوير",
     description:
-      data?.data?.meta_description || "Explore top courses and blogs",
+      data?.data?.meta_description || "استكشف أفضل الدورات والمدونات",
     keywords:
-      data?.data?.meta_keywords || "training, courses, blogs, development",
+      data?.data?.meta_keywords || "التدريب، الدورات، المدونات، التطوير",
     alternates: {
-      canonical: `https://clinstitute.co.uk/${slug}/${specialization}/${course}`,
+      canonical: `https://ar.clinstitute.co.uk/${slug1}/${specialization1}/${course1}`,
     },
     openGraph: {
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      url: `https://clinstitute.co.uk/${slug}/${specialization}/${course}`,
+      url: `https://ar.clinstitute.co.uk/${slug1}/${specialization1}/${course1}`,
       images: [
         {
-          url: data?.data?.image || "https://clinstitute.co.uk/Logocrown.webp",
+          url: data?.data?.image || "https://ar.clinstitute.co.uk/Logocrown.webp",
           width: 800,
           height: 600,
-          alt: data?.data?.meta_title || "Course Image",
+          alt: data?.data?.meta_title || "صورة الدورة",
         },
       ],
       type: "website",
@@ -73,23 +76,24 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: data?.data?.meta_title,
       description: data?.data?.meta_description,
-      images: [data?.data?.image || "https://clinstitute.co.uk/Logocrown.webp"],
+      images: [data?.data?.image || "https://r.clinstitute.co.uk/Logocrown.webp"],
     },
   };
 }
 
 const page = async ({ params }) => {
   const { course } = params;
+  const course2 = decodeURIComponent(course)
 
   const [course1, blog, courseData, blogData] = await Promise.all([
     fetchCourseData(),
     fetchBlogData(),
-    fetchCourseDetail(course),
-    fetchBlogDetail(course),
+    fetchCourseDetail(course2),
+    fetchBlogDetail(course2),
   ]);
 
-  const courses = course1?.data?.find((c) => c.slug === course);
-  const blogs = blog?.data?.find((s) => s.slug === course);
+  const courses = course1?.data?.find((c) => c.slug === course2);
+  const blogs = blog?.data?.find((s) => s.slug === course2);
 
   const course_carasoul = await fetchData(`${process.env.BACKEND_URL}/courses`);
 
@@ -101,36 +105,36 @@ const page = async ({ params }) => {
   return (
     <>
       <Head>
-        <title>
+      <title>
           {data?.data?.meta_title ||
-            "British Academy for Training & Development12"}
+            "الأكاديمية البريطانية للتدريب والتطوير"}
         </title>
         <meta
           name="title"
           content={
             data?.data?.meta_title ||
-            "British Academy for Training & Development"
+            "الأكاديمية البريطانية للتدريب والتطوير"
           }
         />
         <meta
           name="description"
           content={
             data?.data?.meta_description ||
-            "British Academy for Training & Development"
+            "الأكاديمية البريطانية للتدريب والتطوير"
           }
         />
         <meta
           name="keywords"
           content={
             data?.data?.meta_keywords ||
-            "British Academy for Training & Development"
+            "التدريب، الدورات، المدونات، التطوير"
           }
         />
         <meta
           name="author"
           content={
             data?.data?.meta_author ||
-            "British Academy for Training & Development"
+            "الأكاديمية البريطانية للتدريب والتطوير"
           }
         />
         <meta name="robots" content="index, follow" />
@@ -143,17 +147,17 @@ const page = async ({ params }) => {
         />
         <meta
           property="og:image"
-          content={data?.data?.image || "/logobat.webp"}
+          content={data?.data?.image || "/Logocrown.webp"}
         />
         <meta
           property="og:url"
-          content={data?.data?.meta_url || `https://clinstitute.co.uk/cities`}
+          content={data?.data?.meta_url || `https://ar.clinstitute.co.uk/cities`}
         />
         <meta
           property="og:site_name"
           content={
             data?.data?.site_name ||
-            "British Academy for Training & Development"
+            "الأكاديمية البريطانية للتدريب والتطوير"
           }
         />
         <meta name="twitter:card" content="summary_large_image" />
@@ -164,13 +168,13 @@ const page = async ({ params }) => {
         />
         <meta
           name="twitter:image"
-          content={data?.data?.image || "/logobat.webp"}
+          content={data?.data?.image || "/Logocrown.webp"}
         />
         <meta
           name="twitter:site"
           content={data?.data?.twitter_site || "@yourTwitterHandle"}
         />
-        <link rel="canonical" href={`https://clinstitute.co.uk/cities`} />
+        <link rel="canonical" href={`https://ar.clinstitute.co.uk/cities`} />
         <link rel="icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
@@ -180,17 +184,17 @@ const page = async ({ params }) => {
               "@type": "WebPage",
               name:
                 data?.data?.meta_title ||
-                "British Academy for Training & Development",
+                "الأكاديمية البريطانية للتدريب والتطوير",
               description:
                 data?.data?.meta_description ||
-                "British Academy for Training & Development",
-              url: data?.data?.meta_url || `https://clinstitute.co.uk/cities`,
-              image: data?.data?.image || "//logobat.webp",
+                "الأكاديمية البريطانية للتدريب والتطوير",
+              url: data?.data?.meta_url || `https://ar.clinstitute.co.uk/cities`,
+              image: data?.data?.image || "//Logocrown.webp",
               author: {
                 "@type": "Person",
                 name:
                   data?.meta_author ||
-                  "British Academy for Training & Development",
+                  "الأكاديمية البريطانية للتدريب والتطوير",
               },
             }),
           }}
@@ -207,14 +211,7 @@ const page = async ({ params }) => {
             image_height={false}
           >
             <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-              {data?.data.title
-                .replace(/[-_]/g, " ") // Replace hyphens and underscores with spaces
-                .split(" ") // Split the string into an array of words
-                .map(
-                  (word) =>
-                    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                ) // Capitalize the first letter of each word
-                .join(" ")}
+              {data?.data.title}
             </h1>
           </Design>
           <Suspense fallback={"loading..."}>
@@ -223,8 +220,7 @@ const page = async ({ params }) => {
 
           <div className="flex justify-center overflow-hidden">
             <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-2xl font-bold">
-              New Articles You May Find Interesting
-            </h1>
+            مقالات جديدة قد تجدها مثيرة للاهتمام            </h1>
           </div>
           <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">
             <Wrapper>

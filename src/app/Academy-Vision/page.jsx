@@ -6,69 +6,60 @@ import { LuBadgeCheck } from "react-icons/lu";
 import { FaHandshake } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import Design from "../homepage1/components/Design";
+
 const page = () => {
   return (
     <div className="mb-10">
-    <Design  iamge={'/consulting.webp'} search>
-    <div className="w-screen">
-    <h1 className=" text-center mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Explore Our <span className="text-secondary font-bold">Consultations</span>{" "}
-        </h1>
+      <Design iamge={'/consulting.webp'} search>
+        <div className="w-screen">
+          <h1 className=" text-center mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
+            اكتشف <span className="text-secondary font-bold">استشاراتنا</span>{" "}
+          </h1>
         </div>
-    </Design>
+      </Design>
       <div className="mx-5 md:mx-10 ">
-        <Vision_Card text={"Overview of Crown Academy"}>
-          The Crown Academy for Training and Development, located in
-          London, is an academy specialized and accredited in
-          the field of training, development and consultation for human and
-          corporate cadres in several and various areas. The Academy holds its
-          training courses and programs, studies and conferences in Britain in
-          addition to other 30 countries in Europe, Africa, Asia, North and
-          South America. It provides a unique educational model featured with
-          its flexibility in time, dates and place. It provides the latest
-          information and modern sciences in a group of specializations up to
-          1300 different programs through specialists and experts from all over
-          the world and in five languages. The Academy carries out its programs
-          professionally using the latest technologies of the world. These
-          programs are presented in Arabic or English in addition to other
-          languages such as (Spanish, French and German) based on the request of
-          the trainee entity.
+        <Vision_Card text={"لمحة عن أكاديمية كراون"}>
+          أكاديمية كراون للتدريب والتطوير، الواقعة في لندن، هي أكاديمية متخصصة
+          ومعتمدة في مجال التدريب والتطوير والاستشارات للكوادر البشرية
+          والشركات في عدة مجالات متنوعة. تعقد الأكاديمية دوراتها التدريبية
+          وبرامجها، دراساتها ومؤتمراتها في بريطانيا بالإضافة إلى 30 دولة أخرى
+          في أوروبا، إفريقيا، آسيا، وأمريكا الشمالية والجنوبية. تقدم الأكاديمية
+          نموذجًا تعليميًا فريدًا يتميز بالمرونة في الوقت، المواعيد والمكان،
+          وتوفر أحدث المعلومات والعلوم الحديثة في مجموعة من التخصصات تصل إلى
+          1300 برنامج مختلف من خلال متخصصين وخبراء من جميع أنحاء العالم
+          وبخمس لغات. تنفذ الأكاديمية برامجها باحترافية باستخدام أحدث
+          التقنيات العالمية. يتم تقديم هذه البرامج باللغة العربية أو
+          الإنجليزية بالإضافة إلى لغات أخرى مثل (الإسبانية، الفرنسية
+          والألمانية) بناءً على طلب الجهة المتدربة.
         </Vision_Card>
         <div className="flex justify-center gap-10 my-10">
-        <div className="grid justify-between grid-cols-1 gap-5 md:gap-10 md:grid-cols-3 sm:grid-cols-2">
-        <Card_Quality Icon={LuBadgeCheck} src={'/handshake.png'} text={'Quality'} para={'We ensure excellence in every aspect of our educational offerings.'}/>
-        <Card_Quality Icon={FaHandshake} src={'/handshake.png'} text={'Integrity'} para={'We uphold the highest ethical standards in all our interactions.'}/>
-        <Card_Quality Icon={FaBookOpen} src={'/handshake.png'} text={'Experience'} para={'Our team brings years of expertise to deliver unparalleled learning experiences.'}/>
-
+          <div className="grid justify-between grid-cols-1 gap-5 md:gap-10 md:grid-cols-3 sm:grid-cols-2">
+            <Card_Quality Icon={LuBadgeCheck} src={'/handshake.png'} text={'الجودة'} para={'نضمن التميز في كل جانب من جوانب عروضنا التعليمية.'}/>
+            <Card_Quality Icon={FaHandshake} src={'/handshake.png'} text={'النزاهة'} para={'نلتزم بأعلى المعايير الأخلاقية في جميع تعاملاتنا.'}/>
+            <Card_Quality Icon={FaBookOpen} src={'/handshake.png'} text={'الخبرة'} para={'يتمتع فريقنا بسنوات من الخبرة لتقديم تجارب تعلم لا مثيل لها.'}/>
+          </div>
         </div>
-        </div>
-        <Vision_Card text={"Our Vision"}>
-          The Crown Academy  is one of the
-          best training and developmental institutions in the world. This is
-          demonstrated through its ability to combine between the scientific and
-          practical methods needed by its trainees. In addition, it opens the
-          field for everyone and all specializations to benefit and gain
-          experience. This is based on our belief that science and knowledge are
-          basic right for all. We also promote the Academy leadership and cadres
-          through continuous training and development, upgrading the level of
-          performance, and continuous contact and interaction with the society
-          and similar institutions within the state and abroad. The Academy
-          measures its performance by applying high-level standards respecting
-          great ambitions and seeking excellence through our commitment to the
-          finest intellectual standards.
+        <Vision_Card text={"رؤيتنا"}>
+          تعد أكاديمية كراون واحدة من أفضل المؤسسات التدريبية والتنموية
+          في العالم، ويظهر ذلك من خلال قدرتها على الدمج بين الأساليب
+          العلمية والعملية التي يحتاجها المتدربون. بالإضافة إلى ذلك، تفتح
+          الأكاديمية المجال للجميع في جميع التخصصات للاستفادة واكتساب
+          الخبرات، استنادًا إلى إيماننا بأن العلم والمعرفة حق أساسي للجميع.
+          كما أننا نعزز ريادة الأكاديمية وكوادرها من خلال التدريب والتطوير
+          المستمر، ورفع مستوى الأداء، والتواصل والتفاعل المستمر مع المجتمع
+          والمؤسسات المماثلة داخل الدولة وخارجها. تقيس الأكاديمية أداءها من
+          خلال تطبيق معايير عالية المستوى، تحترم الطموحات الكبيرة وتسعى
+          للتميز من خلال التزامنا بأرقى المعايير الفكرية.
         </Vision_Card>
 
-        <Vision_Card text={"Our Mission"}>
-          The institution seeks, through providing specialized training
-          programs, to achieve the following: 1. Improving the employees’
-          corporate performance. 2. Upgrading the scientific and practical level
-          of employees to perform their duties in line with the new development
-          in the training field. 3. Connecting institutions, companies and
-          individuals with international institutions and companies to achieve
-          their interests and raise their performance level through conferences,
-          workshops and specialized exchange programs. 4. Transferring the
-          experience of governmental and private companies and institutions in
-          Britain and Europe to the other countries of the world.
+        <Vision_Card text={"مهمتنا"}>
+          تسعى المؤسسة، من خلال تقديم برامج تدريبية متخصصة، إلى تحقيق الأهداف
+          التالية: 1. تحسين الأداء المؤسسي للموظفين. 2. رفع المستوى العلمي
+          والعملي للموظفين لأداء مهامهم بما يتماشى مع التطورات الجديدة في
+          مجال التدريب. 3. ربط المؤسسات والشركات والأفراد بالمؤسسات والشركات
+          الدولية لتحقيق مصالحهم ورفع مستوى أدائهم من خلال المؤتمرات، الورش
+          التدريبية وبرامج التبادل المتخصصة. 4. نقل خبرات الشركات والمؤسسات
+          الحكومية والخاصة في بريطانيا وأوروبا إلى باقي دول العالم.
         </Vision_Card>
       </div>
     </div>

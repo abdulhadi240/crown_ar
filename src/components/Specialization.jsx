@@ -78,7 +78,7 @@ const Specialization = ({
           {
             headers: {
               "Content-Type": "application/json",
-              "Accept-Language": "en",
+              "Accept-Language": "ar",
             },
           }
         );

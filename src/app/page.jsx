@@ -34,58 +34,55 @@ const Page = async () => {
 
   return (
     <section className="overflow-hidden">
-      {/* Hero Section */}
-      <Design iamge={"/Images.png"} search center={false} image_height>
-        <h1 className="max-w-3xl md:mt-5 mt-10 text-4xl mx-10 font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Welcome to <br />
-          <span className="text-secondary font-bold">TrainEdge</span> <br />
-          Expert Employee <br /> Training Solutions
-        </h1>
-        <p className="max-w-xl mt-4 text-sm mx-10 text-white md:text-xl">
-          Advancing employee skills and driving business growth through tailored
-          training programs for companies worldwide.
-        </p>
-        <div className="">
-          <MobileFilter
-            cities={cities_all.data}
-            specialization={specialization_list.data}
-          />
-        </div>
-      </Design>
-
-      {/* Specialization Section */}
-      <SectionTitle
-        title="Take Your"
-        highlight="First Step Towards Achieving 
-      Professional Goals"
+  {/* قسم البطل (Hero Section) */}
+  <Design iamge={"/Images.png"} search center={false} image_height>
+    <h1 className="max-w-3xl md:mt-5 mt-10 text-4xl mx-10 font-semibold text-white md:text-[55px] md:leading-[60px] text-right">
+      مرحبًا بك في <br />
+      <span className="text-secondary font-bold">TrainEdge</span> <br />
+      حلول تدريب الموظفين <br /> المتخصصة
+    </h1>
+    <p className="max-w-xl mt-4 text-sm mx-10 text-white md:text-xl text-right">
+      تعزيز مهارات الموظفين ودفع نمو الأعمال من خلال برامج تدريب مخصصة
+      للشركات في جميع أنحاء العالم.
+    </p>
+    <div className="">
+      <MobileFilter
+        cities={cities_all.data}
+        specialization={specialization_list.data}
       />
-      <div className="md:mx-20">
-        <SpecializationSection data={specialization.data} />
-      </div>
-      <div>
-        <SectionTitle title="Latest" highlight="Courses" />
-        <Latest_course courses={courses.data} />
-      </div>
+    </div>
+  </Design>
 
-      {/* Courses by Cities Carousel */}
-      <div className=" sm:mt-16">
-        <SectionTitle title="Courses" highlight="Offered By Location" />
-        <Carasoul data={cities} />
-      </div>
+  {/* قسم التخصصات */}
+  <SectionTitle title="اتخذ" highlight="خطوتك الأولى نحو تحقيق الأهداف المهنية" />
+  <div className="md:mx-20">
+    <SpecializationSection data={specialization.data} />
+  </div>
 
-      {/* Request Course Section */}
-      <div className="">
-        <RequestCourse
-          cities={cities_all.data}
-          categories={specialization.data}
-        />
-      </div>
+  {/* قسم أحدث الدورات */}
+  <div>
+    <SectionTitle title="أحدث" highlight="الدورات" />
+    <Latest_course courses={courses.data} />
+  </div>
 
-      <div className=" sm:mt-16">
-        <SectionTitle title="What Customer are " highlight="Saying?" />
-        <Testimonials />
-      </div>
-    </section>
+  {/* الدورات حسب المدن (Carousel) */}
+  <div className=" sm:mt-16">
+    <SectionTitle title="الدورات" highlight="المتاحة حسب الموقع" />
+    <Carasoul data={cities} />
+  </div>
+
+  {/* قسم طلب دورة تدريبية */}
+  <div className="">
+    <RequestCourse cities={cities_all.data} categories={specialization.data} />
+  </div>
+
+  {/* قسم آراء العملاء */}
+  <div className=" sm:mt-16">
+    <SectionTitle title="ماذا يقول" highlight="عملاؤنا؟" />
+    <Testimonials />
+  </div>
+</section>
+
   );
 };
 

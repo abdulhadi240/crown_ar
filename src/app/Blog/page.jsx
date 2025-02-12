@@ -15,7 +15,7 @@ const page = async () => {
     <div>
       <Design icon_white iamge={"/blog3.png"} search center input={false} image_height={false}>
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
-          Explore Our <span className="text-secondary font-bold">Blogs</span>{" "}
+        اكتشف لدينا <span className="text-secondary font-bold">مدونات</span>{" "}
           <br />
         </h1>
       </Design>
@@ -27,7 +27,7 @@ const page = async () => {
       {/* Latest Blog Section */}
       <div className="flex justify-center overflow-hidden">
           <h1 className="mt-10 mb-10 text-primary text-center flex justify-center text-3xl font-bold">
-          New Articles You May Find Interesting
+          مقالات جديدة قد تجدها مثيرة للاهتمام
           </h1>
         </div>
         <div className="flex flex-col overflow-hidden justify-center gap-4 sm:flex-row">

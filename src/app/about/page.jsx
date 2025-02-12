@@ -10,54 +10,32 @@ import Design from "../homepage1/components/Design";
 
 const benefits = [
   {
-    title: "Expert Instructors",
-    description: "Our courses are led by experienced professionals, industry experts, and thought leaders who bring real-world insights into the classroom.",
+    title: "مدربون من نخبة الخبراء",
+    description: "يضم فريقنا نخبة من الخبراء المتخصصين وقادة الفكر في مختلف المجالات، حيث يقدمون خبراتهم العملية المبنية على تجارب حقيقية، مما يثري تجربة التعلم ويجعلها أكثر ارتباطًا بسوق العمل.",
   },
   {
-    title: "Practical Learning Approach",
-    description: "We focus on hands-on training, case studies, and interactive sessions to ensure that participants gain practical knowledge that can be immediately applied in their professional roles.",
+    title: "تدريب عملي وتطبيقي",
+    description: "نعتمد على أساليب تعليمية تفاعلية تشمل دراسات الحالة، وتمارين محاكاة الواقع، وورش عمل تطبيقية، لضمان اكتساب المشاركين مهارات عملية قابلة للتنفيذ الفوري في بيئة العمل.",
   },
   {
-    title: "Customized Training Solutions",
-    description: "Understanding that every organization has unique training needs, we offer customized training solutions that align with specific business objectives.",
+    title: "برامج تدريبية مصممة خصيصًا",
+    description: "نؤمن بأن لكل مؤسسة احتياجاتها الفريدة، لذا نقدم حلولًا تدريبية مخصصة تلبي متطلباتها الاستراتيجية وتعزز قدراتها التنافسية.",
   },
 
 
 ];
 
-const team = [
-  {
-    name: "Cameron Robinson",
-    role: "Product Designer",
-    image: "/about.webp",
-  },
-  {
-    name: "Carmen Williams",
-    role: "Product Designer",
-    image: "/about.webp",
-  },
-  {
-    name: "Cameron Robinson",
-    role: "Product Designer",
-    image: "/about.webp",
-  },
-  {
-    name: "Cameron Robinson",
-    role: "Product Designer",
-    image: "/about.webp",
-  },
-];
 
 export default function ConsultingPage({params}) {  
   return (
     <>
       <Design secondary bg></Design>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-base">
+      <main className="max-w-7xl mx-auto px-4 overflow-hidden sm:px-6 lg:px-8 py-12 text-base">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:mt-10 md:pt-6 font-bold mb-2 uppercase">About Crown London Institute </h1>
+          <h1 className="text-3xl md:mt-10 md:pt-6 font-bold mb-2 uppercase">عن معهد كراون لندن </h1>
           <p className="text-gray-600">
-          Empowering Professionals, Transforming Futures.
+          تمكين المهنيين، وصناعة مستقبل أكثر تطورًا.
           </p>
         </div>
 
@@ -65,27 +43,26 @@ export default function ConsultingPage({params}) {
         <Hero/>
 
         {/* What We Do Section */}
-        <div className="my-16">
-          <h2 className="text-2xl font-bold mb-4">What we do</h2>
+        <div className="my-16 overflow-hidden">
+          <h2 className="text-2xl font-bold mb-4">معهد كراون لندن</h2>
           <p className="text-gray-600 mb-4">
-          Crown London Institute is a premier training provider committed to delivering high-quality professional development programs. Based in the heart of London, we specialize in equipping individuals and organizations with the skills and knowledge required to excel in today’s dynamic business environment. Our courses are designed to meet the evolving needs of professionals across various industries, ensuring that they stay ahead in an increasingly competitive world.
-          </p>
+          يعد معهد كراون لندن من أبرز مزودي التدريب المهني، حيث يلتزم بتقديم برامج تطوير مهني عالية الجودة. يقع المعهد في قلب لندن، ويختص بتزويد الأفراد والمؤسسات بالمهارات والمعرفة اللازمة للنجاح في بيئة الأعمال المتغيرة. تم تصميم دوراتنا لتواكب احتياجات المهنيين في مختلف القطاعات، مما يساعدهم على التقدم والتميز في سوق عمل تنافسي.          </p>
         </div>
         <div className="flex justify-center mb-20">
           <div className="flex flex-row gap-16 justify-center md:p-6 md:px-10 rounded-full md:bg-[#f9f9f9] flex-wrap">
-            <Stats number={95} icon={"%"} text={"Course Satisfaction Rate"} />
-            <Stats number={5000} icon={"+"} text={"Professionals Trained"} />
-            <Stats number={100} icon={"+"} text={"Corporate Companies Partners"} />
-            <Stats number={85} icon={"%"} text={"Repeat Clients"} />
+            <Stats number={95} icon={"%"} text={"معدل رضا المشاركين عن الدورات"} />
+            <Stats number={5000} icon={"+"} text={"مهني تم تدريبهم"} />
+            <Stats number={100} icon={"+"} text={"شركة شريكة"} />
+            <Stats number={85} icon={"%"} text={"من عملائنا يعودون للتدريب معنا"} />
           </div>
         </div>
 
         {/* Our Lorem Section */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
+            <h2 className="text-2xl font-bold mb-4">رسالتنا</h2>
             <p className="text-gray-600 mb-4">
-            At Crown London Institute, our mission is to empower professionals and organizations through cutting-edge training programs that foster innovation, leadership, and excellence. We believe that continuous learning is the key to success, and we are dedicated to providing practical, industry-relevant education that enhances career growth and business performance.
+            نسعى في معهد كراون لندن إلى تمكين المهنيين والمؤسسات من خلال برامج تدريبية متطورة تعزز الابتكار والقيادة والتميز. نؤمن بأن التعلم المستمر هو مفتاح النجاح، لذلك نحرص على تقديم تعليم عملي متوافق مع متطلبات السوق، مما يسهم في تطوير المسارات المهنية وتحسين أداء المؤسسات.
             </p>
           </div>
           <div>
@@ -102,10 +79,10 @@ export default function ConsultingPage({params}) {
         {/* Bottom Section */}
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-8">
-          What We Offer
+          ما نقدمه
           </h2>
           <div className="grid md:grid-cols-2 items-start gap-8">
-            <div className="flex items-start gap-4">
+            <div className="flex items-start  gap-4">
               <div className="bg-primary p-4 rounded-lg">
                 <div className="w-8 h-8 text-white">
                   <svg
@@ -123,10 +100,10 @@ export default function ConsultingPage({params}) {
                   </svg>
                 </div>
               </div>
-              <div className="text-left">
-                <h3 className="font-bold mb-2">Corporate Training</h3>
+              <div className="text-right">
+                <h3 className="font-bold mb-2">التدريب المؤسسي</h3>
                 <p className="text-gray-600">
-                Tailored programs for organizations looking to upskill their workforce.
+                برامج مخصصة للمنظمات التي تسعى إلى تطوير مهارات فرق العمل.
                 </p>
               </div>
             </div>
@@ -148,10 +125,10 @@ export default function ConsultingPage({params}) {
                   </svg>
                 </div>
               </div>
-              <div className="text-left">
-                <h3 className="font-bold mb-2">Executive Development</h3>
+              <div className="text-right">
+                <h3 className="font-bold mb-2">تطوير القيادات التنفيذية</h3>
                 <p className="text-gray-600">
-                Advanced training for business leaders and senior professionals.
+                 تدريب متقدم لرواد الأعمال وكبار المحترفين.
                 </p>
               </div>
             </div>
@@ -173,10 +150,10 @@ export default function ConsultingPage({params}) {
                   </svg>
                 </div>
               </div>
-              <div className="text-left">
-                <h3 className="font-bold mb-2">Technical & Industry-Specific Courses</h3>
+              <div className="text-right">
+                <h3 className="font-bold mb-2">الدورات التقنية والمتخصصة </h3>
                 <p className="text-gray-600">
-                Specialized training in finance, project management, technology, healthcare, and more.
+                تدريب متخصص في مجالات مثل التمويل، وإدارة المشاريع، والتكنولوجيا، والرعاية الصحية، وغيرها
                 </p>
               </div>
             </div>
@@ -198,10 +175,10 @@ export default function ConsultingPage({params}) {
                   </svg>
                 </div>
               </div>
-              <div className="text-left">
-                <h3 className="font-bold mb-2">Compliance & Regulatory Training</h3>
+              <div className="text-right">
+                <h3 className="font-bold mb-2">التدريب على الامتثال واللوائح</h3>
                 <p className="text-gray-600">
-                Ensuring businesses and individuals stay compliant with industry standards.
+                لضمان التزام الأفراد والشركات بالمعايير التنظيمية.
                 </p>
               </div>
             </div>
@@ -223,7 +200,7 @@ export default function ConsultingPage({params}) {
             <div className="flex justify-center">
               <div className="flex justify-center flex-col">
                 <h2 className="text-2xl text-center font-bold mb-6">
-                Why Choose Us?
+                لماذا تختار معهد كراون لندن؟
                 </h2>
                 <div className="flex justify-center">
                   <div className="space-y-6">

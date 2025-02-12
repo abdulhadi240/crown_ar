@@ -4,23 +4,23 @@ import { Facebook, Linkedin, Instagram, Twitter, Youtube } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t-[1px]  border-[#c3c3c3] shadow-lg  overflow-hidden">
+    <footer className="relative border-t-[1px] border-[#c3c3c3] shadow-lg overflow-hidden">
       <div className="bg-white text-primary">
-        <div className="container  px-4 py-6">
+        <div className="container px-4 py-6">
           <div className="md:flex md:flex-row flex flex-col justify-between gap-10">
-            {/* Left Column */}
+            {/* العمود الأيسر */}
             <div className="">
               <Image
-                src="/Logocrown1.webp"
-                alt="trainEdge Logo"
+                src="/Logocrown.webp"
+                alt="شعار معهد كراون"
                 width={150}
                 height={150}
                 className="mb-4 -mt-12"
               />
               <div className="space-y-4 px-4">
-                <h3 className="text-xl font-semibold">About Crown Institute </h3>
+                <h3 className="text-xl font-semibold">عن معهد كراون</h3>
                 <p className="text-sm w-full md:w-[250px] leading-relaxed">
-                  Crown London Institute is a premier training provider committed to delivering high-quality professional development programs. Based in the heart of London, we specialize in equipping individuals and organizations with the skills and knowledge required to excel in today’s dynamic business environment. 
+                  معهد كراون لندن هو مؤسسة تدريبية رائدة ملتزمة بتقديم برامج تطوير مهني عالية الجودة. يقع في قلب لندن، ويتميز بتزويد الأفراد والمنظمات بالمهارات والمعرفة اللازمة للنجاح في بيئة الأعمال الديناميكية اليوم.
                 </p>
                 <div className="flex items-start md:space-x-2">
                   <svg
@@ -43,37 +43,37 @@ export default function Footer() {
                     />
                   </svg>
                   <p className="text-sm md:w-[250px] w-full">
-                  Office address: 6th Floor, 2 Kingdom St, London W2 6BD, United Kingdom
+                    عنوان المكتب: الطابق السادس، 2 شارع كينجدوم، لندن W2 6BD، المملكة المتحدة
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Middle Column - World Map */}
+            {/* العمود الأوسط - خريطة العالم */}
             <div className="hidden md:block">
               <Image
                 src={"/map1.png"}
                 width={800}
                 height={800}
-                alt="map"
+                alt="الخريطة"
                 className="flex mt-16 items-center justify-center"
               />
             </div>
 
-            {/* Right Column */}
+            {/* العمود الأيمن */}
             <div className="w-96 px-4 md:px-0">
-              <h3 className="text-xl font-semibold mb-6">Quick Links</h3>
+              <h3 className="text-xl font-semibold mb-6">روابط سريعة</h3>
               <nav className="space-y-3">
                 {[
-                  { name: "Home", link: "/" },
-                  { name: "Our Services", link: "/academy-service" },
-                  { name: "Customer Service", link: "/customer_service" },
-                  { name: "Jobs", link: "/job" },
-                  { name: "Team Staff", link: "/team-staff" },
-                  { name: "Profile", link: "/account" },
-                  { name: "Blog", link: "/Blog" },
-                  { name: "Privacy Policy", link: "/privacy-policy" },
-                  { name: "Contact Us", link: "/contact" },
+                  { name: "الرئيسية", link: "/" },
+                  { name: "خدماتنا", link: "/academy-service" },
+                  { name: "خدمة العملاء", link: "/customer_service" },
+                  { name: "الوظائف", link: "/job" },
+                  { name: "فريق العمل", link: "/team-staff" },
+                  { name: "الملف الشخصي", link: "/account" },
+                  { name: "المدونة", link: "/Blog" },
+                  { name: "سياسة الخصوصية", link: "/privacy-policy" },
+                  { name: "اتصل بنا", link: "/contact" },
                 ].map((item) => (
                   <Link
                     key={item.name}
@@ -88,7 +88,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social Media Bar */}
+        {/* شريط وسائل التواصل الاجتماعي */}
         <div className="border-t border-gray-800 bg-primary">
           <div className="mx-auto px-4 py-4">
             <div className="flex justify-center space-x-6">
@@ -104,7 +104,7 @@ export default function Footer() {
                   href={href}
                   className="text-white hover:text-gray-300 transition-colors"
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className={`w-5 h-5 ${index === 1 ? 'mr-6' : ''}`} />
                 </Link>
               ))}
             </div>

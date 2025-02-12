@@ -103,7 +103,7 @@ export default function Page() {
               next: { revalidate: 60 },
               headers: {
                 "Content-Type": "application/json",
-                "Accept-Language": "en",
+                "Accept-Language": "ar",
               },
             }
           );
@@ -201,7 +201,7 @@ export default function Page() {
           method: "POST",
           headers: {
             Accept: "application/json",
-            "Accept-Language": "en",
+            "Accept-Language": "ar",
           },
           body: formData,
         }
@@ -233,14 +233,14 @@ export default function Page() {
       <div className="min-h-screen py-10 mt-10 bg-gray-100 flex items-center justify-center text-base">
         <div className="bg-white shadow-md rounded-lg md:p-6 p-4 w-full max-w-3xl">
           <h1 className="text-2xl font-semibold mb-6 text-center">
-            Register Course
+          تسجيل الدورة
           </h1>
 
           <form onSubmit={handleSubmit}>
             <div className="sm:grid sm:grid-cols-2 sm:gap-6">
               <div>
                 <label className="block text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
-                  Course Title
+                عنوان الدورة
                 </label>
                 <input
                   type="text"
@@ -251,7 +251,7 @@ export default function Page() {
               </div>
               <div>
                 <label className="block text-primary text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
-                  Category
+                فئة
                 </label>
                 <select
                   value={category}
@@ -265,7 +265,7 @@ export default function Page() {
 
               <div>
                 <label className="block text-primary text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
-                  Specialization
+                التخصص
                 </label>
                 <select
                   value={specialization}
@@ -281,7 +281,7 @@ export default function Page() {
 
               <div>
                 <label className="block text-primary text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
-                  City
+                مدينة
                 </label>
                 <select
                   value={city} // This binds the selected city to the state
@@ -289,7 +289,7 @@ export default function Page() {
                   onChange={(e) => setCity(e.target.value)}
                   className="w-full text-primary border border-gray-300 rounded-lg p-2"
                 >
-                  {!city && <option>Select City</option>}
+                  {!city && <option>اختر المدينة</option>}
                   {detail?.data?.available_cities?.map((cityOption) => (
                     <option key={cityOption.id} value={cityOption.id}>
                       {cityOption.name}
@@ -300,7 +300,7 @@ export default function Page() {
 
               <div>
                 <label className="block text-primary text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
-                  Language
+                لغة
                 </label>
                 <select
                   value={language}
@@ -348,17 +348,17 @@ export default function Page() {
 
               <div className="col-span-2">
                 <label className="block text-primary text-sm font-medium sm:mb-2 mt-2 sm:mt-0">
-                  Available Dates
+                التواريخ المتاحة
                 </label>
                 <div className="overflow-x-auto">
                   <table className="min-w-full bg-white border border-gray-200">
                     <thead>
                       <tr>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-600 border-b">
+                        <th className="px-4 py-2 text-right text-sm font-medium text-gray-600 border-b">
                           #
                         </th>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-600 border-b">
-                          Date
+                        <th className="px-4 py-2 text-right text-sm font-medium text-gray-600 border-b">
+                        تاريخ
                         </th>
                       </tr>
                     </thead>
@@ -416,10 +416,10 @@ export default function Page() {
             </div>
 
             <div className="mt-8">
-              <h2 className="text-xl font-semibold mb-6">Participant Form</h2>
+              <h2 className="text-xl font-semibold mb-6">استمارة المشاركة</h2>
               <div className="mb-4">
                 <label className="block text-sm text-primary font-medium mb-2">
-                  Participant Type
+                نوع المشارك
                 </label>
                 <div className="flex space-x-4 text-primary">
                   <label className="flex items-center space-x-2">
@@ -431,7 +431,7 @@ export default function Page() {
                       onChange={() => handleParticipantTypeChange("Company")}
                       className="text-primary"
                     />
-                    <span>Company</span>
+                    <span>شركة</span>
                   </label>
                   <label className="flex items-center space-x-2">
                     <input
@@ -443,7 +443,7 @@ export default function Page() {
                       className="text-primary"
 
                     />
-                    <span>Person</span>
+                    <span>شخص</span>
                   </label>
                 </div>
               </div>
@@ -451,15 +451,15 @@ export default function Page() {
               <div className="mb-6 border-t pt-4 text-primary">
                 <h3 className="text-lg font-medium mb-4">
                   {participantType === "Company" ? (
-                    <h1>Company Details</h1>
+                    <h1>تفاصيل الشركة</h1>
                   ) : (
-                    <h1>Participant </h1>
+                    <h1>مشارك </h1>
                   )}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <input
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="الاسم الكامل"
                     required
                     value={fullname}
                     onChange={(e) => setFullname(e.target.value)}
@@ -467,7 +467,7 @@ export default function Page() {
                   />
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder="بريد إلكتروني"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -475,7 +475,7 @@ export default function Page() {
                   />
                   <input
                     type="text"
-                    placeholder="Job Title"
+                    placeholder="مسمى وظيفي"
                     required
                     value={jobtitle}
                     onChange={(e) => setJobTitle(e.target.value)}
@@ -484,32 +484,32 @@ export default function Page() {
                   <div className='flex flex-col gap-2'>
                   <input
                     type="tel"
-                    placeholder="Phone"
+                    placeholder="هاتف"
                     required
                     value={phone}
                     onChange={(e)=>handlePhoneChange(e)}
                     className="w-full border text-primary border-gray-300 rounded-lg p-2"
                   />
                   {!phoneRegex.test(phone) && phone && (
-                  <p className="text-xs text-red-500">Please enter a valid phone number.</p>
+                  <p className="text-xs text-red-500">الرجاء إدخال رقم هاتف صالح.</p>
                 )}
                 </div>
                 <div className="flex flex-col gap-2">
                   <input
                     type="tel"
-                    placeholder="Mobile"
+                    placeholder="متحرك"
                     required
                     value={mobile}
                     onChange={handleMobileChange}
                     className="w-full border text-primary border-gray-300 rounded-lg p-2"
                   />
                   {!mobileRegex.test(mobile) && mobile && (
-                  <p className="text-xs text-red-500">Please enter a valid mobile number.</p>
+                  <p className="text-xs text-red-500">الرجاء إدخال رقم جوال صالح.</p>
                 )}
                 </div>
                   <input
                     type="text"
-                    placeholder="Company"
+                    placeholder="شركة"
                     required
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
@@ -517,7 +517,7 @@ export default function Page() {
                   />
                   <input
                     type="text"
-                    placeholder="Address"
+                    placeholder="عنوان"
                     required
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -529,7 +529,7 @@ export default function Page() {
                     onChange={(e) => setCountry(e.target.value)}
                     className="w-full border text-primary border-gray-300 rounded-lg p-2"
                   >
-                    <option>Select Country</option>
+                    <option>اختر البلد</option>
                     {countries.map((country) => (
                       <option key={country.cca2} value={country.name.common}>
                         {country.name.common}
@@ -542,12 +542,12 @@ export default function Page() {
                     participantType === "Company" && (
                       <div key={index} className="mb-6 border-t my-10 pt-4">
                         <h3 className="text-lg font-medium mb-4">
-                          Participant {index + 1}
+                        مشارك {index + 1}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <input
                             type="text"
-                            placeholder="Full Name"
+                            placeholder="الاسم الكامل"
                             value={participant.fullName}
                             onChange={(e) =>
                               handleInputChange(
@@ -560,7 +560,7 @@ export default function Page() {
                           />
                           <input
                             type="email"
-                            placeholder="Email"
+                            placeholder="بريد إلكتروني"
                             value={participant.email}
                             onChange={(e) =>
                               handleInputChange(index, "email", e.target.value)
@@ -569,7 +569,7 @@ export default function Page() {
                           />
                           <input
                             type="text"
-                            placeholder="Job Title"
+                            placeholder="مسمى وظيفي"
                             value={participant.jobTitle}
                             onChange={(e) =>
                               handleInputChange(
@@ -582,7 +582,7 @@ export default function Page() {
                           />
                           <input
                             type="tel"
-                            placeholder="Phone"
+                            placeholder="هاتف"
                             value={participant.phone}
                             onChange={(e) =>
                               handleInputChange(index, "phone", e.target.value)
@@ -592,7 +592,7 @@ export default function Page() {
                           />
                           <input
                             type="tel"
-                            placeholder="Mobile"
+                            placeholder="متحرك"
                             required
                             value={participant.mobile}
                             onChange={(e) =>
@@ -613,7 +613,7 @@ export default function Page() {
                   onClick={addParticipant}
                   className="text-blue-500"
                 >
-                  + Add Another Participant
+                  + إضافة مشارك آخر
                 </button>
               )}
             </div>
@@ -623,7 +623,7 @@ export default function Page() {
                 type="submit"
                 className="px-6 py-3 bg-primary text-white rounded-lg"
               >
-                {loading ? 'Loading ...' : 'Submit'}
+                {loading ? 'تحميل ...' : 'يُقدِّم'}
               </button>
             </div>
           </form>
@@ -637,27 +637,27 @@ export default function Page() {
                 <div className="text-center">
                   <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-                    Registration Successful
+                  تم التسجيل بنجاح
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 mb-6">
-                    Your registration has been submitted successfully. You will
-                    be notified via email or phone shortly.
+                  لقد تم تقديم تسجيلك بنجاح. سوف تفعلها
+                  سيتم إعلامك عبر البريد الإلكتروني أو الهاتف قريبا.
                   </p>
                 </div>
               ) : (
                 <div className="text-center">
                   <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-                    Registration Error
+                  خطأ في التسجيل
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 mb-6">
-                    We apologize, but there was an error submitting your
-                    registration. Please try again later or contact{" "}
+                  نعتذر، ولكن حدث خطأ أثناء إرسال طلبك
+                  تسجيل. يرجى المحاولة مرة أخرى في وقت لاحق أو الاتصال
                     <Link
                       href="/customer_service"
                       className="font-medium text-blue-600 hover:underline"
                     >
-                      Customer Support
+                      دعم العملاء
                     </Link>
                     .
                   </p>
@@ -668,13 +668,13 @@ export default function Page() {
                   onClick={() => setModal(false)}
                   className="w-full sm:w-1/2 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors text-sm sm:text-base"
                 >
-                  Close
+                  يغلق
                 </button>
                 <Link
                   href="/diploma"
                   className="w-full sm:w-1/2 text-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/70 transition-colors text-sm sm:text-base"
                 >
-                  Discover New Courses
+                  اكتشف دورات جديدة
                 </Link>
               </div>
             </div>

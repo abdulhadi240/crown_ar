@@ -13,7 +13,7 @@ export default function Stats({number,icon,text}) {
   }
 
   return (
-    <div className='flex flex-col'><div className='flex w-full items-center justify-center' ref={ref}>
+    <div className='flex flex-col'><div className='flex flex-row-reverse w-full items-center justify-center' ref={ref}>
           <AnimatedNumber
               className='inline-flex items-center font-medium text-4xl text-zinc-800 dark:text-zinc-50'
               springOptions={{
@@ -25,6 +25,8 @@ export default function Stats({number,icon,text}) {
               {icon}
           </span>
 
-      </div><h1 className='text-xs font-bold mt-1'>{text}</h1></div>
+      </div>
+      <h1 className='text-xs font-bold mt-1'>{text}</h1>
+      </div>
   );
 }

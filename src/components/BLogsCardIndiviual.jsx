@@ -27,7 +27,7 @@ const BLogsCardIndiviual = ({ list, index, params ,background}) => {
             {list.published_date}
           </div>
           <div className="flex flex-col gap-4 justify-center mt-1">
-            <h1 className="text-center line-clamp-2 text-[12px] font-bold text-[#061839]">
+            <h1 className="text-center line-clamp-1 text-[12px] font-bold text-[#061839]">
               {list.title}
             </h1>
             <div className="text-[10px] mx-2 text-center font-thin text-black/80">

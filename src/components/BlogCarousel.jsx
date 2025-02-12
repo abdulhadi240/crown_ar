@@ -73,7 +73,7 @@ console.log(data , "data")
         </div>
       </div>
 
-      <div className="flex justify-center md:justify-end items-end mt-4 md:mr-32">
+      <div className="flex justify-center md:justify-end items-end mt-4 md:mx-4">
         {/* Navigation Buttons */}
         <div className="flex items-center gap-4 mb-2">
           <button
@@ -83,7 +83,7 @@ console.log(data , "data")
             disabled={currentIndex === 0}
             onClick={shiftLeft}
           >
-            <FiArrowLeft color="white" />
+            <FiArrowRight color="white" />
           </button>
           <button
             className={`rounded-lg border-[1px] bg-primary p-2 text-2xl transition-opacity ${
@@ -92,7 +92,7 @@ console.log(data , "data")
             disabled={currentIndex === totalDots - 1}
             onClick={shiftRight}
           >
-            <FiArrowRight color="white" />
+            <FiArrowLeft color="white" />
           </button>
         </div>
       </div>

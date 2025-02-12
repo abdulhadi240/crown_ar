@@ -29,11 +29,11 @@ const BlogsCategory = ({ category }) => {
       <div className="w-full max-w-[600px] flex items-center bg-[#f8f8f8] rounded-lg shadow-md p-2 mb-6 border-[1.5px] border-[#e0e0e0]">
         <input
           type="text"
-          placeholder="Search by name..."
+          placeholder="البحث بالاسم"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-grow p-2 text-primary rounded-md border-none outline-none bg-transparent"
+          className="flex-grow p-2 text-primary text-right rounded-md border-none outline-none bg-transparent"
         />
         <button
           onClick={handleSearch}

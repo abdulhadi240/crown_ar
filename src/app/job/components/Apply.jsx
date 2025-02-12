@@ -80,7 +80,8 @@ const Apply = () => {
       const response = await fetch("https://backendbatd.clinstitute.co.uk/api/job-application", {
         method: "POST",
         headers: {
-          "Accept-Language": "en",
+          "Accept-Language": "ar",
+
         },
         body: formDataToSend,
       })
@@ -135,31 +136,31 @@ const Apply = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen} className="overflow-hidden">
       <DialogTrigger asChild>
         <Button className="w-full bg-amber-200 hover:bg-amber-300 text-gray-800 my-2">
-          Apply Now
+        تقدم بطلبك الآن
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-primary">Job Application</DialogTitle>
-          <DialogDescription>Fill out the form below to apply for the position.</DialogDescription>
+        <DialogHeader className={"text-center flex justify-center"}>
+          <DialogTitle className="text-primary text-center flex justify-center mt-6">تطبيق الوظيفة</DialogTitle>
+          <DialogDescription className={"text-center flex justify-center"}>قم بملء النموذج أدناه للتقدم للوظيفة.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           {step === 1 && (
             <div className="space-y-4 text-primary">
               <div>
-                <Label htmlFor="name" className="text-primary">Name</Label>
+                <Label htmlFor="name" className="text-primary">اسم</Label>
                 <Input id="name" name="name" className="text-primary" value={formData.name} onChange={handleInputChange} required />
               </div>
               <div>
-                <Label htmlFor="email" className="text-primary">Email</Label>
+                <Label htmlFor="email" className="text-primary">بريد إلكتروني</Label>
                 <Input id="email" name="email" className="text-primary" type="email" value={formData.email} onChange={handleInputChange} required />
               </div>
               <div>
-                <Label htmlFor="contact_number" className="text-primary">Contact Number</Label>
+                <Label htmlFor="contact_number" className="text-primary">رقم الاتصال</Label>
                 <Input id="contact_number" className="text-primary" name="contact_number" type="tel" value={formData.contact_number} onChange={handleInputChange} required />
               </div>
               <Button type="button" onClick={nextStep} disabled={!isStepValid()} className="w-full text-white bg-primary hover:bg-primary-dark">
-                Next
+              التالي
               </Button>
             </div>
           )}
@@ -167,15 +168,15 @@ const Apply = () => {
           {step === 2 && (
             <div className="space-y-4 text-primary">
               <div>
-                <Label htmlFor="resume" className="text-primary">Upload Resume (PDF, DOC)</Label>
+                <Label htmlFor="resume" className="text-primary">تحميل السيرة الذاتية (PDF، DOC)</Label>
                 <Input className="text-primary" id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" onChange={handleInputChange} required />
               </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
-                  Previous
+                سابق
                 </Button>
                 <Button type="button" onClick={nextStep} disabled={!isStepValid()} className="w-[48%] text-white bg-primary hover:bg-primary-dark">
-                  Next
+                التالي
                 </Button>
               </div>
             </div>
@@ -184,23 +185,23 @@ const Apply = () => {
           {step === 3 && (
             <div className="space-y-4 overflow-y-hidden text-primary">
               <div>
-                <Label htmlFor="currentPosition"  className="text-primary">Current Position</Label>
+                <Label htmlFor="currentPosition"  className="text-primary">المنصب الحالي</Label>
                 <Input id="currentPosition"  className="text-primary" name="currentPosition" value={extraFields.currentPosition} onChange={handleInputChange} />
               </div>
               <div>
-                <Label htmlFor="expectedSalary" className="text-primary">Expected Salary</Label>
+                <Label htmlFor="expectedSalary" className="text-primary">الراتب المتوقع</Label>
                 <Input id="expectedSalary"  className="text-primary" name="expectedSalary" type="text" value={extraFields.expectedSalary} onChange={handleInputChange} />
               </div>
               <div>
-                <Label htmlFor="coverLetter" className="text-primary">Cover Letter</Label>
-                <Textarea id="coverLetter"  className="text-primary h-40" name="coverLetter" value={extraFields.coverLetter} onChange={handleInputChange} placeholder="Tell us why you're a great fit for this position..."  />
+                <Label htmlFor="coverLetter" className="text-primary">غطاء الرسالة</Label>
+                <Textarea id="coverLetter"  className="text-primary h-40" name="coverLetter" value={extraFields.coverLetter} onChange={handleInputChange} placeholder="أخبرنا لماذا أنت مناسب جدًا لهذا المنصب..."  />
               </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={prevStep} className="w-[48%] text-white bg-secondary hover:bg-secondary-dark">
-                  Previous
+                سابق
                 </Button>
                 <Button type="submit" disabled={!isStepValid() || loading} className="w-[48%] text-white bg-primary ">
-                  {loading ? "Submitting..." : "Submit Application"}
+                  {loading ? "تقديم..." : "تقديم الطلب"}
                 </Button>
               </div>
             </div>

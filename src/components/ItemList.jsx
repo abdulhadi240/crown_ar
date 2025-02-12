@@ -42,11 +42,11 @@ export default function CourseListing({
                 <Table className="w-[300px] border-collapse">
                   <TableHeader>
                     <TableRow className="border-b border-gray-200">
-                      <TableHead className="py-3 px-4 text-left text-sm font-semibold text-primary">
-                        City Title
+                      <TableHead className="py-3 px-4 text-right text-sm font-semibold text-primary">
+                      عنوان المدينة
                       </TableHead>
                       <TableHead className="py-3 px-4 text-center text-sm font-semibold text-primary">
-                        Options
+                      خيارات
                       </TableHead>
                     </TableRow>
                   </TableHeader>
@@ -54,14 +54,14 @@ export default function CourseListing({
                     {cities.map((course) => (
                       <TableRow key={course.id} className="hover:bg-gray-50">
                         <TableCell className="py-3 px-4 text-sm font-medium text-primary hover:text-secondary">
-                          <Link href={`/${course.slug}`}>{course.name}</Link>
+                          <Link href={`/${encodeURI(course.slug)}`}>{course.name}</Link>
                         </TableCell>
                         <TableCell className="py-3 px-4 text-center">
                           <Link
-                            href={`/${course.slug}`}
+                            href={`/${encodeURI(course.slug)}`}
                             className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary"
                           >
-                            View All Courses
+                            عرض جميع الدورات
                           </Link>
                         </TableCell>
                       </TableRow>
@@ -76,20 +76,20 @@ export default function CourseListing({
                 <Table className="w-full border-collapse">
                   <TableHeader>
                     <TableRow className="border-b border-gray-200">
-                      <TableHead className="py-3 px-4 text-left text-sm font-semibold text-primary">
-                        Course Title
+                      <TableHead className="py-3 px-4 text-right text-sm font-semibold text-primary">
+                      عنوان الدورة
                       </TableHead>
-                      <TableHead className="py-3 px-4 text-left text-sm font-semibold text-primary">
-                        Dates
+                      <TableHead className="py-3 px-4 text-right text-sm font-semibold text-primary">
+                      بلح
                       </TableHead>
-                      <TableHead className="py-3 px-4 text-left text-sm font-semibold text-primary">
-                        Cities
+                      <TableHead className="py-3 px-4 text-right text-sm font-semibold text-primary">
+                      المدن
                       </TableHead>
-                      <TableHead className="py-3 px-4 text-left text-sm font-semibold text-primary">
-                        Price
+                      <TableHead className="py-3 px-4 text-right text-sm font-semibold text-primary">
+                      سعر
                       </TableHead>
                       <TableHead className="py-3 px-4 text-center text-sm font-semibold text-primary">
-                        Options
+                      خيارات
                       </TableHead>
                     </TableRow>
                   </TableHeader>
@@ -100,8 +100,8 @@ export default function CourseListing({
                           <Link
                             href={`${
                               check_city_courses
-                                ? `/${params}/${course.specialization_slug}/${course.slug}`
-                                : `/${params}/${course.available_cities[0]?.slug}/${course.slug}`
+                                ? `/${encodeURI(params)}/${encodeURI(course.specialization_slug)}/${encodeURI(course.slug)}`
+                                : `/${encodeURI(params)}/${encodeURI(course.available_cities[0]?.slug)}/${encodeURI(course.slug)}`
                             }`}
                           >
                             {course.title}
@@ -122,7 +122,7 @@ export default function CourseListing({
                             }
                           >
                             <option value="" disabled>
-                              Select Date
+                            حدد التاريخ
                             </option>
                             {course.available_dates.map((date) => (
                               <option key={date.id} value={date.date}>
@@ -146,7 +146,7 @@ export default function CourseListing({
                             }
                           >
                             <option value="" disabled>
-                              Select City
+                            اختر المدينة
                             </option>
                             {course.available_cities.map((city) => (
                               <option key={city.id} value={city.slug}>
@@ -167,7 +167,7 @@ export default function CourseListing({
                             }`}
                             className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-secondary"
                           >
-                            Register
+                            يسجل
                           </Link>
                         </TableCell>
                       </TableRow>
@@ -197,7 +197,7 @@ export default function CourseListing({
                       <div className="flex flex-col gap-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700">
-                            Select Date
+                          حدد التاريخ
                           </label>
                           <select
                             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
@@ -213,7 +213,7 @@ export default function CourseListing({
                             }
                           >
                             <option value="" disabled>
-                              Select Date
+                            حدد التاريخ
                             </option>
                             {course.available_dates.map((date) => (
                               <option key={date.id} value={date.date}>
@@ -224,7 +224,7 @@ export default function CourseListing({
                         </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-700">
-                            Select City
+                          اختر المدينة
                           </label>
                           <select
                             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:ring-secondary focus:border-secondary"
@@ -240,7 +240,7 @@ export default function CourseListing({
                             }
                           >
                             <option value="" disabled>
-                              Select City
+                            اختر المدينة
                             </option>
                             {course.available_cities.map((city) => (
                               <option key={city.id} value={city.slug}>

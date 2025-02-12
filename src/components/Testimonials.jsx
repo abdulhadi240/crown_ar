@@ -5,296 +5,173 @@ const Testimonials = () => {
   return (
     <div>
       <section className="relative">
-        <div className="mx-auto max-w-7xl px-5 ">
+        <div className="mx-auto max-w-7xl px-6">
           {/* Testimonial Wall */}
-          <div className="mb-8 gap-5 py-4 [column-count:1] md:mb-12 md:[column-count:2] lg:mb-16 lg:[column-count:3]">
-            {/* Item */}
-            <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row items-center">
-                <Avatar className="text-sm text-primary mr-2">
+          <div className="mb-12 gap-8 py-8 [column-count:1] md:mb-16 md:[column-count:2] lg:mb-20 lg:[column-count:3]">
+            {/* Testimonial 1 */}
+            <div className="mb-8 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
+              <div className="mb-5 flex flex-row items-center">
+                <Avatar className="text-sm text-primary ml-3
+">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback className="text-primary">AA</AvatarFallback>
+                  <AvatarFallback className="text-primary">أح</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base font-semibold -mt-4">Ahmed Al-Mansoori</h6>
-                  <p className="text-sm text-gray-500">
-                    Project Management Course
-                  </p>
+                  <h6 className="text-base font-semibold -mt-1">أحمد المنصوري</h6>
+                  <p className="text-sm text-gray-500">دورة إدارة المشاريع</p>
                 </div>
               </div>
-              <p className="mb-4 text-sm text-gray-500">
-                “The Project Management course at Crown London Institute was an
-                exceptional experience. The trainers are highly professional,
-                and the content is rich with practical insights. I now feel more
-                confident in managing projects effectively."
+              <p className="mb-6 text-sm text-gray-500 leading-relaxed">
+                "كانت دورة إدارة المشاريع في معهد كراون لندن تجربة استثنائية. المدربون محترفون للغاية، والمحتوى غني بالرؤى العملية. أشعر الآن بثقة أكبر في إدارة المشاريع بفعالية."
               </p>
-              <div className="flex">
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
+              <div className="flex gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <img
+                    key={i}
+                    src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
+                    alt="نجمة"
+                    className="w-4"
+                  />
+                ))}
               </div>
             </div>
-            {/* Item */}
-            <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2 text-primary">
+
+            {/* Testimonial 2 */}
+            <div className="mb-8 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
+              <div className="mb-5 flex flex-row items-center">
+                <Avatar className="text-sm text-primary ml-3
+">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback className="text-primary">FA</AvatarFallback>
+                  <AvatarFallback className="text-primary">فا</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base -mt-4 font-semibold">Fatima Al-Sayed</h6>
-                  <p className="text-sm text-gray-500">
-                    Leadership Training Course
-                  </p>
+                  <h6 className="text-base font-semibold -mt-1">فاطمة السيد</h6>
+                  <p className="text-sm text-gray-500">دورة القيادة الإدارية</p>
                 </div>
               </div>
-              <p className="mb-4 text-sm text-gray-500">
-                “This leadership training course transformed my approach to team
-                management. The interactive sessions and real-life case studies
-                helped me develop strong leadership skills. I highly recommend
-                this course!"
+              <p className="mb-6 text-sm text-gray-500 leading-relaxed">
+                "غيرت هذه الدورة التدريبية في القيادة نهجي في إدارة الفرق. ساعدتني الجلسات التفاعلية ودراسات الحالة الواقعية على تطوير مهارات قيادية قوية. أوصي بشدة بهذه الدورة!"
               </p>
-              <div className="flex">
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
+              <div className="flex gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <img
+                    key={i}
+                    src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
+                    alt="نجمة"
+                    className="w-4"
+                  />
+                ))}
               </div>
             </div>
-            {/* Item */}
-            <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm text-primary mr-2">
+
+            {/* Testimonial 3 */}
+            <div className="mb-8 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
+              <div className="mb-5 flex flex-row items-center">
+                <Avatar className="text-sm text-primary ml-3
+">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback className="text-primary">KA</AvatarFallback>
+                  <AvatarFallback className="text-primary">خا</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base -mt-4 font-semibold"> Khalid Al-Farsi</h6>
-                  <p className="text-sm text-gray-500">
-                    Business Communication Course
-                  </p>
+                  <h6 className="text-base font-semibold -mt-1">خالد الفارسي</h6>
+                  <p className="text-sm text-gray-500">دورة التواصل التجاري</p>
                 </div>
               </div>
-              <p className="mb-4 text-sm text-gray-500">
-                “The Business Communication course improved my ability to
-                communicate effectively in a corporate environment. The
-                practical exercises and expert guidance made a significant
-                difference in my professional interactions."
+              <p className="mb-6 text-sm text-gray-500 leading-relaxed">
+                "حسنت دورة التواصل التجاري من قدرتي على التواصل الفعال في البيئات المؤسسية. أحدثت التمارين العملية والإرشادات الخبيرة فرقًا كبيرًا في تفاعلاتي المهنية."
               </p>
-              <div className="flex">
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
+              <div className="flex gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <img
+                    key={i}
+                    src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
+                    alt="نجمة"
+                    className="w-4"
+                  />
+                ))}
               </div>
             </div>
-            {/* Item */}
-            <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm text-primary mr-2">
+
+            {/* Testimonial 4 */}
+            <div className="mb-8 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
+              <div className="mb-5 flex flex-row items-center">
+                <Avatar className="text-sm text-primary ml-3
+">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback className="text-primary">LH</AvatarFallback>
+                  <AvatarFallback className="text-primary">لي</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base -mt-4 font-semibold">Layla Hassan</h6>
-                  <p className="text-sm text-gray-500">
-                    Human Resource Management Course
-                  </p>
+                  <h6 className="text-base font-semibold -mt-1">ليلى حسن</h6>
+                  <p className="text-sm text-gray-500">دورة إدارة الموارد البشرية</p>
                 </div>
               </div>
-              <p className="mb-4 text-sm text-gray-500">
-                “The HR Management course provided in-depth knowledge about
-                modern HR practices. I now have a better understanding of
-                recruitment, employee relations, and performance management. An
-                excellent program!"
+              <p className="mb-6 text-sm text-gray-500 leading-relaxed">
+                "وفرت دورة إدارة الموارد البشرية معرفة متعمقة عن الممارسات الحديثة. أصبح لدي فهم أفضل للتوظيف وعلاقات الموظفين وإدارة الأداء. برنامج ممتاز!"
               </p>
-              <div className="flex">
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
+              <div className="flex gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <img
+                    key={i}
+                    src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
+                    alt="نجمة"
+                    className="w-4"
+                  />
+                ))}
               </div>
             </div>
-            {/* Item */}
-            <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2 text-primary">
+
+            {/* Testimonial 5 */}
+            <div className="mb-8 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
+              <div className="mb-5 flex flex-row items-center">
+                <Avatar className="text-sm text-primary ml-3
+">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback className="text-primary">OA</AvatarFallback>
+                  <AvatarFallback className="text-primary">عم</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base -mt-4 font-semibold">Omar Al-Dabbagh</h6>
-                  <p className="text-sm text-gray-500">
-                    Digital Marketing Course
-                  </p>
+                  <h6 className="text-base font-semibold -mt-1">عمر الدباغ</h6>
+                  <p className="text-sm text-gray-500">دورة التسويق الرقمي</p>
                 </div>
               </div>
-              <p className="mb-4 text-sm text-gray-500">
-                "I gained valuable digital marketing skills that I immediately
-                applied to my business. The course covered SEO, social media
-                strategies, and content marketing in great detail. Truly a
-                game-changer!"
+              <p className="mb-6 text-sm text-gray-500 leading-relaxed">
+                "اكتسبت مهارات قيمة في التسويق الرقمي طبقتها فورًا على عملي. غطت الدورة تحسين محركات البحث واستراتيجيات الوسائط الاجتماعية والتسويق بالمحتوى بتفصيل ممتاز. تغيير حقيقي للعبة!"
               </p>
-              <div className="flex">
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
+              <div className="flex gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <img
+                    key={i}
+                    src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
+                    alt="نجمة"
+                    className="w-4"
+                  />
+                ))}
               </div>
             </div>
-            {/* Item */}
-            <div className="mb-6 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
-              <div className="mb-4 flex flex-row">
-                <Avatar className="text-sm mr-2 text-primary">
+
+            {/* Testimonial 6 */}
+            <div className="mb-8 gap-6 overflow-hidden rounded-2xl border border-solid border-gray-300 bg-white p-8">
+              <div className="mb-5 flex flex-row items-center">
+                <Avatar className="text-sm text-primary ml-3">
                   <AvatarImage src="https://github.com/shadcn.png1" />
-                  <AvatarFallback className="text-primary">HA</AvatarFallback>
+                  <AvatarFallback className="text-primary">هد</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <h6 className="text-base -mt-4 font-semibold">Huda Al-Najjar</h6>
-                  <p className="text-sm text-gray-500">
-                    {" "}
-                    Financial Management Course
-                  </p>
+                  <h6 className="text-base font-semibold mt-1">هدى النجار</h6>
+                  <p className="text-sm text-gray-500">دورة الإدارة المالية</p>
                 </div>
               </div>
-              <p className="mb-4 text-sm text-gray-500">
-                “The Financial Management course helped me enhance my financial
-                planning and analysis skills. The instructors explained complex
-                financial concepts in a simple and practical way. A must-attend
-                course!"
+              <p className="mb-6 text-sm text-gray-500 leading-relaxed">
+                "ساعدتني دورة الإدارة المالية في تعزيز مهارات التخطيط المالي والتحليل. شرح المدربون المفاهيم المالية المعقدة بطريقة بسيطة وعملية. دورة يجب حضورها!"
               </p>
-              <div className="flex">
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
-                <img
-                  src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
-                  alt=""
-                  className="mr-1.5 inline-block w-4 flex-none"
-                />
+              <div className="flex gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <img
+                    key={i}
+                    src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg"
+                    alt="نجمة"
+                    className="w-4"
+                  />
+                ))}
               </div>
             </div>
           </div>

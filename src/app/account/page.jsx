@@ -14,8 +14,6 @@ import { BiLogoGmail } from 'react-icons/bi';
 const Page = () => {
   const router = useRouter();
   const [select, setSelect] = useState('Personal_Information');
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [currentComponent, setCurrentComponent] = useState(<Personal_Information />);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -32,7 +30,8 @@ const Page = () => {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Accept-Language": "ar"
           }
         });
 
@@ -69,15 +68,15 @@ const Page = () => {
             onClick={() => handleSelect('Personal_Information')}
             className={cn('p-1 px-2 cursor-pointer', select === 'Personal_Information' && 'border-primary rounded-full text-white transition-all delay-200')}
           >
-            Personal Information
+            معلومات شخصية
           </div>
         </div>
       </div>
       
       {userData && (
         <div>
-        <h1 className='flex justify-center mt-10 text-xl uppercase '>Personal Information</h1>
-        <p className='mb-10 text-xs text-center'>Manage your information including phone numbers and email address where you can be contacted</p>
+        <h1 className='flex justify-center mt-10 text-xl uppercase '>معلومات شخصية</h1>
+        <p className='mb-10 text-xs text-center'>إدارة معلوماتك بما في ذلك أرقام الهواتف وعنوان البريد الإلكتروني حيث يمكن الاتصال بك</p>
         <div className='flex justify-center'>
         <div className='grid grid-cols-1 gap-3 md:grid-cols-3 mb-10 text-base'>
         <Cards_Information title={'Name'} Icon={CiUser} des={userData.name}/>

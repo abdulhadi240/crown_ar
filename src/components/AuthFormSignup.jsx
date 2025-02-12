@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,16 +7,16 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-// 🎯 Validation Schema
+// 🎯 مخطط التحقق من الصحة
 const schema = yup.object().shape({
-  name: yup.string().min(3, "Name must be at least 3 characters").required("Name is required"),
-  username: yup.string().min(3, "Username must be at least 3 characters").required("Username is required"),
-  email: yup.string().email("Invalid email format").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  name: yup.string().min(3, "يجب أن يكون الاسم 3 أحرف على الأقل").required("الاسم مطلوب"),
+  username: yup.string().min(3, "يجب أن يكون اسم المستخدم 3 أحرف على الأقل").required("اسم المستخدم مطلوب"),
+  email: yup.string().email("تنسيق البريد الإلكتروني غير صالح").required("البريد الإلكتروني مطلوب"),
+  password: yup.string().min(6, "يجب أن تكون كلمة المرور 6 أحرف على الأقل").required("كلمة المرور مطلوبة"),
   password_confirmation: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Password confirmation is required"),
+    .oneOf([yup.ref("password"), null], "يجب أن تتطابق كلمتا المرور")
+    .required("تأكيد كلمة المرور مطلوب"),
 });
 
 const AuthFormSignup = () => {
@@ -32,7 +32,7 @@ const AuthFormSignup = () => {
   const [apiError, setApiError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 🚀 Form Submission
+  // 🚀 إرسال النموذج
   const onSubmit = async (formData) => {
     setApiError(null);
     setIsLoading(true);
@@ -40,90 +40,87 @@ const AuthFormSignup = () => {
     try {
       const response = await axios.post("https://backendbatd.clinstitute.co.uk/api/register", {
         ...formData,
-        locale: "en",
+        locale: "ar",
       });
       if(response?.message){
-        setApiError(response?.message || "Something went wrong.");
-
+        setApiError(response?.message || "حدث خطأ ما.");
       }
-      navigate.push("/login"); // ✅ Redirect to the login page after successful signup
+      navigate.push("/login"); // ✅ إعادة التوجيه إلى صفحة تسجيل الدخول بعد التسجيل الناجح
     } catch (error) {
-      setApiError(error.response?.data?.message || "Something went wrong.");
+      setApiError(error.response?.data?.message || "حدث خطأ ما.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  
-
   return (
-    <div className="flex items-center justify-center  px-4 text-sm md:w-[500px] min-w-[350px] -mt-10">
+    <div className="flex items-center justify-center px-4 text-sm md:w-[500px] min-w-[350px] -mt-10">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">
-        <h2 className="text-2xl font-bold text-center text-primary">Create an Account</h2>
+        <h2 className="text-2xl font-bold text-center text-primary">إنشاء حساب</h2>
         {apiError && <p className="text-red-500 text-center">{apiError}</p>}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
-          {/* Name Field */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* حقل الاسم */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Full Name</label>
+            <label className="block text-sm font-medium text-gray-700">الاسم الكامل</label>
             <input
               type="text"
               {...register("name")}
               className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
-              placeholder="Enter your full name"
+              placeholder="أدخل اسمك الكامل"
             />
             <p className="text-red-500 text-sm">{errors.name?.message}</p>
           </div>
 
-          {/* Username Field */}
+          {/* حقل اسم المستخدم */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Username</label>
+            <label className="block text-sm font-medium text-gray-700">اسم المستخدم</label>
             <input
               type="text"
               {...register("username")}
               className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
-              placeholder="Choose a username"
+              placeholder="اختر اسم مستخدم"
             />
             <p className="text-red-500 text-sm">{errors.username?.message}</p>
           </div>
 
-          {/* Email Field */}
+          {/* حقل البريد الإلكتروني */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email Address</label>
+            <label className="block text-sm font-medium text-gray-700">البريد الإلكتروني</label>
             <input
               type="email"
               {...register("email")}
               className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
-              placeholder="Enter your email"
+              placeholder="أدخل بريدك الإلكتروني"
             />
             <p className="text-red-500 text-sm">{errors.email?.message}</p>
           </div>
 
-          {/* Password Field */}
+          {/* حقل كلمة المرور */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <label className="block text-sm font-medium text-gray-700">كلمة المرور</label>
             <input
               type="password"
               {...register("password")}
               className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
-              placeholder="Enter a strong password"
+              placeholder="أدخل كلمة مرور قوية"
             />
             <p className="text-red-500 text-sm">{errors.password?.message}</p>
           </div>
 
-          {/* Confirm Password Field */}
+          {/* حقل تأكيد كلمة المرور */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
+            <label className="block text-sm font-medium text-gray-700">تأكيد كلمة المرور</label>
             <input
               type="password"
               {...register("password_confirmation")}
               className="w-full text-primary p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
-              placeholder="Confirm your password"
+              placeholder="أكد كلمة المرور"
             />
             <p className="text-red-500 text-sm">{errors.password_confirmation?.message}</p>
           </div>
 
-          {/* Submit Button */}
+          {/* زر التسجيل */}
           <button
             type="submit"
             className={`w-full p-3 text-white font-bold rounded-md transition duration-200 ${
@@ -131,19 +128,17 @@ const AuthFormSignup = () => {
             }`}
             disabled={isLoading}
           >
-            {isLoading ? "Signing Up..." : "Sign Up"}
+            {isLoading ? "جاري التسجيل..." : "تسجيل"}
           </button>
-          {apiError && <p className="text-red-500 text-xs text-start">{apiError}</p>
-        }
         </form>
 
-        {/* Redirect to Login */}
+        {/* الانتقال إلى تسجيل الدخول */}
         <p className="text-center text-gray-600">
-          Already have an account?{" "}
+          لديك حساب بالفعل؟ {" "}
           <Link href={'/sign-in'}
             className="text-secondary cursor-pointer hover:underline"
           >
-            Log in
+            تسجيل الدخول
           </Link>
         </p>
       </div>

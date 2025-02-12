@@ -78,7 +78,7 @@ const Course_By_Cities = ({
           {
             headers: {
               "Content-Type": "application/json",
-              "Accept-Language": "en",
+              "Accept-Language": "ar",
             },
           }
         );

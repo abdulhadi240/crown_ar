@@ -59,7 +59,7 @@ const Filteration = ({ data, category }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               onKeyDown={handleKeyPress} // Handle Enter Key
-              placeholder="Search Services"
+              placeholder="خدمات البحث"
               className="flex-1 text-primary p-3 w-2/3 md:w-9/12 text-sm border rounded-lg shadow-md"
             />
             <button

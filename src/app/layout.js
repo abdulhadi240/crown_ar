@@ -53,8 +53,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
-    <html lang="en">
-    <AuthProvider>
+<html lang="ar" dir="rtl">    <AuthProvider>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-black dark:text-white`}
       >

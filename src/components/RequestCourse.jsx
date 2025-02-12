@@ -6,16 +6,16 @@ import { z } from "zod";
 import Wrapper from "./Wrapper";
 
 const schema = z.object({
-  fullName: z.string().min(2, { message: "Full name must be at least 2 characters" }),
-  email: z.string().email({ message: "Invalid email address" }),
-  mobile: z.string().regex(/^[0-9]{11}$/, { message: "Mobile number must be 11 digits" }),
-  category: z.string().min(1, { message: "Please select a category" }),
-  city: z.string().min(1, { message: "Please select a city" }),
+  fullName: z.string().min(2, { message: "يجب أن يكون الاسم الكامل مكونًا من حرفين على الأقل" }),
+  email: z.string().email({ message: "البريد الإلكتروني غير صالح" }),
+  mobile: z.string().regex(/^[0-9]{11}$/, { message: "يجب أن يتكون رقم الهاتف من 11 رقمًا" }),
+  category: z.string().min(1, { message: "يرجى اختيار فئة" }),
+  city: z.string().min(1, { message: "يرجى اختيار مدينة" }),
 });
 
 function RequestCourse({ cities, categories }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");  // Added state for success message
+  const [successMessage, setSuccessMessage] = useState(""); 
 
   const {
     register,
@@ -27,7 +27,7 @@ function RequestCourse({ cities, categories }) {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    setSuccessMessage("");  // Reset the success message before submitting
+    setSuccessMessage("");  
 
     const formData = new FormData();
     formData.append("full_name", data.fullName);
@@ -41,19 +41,18 @@ function RequestCourse({ cities, categories }) {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Accept-Language": "en",
+          "Accept-Language": "ar",
         },
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Request failed");
+        throw new Error("فشل الطلب");
       }
 
-      // If successful, display the success message
-      setSuccessMessage("Request sent successfully!");
+      setSuccessMessage("تم إرسال الطلب بنجاح!");
     } catch (error) {
-      console.error("Error:", error);
+      console.error("خطأ:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -61,24 +60,24 @@ function RequestCourse({ cities, categories }) {
 
   return (
     <Wrapper>
-      <div className="flex flex-col md:flex-row justify-center items-center mx-auto  gap-10 md:gap-32 p-4 md:p-6">
-        <div className="text-center md:text-left max-w-md">
+      <div className="flex flex-col md:flex-row justify-center items-center mx-auto gap-10 md:gap-32 p-4 md:p-6">
+        <div className="text-center md:text-right max-w-md">
           <h1 className="text-2xl md:text-5xl font-bold text-[#fcc839]">
-            Request a Course
+            طلب دورة تدريبية
           </h1>
           <p className="text-gray-100 text-sm mt-6 md:text-base w-full md:max-w-80 mt-1">
-            Get in touch with us to arrange a customized course tailored to your needs.
+            تواصل معنا لترتيب دورة تدريبية مخصصة تلبي احتياجاتك.
           </p>
         </div>
 
         <div className="bg-white w-full max-w-md rounded-lg p-6 shadow-md border border-gray-200">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <label className="text-gray-700 text-sm font-medium">Full Name</label>
+              <label className="text-gray-700 text-sm font-medium">الاسم الكامل</label>
               <input
                 {...register("fullName")}
                 type="text"
-                placeholder="Enter your full name"
+                placeholder="أدخل اسمك الكامل"
                 className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
               />
               {errors.fullName && <p className="text-red-500 text-xs text-start mt-1">{errors.fullName.message}</p>}
@@ -86,22 +85,22 @@ function RequestCourse({ cities, categories }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="text-gray-700 text-sm font-medium">Email</label>
+                <label className="text-gray-700 text-sm font-medium">البريد الإلكتروني</label>
                 <input
                   {...register("email")}
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="أدخل بريدك الإلكتروني"
                   className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
                 {errors.email && <p className="text-red-500 text-start text-xs mt-1">{errors.email.message}</p>}
               </div>
               
               <div>
-                <label className="text-gray-700 text-sm font-medium">Mobile Number</label>
+                <label className="text-gray-700 text-sm font-medium">رقم الجوال</label>
                 <input
                   {...register("mobile")}
                   type="tel"
-                  placeholder="Enter your mobile number"
+                  placeholder="أدخل رقم هاتفك"
                   className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition text-sm"
                 />
                 {errors.mobile && <p className="text-red-500 text-start text-xs mt-1">{errors.mobile.message}</p>}
@@ -110,12 +109,12 @@ function RequestCourse({ cities, categories }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="text-gray-700 text-sm font-medium">Category</label>
+                <label className="text-gray-700 text-sm font-medium">الفئة</label>
                 <select
                   {...register("category")}
                   className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
                 >
-                  <option value="">Select a category</option>
+                  <option value="">اختر فئة</option>
                   {categories.map((category) => (
                     <option key={category.value} value={category.id}>
                       {category.name}
@@ -126,12 +125,12 @@ function RequestCourse({ cities, categories }) {
               </div>
               
               <div>
-                <label className="text-gray-700 text-sm font-medium">City</label>
+                <label className="text-gray-700 text-sm font-medium">المدينة</label>
                 <select
                   {...register("city")}
                   className="w-full mt-1 px-3 py-2 text-primary rounded border border-secondary focus:ring-2 focus:ring-amber-400 focus:outline-none transition bg-white appearance-none text-sm"
                 >
-                  <option value="">Select a city</option>
+                  <option value="">اختر مدينة</option>
                   {cities.map((city) => (
                     <option key={city.value} value={city.id}>
                       {city.name}
@@ -148,12 +147,12 @@ function RequestCourse({ cities, categories }) {
                 disabled={isSubmitting}
                 className="w-full bg-secondary text-white font-medium py-2 px-4 rounded-md hover:bg-amber-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
-                {isSubmitting ? "Processing..." : "Send Request"}
+                {isSubmitting ? "جارٍ المعالجة..." : "إرسال الطلب"}
               </button>
             </div>
           </form>
 
-          {/* Success message */}
+          {/* رسالة النجاح */}
           {successMessage && (
             <div className="mt-4 text-xs text-primary text-start font-semibold">
               {successMessage}

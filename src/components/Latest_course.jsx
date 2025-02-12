@@ -40,7 +40,7 @@ const Latest_course = ({ courses }) => {
                 <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
                   {course.available_dates.slice(0, 2).map((date) => (
                     <div key={date.id} className="flex items-center">
-                      <FaCalendarAlt className="text-primary mr-2" />
+                      <FaCalendarAlt className="text-primary ml-2" />
                       {date.date}
                     </div>
                   ))}
@@ -51,13 +51,13 @@ const Latest_course = ({ courses }) => {
                   {/* City */}
                   {course.available_cities.length > 0 && (
                     <div className="flex items-center">
-                      <MdLocationOn className="text-primary mr-2" />
+                      <MdLocationOn className="text-primary ml-2" />
                       {course.available_cities[0].name}
                     </div>
                   )}
 
                   {/* Price */}
-                  <span className="text-primary text-lg font-semibold">
+                  <span className="text-primary text-base font-semibold">
                     $ {course.price}
                   </span>
                 </div>
@@ -66,10 +66,10 @@ const Latest_course = ({ courses }) => {
               {/* Action Buttons */}
               <div className="mt-4 flex justify-between w-full">
                 <Link href={`/${course.available_cities[0].slug}/${course.specialization_slug}/${course.slug}`} className="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-secondary transition">
-                  Details
+                تفاصيل
                 </Link>
                 <Link href={`/register?course=${course.slug}`} className="bg-secondary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary transition">
-                  Register
+                يسجل
                 </Link>
               </div>
             </div>

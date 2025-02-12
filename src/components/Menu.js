@@ -1,10 +1,10 @@
 export const menu = [
-    { name: "Home", link: "/" },
-    { name: "Diploma", link: "/diploma" },
-    { name: "Masters", link: "/masters" },
-    { name: "Training Course", link: "/training-courses" },
-    { name: "Cities", link: "/cities" },
-    { name: "Consulting", link: "/consulting-services" },
-    { name: "About Us", link: "/about" },
-    { name: "Contact Us", link: "/contact" },
-  ];
+  { name: "الرئيسية", link: "/" },
+  { name: "دبلوم", link: "/دبلوم" },
+  { name: "ماجستير", link: "/ماجستير" },
+  { name: "الدورات التدريبية", link: "/الدورات التدريبية" },
+  { name: "المدن", link: "/cities" },
+  { name: "الاستشارات", link: "/consulting-services" },
+  { name: "من نحن", link: "/about" },
+  { name: "اتصل بنا", link: "/contact" },
+];

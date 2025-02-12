@@ -17,7 +17,7 @@ const Login_ = () => {
   const handleLanguageChange = () => {
     if (typeof window !== 'undefined') {
       const lang = 'ar'; // Or get this dynamically
-      const subdomain = `${lang}.clinstitute.co.uk`;
+      const subdomain = `clinstitute.co.uk`;
       const currentHost = window.location.hostname;
 
       // Handle cases where there might not be a current host (e.g., local dev)
@@ -36,9 +36,9 @@ const Login_ = () => {
 
   return (
     <div className="relative flex items-center space-x-4">
-      <button onClick={handleLanguageChange} className="flex items-center gap-2 border-[1px] rounded-md border-slate-50/70 px-2 py-1">
-        <Image src={'/ar.webp'} height={30} width={30} alt="Arab Flag" />
-        العربية
+      <button onClick={handleLanguageChange} className="flex items-center gap-2 ml-4 border-[1px] rounded-md border-slate-50/70 px-2 py-1">
+        <Image src={'/en.png'} height={40} width={40} alt="Arab Flag" />
+        English
       </button>
 
       {isAuthenticated && user ? (
@@ -57,24 +57,24 @@ const Login_ = () => {
                 href="/account"
                 className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
               >
-                Profile
+                حساب تعريفي
               </Link>
               <button
                 onClick={logout}
                 className="block w-full text-left px-4 py-2 bg-primary text-white"
               >
-                Logout
+                تسجيل الخروج
               </button>
             </div>
           )}
         </div>
       ) : (
         <>
-          <Link href="/sign-in" className="flex items-center text-white hover:text-secondary">
-            <FaLock className="mr-1" color="white" /> Login
+          <Link href="/sign-in" className="flex items-center text-white  hover:text-secondary">
+          تسجيل الدخول <FaLock className="mr-1" color="white" />
           </Link>
           <Link href="/sign-up" className="px-4 py-2 text-white rounded bg-secondary hover:bg-secondary-dark">
-            Sign up
+          اشتراك
           </Link>
         </>
       )}

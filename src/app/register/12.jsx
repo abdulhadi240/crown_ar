@@ -99,7 +99,8 @@ export default function Page() {
               next: { revalidate: 60 },
               headers: {
                 "Content-Type": "application/json",
-                "Accept-Language": "en",
+                "Accept-Language": "ar",
+
               },
             }
           );
@@ -186,7 +187,8 @@ export default function Page() {
           method: "POST",
           headers: {
             Accept: "application/json",
-            "Accept-Language": "en",
+            "Accept-Language": "ar",
+
           },
           body: formData,
         }

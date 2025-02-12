@@ -9,7 +9,7 @@ export async function POST(req) {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": "ar",
       },
       body: formData,
     });

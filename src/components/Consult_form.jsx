@@ -54,7 +54,7 @@ const ConsultForm = ({ title }) => {
       const response = await fetch("https://backendbatd.clinstitute.co.uk/api/consultation_query", {
         method: "POST",
         headers: {
-          "Accept-Language": "en",
+          "Accept-Language": "ar",
         },
         body: formDataToSend,
       })

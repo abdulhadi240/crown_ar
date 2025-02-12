@@ -39,7 +39,7 @@ export default function ContactPage() {
         {
           method: "POST",
           headers: {
-            "Accept-Language": "en",
+            "Accept-Language": "ar",
             Accept: "application/json",
           },
           body: formattedData,
@@ -50,8 +50,8 @@ export default function ContactPage() {
 
       if (response.ok) {
         toast({
-          title: "Success",
-          description: "Your message has been sent successfully!",
+          title: "نجاح",
+          description: "تم إرسال رسالتك بنجاح!",
           variant: "success",
         });
         setFormData({
@@ -63,12 +63,12 @@ export default function ContactPage() {
         });
       } else {
         throw new Error(
-          data.message || "Something went wrong. Please try again."
+          data.message || "حدث خطأ ما. يرجى المحاولة مرة أخرى."
         );
       }
     } catch (error) {
       toast({
-        title: "Error",
+        title: "خطأ",
         description: error.message,
         variant: "destructive",
       });
@@ -83,16 +83,12 @@ export default function ContactPage() {
       <div className="relative">
         <div className="bg-[#0A1828] py-4">
           <h1 className="text-center md:mt-10 md:pt-6 text-3xl items-center font-bold text-white">
-            Contact Us
+            اتصل بنا
           </h1>
         </div>
         <div className="max-w-3xl mx-auto text-center px-4 py-8 text-base">
           <p className="text-gray-600">
-            At Crown London Institute, we're committed to assisting you at every
-            stage. If you have any questions about our courses or services or
-            need further information, simply fill out the form below with a
-            brief description of your inquiry, and we'll get back to you
-            promptly.
+            في معهد كراون لندن، نحرص على تقديم الدعم لك في كل مرحلة. إذا كان لديك أي استفسارات حول دوراتنا أو خدماتنا، أو كنت بحاجة إلى مزيد من المعلومات، يرجى ملء النموذج أدناه مع تقديم وصف موجز لاستفسارك، وسنقوم بالرد عليك في أقرب وقت ممكن.
           </p>
         </div>
         <div className="max-w-7xl mx-auto px-4 pb-16">
@@ -100,11 +96,11 @@ export default function ContactPage() {
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h2 className="text-2xl font-semibold mb-6">
-                  Get in <span className="text-secondary">Touch</span>
+                  أدخل <span className="text-secondary">معلوماتك</span>
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="fullName">Full Name</Label>
+                    <Label htmlFor="fullName">الاسم الكامل</Label>
                     <Input
                       id="fullName"
                       value={formData.name}
@@ -115,7 +111,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">البريد الإلكتروني</Label>
                     <Input
                       id="email"
                       type="email"
@@ -127,7 +123,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phoneNumber">Phone Number</Label>
+                    <Label htmlFor="phoneNumber">رقم الهاتف</Label>
                     <Input
                       id="phoneNumber"
                       type="tel"
@@ -138,7 +134,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="subject">Subject</Label>
+                    <Label htmlFor="subject">الموضوع</Label>
                     <Input
                       id="subject"
                       value={formData.po_box}
@@ -149,7 +145,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message">الرسالة</Label>
                     <Textarea
                       id="message"
                       value={formData.message}
@@ -165,7 +161,7 @@ export default function ContactPage() {
                     className="w-full bg-secondary hover:bg-secondary/90 text-white"
                     disabled={loading}
                   >
-                    {loading ? "Sending..." : "Send"}
+                    {loading ? "جاري الإرسال..." : "إرسال"}
                   </Button>
                 </form>
                 <div className="mt-8 flex gap-4">
@@ -177,15 +173,14 @@ export default function ContactPage() {
               </div>
               <div className="relative h-[400px] md:h-full min-h-[400px] rounded-lg overflow-hidden bg-gray-100">
                 <iframe
-                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9930.19158563342!2d-0.1842779!3d51.5190033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761aac0c5b8aa3%3A0x2c6c8204f8814686!2s6th%20Floor%2C%202%20Kingdom%20St%2C%20London%20W2%206BD%2C%20UK!5e0!3m2!1sen!2suk!4vYOUR_TIMESTAMP" 
-                   width="100%"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9930.19158563342!2d-0.1842779!3d51.5190033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761aac0c5b8aa3%3A0x2c6c8204f8814686!2s6th%20Floor%2C%202%20Kingdom%20St%2C%20London%20W2%206BD%2C%20UK!5e0!3m2!1sen!2suk!4vYOUR_TIMESTAMP" 
+                  width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="absolute inset-0"
-                  
                 />
               </div>
             </div>

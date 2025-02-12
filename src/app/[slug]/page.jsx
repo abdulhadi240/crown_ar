@@ -55,33 +55,39 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: data?.data?.meta_title || "Crown Academy for Training & Development",
-    description: data?.data?.meta_description || "Explore top courses, programs, and specializations.",
-    keywords: data?.data?.meta_keywords || "training, courses, programs, specialization",
+    title: data?.data?.meta_title || "أكاديمية تاج للتدريب والتطوير",
+    description: data?.data?.meta_description || "اكتشف أفضل الدورات والبرامج والتخصصات.",
+    keywords: data?.data?.meta_keywords || "تدريب, دورات, برامج, تخصص",
     alternates: {
-      canonical: `https://clinstitute.co.uk/${slug}`,
+        canonical: `https://ar.clinstitute.co.uk/${slug}`,
     },
     openGraph: {
-      title: data?.data?.meta_title,
-      description: data?.data?.meta_description,
-      url: `https://clinstitute.co.uk/${slug}`,
-      images: [
-        {
-          url: data?.data?.image || "https://clinstitute.co.uk/logocrown.webp",
-          width: 800,
-          height: 600,
-          alt: data?.data?.meta_title || "Course Image",
-        },
-      ],
-      type: "website",
+        title: data?.data?.meta_title,
+        description: data?.data?.meta_description,
+        url: `https://ar.clinstitute.co.uk/${slug}`,
+        images: [
+            {
+                url: data?.data?.image || "https://ar.clinstitute.co.uk/Logocrown.webp",
+                width: 800,
+                height: 600,
+                alt: data?.data?.meta_title || "صورة الدورة",
+            },
+        ],
+        type: "website",
+        locale: 'ar_AR', // Add locale for Arabic
     },
     twitter: {
-      card: "summary_large_image",
-      title: data?.data?.meta_title,
-      description: data?.data?.meta_description,
-      images: [data?.data?.image || "https://clinstitute.co.uk/logocrown.webp"],
+        card: "summary_large_image",
+        title: data?.data?.meta_title,
+        description: data?.data?.meta_description,
+        images: [data?.data?.image || "https://ar.clinstitute.co.uk/Logocrown.webp"],
+        // Add RTL direction for Twitter card description
+        'dir': 'rtl'
     },
-  };
+    // Add language meta tag for better SEO
+    'language': 'ar',
+
+};
 }
 
 // Dynamic Page Component
@@ -99,18 +105,8 @@ export default async function Page({ params }) {
       fetchCategoryData()
     ]);
 
-    const category = await GetAllCategory().catch(() => []);
-    const specialization_courses = await GetSpecificSpecialization(slug).catch(() => []);
-    
     const city = cityData?.data?.find((c) => c.slug === slug);
     const specialization = specializationData?.data?.find((s) => s.slug === slug);
-    const program = programs?.data?.find((p) => p.slug === slug);
-
-    
-    if (!city && !specialization && !program) {
-      return <NotFound />;
-    }
-  
     const data = city || specialization || programCourses;
     const type = city ? "city" : specialization ? "specialization" : "program";
 
