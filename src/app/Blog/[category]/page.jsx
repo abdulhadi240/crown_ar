@@ -10,14 +10,13 @@ export const dynamicParams = true;
 
 // Fetch Metadata Dynamically
 export async function generateMetadata({ params }) {
-  const locale = params.locale || "en"; // Fallback to English if no locale is provided
-  
+  const category1 = decodeURIComponent(params.category)  
   const product = await fetch(
-    `${process.env.BACKEND_URL}/blogs/${params.category}/category`,
+    `${process.env.BACKEND_URL}/blogs/${category1}/category`,
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": locale,
+        "Accept-Language": "ar",
       },
     }
   ).then((res) => res.json());
@@ -37,16 +36,15 @@ export async function generateMetadata({ params }) {
     keywords,
     openGraph: {
       type: "website",
-      locale,
       site_name: "British Academy for Training & Development",
       description,
-      url: `https://client-academy.vercel.app/blogs/${params.category}/category`,
+      url: `https://client-academy.vercel.app/blogs/${category1}/category`,
       images: [product?.data?.featured_image || 'https://clinstitute.co.uk/Logocrown.webp'],
     },
     twitter: {
       site_name: "British Academy for Training & Development",
       description,
-      url: `https://client-academy.vercel.app/blogs/${params.category}/category`,
+      url: `https://client-academy.vercel.app/blogs/${category1}/category`,
       images: [
         {
           url: "https://clinstitute.co.uk/Logocrown.webp",
@@ -86,14 +84,14 @@ export async function generateStaticParams() {
 
 // Main Page Component with SSR
 export default async function Page({ params }) {
-  const locale = params.locale || "en"; // Determine locale from params
+  const category1 = decodeURIComponent(params.category)  
 
   const articles = await fetch(
-    `${process.env.BACKEND_URL}/blogs/${params.category}/category?per_page=6&page=1`,
+    `${process.env.BACKEND_URL}/blogs/${category1}/category?per_page=6&page=1`,
     {
       headers: {
         "Content-Type": "application/json",
-        "Accept-Language": locale,
+        "Accept-Language": "ar",
       },
     }
   ).then((res) => res.json());
@@ -105,11 +103,7 @@ export default async function Page({ params }) {
       <Design iamge={"/blog3.png"} search center input={false} image_height={false}>
         <h1 className="max-w-3xl mt-5 text-4xl items-center font-semibold text-white md:text-[55px] md:leading-[60px]">
           Explore <span className="text-secondary">
-    {params.category
-      .replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
-      .split(' ') // Split the string into an array of words
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
-      .join(' ')} {/* Join the words back with spaces */}
+    {category1} {/* Join the words back with spaces */}
   </span>{" "}
           <br />
         </h1>
